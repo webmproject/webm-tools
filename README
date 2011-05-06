@@ -1,0 +1,29 @@
+adaptive_prototype_manifest
+=============================
+
+This sample outputs a prototype manifest for use with WebM VOD adaptive.
+
+
+Build requirements :
+
+Linux -> libwebm must be at "..\libwebm" or must be in your path.
+MacOSX -> libwebm must be at "..\libwebm" or must be in your path.
+Windows -> libwebm must be at "..\libwebm".
+
+DISCLAIMER: This sample code has only been tested on a very limited set of
+machines.
+
+
+
+============================================================
+Usage:
+
+Two files, one auido file has an audio stream and one file has a video stream.
+adaptive_prototype_manifest -mg id=0,lang=eng -m id=0,file=audio.webm -mg id=1 -m id=0,file=video.webm
+
+
+Five files, four video files and one audio file.
+adaptive_prototype_manifest -mg id=0,lang=eng -m id=0,file=video1.webm -m id=1,file=video2.webm -m id=2,file=video3.webm -m id=3,file=video4.webm -mg id=1,lang=eng -m id=4,file=audio.webm
+
+
+Run adaptive_prototype_manifest -h to get a list of commands.

@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "adaptive_prototype_manifest", "adaptive_prototype_manifest.vcproj", "{F807629B-0FD0-4F37-BB40-E820C50E1B7B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F807629B-0FD0-4F37-BB40-E820C50E1B7B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F807629B-0FD0-4F37-BB40-E820C50E1B7B}.Debug|Win32.Build.0 = Debug|Win32
+		{F807629B-0FD0-4F37-BB40-E820C50E1B7B}.Release|Win32.ActiveCfg = Release|Win32
+		{F807629B-0FD0-4F37-BB40-E820C50E1B7B}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
