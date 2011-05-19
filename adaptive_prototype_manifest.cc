@@ -27,7 +27,7 @@ using adaptive_manifest::ManifestModel;
 using adaptive_manifest::MediaGroup;
 using adaptive_manifest::Media;
 
-static const string VERSION_STRING = "1.0.0.0";
+static const string VERSION_STRING = "1.0.1.0";
 
 static void Usage() {
   cout << "Usage: adaptive_prototype_manifest <-mg [mg options]";

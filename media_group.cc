@@ -95,7 +95,7 @@ const Media* MediaGroup::FindMedia(const string& id) const {
 void MediaGroup::OutputPrototypeManifest(std::ostream& o, Indent& indt) {
   indt.Adjust(2);
   o << indt << "<mediagroup id=\"" << id_ << "\"";
-  o << " mimetype=\"video/webm\" codecs=\"" << codec_ << "\"";
+  o << " mimetype=\"video/webm; codecs=" << codec_ << "\"";
 
   if (!lang_.empty()) {
     o << " lang=\"" << lang_ << "\"";
