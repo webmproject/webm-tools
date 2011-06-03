@@ -117,6 +117,11 @@ class Media {
   // starting with the EBML element ID to the end offset of the element.
   void GetTracksRange(long long& start, long long& end) const;
 
+  // Returns the byte offset in the file for the start of the Segment Info and
+  // Tracks element starting with the EBML element ID to the end offset of the
+  // element.
+  void GetHeaderRange(long long& start, long long& end) const;
+
   // Returns the average framerate of the first video track. Returns 0.0 if
   // there is no video track or we cannot generate an average framerate.
   double GetVideoFramerate() const;
@@ -131,6 +136,14 @@ class Media {
 
   // Return the first video track. Returns NULL if there are no video tracks.
   const mkvparser::VideoTrack* GetVideoTrack() const;
+
+  // Outputs MediaHeader in the prototype format.
+  void OutputPrototypeManifestMediaHeader(std::ostream& o,
+                                          indent_webm::Indent& indt);
+
+  // Outputs MediaIndex in the prototype format.
+  void OutputPrototypeManifestMediaIndex(std::ostream& o,
+                                         indent_webm::Indent& indt);
 
   // Outputs Cues element in the prototype format.
   void OutputPrototypeManifestCues(std::ostream& o, indent_webm::Indent& indt);

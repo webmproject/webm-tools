@@ -17,6 +17,7 @@
 
 #include "manifest_model.h"
 #include "media_group.h"
+#include "media_interval.h"
 #include "media.h"
 
 using std::cout;
@@ -25,13 +26,14 @@ using std::string;
 using std::stringstream;
 using adaptive_manifest::ManifestModel;
 using adaptive_manifest::MediaGroup;
+using adaptive_manifest::MediaInterval;
 using adaptive_manifest::Media;
 
-static const string VERSION_STRING = "1.0.1.0";
+static const string VERSION_STRING = "1.0.2.0";
 
 static void Usage() {
   cout << "Usage: adaptive_prototype_manifest <-mg [mg options]";
-  cout << " <-m [m options]>... >... [-o output_file]" << endl;
+  cout << " <-m [m options]>... >... [-mi options] [-o output_file]" << endl;
   cout << endl;
   cout << "Main options:" << endl;
   cout << "-h                    show help" << endl;
@@ -45,6 +47,12 @@ static void Usage() {
   cout << "m options:" << endl;
   cout << "-id <string>          id of the Media" << endl;
   cout << "-file <string>        filename of the Media" << endl;
+  cout << endl;
+  cout << "mi options:" << endl;
+  cout << "-duration <double>    duration in seconds" << endl;
+  cout << "-groups <string>      list of MediaGroups separated by :" << endl;
+  cout << "-id <string>          id of the Media" << endl;
+  cout << "-start <double>       start time in seconds" << endl;
 }
 
 static void ParseMediaGroupOptions(const string& option_list, MediaGroup* mg) {
@@ -61,6 +69,41 @@ static void ParseMediaGroupOptions(const string& option_list, MediaGroup* mg) {
       mg->id(value);
     } else if (name == "lang") {
       mg->lang(value);
+    }
+  }
+}
+
+static double StringToDouble(const std::string& s) {
+   std::istringstream iss(s);
+   double value(0.0);
+   iss >> value;
+   return value;
+ }
+
+static void ParseMediaIntervalOptions(const string& option_list,
+                                      MediaInterval* mi) {
+  stringstream ss(option_list);
+  string option;
+  while(std::getline(ss, option, ',')) {
+    stringstream namevalue(option);
+    string name;
+    string value;
+    std::getline(namevalue, name, '=');
+    std::getline(namevalue, value, '=');
+
+    if (name == "id") {
+      mi->id(value);
+    } else if (name == "duration") {
+      // TODO: Use boost::lexical_cast
+      mi->duration(StringToDouble(value));
+    } else if (name == "start") {
+      mi->start(StringToDouble(value));
+    } else if (name == "groups") {
+      stringstream mi_ss(value);
+      string group_id;
+      while(std::getline(mi_ss, group_id, ':')) {
+        mi->AddMediaGroupID(group_id);
+      }
     }
   }
 }
@@ -103,6 +146,11 @@ static bool ParseMainCommandLine(int argc,
         string option_list(argv[++i]);
         ParseMediaOptions(option_list, media);
       }
+    } else if (!strcmp("-mi", argv[i])) {
+      model.AddMediaInterval();
+      MediaInterval* mi = model.CurrentMediaInterval();
+      string option_list(argv[++i]);
+      ParseMediaIntervalOptions(option_list, mi);
     } else if (!strcmp("-o", argv[i])) {
       model.output_filename(argv[++i]);
     } else if (!strcmp("-v", argv[i])) {

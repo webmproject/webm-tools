@@ -18,6 +18,7 @@
 namespace adaptive_manifest {
 
 class MediaGroup;
+class MediaInterval;
 
 using std::string;
 using std::vector;
@@ -35,12 +36,22 @@ class ManifestModel {
   // sucessful the current MediaGroup will point to the newly added MediaGroup.
   void AddMediaGroup();
 
+  // Adds a new MediaInterval that is controlled by the ManifestModel. If
+  // sucessful the current MediaInterval will point to the newly added
+  // MediaInterval.
+  void AddMediaInterval();
+
   // Returns the current MediaGroup. If no MediaGroups have been added then
   // returns NULL.
   MediaGroup* CurrentMediaGroup();
 
+  // Returns the current MediaInterval. If no MediaIntervals have been added
+  // then returns NULL.
+  MediaInterval* CurrentMediaInterval();
+
   // Search the MediaGroup list for |id|. If not found return NULL.
-  const MediaGroup* FindMediaGroup(const string& id) const;
+  //const MediaGroup* FindMediaGroup(const string& id) const;
+  MediaGroup* FindMediaGroup(const string& id) const;
 
   // Write out the manifest file to |output_filename_|.
   bool OutputPrototypeManifestFile();
@@ -53,8 +64,14 @@ class ManifestModel {
  private:
   friend std::ostream& operator<< (std::ostream &o, const ManifestModel &m);
 
+  // Maximum duration of all |media_intervals_|.
+  double duration_;
+
   // Media group list for a presentation.
   vector<MediaGroup*> media_groups_;
+
+  // Media interval list for a presentation.
+  vector<MediaInterval*> media_intervals_;
 
   // Path to output the manifest.
   string output_filename_;

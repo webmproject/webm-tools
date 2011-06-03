@@ -18,28 +18,87 @@
 
 #include "indent.h"
 #include "media_group.h"
+#include "media_interval.h"
 
 using std::endl;
 
 namespace adaptive_manifest {
 
 ManifestModel::ManifestModel()
-    :  output_filename_("manifest.xml") {
+    : duration_(0.0),
+      output_filename_("manifest.xml") {
 }
 
 ManifestModel::~ManifestModel() {
   vector<MediaGroup*>::iterator iter;
-  for( iter = media_groups_.begin(); iter != media_groups_.end(); ++iter ) {
+  for(iter = media_groups_.begin(); iter != media_groups_.end(); ++iter) {
     MediaGroup* mg = *iter;
     delete mg; 
+  }
+
+  vector<MediaInterval*>::iterator mi_iter;
+  for(mi_iter = media_intervals_.begin();
+      mi_iter != media_intervals_.end();
+      ++mi_iter) {
+    MediaInterval* mi = *mi_iter;
+    delete mi; 
   }
 }
 
 bool ManifestModel::Init() {
-  vector<MediaGroup*>::iterator iter;
-  for( iter = media_groups_.begin(); iter != media_groups_.end(); ++iter ) {
-    if ((*iter)->Init() == false)
+  vector<MediaGroup*>::iterator mg_iter;
+  for(mg_iter = media_groups_.begin();
+      mg_iter != media_groups_.end();
+      ++mg_iter) {
+    if ((*mg_iter)->Init() == false)
       return false;
+  }
+
+  // If no media intervals has been added on the command line add one by
+  // default.
+  if (media_intervals_.empty()) {
+    AddMediaInterval();
+    MediaInterval* mi = CurrentMediaInterval();
+
+    for(mg_iter = media_groups_.begin();
+        mg_iter != media_groups_.end();
+        ++mg_iter) {
+      mi->AddMediaGroupID((*mg_iter)->id());
+    }
+  }
+
+  // Set the media group pointers
+  vector<MediaInterval*>::iterator mi_iter;
+  for(mi_iter = media_intervals_.begin();
+      mi_iter != media_intervals_.end();
+      ++mi_iter) {
+    MediaInterval* mi = *mi_iter;
+
+    for (int i=0; i<mi->MediaGroupIDSize(); ++i) {
+      string id;
+      if (!mi->MediaGroupID(i, id))
+        return false;
+
+      MediaGroup* mg = FindMediaGroup(id);
+      if (!mg)
+        return false;
+
+      mi->AddMediaGroup(mg);
+    }
+  }
+
+  for(mi_iter = media_intervals_.begin();
+      mi_iter != media_intervals_.end();
+      ++mi_iter) {
+    if ((*mi_iter)->Init() == false)
+      return false;
+  }
+
+  for(mi_iter = media_intervals_.begin();
+      mi_iter != media_intervals_.end();
+      ++mi_iter) {
+    if (duration_ < (*mi_iter)->duration())
+      duration_ = (*mi_iter)->duration();
   }
 
   return true;
@@ -51,6 +110,14 @@ void ManifestModel::AddMediaGroup() {
   const string id = temp.str();
 
   media_groups_.push_back(new MediaGroup(id));
+}
+
+void ManifestModel::AddMediaInterval()  {
+  std::ostringstream temp;
+  temp << media_intervals_.size();
+  const string id = temp.str();
+
+  media_intervals_.push_back(new MediaInterval(id));
 }
 
 MediaGroup* ManifestModel::CurrentMediaGroup() {
@@ -65,9 +132,21 @@ MediaGroup* ManifestModel::CurrentMediaGroup() {
   return NULL;
 }
 
-const MediaGroup* ManifestModel::FindMediaGroup(const string& id) const {
+MediaInterval* ManifestModel::CurrentMediaInterval() {
+  vector<MediaInterval*>::iterator iter_curr(media_intervals_.end());
+
+  if (iter_curr == media_intervals_.begin())
+    return NULL;
+
+  --iter_curr;
+  return *iter_curr;
+
+  return NULL;
+}
+
+MediaGroup* ManifestModel::FindMediaGroup(const string& id) const {
   vector<MediaGroup*>::const_iterator iter;
-  for( iter = media_groups_.begin(); iter != media_groups_.end(); ++iter ) {
+  for(iter = media_groups_.begin(); iter != media_groups_.end(); ++iter) {
     if ((*iter)->id() == id)
       return *iter;
   }
@@ -82,15 +161,17 @@ bool ManifestModel::OutputPrototypeManifestFile() {
     return false;
 
   of << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" << endl;
-  of << "<presentation>" << endl;
+  of << "<Presentation";
+  of << " duration=\"" << duration_ << "\"";
+  of << " >" << endl;
 
   indent_webm::Indent indt(0);
-  vector<MediaGroup*>::const_iterator iter;
-  for( iter = media_groups_.begin(); iter != media_groups_.end(); ++iter ) {
+  vector<MediaInterval*>::const_iterator iter;
+  for(iter = media_intervals_.begin(); iter != media_intervals_.end(); ++iter) {
     (*iter)->OutputPrototypeManifest(of, indt);
   }
 
-  of << "</presentation>" << endl;
+  of << "</Presentation>" << endl;
 
   of.close();
   return true;
@@ -103,8 +184,8 @@ bool ManifestModel::PrintPrototypeManifestFile() {
   std::cout << "<presentation>" << endl;
 
   indent_webm::Indent indt(0);
-  vector<MediaGroup*>::const_iterator iter;
-  for( iter = media_groups_.begin(); iter != media_groups_.end(); ++iter ) {
+  vector<MediaInterval*>::const_iterator iter;
+  for(iter = media_intervals_.begin(); iter != media_intervals_.end(); ++iter) {
     (*iter)->OutputPrototypeManifest(std::cout, indt);
   }
 
@@ -116,12 +197,12 @@ bool ManifestModel::PrintPrototypeManifestFile() {
 std::ostream& operator<< (std::ostream &o, const ManifestModel &m)
 {
   o << "ManifestModel" << endl;
-  vector<MediaGroup*>::const_iterator iter;
-  for( iter = m.media_groups_.begin();
-       iter != m.media_groups_.end();
-       ++iter ) {
-    MediaGroup* mg = *iter;
-    o << *mg;
+  vector<MediaInterval*>::const_iterator iter;
+  for(iter = m.media_intervals_.begin();
+      iter != m.media_intervals_.end();
+      ++iter ) {
+    MediaInterval* mi = *iter;
+    o << *mi;
   }
 	return o ;
 }

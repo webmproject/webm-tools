@@ -95,17 +95,9 @@ long long Media::GetDurationNanoseconds() const {
 
 void Media::OutputPrototypeManifest(std::ostream& o, Indent& indt) {
   indt.Adjust(2);
-  o << indt << "<media id=\"" << id_ << "\"";
+  o << indt << "<Media id=\"" << id_ << "\"";
   o << " bandwidth=\"" << GetAverageBandwidth() << "\"";
   o << " url=\"" << file_ << "\"";
-
-  long long start;
-  long long end;
-  GetSegmentInfoRange(start, end);
-  o << " media_range=\"" << start << "-" << end << "\"";
-  
-  GetTracksRange(start, end);
-  o << " stream_range=\"" << start << "-" << end << "\"";
 
   // Video
   const int width = GetVideoWidth();
@@ -133,9 +125,10 @@ void Media::OutputPrototypeManifest(std::ostream& o, Indent& indt) {
 
   o << " >" << endl;
 
-  OutputPrototypeManifestCues(o, indt);
+  OutputPrototypeManifestMediaHeader(o, indt);
+  OutputPrototypeManifestMediaIndex(o, indt);
 
-  o << indt << "</media>" << endl;
+  o << indt << "</Media>" << endl;
 
   indt.Adjust(-2);
 }
@@ -318,7 +311,7 @@ long long Media::GetAverageBandwidth() const {
   // Just estimate for now by parsing through some elements and getting the
   // highest byte value.
   // This needs to change later!!!!
-  // paree through the clusters
+  // parse through the clusters
   const mkvparser::Cluster* cluster = segment_->GetFirst();
 
   while ((cluster != NULL) && !cluster->EOS()) {
@@ -374,6 +367,25 @@ void Media::GetTracksRange(long long& start, long long& end) const {
   }
 }
 
+void Media::GetHeaderRange(long long& start, long long& end) const {
+  long long info_start;
+  long long info_end;
+  long long tracks_start;
+  long long tracks_end;
+  GetSegmentInfoRange(info_start, info_end);
+  GetTracksRange(tracks_start, tracks_end);
+
+  if (info_start < tracks_start)
+    start = info_start;
+  else
+    start = tracks_start;
+
+  if (info_end > tracks_end)
+    end = info_end;
+  else
+    end = tracks_end;
+}
+
 double Media::GetVideoFramerate() const {
   double rate = 0.0;
   const mkvparser::VideoTrack* const vid_track = GetVideoTrack();
@@ -426,6 +438,47 @@ const mkvparser::VideoTrack* Media::GetVideoTrack() const {
   }
 
   return NULL;
+}
+
+void Media::OutputPrototypeManifestMediaHeader(std::ostream& o, Indent& indt) {
+  assert(segment_.get()!=NULL);
+
+  long long start;
+  long long end;
+  GetHeaderRange(start, end);
+
+  indt.Adjust(2);
+  o << indt << "<MediaHeader";
+  o << " url=\"" << file_ << "\"";
+  o << " range=\"" << start << "-" << end << "\"";
+  o << " />" << endl;
+  indt.Adjust(-2);
+}
+
+void Media::OutputPrototypeManifestMediaIndex(std::ostream& o, Indent& indt) {
+  assert(segment_.get()!=NULL);
+
+  if (!CheckForCues())
+    return;
+
+  long long start;
+  long long end;
+  long long cue_start_nano;
+  long long cue_end_nano;
+  FindCuesChunk(0,
+                GetDurationNanoseconds(),
+                start,
+                end,
+                cue_start_nano,
+                cue_end_nano);
+
+  indt.Adjust(2);
+  o << indt << "<MediaIndex";
+  o << " url=\"" << file_ << "\"";
+  o << " range=\"" << start << "-" << end << "\"";
+  o << " base_seek_pos=\"" << segment_->m_start << "\"";
+  o << " />" << endl;
+  indt.Adjust(-2);
 }
 
 void Media::OutputPrototypeManifestCues(std::ostream& o, Indent& indt) {

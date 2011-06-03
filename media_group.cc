@@ -94,7 +94,7 @@ const Media* MediaGroup::FindMedia(const string& id) const {
 
 void MediaGroup::OutputPrototypeManifest(std::ostream& o, Indent& indt) {
   indt.Adjust(2);
-  o << indt << "<mediagroup id=\"" << id_ << "\"";
+  o << indt << "<MediaGroup id=\"" << id_ << "\"";
   o << " mimetype=\"video/webm; codecs=" << codec_ << "\"";
 
   if (!lang_.empty()) {
@@ -102,14 +102,14 @@ void MediaGroup::OutputPrototypeManifest(std::ostream& o, Indent& indt) {
   }
 
   o << " alignment=\"false\"";
-  o << " duration=\"" << duration_ << "\" >" << endl;
+  o << " >" << endl;
 
   vector<Media*>::const_iterator iter;
   for( iter = media_.begin(); iter != media_.end(); ++iter ) {
     (*iter)->OutputPrototypeManifest(o, indt);
   }
 
-  o << indt << "</mediagroup>" << endl;
+  o << indt << "</MediaGroup>" << endl;
 
   indt.Adjust(-2);
 }

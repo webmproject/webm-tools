@@ -196,6 +196,10 @@
 				RelativePath=".\media_group.cc"
 				>
 			</File>
+			<File
+				RelativePath=".\media_interval.cc"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -216,6 +220,10 @@
 			</File>
 			<File
 				RelativePath=".\media_group.h"
+				>
+			</File>
+			<File
+				RelativePath=".\media_interval.h"
 				>
 			</File>
 		</Filter>
