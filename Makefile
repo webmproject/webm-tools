@@ -1,5 +1,5 @@
 LIBWEBM = ../libwebm
-OBJECTS = indent.o manifest_model.o media.o media_group.o adaptive_prototype_manifest.o
+OBJECTS = indent.o manifest_model.o media.o media_group.o media_interval.o adaptive_prototype_manifest.o
 EXE = adaptive_prototype_manifest 
 CFLAGS = -W -Wall -g -I$(LIBWEBM)
 
@@ -17,6 +17,9 @@ media.o: media.cc
 
 media_group.o: media_group.cc
 	$(CXX) -c $(CFLAGS) media_group.cc  -o media_group.o
+
+media_interval.o: media_interval.cc
+	$(CXX) -c $(CFLAGS) media_interval.cc  -o media_interval.o
 
 adaptive_prototype_manifest.o: adaptive_prototype_manifest.cc
 	$(CXX) -c $(CFLAGS) adaptive_prototype_manifest.cc  -o adaptive_prototype_manifest.o

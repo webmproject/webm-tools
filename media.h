@@ -15,8 +15,6 @@
 #include <memory>
 #include <string>
 
-class MkvReader;
-
 namespace indent_webm {
 class Indent;
 }
@@ -24,6 +22,7 @@ class Indent;
 namespace mkvparser {
 class AudioTrack;
 struct EBMLHeader;
+class MkvReader;
 class Segment;
 class Track;
 class VideoTrack;
@@ -164,7 +163,7 @@ class Media {
   std::auto_ptr<mkvparser::EBMLHeader> ebml_header_;
   
   // libwebm reader
-  std::auto_ptr<MkvReader> reader_;
+  std::auto_ptr<mkvparser::MkvReader> reader_;
 
   // Main WebM element.
   std::auto_ptr<mkvparser::Segment> segment_;

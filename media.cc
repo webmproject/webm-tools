@@ -33,7 +33,7 @@ Media::~Media() {
 }
 
 bool Media::Init() {
-  reader_.reset(new MkvReader());
+  reader_.reset(new mkvparser::MkvReader());
 
   if (reader_->Open(file_.c_str())) {
     cout << "Error trying to open file:" << file_ << endl;
