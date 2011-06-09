@@ -21,6 +21,7 @@ class Indent;
 
 namespace mkvparser {
 class AudioTrack;
+class Cues;
 struct EBMLHeader;
 class MkvReader;
 class Segment;
@@ -42,11 +43,18 @@ class Media {
   // Returns true if the file has been loaded and verified.
   bool Init();
 
+  // Returns true if the start time and the block number of all the cue
+  // points in the media are equal to all of the cue points in |media|.
+  bool CheckAlignement(const Media& media);
+
   // Returns the codec string associated with the first track. If the CodecID
   // is V_VP8 then the string returned will be "vp8". If the CodecID is
   // A_VORBIS then the string returned will be "vorbis". If the CodecID is
   // anything else then the string returned will be empty.
   string GetCodec() const;
+
+  // Returns the Cues from the media.
+  const mkvparser::Cues* GetCues() const;
 
   // Returns the duration of the file in nanoseconds.
   long long GetDurationNanoseconds() const;

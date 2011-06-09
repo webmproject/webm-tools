@@ -56,6 +56,10 @@ class MediaGroup {
   void lang(const string& lang) {lang_ = lang;}
 
  private:
+  // Check all the media within the group to see if they conform to the
+  // alignment feature of the MediaGroup.
+  bool Alignment();
+
   friend std::ostream& operator<< (std::ostream &o, const MediaGroup &mg);
 
   // Codec string of all |media_|.

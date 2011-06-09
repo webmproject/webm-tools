@@ -101,7 +101,11 @@ void MediaGroup::OutputPrototypeManifest(std::ostream& o, Indent& indt) {
     o << " lang=\"" << lang_ << "\"";
   }
 
-  o << " alignment=\"false\"";
+  const bool alignment = Alignment();
+  if (alignment)
+    o << " alignment=\"true\"";
+  else
+    o << " alignment=\"false\"";
   o << " >" << endl;
 
   vector<Media*>::const_iterator iter;
@@ -112,6 +116,22 @@ void MediaGroup::OutputPrototypeManifest(std::ostream& o, Indent& indt) {
   o << indt << "</MediaGroup>" << endl;
 
   indt.Adjust(-2);
+}
+
+bool MediaGroup::Alignment() {
+  vector<Media*>::const_iterator golden_iter(media_.begin());
+  vector<Media*>::const_iterator iter;
+
+  if (media_.size() <= 1)
+    return false;
+
+  for( iter = media_.begin()+1; iter != media_.end(); ++iter ) {
+    Media* m = *iter;
+    if (!m->CheckAlignement(**golden_iter))
+      return false;
+  }
+
+  return true;
 }
 
 std::ostream& operator<< (std::ostream &o, const MediaGroup &mg)

@@ -70,6 +70,49 @@ bool Media::Init() {
   return true;
 }
 
+bool Media::CheckAlignement(const Media& media) {
+  const mkvparser::Cues* const cues = media.GetCues();
+  if (!cues)
+    return false;
+
+  const mkvparser::Cues* const cues_int = GetCues();
+  if (!cues_int)
+    return false;
+
+  const mkvparser::Track* const track = media.GetTrack(0);
+  const mkvparser::Track* const track_int = GetTrack(0);
+  assert(track);
+  assert(track_int);
+
+  if (cues->GetCount() != cues_int->GetCount())
+    return false;
+
+  const mkvparser::CuePoint* cp = cues->GetFirst();
+  const mkvparser::CuePoint* cp_int = cues_int->GetFirst();
+
+  do {
+    assert(cp);
+    assert(cp_int);
+
+    if (cp->GetTimeCode() != cp_int->GetTimeCode())
+      return false;
+
+    // Check Block number
+    const mkvparser::CuePoint::TrackPosition* const tp = cp->Find(track);
+    const mkvparser::CuePoint::TrackPosition* const tp_int =
+      cp_int->Find(track_int);
+    if (tp && tp_int) {
+      if (tp->m_block != tp_int->m_block)
+        return false;
+    }
+
+    cp = cues->GetNext(cp);
+    cp_int = cues_int->GetNext(cp_int);
+  } while(cp != NULL);
+
+  return true;
+}
+
 string Media::GetCodec() const {
   string codec;
   const mkvparser::Track* const track = GetTrack(0);
@@ -85,6 +128,20 @@ string Media::GetCodec() const {
   }
 
   return codec;
+}
+
+const mkvparser::Cues* Media::GetCues() const {
+  assert(segment_.get()!=NULL);
+
+  const mkvparser::Cues* const cues = segment_->GetCues();
+  if (cues) {
+    // Load all the cue points
+    while (!cues->DoneParsing()) {
+      cues->LoadCuePoint();
+    }
+  }
+
+  return cues;
 }
 
 long long Media::GetDurationNanoseconds() const {
