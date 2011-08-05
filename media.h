@@ -70,7 +70,7 @@ class Media {
 
  private:
   // Returns true if the first four bytes of the doctype of the WebM file
-  // match "webm".  
+  // match "webm".
   bool CheckDocType() const;
 
   // Returns true if the first video track equals V_VP8 or the first audio
@@ -109,7 +109,7 @@ class Media {
   // Calculate and return average bandwidth for the WebM file in kilobits
   // per second.
   long long GetAverageBandwidth() const;
-  
+
 
   // Returns the byte offset in the file for the start of the SegmentInfo
   // element starting with the EBML element ID to the end offset of the
@@ -144,11 +144,13 @@ class Media {
   // Return the first video track. Returns NULL if there are no video tracks.
   const mkvparser::VideoTrack* GetVideoTrack() const;
 
-  // Outputs MediaHeader in the prototype format.
+  // Outputs MediaHeader in the prototype format. The byte range will include
+  // the Info and the Tracks elements.
   void OutputPrototypeManifestMediaHeader(std::ostream& o,
                                           indent_webm::Indent& indt);
 
-  // Outputs MediaIndex in the prototype format.
+  // Outputs MediaIndex in the prototype format. The byte range will include
+  // the Cues element.
   void OutputPrototypeManifestMediaIndex(std::ostream& o,
                                          indent_webm::Indent& indt);
 
@@ -169,7 +171,7 @@ class Media {
   // TODO: Change this from auto_ptr. Should we use boost?
   // EBML header of the file.
   std::auto_ptr<mkvparser::EBMLHeader> ebml_header_;
-  
+
   // libwebm reader
   std::auto_ptr<mkvparser::MkvReader> reader_;
 

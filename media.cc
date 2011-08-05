@@ -49,7 +49,7 @@ bool Media::Init() {
     cout << "DocType != webm" << endl;
     return false;
   }
-  
+
   mkvparser::Segment* segment;
   if (mkvparser::Segment::CreateInstance(reader_.get(), pos, segment)) {
     cout << "Segment::CreateInstance() failed." << endl;
@@ -396,7 +396,7 @@ void Media::GetSegmentInfoRange(long long& start, long long& end) const {
   assert(segment_info!=NULL);
 
   start = 0;
-  end = 0;  
+  end = 0;
   if (segment_info) {
     start = segment_info->m_element_start;
     end = segment_info->m_element_start + segment_info->m_element_size;
@@ -518,6 +518,8 @@ void Media::OutputPrototypeManifestMediaIndex(std::ostream& o, Indent& indt) {
   if (!CheckForCues())
     return;
 
+  // Output only the cue elements within the Cues element.
+  /*
   long long start;
   long long end;
   long long cue_start_nano;
@@ -528,6 +530,13 @@ void Media::OutputPrototypeManifestMediaIndex(std::ostream& o, Indent& indt) {
                 end,
                 cue_start_nano,
                 cue_end_nano);
+  */
+
+  // Output the entire Cues element.
+  const mkvparser::Cues* const cues = segment_->GetCues();
+  const long long start = cues->m_element_start;
+  const long long end = start + cues->m_element_size;
+
 
   indt.Adjust(2);
   o << indt << "<MediaIndex";
