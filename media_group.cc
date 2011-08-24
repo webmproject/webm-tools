@@ -11,11 +11,14 @@
 
 #include "media_group.h"
 
+#include <iostream>
+#include <map>
 #include <sstream>
 
 #include "indent.h"
 #include "media.h"
 
+using std::cout;
 using std::endl;
 using indent_webm::Indent;
 
@@ -32,7 +35,7 @@ MediaGroup::~MediaGroup() {
   vector<Media*>::iterator iter;
   for( iter = media_.begin(); iter != media_.end(); ++iter ) {
     Media* m = *iter;
-    delete m; 
+    delete m;
   }
 }
 
@@ -47,8 +50,12 @@ bool MediaGroup::Init() {
   iter = media_.begin();
   codec_ = (*iter)->GetCodec();
   for(iter = media_.begin()+1; iter != media_.end(); ++iter ) {
-    if ((*iter)->GetCodec() != codec_)
+    if ((*iter)->GetCodec() != codec_) {
+      cout << "Media id:" << (*iter)->id() << " codec: ";
+      cout << (*iter)->GetCodec() << " does not match in MediaGroup id:";
+      cout << id_ << endl;
       return false;
+    }
   }
 
   // Get max duration. All of the streams should have a duration that is close.
@@ -57,6 +64,20 @@ bool MediaGroup::Init() {
     double duration = (*iter)->GetDurationNanoseconds() / 1000000000.0;
     if (duration > duration_)
       duration_ = duration;
+  }
+
+  // Check that media ids do not match. Using the map to check if the string
+  // has been inserted.
+  std::map<string,int> test_map;
+  std::pair<std::map<string,int>::iterator,bool> ret;
+  for( iter = media_.begin(); iter != media_.end(); ++iter ) {
+    string id = (*iter)->id();
+    ret = test_map.insert(std::pair<string,int>(id, 0));
+    if (ret.second==false) {
+      cout << "Media id:" << id << " is duplicate in MediaGroup id:";
+      cout << id_ << endl;
+      return false;
+    }
   }
 
   return true;
@@ -146,7 +167,7 @@ std::ostream& operator<< (std::ostream &o, const MediaGroup &mg)
     o << *m;
   }
 
-	return o;
+  return o;
 }
 
 }  // namespace adaptive_manifest
