@@ -143,8 +143,11 @@ bool MediaGroup::Alignment() {
   vector<Media*>::const_iterator golden_iter(media_.begin());
   vector<Media*>::const_iterator iter;
 
-  if (media_.size() <= 1)
+  if (media_.size() <= 0)
     return false;
+
+  if (media_.size() == 1)
+    return true;
 
   for( iter = media_.begin()+1; iter != media_.end(); ++iter ) {
     Media* m = *iter;
