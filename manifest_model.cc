@@ -26,14 +26,15 @@ namespace adaptive_manifest {
 
 ManifestModel::ManifestModel()
     : duration_(0.0),
-      output_filename_("manifest.xml") {
+      output_filename_("manifest.xml"),
+      manifest_version_(1) {
 }
 
 ManifestModel::~ManifestModel() {
   vector<MediaGroup*>::iterator iter;
   for(iter = media_groups_.begin(); iter != media_groups_.end(); ++iter) {
     MediaGroup* mg = *iter;
-    delete mg; 
+    delete mg;
   }
 
   vector<MediaInterval*>::iterator mi_iter;
@@ -41,7 +42,7 @@ ManifestModel::~ManifestModel() {
       mi_iter != media_intervals_.end();
       ++mi_iter) {
     MediaInterval* mi = *mi_iter;
-    delete mi; 
+    delete mi;
   }
 }
 
@@ -163,6 +164,7 @@ bool ManifestModel::OutputPrototypeManifestFile() {
   of << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" << endl;
   of << "<Presentation";
   of << " duration=\"" << duration_ << "\"";
+  of << " version=\"" << manifest_version_ << "\"";
   of << " >" << endl;
 
   indent_webm::Indent indt(0);
@@ -204,7 +206,7 @@ std::ostream& operator<< (std::ostream &o, const ManifestModel &m)
     MediaInterval* mi = *iter;
     o << *mi;
   }
-	return o ;
+  return o ;
 }
 
 }  // namespace adaptive_manifest

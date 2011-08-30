@@ -76,6 +76,9 @@ class ManifestModel {
   // Path to output the manifest.
   string output_filename_;
 
+  // Version number of the manifest.
+  int manifest_version_;
+
   // Disallow copy and assign
   ManifestModel(const ManifestModel&);
   ManifestModel& operator=(const ManifestModel&);

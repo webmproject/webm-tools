@@ -110,6 +110,10 @@ class Media {
   // per second.
   long long GetAverageBandwidth() const;
 
+  // Returns the byte offset in the file for the start of the first Cluster
+  // element starting with the EBML element ID. A value of -1 indicates there
+  // was an error.
+  long long GetClusterRangeStart() const;
 
   // Returns the byte offset in the file for the start of the SegmentInfo
   // element starting with the EBML element ID to the end offset of the
@@ -126,7 +130,7 @@ class Media {
 
   // Returns the byte offset in the file for the start of the Segment Info and
   // Tracks element starting with the EBML element ID to the end offset of the
-  // element.
+  // element. A return value of -1 for either value indicates an error.
   void GetHeaderRange(long long& start, long long& end) const;
 
   // Returns the average framerate of the first video track. Returns 0.0 if

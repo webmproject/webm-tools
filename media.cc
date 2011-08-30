@@ -390,6 +390,18 @@ long long Media::GetAverageBandwidth() const {
   return bandwidth;
 }
 
+long long Media::GetClusterRangeStart() const {
+  assert(segment_.get()!=NULL);
+  const mkvparser::Cluster* cluster = segment_->GetFirst();
+
+  long long start = -1;
+  if (cluster) {
+    start = cluster->m_element_start;
+  }
+
+  return start;
+}
+
 void Media::GetSegmentInfoRange(long long& start, long long& end) const {
   assert(segment_.get()!=NULL);
   const mkvparser::SegmentInfo* const segment_info = segment_->GetInfo();
@@ -425,22 +437,8 @@ void Media::GetTracksRange(long long& start, long long& end) const {
 }
 
 void Media::GetHeaderRange(long long& start, long long& end) const {
-  long long info_start;
-  long long info_end;
-  long long tracks_start;
-  long long tracks_end;
-  GetSegmentInfoRange(info_start, info_end);
-  GetTracksRange(tracks_start, tracks_end);
-
-  if (info_start < tracks_start)
-    start = info_start;
-  else
-    start = tracks_start;
-
-  if (info_end > tracks_end)
-    end = info_end;
-  else
-    end = tracks_end;
+  start = 0;
+  end = GetClusterRangeStart();
 }
 
 double Media::GetVideoFramerate() const {
