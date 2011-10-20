@@ -1,0 +1,6 @@
+# Microsoft Visual Studio files
+*.ncb
+*.suo
+
+# Compiled Object files
+*.o
