@@ -1,0 +1,378 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAFn//uGM\u003d",
+        "filename": "webm_crypt/Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-24T20:28:53Z",
+      "side": 1,
+      "message": "trailing whitespace",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAFn//uGI\u003d",
+        "filename": "webm_crypt/Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-24T20:28:53Z",
+      "side": 1,
+      "message": "trailing whitespace",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAFn//uFw\u003d",
+        "filename": "webm_crypt/Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-24T20:28:53Z",
+      "side": 1,
+      "message": "break this long line",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAFn//uFc\u003d",
+        "filename": "webm_crypt/Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-24T20:28:53Z",
+      "side": 1,
+      "message": "s/$(EXE)/$@/",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAFn//uF0\u003d",
+        "filename": "webm_crypt/Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-24T20:28:53Z",
+      "side": 1,
+      "message": "%.o: %.cpp then use $@ $\u003c in the rule",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAFn//uF4\u003d",
+        "filename": "webm_crypt/Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-24T20:28:53Z",
+      "side": 1,
+      "message": "$(RM) -r\n\n.PHONY: clean",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAFn//uFU\u003d",
+        "filename": "webm_crypt/Readme.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-24T20:28:53Z",
+      "side": 1,
+      "message": "Not sure if the README needs this text, but in any case there is no LICENSE file...",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAFn//uFA\u003d",
+        "filename": "webm_crypt/Readme.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-24T20:28:53Z",
+      "side": 1,
+      "message": "s/MAKEFILE/Makefile",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAFn//uEg\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-24T20:28:53Z",
+      "side": 1,
+      "message": "\u003cbool\u003e here seems misleading to me, I\u0027d expect it to accept \u0027true\u0027/\u0027false\u0027, but it looks like 0/1 is required.\n\nFor this flag merely its presence should be enough to encrypt with the default being decrypt no?",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAFn//uEE\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-24T20:28:53Z",
+      "side": 1,
+      "message": "using std::string would be acceptable to shorten all these.\n\nhttp://google-styleguide.googlecode.com/svn/trunk/cppguide.xml#Namespaces",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAFn//uEA\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-24T20:28:53Z",
+      "side": 1,
+      "message": "printf should be preferred over streams expect when using glog\n\nhttp://google-styleguide.googlecode.com/svn/trunk/cppguide.xml#Streams",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAFn//uDs\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-24T20:28:53Z",
+      "side": 1,
+      "message": "why not just modify the string directly?",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAFn//uDo\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-24T20:28:53Z",
+      "side": 1,
+      "message": "working on (const) data doesn\u0027t seem to be the best idea. Just use the strings themselves.",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAFn//uDk\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-24T20:28:53Z",
+      "side": 1,
+      "message": "parameter order is input/output with output params being pointers not refs.",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAFn//uDg\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-24T20:28:53Z",
+      "side": 1,
+      "message": "join these two lines and use *const",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAFn//uDY\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-24T20:28:53Z",
+      "side": 1,
+      "message": "The indent here and 226 is inconsistent. I think it might be easier if you broke after the first function, i.e., key.reset(\u003cbreak\u003e",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAFn//uDU\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-24T20:28:53Z",
+      "side": 1,
+      "message": "join these two",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAFn//uDQ\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-24T20:28:53Z",
+      "side": 1,
+      "message": "fix indent",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAFn//uDM\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-24T20:28:53Z",
+      "side": 1,
+      "message": "should be reinterpret_cast",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAFn//uE4\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-24T20:28:53Z",
+      "side": 1,
+      "message": "s/contnent/content/",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAFn//uE0\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-24T20:28:53Z",
+      "side": 1,
+      "message": "s/contnent/content/",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAFn//uEc\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 945,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-24T20:28:53Z",
+      "side": 1,
+      "message": "These will segfault if argv[++i] is NULL. \u0026end isn\u0027t necessary either.",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
