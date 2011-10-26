@@ -1,0 +1,208 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAF3///xA\u003d",
+        "filename": "webm_crypt/LICENSE.TXT",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-26T23:50:57Z",
+      "side": 1,
+      "message": "2011?",
+      "revId": "a66be3510643110cf7d59e3677d8a89ef20dd654",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAF3///mM\u003d",
+        "filename": "webm_crypt/Makefile",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-26T23:50:57Z",
+      "side": 1,
+      "message": "I don\u0027t see anything from NETDIR/SSLDIR referenced are they necessary?",
+      "revId": "a66be3510643110cf7d59e3677d8a89ef20dd654",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAF3///mE\u003d",
+        "filename": "webm_crypt/Readme.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-26T23:50:57Z",
+      "side": 1,
+      "message": "Maybe rename this to match the case of LICENSE/PATENT. .txt is optional",
+      "revId": "a66be3510643110cf7d59e3677d8a89ef20dd654",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAF3///mI\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-26T23:50:57Z",
+      "side": 1,
+      "message": "This file should be named webm_crypt.cc",
+      "revId": "a66be3510643110cf7d59e3677d8a89ef20dd654",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAF3///oc\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-26T23:50:57Z",
+      "side": 1,
+      "message": "non_ascii.append()? sans the resize() above",
+      "revId": "a66be3510643110cf7d59e3677d8a89ef20dd654",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAF3///t4\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-26T23:50:57Z",
+      "side": 1,
+      "message": "I think this would be reinterpret as well, we don\u0027t have a down_cast in this project...",
+      "revId": "a66be3510643110cf7d59e3677d8a89ef20dd654",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAF3///ts\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-26T23:50:57Z",
+      "side": 1,
+      "message": "s/,1 ,/, 1,/\n\nfwrite returns a size_t why not just use one and do away with the later static_cast\u0027ing",
+      "revId": "a66be3510643110cf7d59e3677d8a89ef20dd654",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAF3///tk\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 869,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-26T23:50:57Z",
+      "side": 1,
+      "message": "fix indent",
+      "revId": "a66be3510643110cf7d59e3677d8a89ef20dd654",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAF3///tc\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 879,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-26T23:50:57Z",
+      "side": 1,
+      "message": "fix indent",
+      "revId": "a66be3510643110cf7d59e3677d8a89ef20dd654",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAF3///tQ\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 953,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-26T23:50:57Z",
+      "side": 1,
+      "message": "?: isn\u0027t really needed for these, you could just assign !strcmp",
+      "revId": "a66be3510643110cf7d59e3677d8a89ef20dd654",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAF3///tE\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 978,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-26T23:50:57Z",
+      "side": 1,
+      "message": "const",
+      "revId": "a66be3510643110cf7d59e3677d8a89ef20dd654",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAF3///tA\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 984,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2011-10-26T23:50:57Z",
+      "side": 1,
+      "message": "const",
+      "revId": "a66be3510643110cf7d59e3677d8a89ef20dd654",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
