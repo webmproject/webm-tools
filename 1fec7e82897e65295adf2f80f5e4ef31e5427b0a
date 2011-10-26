@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAF3///8s\u003d",
+        "filename": "webm_crypt/Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2011-10-26T18:14:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAFn//uGM\u003d",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAFn//uGI\u003d",
         "filename": "webm_crypt/Makefile",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2011-10-24T20:28:53Z",
       "side": 1,
       "message": "trailing whitespace",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAF3///8o\u003d",
+        "filename": "webm_crypt/Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2011-10-26T18:14:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAFn//uGI\u003d",
       "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAF3///8k\u003d",
+        "filename": "webm_crypt/Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2011-10-26T18:14:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAFn//uFw\u003d",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAFn//uFc\u003d",
         "filename": "webm_crypt/Makefile",
         "patchSetId": 1
@@ -64,6 +118,24 @@
       "writtenOn": "2011-10-24T20:28:53Z",
       "side": 1,
       "message": "s/$(EXE)/$@/",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAF3///8g\u003d",
+        "filename": "webm_crypt/Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2011-10-26T18:14:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAFn//uFc\u003d",
       "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAF3///8U\u003d",
+        "filename": "webm_crypt/Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2011-10-26T18:14:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAFn//uF0\u003d",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAFn//uF4\u003d",
         "filename": "webm_crypt/Makefile",
         "patchSetId": 1
@@ -98,6 +188,24 @@
       "writtenOn": "2011-10-24T20:28:53Z",
       "side": 1,
       "message": "$(RM) -r\n\n.PHONY: clean",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAF3///8E\u003d",
+        "filename": "webm_crypt/Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2011-10-26T18:14:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAFn//uF4\u003d",
       "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAFn//tAU\u003d",
+        "filename": "webm_crypt/Readme.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2011-10-26T18:14:52Z",
+      "side": 1,
+      "message": "Added files. Done.",
+      "parentUuid": "AAAAFn//uFU\u003d",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAFn//uFA\u003d",
         "filename": "webm_crypt/Readme.txt",
         "patchSetId": 1
@@ -132,6 +258,24 @@
       "writtenOn": "2011-10-24T20:28:53Z",
       "side": 1,
       "message": "s/MAKEFILE/Makefile",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAFn//tAM\u003d",
+        "filename": "webm_crypt/Readme.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2011-10-26T18:14:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAFn//uFA\u003d",
       "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAFn//s/k\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2011-10-26T18:14:52Z",
+      "side": 1,
+      "message": "Changed \u003cbool\u003e to expect \"true\" or \"false\".\n\nAlso changed decrypt flag to just \"-decrypt\".",
+      "parentUuid": "AAAAFn//uEg\u003d",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAFn//uEE\u003d",
         "filename": "webm_crypt/webm_crypt.cpp",
         "patchSetId": 1
@@ -166,6 +328,24 @@
       "writtenOn": "2011-10-24T20:28:53Z",
       "side": 1,
       "message": "using std::string would be acceptable to shorten all these.\n\nhttp://google-styleguide.googlecode.com/svn/trunk/cppguide.xml#Namespaces",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAFn//s/M\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2011-10-26T18:14:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAFn//uEE\u003d",
       "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -189,6 +369,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAFn//s+s\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2011-10-26T18:14:52Z",
+      "side": 1,
+      "message": "Done. Except when printing out some of the raw data as printf didn\u0027t like the non ascii characters.",
+      "parentUuid": "AAAAFn//uEA\u003d",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAFn//uDs\u003d",
         "filename": "webm_crypt/webm_crypt.cpp",
         "patchSetId": 1
@@ -200,6 +398,24 @@
       "writtenOn": "2011-10-24T20:28:53Z",
       "side": 1,
       "message": "why not just modify the string directly?",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAFn//s8M\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2011-10-26T18:14:52Z",
+      "side": 1,
+      "message": "I could, but I was just testing how the data is set in the code.",
+      "parentUuid": "AAAAFn//uDs\u003d",
       "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -223,6 +439,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAFn//s8I\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2011-10-26T18:14:52Z",
+      "side": 1,
+      "message": "I could, but I was just testing how the data is set in the code.",
+      "parentUuid": "AAAAFn//uDo\u003d",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAFn//uDk\u003d",
         "filename": "webm_crypt/webm_crypt.cpp",
         "patchSetId": 1
@@ -234,6 +468,24 @@
       "writtenOn": "2011-10-24T20:28:53Z",
       "side": 1,
       "message": "parameter order is input/output with output params being pointers not refs.",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAFn//s9I\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2011-10-26T18:14:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAFn//uDk\u003d",
       "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -257,6 +509,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAFn//s9A\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2011-10-26T18:14:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAFn//uDg\u003d",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAFn//uDY\u003d",
         "filename": "webm_crypt/webm_crypt.cpp",
         "patchSetId": 1
@@ -268,6 +538,24 @@
       "writtenOn": "2011-10-24T20:28:53Z",
       "side": 1,
       "message": "The indent here and 226 is inconsistent. I think it might be easier if you broke after the first function, i.e., key.reset(\u003cbreak\u003e",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAFn//s84\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2011-10-26T18:14:52Z",
+      "side": 1,
+      "message": "Not needed after re-format.",
+      "parentUuid": "AAAAFn//uDY\u003d",
       "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -291,6 +579,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAFn//s80\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2011-10-26T18:14:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAFn//uDU\u003d",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAFn//uDQ\u003d",
         "filename": "webm_crypt/webm_crypt.cpp",
         "patchSetId": 1
@@ -302,6 +608,24 @@
       "writtenOn": "2011-10-24T20:28:53Z",
       "side": 1,
       "message": "fix indent",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAFn//s8w\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 398,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2011-10-26T18:14:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAFn//uDQ\u003d",
       "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -325,6 +649,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAFn//s8s\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2011-10-26T18:14:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAFn//uDM\u003d",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAFn//uE4\u003d",
         "filename": "webm_crypt/webm_crypt.cpp",
         "patchSetId": 1
@@ -336,6 +678,24 @@
       "writtenOn": "2011-10-24T20:28:53Z",
       "side": 1,
       "message": "s/contnent/content/",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAFn//s8o\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2011-10-26T18:14:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAFn//uE4\u003d",
       "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -359,6 +719,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAFn//s8k\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2011-10-26T18:14:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAFn//uE0\u003d",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAFn//uEc\u003d",
         "filename": "webm_crypt/webm_crypt.cpp",
         "patchSetId": 1
@@ -370,6 +748,24 @@
       "writtenOn": "2011-10-24T20:28:53Z",
       "side": 1,
       "message": "These will segfault if argv[++i] is NULL. \u0026end isn\u0027t necessary either.",
+      "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAFn//s8Y\u003d",
+        "filename": "webm_crypt/webm_crypt.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 945,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2011-10-26T18:14:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAFn//uEc\u003d",
       "revId": "1fec7e82897e65295adf2f80f5e4ef31e5427b0a",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
