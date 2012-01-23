@@ -178,7 +178,11 @@ bool OpenWebMFiles(const string& input,
     return false;
   }
 
-  *muxer_segment = new mkvmuxer::Segment(writer);
+  *muxer_segment = new mkvmuxer::Segment();
+  if (!(*muxer_segment)->Init(writer)) {
+    printf("\n Could not initialize muxer segment!\n");
+    return false;
+  }
   (*muxer_segment)->set_mode(mkvmuxer::Segment::kFile);
 
   // Set SegmentInfo element attributes
