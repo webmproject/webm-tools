@@ -1,0 +1,378 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAHn//sqI\u003d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-02-16T19:54:11Z",
+      "side": 1,
+      "message": "Not sure if the hashes are meaningful if this wasn\u0027t ever publicly posted anywhere",
+      "revId": "0f669c0ad37fe30a130a6f8e7a4278bcad9cd8f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//sqA\u003d",
+        "filename": "webm_dash_manifest/Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-02-16T19:54:11Z",
+      "side": 1,
+      "message": "these can be immediate, i.e. :\u003d",
+      "revId": "0f669c0ad37fe30a130a6f8e7a4278bcad9cd8f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//sqE\u003d",
+        "filename": "webm_dash_manifest/Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-02-16T19:54:11Z",
+      "side": 1,
+      "message": "shorten this line; can use OBJECTS +\u003d ...",
+      "revId": "0f669c0ad37fe30a130a6f8e7a4278bcad9cd8f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//sp8\u003d",
+        "filename": "webm_dash_manifest/Makefile",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-02-16T19:54:11Z",
+      "side": 1,
+      "message": "-O[0-3]?",
+      "revId": "0f669c0ad37fe30a130a6f8e7a4278bcad9cd8f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//sp4\u003d",
+        "filename": "webm_dash_manifest/adaptation_set.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-02-16T19:54:11Z",
+      "side": 1,
+      "message": "you can drop this extra line",
+      "revId": "0f669c0ad37fe30a130a6f8e7a4278bcad9cd8f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//soo\u003d",
+        "filename": "webm_dash_manifest/adaptation_set.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-02-16T19:54:11Z",
+      "side": 1,
+      "message": "const",
+      "revId": "0f669c0ad37fe30a130a6f8e7a4278bcad9cd8f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//soA\u003d",
+        "filename": "webm_dash_manifest/adaptation_set.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-02-16T19:54:11Z",
+      "side": 1,
+      "message": "would this be easier if representation was simply a map/set? Then AddRepresentation could be bool",
+      "revId": "0f669c0ad37fe30a130a6f8e7a4278bcad9cd8f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//sng\u003d",
+        "filename": "webm_dash_manifest/adaptation_set.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-02-16T19:54:11Z",
+      "side": 1,
+      "message": "reference params should be const and streams are generally frowned on.\n\nalso is there anything prohibiting indt from being named indent?",
+      "revId": "0f669c0ad37fe30a130a6f8e7a4278bcad9cd8f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//smo\u003d",
+        "filename": "webm_dash_manifest/adaptation_set.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-02-16T19:54:11Z",
+      "side": 1,
+      "message": "const_iterator here seems incorrect\n\nwould it be better to set some flags then do this for loop once?",
+      "revId": "0f669c0ad37fe30a130a6f8e7a4278bcad9cd8f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//smk\u003d",
+        "filename": "webm_dash_manifest/adaptation_set.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-02-16T19:54:11Z",
+      "side": 1,
+      "message": "variables are not camel cased",
+      "revId": "0f669c0ad37fe30a130a6f8e7a4278bcad9cd8f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//smQ\u003d",
+        "filename": "webm_dash_manifest/adaptation_set.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-02-16T19:54:11Z",
+      "side": 1,
+      "message": "should be project_path_file\n\nhttp://google-styleguide.googlecode.com/svn/trunk/cppguide.xml#The__define_Guard",
+      "revId": "0f669c0ad37fe30a130a6f8e7a4278bcad9cd8f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//smE\u003d",
+        "filename": "webm_dash_manifest/adaptation_set.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-02-16T19:54:11Z",
+      "side": 1,
+      "message": "// namespace indent_webm",
+      "revId": "0f669c0ad37fe30a130a6f8e7a4278bcad9cd8f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//smI\u003d",
+        "filename": "webm_dash_manifest/adaptation_set.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-02-16T19:54:11Z",
+      "side": 1,
+      "message": "explicit with multiple params has no effect.",
+      "revId": "0f669c0ad37fe30a130a6f8e7a4278bcad9cd8f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//sl8\u003d",
+        "filename": "webm_dash_manifest/adaptation_set.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-02-16T19:54:11Z",
+      "side": 1,
+      "message": "spaces within {}",
+      "revId": "0f669c0ad37fe30a130a6f8e7a4278bcad9cd8f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//sl4\u003d",
+        "filename": "webm_dash_manifest/adaptation_set.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-02-16T19:54:11Z",
+      "side": 1,
+      "message": "whitespace",
+      "revId": "0f669c0ad37fe30a130a6f8e7a4278bcad9cd8f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//sl0\u003d",
+        "filename": "webm_dash_manifest/adaptation_set.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-02-16T19:54:11Z",
+      "side": 1,
+      "message": "whitespace",
+      "revId": "0f669c0ad37fe30a130a6f8e7a4278bcad9cd8f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//slw\u003d",
+        "filename": "webm_dash_manifest/adaptation_set.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-02-16T19:54:11Z",
+      "side": 1,
+      "message": "whitespace",
+      "revId": "0f669c0ad37fe30a130a6f8e7a4278bcad9cd8f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//sls\u003d",
+        "filename": "webm_dash_manifest/adaptation_set.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-02-16T19:54:11Z",
+      "side": 1,
+      "message": "whitespace",
+      "revId": "0f669c0ad37fe30a130a6f8e7a4278bcad9cd8f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//slo\u003d",
+        "filename": "webm_dash_manifest/dash_model.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-02-16T19:54:11Z",
+      "side": 1,
+      "message": "long line",
+      "revId": "0f669c0ad37fe30a130a6f8e7a4278bcad9cd8f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//slg\u003d",
+        "filename": "webm_dash_manifest/dash_model.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-02-16T19:54:11Z",
+      "side": 1,
+      "message": "can these all be constants?",
+      "revId": "0f669c0ad37fe30a130a6f8e7a4278bcad9cd8f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//slk\u003d",
+        "filename": "webm_dash_manifest/dash_model.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-02-16T19:54:11Z",
+      "side": 1,
+      "message": "long line",
+      "revId": "0f669c0ad37fe30a130a6f8e7a4278bcad9cd8f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//slU\u003d",
+        "filename": "webm_dash_manifest/dash_model.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-02-16T19:54:11Z",
+      "side": 1,
+      "message": "you have some variable shadowing going on here...",
+      "revId": "0f669c0ad37fe30a130a6f8e7a4278bcad9cd8f9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
