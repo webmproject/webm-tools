@@ -1,0 +1,242 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAHn//i0Q\u003d",
+        "filename": "webm_dash_manifest/adaptation_set.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-02-29T18:49:15Z",
+      "side": 1,
+      "message": "Is this still needed? (yes, missed one ostringstream)",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//izo\u003d",
+        "filename": "webm_dash_manifest/adaptation_set.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-02-29T18:49:15Z",
+      "side": 1,
+      "message": "Missed one... :)\n\nYou can remove # include \u003csstream\u003e if you get rid of this one...",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//iwA\u003d",
+        "filename": "webm_dash_manifest/adaptation_set.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-02-29T18:49:15Z",
+      "side": 1,
+      "message": "I might be taking the style guide too literally, but I don\u0027t think you\u0027re supposed to do this outside of a class/function when in a include (being inside a namespace isn\u0027t enough).\n\nhttp://google-styleguide.googlecode.com/svn/trunk/cppguide.xml#Namespaces",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//iww\u003d",
+        "filename": "webm_dash_manifest/adaptation_set.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-02-29T18:49:15Z",
+      "side": 1,
+      "message": "typedef? i.e.\n\n  typedef vector\u003cRepresentation*\u003e RepresentationVector;",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//iu4\u003d",
+        "filename": "webm_dash_manifest/dash_model.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-02-29T18:49:15Z",
+      "side": 1,
+      "message": "Fix two more ostringstream usages and this can go...",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//i5s\u003d",
+        "filename": "webm_dash_manifest/dash_model.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-02-29T18:49:15Z",
+      "side": 1,
+      "message": "Should this be a constant?",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//i5k\u003d",
+        "filename": "webm_dash_manifest/dash_model.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-02-29T18:49:15Z",
+      "side": 1,
+      "message": "Old way looked nicer... I think changing the declaration to an assignment would have been enough, i.e.:  \n\n  period \u003d *period_iter;\n  // instead of\n  Period* period \u003d *period_iter;",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//iu0\u003d",
+        "filename": "webm_dash_manifest/dash_model.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-02-29T18:49:15Z",
+      "side": 1,
+      "message": "sprintf or something...",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//iuw\u003d",
+        "filename": "webm_dash_manifest/dash_model.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-02-29T18:49:15Z",
+      "side": 1,
+      "message": "Ditto.",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//i0k\u003d",
+        "filename": "webm_dash_manifest/dash_model.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-02-29T18:49:15Z",
+      "side": 1,
+      "message": "Scratching my asserts itch...\n\n  if (!output_filename_.empty()) return false;",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//iuY\u003d",
+        "filename": "webm_dash_manifest/dash_model.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-02-29T18:49:15Z",
+      "side": 1,
+      "message": "Dupe of adaptation_set comment:\n\nI might be taking the style guide too literally, but I don\u0027t think you\u0027re supposed to do this outside of a class/function when in a include (being inside a namespace isn\u0027t enough).\n\nhttp://google-styleguide.googlecode.com/svn/trunk/cppguide.xml#Namespaces",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//it8\u003d",
+        "filename": "webm_dash_manifest/dash_model.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-02-29T18:49:15Z",
+      "side": 1,
+      "message": "Would accessors for these be of any use? Should they just be public?",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//itg\u003d",
+        "filename": "webm_dash_manifest/indent.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-02-29T18:49:15Z",
+      "side": 1,
+      "message": "I don\u0027t think this is used anywhere... could be wrong, but removal changes nothing re build output.",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//ito\u003d",
+        "filename": "webm_dash_manifest/indent.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-02-29T18:49:15Z",
+      "side": 1,
+      "message": "Can this be removed?",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
