@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//ils\u003d",
+        "filename": "webm_dash_manifest/adaptation_set.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-02-29T21:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//i0Q\u003d",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//izo\u003d",
         "filename": "webm_dash_manifest/adaptation_set.cc",
         "patchSetId": 2
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//imA\u003d",
+        "filename": "webm_dash_manifest/adaptation_set.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-02-29T21:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//izo\u003d",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//iwA\u003d",
         "filename": "webm_dash_manifest/adaptation_set.h",
         "patchSetId": 2
@@ -47,6 +83,24 @@
       "writtenOn": "2012-02-29T18:49:15Z",
       "side": 1,
       "message": "I might be taking the style guide too literally, but I don\u0027t think you\u0027re supposed to do this outside of a class/function when in a include (being inside a namespace isn\u0027t enough).\n\nhttp://google-styleguide.googlecode.com/svn/trunk/cppguide.xml#Namespaces",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//ilA\u003d",
+        "filename": "webm_dash_manifest/adaptation_set.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-02-29T21:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//iwA\u003d",
       "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -87,6 +141,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//ik4\u003d",
+        "filename": "webm_dash_manifest/dash_model.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-02-29T21:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//iu4\u003d",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//i5s\u003d",
         "filename": "webm_dash_manifest/dash_model.cc",
         "patchSetId": 2
@@ -98,6 +170,24 @@
       "writtenOn": "2012-02-29T18:49:15Z",
       "side": 1,
       "message": "Should this be a constant?",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//ik0\u003d",
+        "filename": "webm_dash_manifest/dash_model.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-02-29T21:06:15Z",
+      "side": 1,
+      "message": "I made a const string for now, but eventually this value is going to have to change.",
+      "parentUuid": "AAAAHn//i5s\u003d",
       "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -121,6 +211,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//iiI\u003d",
+        "filename": "webm_dash_manifest/dash_model.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-02-29T21:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//i5k\u003d",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//iu0\u003d",
         "filename": "webm_dash_manifest/dash_model.cc",
         "patchSetId": 2
@@ -132,6 +240,24 @@
       "writtenOn": "2012-02-29T18:49:15Z",
       "side": 1,
       "message": "sprintf or something...",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//iks\u003d",
+        "filename": "webm_dash_manifest/dash_model.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-02-29T21:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//iu0\u003d",
       "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -155,6 +281,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//iko\u003d",
+        "filename": "webm_dash_manifest/dash_model.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-02-29T21:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//iuw\u003d",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//i0k\u003d",
         "filename": "webm_dash_manifest/dash_model.cc",
         "patchSetId": 2
@@ -166,6 +310,24 @@
       "writtenOn": "2012-02-29T18:49:15Z",
       "side": 1,
       "message": "Scratching my asserts itch...\n\n  if (!output_filename_.empty()) return false;",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//iiY\u003d",
+        "filename": "webm_dash_manifest/dash_model.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-02-29T21:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//i0k\u003d",
       "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -189,6 +351,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//iiA\u003d",
+        "filename": "webm_dash_manifest/dash_model.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-02-29T21:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//iuY\u003d",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//it8\u003d",
         "filename": "webm_dash_manifest/dash_model.h",
         "patchSetId": 2
@@ -200,6 +380,24 @@
       "writtenOn": "2012-02-29T18:49:15Z",
       "side": 1,
       "message": "Would accessors for these be of any use? Should they just be public?",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//iiE\u003d",
+        "filename": "webm_dash_manifest/dash_model.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-02-29T21:06:15Z",
+      "side": 1,
+      "message": "Until they need to be public I think this is fine.",
+      "parentUuid": "AAAAHn//it8\u003d",
       "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -223,6 +421,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//ih4\u003d",
+        "filename": "webm_dash_manifest/indent.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-02-29T21:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//itg\u003d",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//ito\u003d",
         "filename": "webm_dash_manifest/indent.h",
         "patchSetId": 2
@@ -234,6 +450,24 @@
       "writtenOn": "2012-02-29T18:49:15Z",
       "side": 1,
       "message": "Can this be removed?",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//ih0\u003d",
+        "filename": "webm_dash_manifest/indent.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-02-29T21:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//ito\u003d",
       "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -257,6 +491,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//ihw\u003d",
+        "filename": "webm_dash_manifest/period.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-02-29T21:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//iow\u003d",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//ioE\u003d",
         "filename": "webm_dash_manifest/period.h",
         "patchSetId": 2
@@ -268,6 +520,24 @@
       "writtenOn": "2012-02-29T19:47:05Z",
       "side": 1,
       "message": "using/ditto",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//ihs\u003d",
+        "filename": "webm_dash_manifest/period.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-02-29T21:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//ioE\u003d",
       "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -291,6 +561,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//ihk\u003d",
+        "filename": "webm_dash_manifest/period.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-02-29T21:06:15Z",
+      "side": 1,
+      "message": "? Done.",
+      "parentUuid": "AAAAHn//in0\u003d",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//inQ\u003d",
         "filename": "webm_dash_manifest/period.h",
         "patchSetId": 2
@@ -302,6 +590,24 @@
       "writtenOn": "2012-02-29T19:47:05Z",
       "side": 1,
       "message": "Ditto/why const\u0026?",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//ihg\u003d",
+        "filename": "webm_dash_manifest/period.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-02-29T21:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//inQ\u003d",
       "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -325,6 +631,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//ihc\u003d",
+        "filename": "webm_dash_manifest/period.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-02-29T21:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//inM\u003d",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//imw\u003d",
         "filename": "webm_dash_manifest/representation.cc",
         "patchSetId": 2
@@ -336,6 +660,24 @@
       "writtenOn": "2012-02-29T19:47:05Z",
       "side": 1,
       "message": "s/realatively/relatively",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//ig4\u003d",
+        "filename": "webm_dash_manifest/representation.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-02-29T21:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//imw\u003d",
       "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -359,6 +701,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//ig0\u003d",
+        "filename": "webm_dash_manifest/representation.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-02-29T21:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//ims\u003d",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//imo\u003d",
         "filename": "webm_dash_manifest/representation.cc",
         "patchSetId": 2
@@ -370,6 +730,24 @@
       "writtenOn": "2012-02-29T19:47:05Z",
       "side": 1,
       "message": "Probably not important, but might be worth doing:\n\n  const int kIncreaseIndent \u003d 2;\n  const int kDecreaseIndent \u003d -2;\n\nI keep seeing Adjust(2/-2)..\n\nAdmittedly, indent-\u003eAdjust(2)/indent-\u003eAdjust(-2) are pretty damned clear... the main concern is what if you want to change it or make it adjustable.",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//igY\u003d",
+        "filename": "webm_dash_manifest/representation.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-02-29T21:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//imo\u003d",
       "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -393,6 +771,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//igU\u003d",
+        "filename": "webm_dash_manifest/representation.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-02-29T21:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//imY\u003d",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//imM\u003d",
         "filename": "webm_dash_manifest/webm_file.cc",
         "patchSetId": 2
@@ -404,6 +800,24 @@
       "writtenOn": "2012-02-29T19:47:05Z",
       "side": 1,
       "message": "Missed some stream i/o in this file, if you want to bother. Looks like all logging/error output.",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//igQ\u003d",
+        "filename": "webm_dash_manifest/webm_file.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-02-29T21:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//imM\u003d",
       "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -427,6 +841,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//ifw\u003d",
+        "filename": "webm_dash_manifest/webm_file.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-02-29T21:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//imE\u003d",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//imI\u003d",
         "filename": "webm_dash_manifest/webm_file.cc",
         "patchSetId": 2
@@ -438,6 +870,24 @@
       "writtenOn": "2012-02-29T19:47:05Z",
       "side": 1,
       "message": "NDEBUG crashers here.",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//ifs\u003d",
+        "filename": "webm_dash_manifest/webm_file.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-02-29T21:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//imI\u003d",
       "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -461,6 +911,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//igI\u003d",
+        "filename": "webm_dash_manifest/webm_file.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-02-29T21:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//il8\u003d",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//il0\u003d",
         "filename": "webm_dash_manifest/webm_file.cc",
         "patchSetId": 2
@@ -478,6 +946,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//igE\u003d",
+        "filename": "webm_dash_manifest/webm_file.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-02-29T21:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//il0\u003d",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//ilo\u003d",
         "filename": "webm_dash_manifest/webm_file.cc",
         "patchSetId": 2
@@ -489,6 +975,24 @@
       "writtenOn": "2012-02-29T19:47:05Z",
       "side": 1,
       "message": "I think this will throw w/NDEBUG and NULL |segment_|.",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//igA\u003d",
+        "filename": "webm_dash_manifest/webm_file.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 435,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-02-29T21:06:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//ilo\u003d",
       "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
