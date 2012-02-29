@@ -237,6 +237,261 @@
       "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//iow\u003d",
+        "filename": "webm_dash_manifest/period.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-02-29T19:47:05Z",
+      "side": 1,
+      "message": "const",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//ioE\u003d",
+        "filename": "webm_dash_manifest/period.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-02-29T19:47:05Z",
+      "side": 1,
+      "message": "using/ditto",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//in0\u003d",
+        "filename": "webm_dash_manifest/period.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-02-29T19:47:05Z",
+      "side": 1,
+      "message": "Why is this returning const\u0026, am I missing something?",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//inQ\u003d",
+        "filename": "webm_dash_manifest/period.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-02-29T19:47:05Z",
+      "side": 1,
+      "message": "Ditto/why const\u0026?",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//inM\u003d",
+        "filename": "webm_dash_manifest/period.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-02-29T19:47:05Z",
+      "side": 1,
+      "message": "Ditto.",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//imw\u003d",
+        "filename": "webm_dash_manifest/representation.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-02-29T19:47:05Z",
+      "side": 1,
+      "message": "s/realatively/relatively",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//ims\u003d",
+        "filename": "webm_dash_manifest/representation.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-02-29T19:47:05Z",
+      "side": 1,
+      "message": "Remove.",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//imo\u003d",
+        "filename": "webm_dash_manifest/representation.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-02-29T19:47:05Z",
+      "side": 1,
+      "message": "Probably not important, but might be worth doing:\n\n  const int kIncreaseIndent \u003d 2;\n  const int kDecreaseIndent \u003d -2;\n\nI keep seeing Adjust(2/-2)..\n\nAdmittedly, indent-\u003eAdjust(2)/indent-\u003eAdjust(-2) are pretty damned clear... the main concern is what if you want to change it or make it adjustable.",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//imY\u003d",
+        "filename": "webm_dash_manifest/representation.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-02-29T19:47:05Z",
+      "side": 1,
+      "message": "using/ditto",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//imM\u003d",
+        "filename": "webm_dash_manifest/webm_file.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-02-29T19:47:05Z",
+      "side": 1,
+      "message": "Missed some stream i/o in this file, if you want to bother. Looks like all logging/error output.",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//imE\u003d",
+        "filename": "webm_dash_manifest/webm_file.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 255,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-02-29T19:47:05Z",
+      "side": 1,
+      "message": "Possible NDEBUG crashers... depends on what happens in CuePoint::Find(Track*)",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//imI\u003d",
+        "filename": "webm_dash_manifest/webm_file.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-02-29T19:47:05Z",
+      "side": 1,
+      "message": "NDEBUG crashers here.",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//il8\u003d",
+        "filename": "webm_dash_manifest/webm_file.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-02-29T19:47:05Z",
+      "side": 1,
+      "message": "ditto/NDEBUG crasher/CuePoint::Find dependency",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//il0\u003d",
+        "filename": "webm_dash_manifest/webm_file.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-02-29T19:47:05Z",
+      "side": 1,
+      "message": "could be \n\n  while (block_entry \u0026\u0026 !block_entry-\u003eEOS()) {\n\nThat\u0027s just my preference, though.",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//ilo\u003d",
+        "filename": "webm_dash_manifest/webm_file.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 435,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-02-29T19:47:05Z",
+      "side": 1,
+      "message": "I think this will throw w/NDEBUG and NULL |segment_|.",
+      "revId": "d8007be937fa2c86dcbf231d8a282279bda6f652",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
