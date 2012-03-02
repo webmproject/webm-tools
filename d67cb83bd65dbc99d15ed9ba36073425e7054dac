@@ -282,6 +282,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//gF8\u003d",
+        "filename": "webm_dash_manifest/adaptation_set.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-03-02T20:59:29Z",
+      "side": 1,
+      "message": "I just thought I\u0027d mention it. It\u0027s a simple change to make in another change set if needed.",
+      "parentUuid": "AAAAHn//hBQ\u003d",
+      "revId": "d67cb83bd65dbc99d15ed9ba36073425e7054dac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//hNU\u003d",
         "filename": "webm_dash_manifest/adaptation_set.cc",
         "patchSetId": 5
@@ -346,6 +364,24 @@
       "side": 1,
       "message": "Yeah, but I like having them on two lines. If you really want I can change it.",
       "parentUuid": "AAAAHn//hNI\u003d",
+      "revId": "d67cb83bd65dbc99d15ed9ba36073425e7054dac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//gF0\u003d",
+        "filename": "webm_dash_manifest/adaptation_set.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-03-02T20:59:29Z",
+      "side": 1,
+      "message": "Your preference. I was just showing my bias toward reduced vertical whitespace in the comment",
+      "parentUuid": "AAAAHn//hAg\u003d",
       "revId": "d67cb83bd65dbc99d15ed9ba36073425e7054dac",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
