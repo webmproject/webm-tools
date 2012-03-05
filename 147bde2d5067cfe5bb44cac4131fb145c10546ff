@@ -16,6 +16,24 @@
       "revId": "147bde2d5067cfe5bb44cac4131fb145c10546ff",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//emA\u003d",
+        "filename": "webm_dash_manifest/period.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-03-05T19:23:06Z",
+      "side": 1,
+      "message": "Done. (Removed as the check of codecs is not done here anymore).",
+      "parentUuid": "AAAAHn//e0I\u003d",
+      "revId": "147bde2d5067cfe5bb44cac4131fb145c10546ff",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
