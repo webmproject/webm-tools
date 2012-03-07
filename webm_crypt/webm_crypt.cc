@@ -548,7 +548,10 @@ int WebMEncrypt(const string& input,
   const mkvparser::Cluster* cluster = parser_segment->GetFirst();
 
   while ((cluster != NULL) && !cluster->EOS()) {
-    const mkvparser::BlockEntry* block_entry = cluster->GetFirst();
+    const mkvparser::BlockEntry* block_entry;
+    int status = cluster->GetFirst(block_entry);
+    if (status)
+      return -1;
 
     while ((block_entry != NULL) && !block_entry->EOS()) {
       const mkvparser::Block* const block = block_entry->GetBlock();
@@ -612,7 +615,9 @@ int WebMEncrypt(const string& input,
         }
       }
 
-      block_entry = cluster->GetNext(block_entry);
+      status = cluster->GetNext(block_entry, block_entry);
+      if (status)
+        return -1;
     }
 
     cluster = parser_segment->GetNext(cluster);
@@ -809,7 +814,10 @@ int WebMDecrypt(const string& input,
   const mkvparser::Cluster* cluster = parser_segment->GetFirst();
 
   while ((cluster != NULL) && !cluster->EOS()) {
-    const mkvparser::BlockEntry* block_entry = cluster->GetFirst();
+    const mkvparser::BlockEntry* block_entry;
+    int status = cluster->GetFirst(block_entry);
+    if (status)
+      return -1;
 
     while ((block_entry != NULL) && !block_entry->EOS()) {
       const mkvparser::Block* const block = block_entry->GetBlock();
@@ -876,7 +884,9 @@ int WebMDecrypt(const string& input,
         }
       }
 
-      block_entry = cluster->GetNext(block_entry);
+      status = cluster->GetNext(block_entry, block_entry);
+      if (status)
+        return -1;
     }
 
     cluster = parser_segment->GetNext(cluster);
