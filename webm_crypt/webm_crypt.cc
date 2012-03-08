@@ -542,7 +542,7 @@ int WebMEncrypt(const string& input,
   muxer_segment->CuesTrack(vid_track);
 
   // Write clusters
-  scoped_ptr<unsigned char> data;
+  scoped_array<unsigned char> data;
   int data_len = 0;
 
   const mkvparser::Cluster* cluster = parser_segment->GetFirst();
@@ -808,7 +808,7 @@ int WebMDecrypt(const string& input,
   muxer_segment->CuesTrack(vid_track);
 
   // Write clusters
-  scoped_ptr<unsigned char> data;
+  scoped_array<unsigned char> data;
   int data_len = 0;
 
   const mkvparser::Cluster* cluster = parser_segment->GetFirst();
