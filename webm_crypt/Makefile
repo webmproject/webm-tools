@@ -6,8 +6,8 @@ DYNANNDIR = $(BASEDIR)/third_party/dynamic_annotations
 CRYPTODIR = $(CHROMIUMOBJ)/crypto
 OBJECTS = webm_crypt.o
 EXE = webm_crypt
-INCLUDES = -I$(LIBWEBM) -I$(CHROMIUMINC)
-CXXFLAGS = -W -Wall -g
+INCLUDES = -I$(LIBWEBM) -I$(CHROMIUMINC) -I/usr/include/nss -I/usr/include/nspr
+CXXFLAGS = -W -Wall -g -DUSE_NSS
 
 $(EXE): $(OBJECTS)
 	$(CXX) $(OBJECTS) -L$(LIBWEBM) -L$(BASEDIR) -L$(DYNANNDIR) -L$(CRYPTODIR) \
