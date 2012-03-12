@@ -25,6 +25,9 @@ class WebMFile;
 // This class models how the manifest should be laid out.
 class DashModel {
  public:
+  // WebM On-Demand profile.
+  static const char webm_on_demand[];
+
   DashModel();
   ~DashModel();
 
@@ -71,6 +74,8 @@ class DashModel {
     output_filename_ = file;
   }
 
+  void set_profile(const std::string& profile) { profile_ = profile; }
+
  private:
   // XML Schema location.
   static const char xml_schema_location[];
@@ -91,7 +96,7 @@ class DashModel {
   double min_buffer_time_;
 
   // WebM Dash profile.
-  const std::string profile_;
+  std::string profile_;
 
   // List of base urls for the mpd.
   std::vector<std::string> base_urls_;

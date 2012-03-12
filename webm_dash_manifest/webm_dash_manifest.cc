@@ -33,7 +33,8 @@ static void Usage() {
   printf("Main options:\n");
   printf("-h | -?               show help\n");
   printf("-v                    show version\n");
-  printf("[-url <string> [...] ] Base URL list\n");
+  printf("-url <string> [...]   Base URL list\n");
+  printf("-profile <string>     Set profile.\n");
   printf("\n");
   printf("Period (-p) options:\n");
   printf("-duration <double>    duration in seconds\n");
@@ -181,6 +182,8 @@ static bool ParseMainCommandLine(int argc,
       return false;
     } else if (!strcmp("-url", argv[i]) && i < argc_check) {
       model->AppendBaseUrl(argv[++i]);
+    } else if (!strcmp("-profile", argv[i]) && i < argc_check) {
+      model->set_profile(argv[++i]);
     }
   }
 

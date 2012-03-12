@@ -57,6 +57,8 @@ class AdaptationSet {
   std::string lang() const { return lang_; }
   void set_lang(const std::string& lang) { lang_ = lang; }
 
+  void set_profile(const std::string& profile) { profile_ = profile; }
+
  private:
   // Check all the files within the AdaptationSet to see if they conform to
   // the bitstreamSwitching attribute.
@@ -103,6 +105,9 @@ class AdaptationSet {
 
   // Mimetype attribute.
   std::string mimetype_;
+
+  // WebM Dash profile.
+  std::string profile_;
 
   // Maximum duration of all |media_|.
   double duration_;

@@ -34,6 +34,7 @@ AdaptationSet::AdaptationSet(const string& id, const DashModel& dash)
       id_(id),
       lang_(),
       mimetype_(),
+      profile_(),
       duration_(0.0) {
 }
 
@@ -177,13 +178,24 @@ void AdaptationSet::OutputDashManifest(FILE* o, Indent* indent) const {
     fprintf(o, " height=\"%d\"", height);
 
   const bool alignment = SubsegmentAlignment();
-  if (alignment)
+  if (alignment) {
     fprintf(o, " subsegmentAlignment=\"true\"");
+  } else if (representations_.size() > 1 &&
+             profile_ == DashModel::webm_on_demand) {
+    printf("Warning profile is WebM On-Demand and AdaptationSet id:%s",
+           id_.c_str());
+    printf(" does not have subSegmentAlignment.\n");
+  }
 
   // WebM is only type '1' or '0'.
   const bool subsegment_starts_with_SAP = SubsegmentStartsWithSAP();
-  if (subsegment_starts_with_SAP)
+  if (subsegment_starts_with_SAP) {
     fprintf(o, " subsegmentStartsWithSAP=\"1\"");
+  } else if (profile_ == DashModel::webm_on_demand) {
+    printf("Warning profile is WebM On-Demand and AdaptationSet id:%s",
+           id_.c_str());
+    printf(" has subsegments that do not start with SAP.\n");
+  }
 
   const bool switching = BitstreamSwitching();
   if (switching)
