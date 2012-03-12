@@ -29,6 +29,8 @@ typedef vector<Period*>::const_iterator PeriodConstIterator;
 typedef vector<WebMFile*>::iterator WebMFileIterator;
 typedef vector<WebMFile*>::const_iterator WebMFileConstIterator;
 
+const char DashModel::webm_on_demand[] =
+    "urn:webm:dash:profile:webm-on-demand:2012";
 const char DashModel::xml_schema_location[] =
     "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"";
 const char DashModel::xml_namespace[] =
@@ -40,7 +42,7 @@ DashModel::DashModel()
     : type_("static"),
       duration_(0.0),
       min_buffer_time_(1.0),
-      profile_("urn:webm:dash:profile:webm-on-demand:2012"),
+      profile_(),
       output_filename_("manifest.xml") {
 }
 
@@ -74,8 +76,10 @@ bool DashModel::Init() {
     if ((*webm_iter)->Init() == false)
       return false;
 
-    if (!(*webm_iter)->OnlyOneStream()) {
-      return false;
+    if (profile_ == DashModel::webm_on_demand) {
+      if (!(*webm_iter)->OnlyOneStream()) {
+        return false;
+      }
     }
   }
 
@@ -83,6 +87,7 @@ bool DashModel::Init() {
   for (as_iter = adaptation_sets_.begin();
       as_iter != adaptation_sets_.end();
       ++as_iter) {
+    (*as_iter)->set_profile(profile_);
     if ((*as_iter)->Init() == false)
       return false;
   }
