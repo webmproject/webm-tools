@@ -24,7 +24,7 @@ using webm_dash::AdaptationSet;
 using webm_dash::Period;
 using webm_dash::Representation;
 
-static const string VERSION_STRING = "1.0.1.0";
+static const string VERSION_STRING = "1.0.1.1";
 
 static void Usage() {
   printf("Usage: webm_dash_manifest [-o output_file] [-p options] ");
@@ -69,7 +69,7 @@ static void ParseAdaptationSetOptions(const string& option_list,
   size_t start = 0;
   size_t end = option_list.find_first_of(',');
   for (;;) {
-    const string option = option_list.substr(start, end);
+    const string option = option_list.substr(start, end - start);
     string name;
     string value;
     if (ParseOption(option, &name, &value)) {
@@ -95,7 +95,7 @@ static void ParsePeriodOptions(const string& option_list, Period* period) {
   size_t start = 0;
   size_t end = option_list.find_first_of(',');
   for (;;) {
-    const string option = option_list.substr(start, end);
+    const string option = option_list.substr(start, end - start);
     string name;
     string value;
     if (ParseOption(option, &name, &value)) {
@@ -121,7 +121,7 @@ static void ParseRepresentationOptions(const string& option_list,
   size_t start = 0;
   size_t end = option_list.find_first_of(',');
   for (;;) {
-    const string option = option_list.substr(start, end);
+    const string option = option_list.substr(start, end - start);
     string name;
     string value;
     if (ParseOption(option, &name, &value)) {
