@@ -24,7 +24,7 @@ using webm_dash::AdaptationSet;
 using webm_dash::Period;
 using webm_dash::Representation;
 
-static const string VERSION_STRING = "1.0.0.0";
+static const string VERSION_STRING = "1.0.1.0";
 
 static void Usage() {
   printf("Usage: webm_dash_manifest [-o output_file] [-p options] ");
