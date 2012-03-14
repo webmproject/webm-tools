@@ -42,7 +42,7 @@ DashModel::DashModel()
     : type_("static"),
       duration_(0.0),
       min_buffer_time_(1.0),
-      profile_(),
+      profile_(DashModel::webm_on_demand),
       output_filename_("manifest.xml") {
 }
 
