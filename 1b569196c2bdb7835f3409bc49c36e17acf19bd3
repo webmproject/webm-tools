@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAHn//QLc\u003d",
+        "filename": "webm_dash_manifest/adaptation_set.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-03-20T21:26:25Z",
+      "side": 1,
+      "message": "Err... missed this previously, but since your in here: 2 space indent.\n\nd:\\src\\webm_tools\\webm-tools\\webm_dash_manifest\\adaptation_set.cc(286):  Weird number of spaces at line-start.  Are you using a 2-space indent?  [whitespace/indent] [3]",
+      "revId": "1b569196c2bdb7835f3409bc49c36e17acf19bd3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
