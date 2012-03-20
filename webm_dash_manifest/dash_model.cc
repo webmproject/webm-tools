@@ -142,10 +142,9 @@ bool DashModel::Init() {
 }
 
 void DashModel::AddAdaptationSet() {
-  char temp_str[128];
-  sprintf(temp_str, "%d", static_cast<int>(adaptation_sets_.size()));
-  const string id = temp_str;
-
+  char str[128];
+  snprintf(str, sizeof(str), "%d", static_cast<int>(adaptation_sets_.size()));
+  const string id = str;
   adaptation_sets_.push_back(new AdaptationSet(id, *this));
 }
 
@@ -158,10 +157,9 @@ void DashModel::AppendInputFile(const string& filename) {
 }
 
 void DashModel::AddPeriod()  {
-  char temp_str[128];
-  sprintf(temp_str, "%d", static_cast<int>(periods_.size()));
-  const string id = temp_str;
-
+  char str[128];
+  snprintf(str, sizeof(str), "%d", static_cast<int>(periods_.size()));
+  const string id = str;
   periods_.push_back(new Period(id));
 }
 
@@ -233,7 +231,7 @@ bool DashModel::OutputDashManifestFile() const {
     fprintf(o, "  <BaseURL>%s</BaseURL>\n", (*stri).c_str());
   }
 
-  indent_webm::Indent indent(0);
+  webm_tools::Indent indent(0);
   for (PeriodConstIterator iter = periods_.begin();
       iter != periods_.end();
       ++iter) {

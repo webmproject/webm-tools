@@ -24,7 +24,7 @@ using webm_dash::AdaptationSet;
 using webm_dash::Period;
 using webm_dash::Representation;
 
-static const string VERSION_STRING = "1.0.1.2";
+static const char VERSION_STRING[] = "1.0.1.2";
 
 static void Usage() {
   printf("Usage: webm_dash_manifest [-o output_file] [-p options] ");
@@ -176,7 +176,7 @@ static bool ParseMainCommandLine(int argc,
     } else if (!strcmp("-o", argv[i]) && i < argc_check) {
       model->set_output_filename(argv[++i]);
     } else if (!strcmp("-v", argv[i])) {
-      printf("version: %s\n", VERSION_STRING.c_str());
+      printf("version: %s\n", VERSION_STRING);
     } else if ( (!strcmp("-h", argv[i])) || (!strcmp("-?", argv[i])) ) {
       Usage();
       return false;

@@ -187,7 +187,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\indent.cc"
+				RelativePath="..\shared\indent.cc"
 				>
 			</File>
 			<File
@@ -221,7 +221,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\indent.h"
+				RelativePath="..\shared\indent.h"
 				>
 			</File>
 			<File

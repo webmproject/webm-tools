@@ -16,13 +16,17 @@
   TypeName(const TypeName&);               \
   void operator=(const TypeName&)
 
+#if defined(_MSC_VER)
+#define snprintf sprintf_s
+#endif
+
 namespace webm_tools {
 
 typedef unsigned char      uint8;
 typedef int                int32;
 typedef unsigned int       uint32;
-typedef long long          int64;
-typedef unsigned long long uint64;
+typedef long long          int64; // NOLINT
+typedef unsigned long long uint64; // NOLINT
 
 static const double kNanosecondsPerSecond = 1000000000.0;
 
