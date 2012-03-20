@@ -8,14 +8,14 @@
  *  be found in the AUTHORS file in the root of the source tree.
  */
 
-#ifndef WEBM_DASH_MANIFEST_INDENT_H_
-#define WEBM_DASH_MANIFEST_INDENT_H_
+#ifndef SHARED_INDENT_H_
+#define SHARED_INDENT_H_
 
 #include <string>
 
 #include "webm_tools_types.h"
 
-namespace indent_webm {
+namespace webm_tools {
 
 const int kIncreaseIndent = 2;
 const int kDecreaseIndent = -2;
@@ -43,6 +43,6 @@ class Indent {
   WEBM_TOOLS_DISALLOW_COPY_AND_ASSIGN(Indent);
 };
 
-}  // namespace indent_webm
+}  // namespace webm_tools
 
-#endif  // WEBM_DASH_MANIFEST_INDENT_H_
+#endif  // SHARED_INDENT_H_

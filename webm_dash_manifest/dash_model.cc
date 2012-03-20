@@ -233,7 +233,7 @@ bool DashModel::OutputDashManifestFile() const {
     fprintf(o, "  <BaseURL>%s</BaseURL>\n", (*stri).c_str());
   }
 
-  indent_webm::Indent indent(0);
+  webm_tools::Indent indent(0);
   for (PeriodConstIterator iter = periods_.begin();
       iter != periods_.end();
       ++iter) {

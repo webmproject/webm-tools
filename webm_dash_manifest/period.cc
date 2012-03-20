@@ -15,9 +15,9 @@
 #include "adaptation_set.h"
 #include "indent.h"
 
-using indent_webm::Indent;
 using std::string;
 using std::vector;
+using webm_tools::Indent;
 
 namespace webm_dash {
 
@@ -68,7 +68,7 @@ void Period::AddAdaptationSet(const AdaptationSet* as) {
 }
 
 void Period::OutputDashManifest(FILE* o, Indent* indent) const {
-  indent->Adjust(indent_webm::kIncreaseIndent);
+  indent->Adjust(webm_tools::kIncreaseIndent);
   fprintf(o, "%s<Period id=\"%s\"", indent->indent_str().c_str(), id_.c_str());
 
   fprintf(o, " start=\"PT%gS\"", start_);
@@ -82,7 +82,7 @@ void Period::OutputDashManifest(FILE* o, Indent* indent) const {
   }
 
   fprintf(o, "%s</Period>\n", indent->indent_str().c_str());
-  indent->Adjust(indent_webm::kDecreaseIndent);
+  indent->Adjust(webm_tools::kDecreaseIndent);
 }
 
 }  // namespace adaptive_manifest

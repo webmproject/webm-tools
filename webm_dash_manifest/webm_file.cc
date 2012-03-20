@@ -12,10 +12,8 @@
 
 #include <cstring>
 
-#include "indent.h"
 #include "mkvreader.hpp"
 
-using indent_webm::Indent;
 using std::string;
 using std::vector;
 using webm_tools::int64;

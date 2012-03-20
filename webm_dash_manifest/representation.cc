@@ -15,8 +15,8 @@
 #include "mkvreader.hpp"
 #include "webm_file.h"
 
-using indent_webm::Indent;
 using std::string;
+using webm_tools::Indent;
 using webm_tools::int64;
 using webm_tools::kNanosecondsPerSecond;
 
@@ -101,7 +101,7 @@ int Representation::GetVideoWidth() const {
 }
 
 bool Representation::OutputDashManifest(FILE* o, Indent* indent) const {
-  indent->Adjust(indent_webm::kIncreaseIndent);
+  indent->Adjust(webm_tools::kIncreaseIndent);
   fprintf(o, "%s<Representation id=\"%s\"", indent->indent_str().c_str(),
           id_.c_str());
 
@@ -142,17 +142,17 @@ bool Representation::OutputDashManifest(FILE* o, Indent* indent) const {
   }
   fprintf(o, ">\n");
 
-  indent->Adjust(indent_webm::kIncreaseIndent);
+  indent->Adjust(webm_tools::kIncreaseIndent);
   fprintf(o, "%s<BaseURL>%s</BaseURL>\n", indent->indent_str().c_str(),
           webm_file_->filename().c_str());
-  indent->Adjust(indent_webm::kDecreaseIndent);
+  indent->Adjust(webm_tools::kDecreaseIndent);
 
   const bool b = OutputSegmentBase(o, indent);
   if (!b)
     return false;
 
   fprintf(o, "%s</Representation>\n", indent->indent_str().c_str());
-  indent->Adjust(indent_webm::kDecreaseIndent);
+  indent->Adjust(webm_tools::kDecreaseIndent);
 
   return true;
 }
@@ -172,7 +172,7 @@ bool Representation::OutputSegmentBase(FILE* o, Indent* indent) const {
   if (!webm_file_)
     return true;
 
-  indent->Adjust(indent_webm::kIncreaseIndent);
+  indent->Adjust(webm_tools::kIncreaseIndent);
   fprintf(o, "%s<SegmentBase", indent->indent_str().c_str());
 
   if (output_index_) {
@@ -193,16 +193,16 @@ bool Representation::OutputSegmentBase(FILE* o, Indent* indent) const {
     int64 end;
     webm_file_->GetHeaderRange(&start, &end);
 
-    indent->Adjust(indent_webm::kIncreaseIndent);
+    indent->Adjust(webm_tools::kIncreaseIndent);
     fprintf(o, "%s<Initialisation", indent->indent_str().c_str());
     fprintf(o, " range=\"%lld-%lld\" />\n", start, end);
-    indent->Adjust(indent_webm::kDecreaseIndent);
+    indent->Adjust(webm_tools::kDecreaseIndent);
 
     fprintf(o, "%s</SegmentBase>\n", indent->indent_str().c_str());
   } else {
     fprintf(o, " />\n");
   }
-  indent->Adjust(indent_webm::kDecreaseIndent);
+  indent->Adjust(webm_tools::kDecreaseIndent);
 
   return true;
 }
