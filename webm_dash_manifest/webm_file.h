@@ -17,10 +17,6 @@
 
 #include "webm_tools_types.h"
 
-namespace indent_webm {
-class Indent;
-}  // namespace indent_webm
-
 namespace mkvparser {
 class AudioTrack;
 class Cues;

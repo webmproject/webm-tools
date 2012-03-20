@@ -16,9 +16,9 @@
 
 #include "webm_tools_types.h"
 
-namespace indent_webm {
+namespace webm_tools {
 class Indent;
-}  // namespace indent_webm
+}  // namespace webm_tools
 
 namespace webm_dash {
 
@@ -46,7 +46,7 @@ class Period {
   void AddAdaptationSet(const AdaptationSet* as);
 
   // Outputs AdaptationSet in the prototype format.
-  void OutputDashManifest(FILE* o, indent_webm::Indent* indent) const;
+  void OutputDashManifest(FILE* o, webm_tools::Indent* indent) const;
 
   double duration() const { return duration_; }
   void set_duration(double duration) { duration_ = duration; }

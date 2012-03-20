@@ -12,10 +12,8 @@
 
 #include <cstring>
 
-#include "indent.h"
 #include "mkvreader.hpp"
 
-using indent_webm::Indent;
 using std::string;
 using std::vector;
 using webm_tools::int64;
@@ -108,7 +106,6 @@ int WebMFile::BufferSizeAfterTime(double time,
     }
 
     descCurr = GetCueDescFromTime(descCurr->end_time_ns);
-
   } while (descCurr);
 
   *buffer = sec_downloaded - sec_downloading + *buffer;
@@ -751,10 +748,10 @@ const mkvparser::AudioTrack* WebMFile::GetAudioTrack() const {
   if (!tracks)
     return NULL;
 
-  unsigned long i = 0;
-  const unsigned long j = tracks->GetTracksCount();
+  unsigned int i = 0;
+  const unsigned int j = tracks->GetTracksCount();
 
-  // TODO: This should be an enum of mkvparser::Tracks
+  // TODO(fgalligan): This should be an enum of mkvparser::Tracks
   enum { VIDEO_TRACK = 1, AUDIO_TRACK = 2 };
 
   while (i != j) {
@@ -869,10 +866,10 @@ const mkvparser::VideoTrack* WebMFile::GetVideoTrack() const {
   if (!tracks)
     return NULL;
 
-  unsigned long i = 0;
-  const unsigned long j = tracks->GetTracksCount();
+  unsigned int i = 0;
+  const unsigned int j = tracks->GetTracksCount();
 
-  // TODO: This should be an enum of mkvparser::Tracks
+  // TODO(fgalligan): This should be an enum of mkvparser::Tracks
   enum { VIDEO_TRACK = 1, AUDIO_TRACK = 2 };
 
   while (i != j) {

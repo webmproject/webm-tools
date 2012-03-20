@@ -12,15 +12,16 @@
 
 #include <cstdio>
 #include <set>
+#include <utility>
 
 #include "dash_model.h"
 #include "indent.h"
 #include "representation.h"
 #include "webm_file.h"
 
-using indent_webm::Indent;
 using std::string;
 using std::vector;
+using webm_tools::Indent;
 using webm_tools::kNanosecondsPerSecond;
 
 namespace webm_dash {
@@ -128,9 +129,9 @@ bool AdaptationSet::Init() {
 }
 
 void AdaptationSet::AddRepresentation() {
-  char temp_str[128];
-  sprintf(temp_str, "%d", static_cast<int>(representations_.size()));
-  const string id = temp_str;
+  char str[128];
+  snprintf(str, sizeof(str), "%d", static_cast<int>(representations_.size()));
+  const string id = str;
   representations_.push_back(new Representation(id, dash_model_));
 }
 
@@ -156,7 +157,7 @@ const Representation* AdaptationSet::FindRepresentation(
 }
 
 void AdaptationSet::OutputDashManifest(FILE* o, Indent* indent) const {
-  indent->Adjust(indent_webm::kIncreaseIndent);
+  indent->Adjust(webm_tools::kIncreaseIndent);
   fprintf(o, "%s<AdaptationSet id=\"%s\"", indent->indent_str().c_str(),
           id_.c_str());
   fprintf(o, " mimetype=\"%s\"", mimetype_.c_str());
@@ -209,7 +210,7 @@ void AdaptationSet::OutputDashManifest(FILE* o, Indent* indent) const {
   }
 
   fprintf(o, "%s</AdaptationSet>\n", indent->indent_str().c_str());
-  indent->Adjust(indent_webm::kDecreaseIndent);
+  indent->Adjust(webm_tools::kDecreaseIndent);
 }
 
 bool AdaptationSet::BitstreamSwitching() const {
@@ -283,7 +284,7 @@ int AdaptationSet::MatchingWidth() const {
 }
 
 bool AdaptationSet::SubsegmentAlignment() const {
- if (representations_.size() < 2)
+  if (representations_.size() < 2)
     return false;
 
   RepresentationConstIterator golden_iter(representations_.begin());

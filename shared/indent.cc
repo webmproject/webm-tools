@@ -12,7 +12,7 @@
 
 #include <string>
 
-namespace indent_webm {
+namespace webm_tools {
 
 Indent::Indent(int indent)
     : indent_(indent),
@@ -32,4 +32,4 @@ void Indent::Update() {
   indent_str_ = std::string(indent_, ' ');
 }
 
-}  // namespace indent_webm
+}  // namespace webm_tools

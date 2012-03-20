@@ -16,9 +16,9 @@
 
 #include "webm_tools_types.h"
 
-namespace indent_webm {
+namespace webm_tools {
 class Indent;
-}  // namespace indent_webm
+}  // namespace webm_tools
 
 namespace mkvparser {
 class AudioTrack;
@@ -71,7 +71,7 @@ class Representation {
 
   // Outputs Representation in the Dash format. Returns true if there were no
   // errors with the output.
-  bool OutputDashManifest(FILE* o, indent_webm::Indent* indent) const;
+  bool OutputDashManifest(FILE* o, webm_tools::Indent* indent) const;
 
   // Check all the subsegments within the Representation to see if they
   // conform to the subsegmentStartsWithSAP attribute.
@@ -102,7 +102,7 @@ class Representation {
  private:
   // Outputs SegmentBase in the Dash format. Returns true if there were no
   // errors with the output.
-  bool OutputSegmentBase(FILE* o, indent_webm::Indent* indent) const;
+  bool OutputSegmentBase(FILE* o, webm_tools::Indent* indent) const;
 
   // The main class for the manifest.
   const DashModel& dash_model_;

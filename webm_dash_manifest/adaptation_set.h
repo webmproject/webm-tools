@@ -16,9 +16,9 @@
 
 #include "webm_tools_types.h"
 
-namespace indent_webm {
+namespace webm_tools {
 class Indent;
-}  // namespace indent_webm
+}  // namespace webm_tools
 
 namespace webm_dash {
 
@@ -47,7 +47,7 @@ class AdaptationSet {
   const Representation* FindRepresentation(const std::string& id) const;
 
   // Outputs AdaptationSet in the WebM Dash format.
-  void OutputDashManifest(FILE* o, indent_webm::Indent* indent) const;
+  void OutputDashManifest(FILE* o, webm_tools::Indent* indent) const;
 
   double duration() const { return duration_; }
 
