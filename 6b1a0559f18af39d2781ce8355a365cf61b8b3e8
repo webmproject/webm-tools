@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "AAAAHn//PgA\u003d",
+        "filename": "webm_info/.gitignore",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-03-21T18:26:02Z",
+      "side": 1,
+      "message": "Delete from patchset?",
+      "revId": "6b1a0559f18af39d2781ce8355a365cf61b8b3e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//PfQ\u003d",
         "filename": "webm_info/Makefile",
         "patchSetId": 1
@@ -81,6 +98,23 @@
       "writtenOn": "2012-03-21T17:59:59Z",
       "side": 1,
       "message": "space after //",
+      "revId": "6b1a0559f18af39d2781ce8355a365cf61b8b3e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//Pf8\u003d",
+        "filename": "webm_info/webm_info.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-03-21T18:26:02Z",
+      "side": 1,
+      "message": "s/TODO/ TODO/\n\nd:\\src\\webm_tools\\webm-tools\\webm_info\\webm_info.cc(82):  Should have a space between // and comment  [whitespace/comments] [4]",
       "revId": "6b1a0559f18af39d2781ce8355a365cf61b8b3e8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -319,6 +353,40 @@
       "writtenOn": "2012-03-21T17:59:59Z",
       "side": 1,
       "message": "never use auto_ptr\n\nhttp://google-styleguide.googlecode.com/svn/trunk/cppguide.xml#Google-Specific_Magic",
+      "revId": "6b1a0559f18af39d2781ce8355a365cf61b8b3e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//Pfw\u003d",
+        "filename": "webm_info/webm_info.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-03-21T18:26:02Z",
+      "side": 1,
+      "message": "std::nothrow\n\nre auto_ptr, I was just looking at the chromium\u0027s base/scopted_ptr.h source; it\u0027s only dependencies are std c++ stuff. Might as well dupe it into shared/third_party.",
+      "revId": "6b1a0559f18af39d2781ce8355a365cf61b8b3e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//Pfs\u003d",
+        "filename": "webm_info/webm_info.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-03-21T18:26:02Z",
+      "side": 1,
+      "message": "std::nothrow",
       "revId": "6b1a0559f18af39d2781ce8355a365cf61b8b3e8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
