@@ -1,6 +1,13 @@
 # Microsoft Visual Studio files
 *.ncb
 *.suo
+*.user
+Debug
+Release
 
 # Compiled Object files
 *.o
+
+# Other files
+*.webm
+
