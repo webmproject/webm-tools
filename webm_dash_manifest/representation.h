@@ -18,6 +18,7 @@
 
 namespace webm_tools {
 class Indent;
+class WebMFile;
 }  // namespace webm_tools
 
 namespace mkvparser {
@@ -33,7 +34,6 @@ class VideoTrack;
 namespace webm_dash {
 
 class DashModel;
-class WebMFile;
 
 class Representation {
  public:
@@ -51,7 +51,7 @@ class Representation {
   // Returns true if the start time and the block number of all the cue
   // points in the representation are equal to all of the cue points in
   // |representation|.
-  bool CheckCuesAlignement(const Representation& representation) const;
+  bool CheckCuesAlignment(const Representation& representation) const;
 
   // Returns the sample rate in the first audio track. Returns 0 if there is
   // no audio track.
@@ -94,7 +94,7 @@ class Representation {
 
   void set_output_video_width(bool output) { output_video_width_ = output; }
 
-  const WebMFile* webm_file() const { return webm_file_; }
+  const webm_tools::WebMFile* webm_file() const { return webm_file_; }
 
   std::string webm_filename() const { return webm_filename_; }
   void set_webm_filename(const std::string& file) { webm_filename_ = file; }
@@ -128,7 +128,7 @@ class Representation {
   bool output_video_width_;
 
   // WebM file. This class does not own the pointer.
-  const WebMFile* webm_file_;
+  const webm_tools::WebMFile* webm_file_;
 
   // Path to WebM file.
   std::string webm_filename_;

@@ -19,6 +19,7 @@ using std::string;
 using webm_tools::Indent;
 using webm_tools::int64;
 using webm_tools::kNanosecondsPerSecond;
+using webm_tools::WebMFile;
 
 namespace webm_dash {
 
@@ -68,7 +69,7 @@ bool Representation::BitstreamSwitching(
   return webm_file_->CheckBitstreamSwitching(*webm);
 }
 
-bool Representation::CheckCuesAlignement(
+bool Representation::CheckCuesAlignment(
     const Representation& representation) const {
   const WebMFile* const webm = representation.webm_file();
   if (!webm) {
@@ -81,7 +82,7 @@ bool Representation::CheckCuesAlignement(
     return false;
   }
 
-  return webm_file_->CheckCuesAlignement(*webm);
+  return webm_file_->CheckCuesAlignment(*webm);
 }
 
 int Representation::GetAudioSampleRate() const {
@@ -163,7 +164,7 @@ bool Representation::SubsegmentStartsWithSAP() const {
     return false;
   }
 
-  return webm_file_->CuesFirstInCluster();
+  return webm_file_->CuesFirstInCluster(WebMFile::kUnknown);
 }
 
 bool Representation::OutputSegmentBase(FILE* o, Indent* indent) const {

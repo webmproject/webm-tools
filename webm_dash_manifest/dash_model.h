@@ -16,11 +16,14 @@
 
 #include "webm_tools_types.h"
 
+namespace webm_tools {
+class WebMFile;
+}  // namespace webm_tools
+
 namespace webm_dash {
 
 class AdaptationSet;
 class Period;
-class WebMFile;
 
 // This class models how the manifest should be laid out.
 class DashModel {
@@ -62,7 +65,7 @@ class DashModel {
   const AdaptationSet* FindAdaptationSet(const std::string& id) const;
 
   // Search the webm file list for |filename|. If not found return NULL.
-  const WebMFile* FindWebMFile(const std::string& filename) const;
+  const webm_tools::WebMFile* FindWebMFile(const std::string& filename) const;
 
   // Write out the manifest file to |output_filename_|.
   bool OutputDashManifestFile() const;
@@ -102,7 +105,7 @@ class DashModel {
   std::vector<std::string> base_urls_;
 
   // List of input WebM files.
-  std::vector<WebMFile*> webm_files_;
+  std::vector<webm_tools::WebMFile*> webm_files_;
 
   // Adaptation set list for a presentation.
   std::vector<AdaptationSet*> adaptation_sets_;
