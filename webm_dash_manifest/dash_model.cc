@@ -19,6 +19,7 @@
 
 using std::string;
 using std::vector;
+using webm_tools::WebMFile;
 
 namespace webm_dash {
 

@@ -20,7 +20,7 @@ using webm_tools::int64;
 using webm_tools::uint8;
 using webm_tools::kNanosecondsPerSecond;
 
-namespace webm_dash {
+namespace webm_tools {
 
 WebMFile::WebMFile(const string& filename)
     : cue_chunk_time_nano_(0x7FFFFFFFFFFFFFFFLL),
@@ -284,6 +284,312 @@ bool WebMFile::CheckCuesAlignement(const WebMFile& webm_file) const {
   return true;
 }
 
+bool WebMFile::CheckCuesAlignementList(
+    const vector<const WebMFile*>& webm_list,
+    double seconds,
+    bool check_for_sap,
+    bool check_for_audio_match,
+    bool verbose,
+    bool output_alignment_times,
+    bool output_alignment_stats,
+    string* output_string) {
+  vector<const mkvparser::Cues*> cues_list;
+  vector<const mkvparser::Track*> video_track_list;
+  vector<const mkvparser::Track*> audio_track_list;
+  bool have_audio_stream = true;
+  string negate_alignment;
+  string alignment_times("|Align timecodes ");
+  string alignment_stats("|Align stats ");
+
+  if (output_string)
+    *output_string = "Unknown";
+
+  const mkvparser::SegmentInfo* const golden_info =
+      webm_list.at(0)->GetSegmentInfo();
+
+  // Setup the lists of cues and tracks.
+  for (vector<const WebMFile*>::const_iterator c_webm_iter = webm_list.begin();
+      c_webm_iter != webm_list.end();
+      ++c_webm_iter) {
+    if (golden_info->GetTimeCodeScale() !=
+        (*c_webm_iter)->GetSegmentInfo()->GetTimeCodeScale()) {
+      if (output_string) {
+        char str[1024];
+        int offset = snprintf(str, sizeof(str),
+                              "Timecode scales do not match.");
+        snprintf(str + offset, sizeof(str) - offset,
+                 " timecode_scale:%lld timecode_scale:%lld",
+                 golden_info->GetTimeCodeScale(),
+                 (*c_webm_iter)->GetSegmentInfo()->GetTimeCodeScale());
+        *output_string = str;
+      }
+      return false;
+    }
+
+    const mkvparser::Cues* const cues = (*c_webm_iter)->GetCues();
+    if (!cues)
+      return false;
+    const mkvparser::Track* const track = (*c_webm_iter)->GetVideoTrack();
+    if (!track)
+      return false;
+    const mkvparser::Track* const aud_track = (*c_webm_iter)->GetAudioTrack();
+    if (!aud_track)
+      have_audio_stream = false;
+
+    cues_list.push_back(cues);
+    video_track_list.push_back(track);
+    if (have_audio_stream)
+      audio_track_list.push_back(aud_track);
+  }
+
+  // Find minimum Cluster time across all files.
+  int64 time = 0x7fffffffffffffffLL;
+  for (vector<const mkvparser::Cues*>::const_iterator c_cues_iter =
+           cues_list.begin();
+       c_cues_iter != cues_list.end();
+       ++c_cues_iter) {
+    const mkvparser::CuePoint* const cp = (*c_cues_iter)->GetFirst();
+    if (!cp)
+      return false;
+
+    const int64 cue_time = cp->GetTimeCode();
+    if (cue_time < time)
+      time = cue_time;
+
+    if (time == 0)
+      break;
+  }
+
+  int64 last_alignment = time;
+  int64 no_alignment_timecode = time +
+      static_cast<int64>((seconds * kNanosecondsPerSecond) /
+                         golden_info->GetTimeCodeScale());
+
+  // Keep the last Cues and CuePoint to get the Next CuePoint in case the
+  // CuePoints are in alignment.
+  const mkvparser::Cues* cues = NULL;
+  const mkvparser::CuePoint* cp = NULL;
+
+  for (;;) {
+    // Check if all cues have the same alignment.
+    bool found_alignment = true;
+
+    for (unsigned int i = 0; i < cues_list.size(); ++i) {
+      cues = cues_list.at(i);
+      const mkvparser::Track* const track = video_track_list.at(i);
+      const mkvparser::CuePoint::TrackPosition* tp;
+      const int64 nano = time * golden_info->GetTimeCodeScale();
+
+      // Find the CuePoint for |nano|.
+      if (!cues->Find(nano, track, cp, tp)) {
+        const WebMFile* const file = webm_list.at(i);
+        if (output_string) {
+          char str[1024];
+          int offset = snprintf(str, sizeof(str), "Could not find CuePoint");
+          snprintf(str + offset, sizeof(str) - offset,
+                   " time:%lld track:%lld file:%s",
+                   time,
+                   track->GetNumber(),
+                   file->filename().c_str());
+          *output_string = str;
+        }
+        return false;
+      }
+
+      // Check if we went past our allotted time.
+      if (cp->GetTimeCode() > no_alignment_timecode) {
+        const WebMFile* const file = webm_list.at(i);
+        if (output_string) {
+          char str[4096];
+          int off = snprintf(str, sizeof(str),
+                             "Could not find alignment in allotted time.");
+          off += snprintf(str + off, sizeof(str) - off,
+                          " seconds:%g last_alignment:%lld",
+                          seconds, last_alignment);
+          snprintf(str + off, sizeof(str) - off,
+                   " cp time:%lld track:%lld file:%s",
+                   cp->GetTimeCode(),
+                   track->GetNumber(),
+                   file->filename().c_str());
+          *output_string = str;
+          *output_string += negate_alignment;
+        }
+        return false;
+      }
+
+      // Check if a CuePoint does not match.
+      if (cp->GetTimeCode() != time) {
+        const WebMFile* const file = webm_list.at(i);
+        if (verbose) {
+          printf("No alignment found at time:%lld", time);
+          printf(" cp time:%lld track:%lld file:%s\n",
+                 cp->GetTimeCode(),
+                 track->GetNumber(),
+                 file->filename().c_str());
+        }
+
+        // Update time to check to this Cue's next timecode.
+        found_alignment = false;
+        break;
+      }
+    }
+
+    if (verbose && found_alignment)
+      printf("Potential alignment at time:%lld -- ", time);
+
+    // Check if all of the cues start with a key frame.
+    if (found_alignment && check_for_sap) {
+      for (unsigned int i = 0; i < cues_list.size(); ++i) {
+        cues = cues_list.at(i);
+        const mkvparser::Track* const track = video_track_list.at(i);
+
+        const mkvparser::CuePoint::TrackPosition* tp;
+        const int64 nano = time * golden_info->GetTimeCodeScale();
+        if (!cues->Find(nano, track, cp, tp))
+          return false;
+
+        int64 error_nano = 0;
+        const WebMFile* const file = webm_list.at(i);
+        bool frame_is_altref;
+        if (!file->StartsWithKey(*cp, *track, &error_nano, &frame_is_altref)) {
+          char str[4096];
+          int off = snprintf(str, sizeof(str), " |!Key");
+          off += snprintf(str + off, sizeof(str) - off,
+                          " nano:%lld sec:%g altref:%s track:%lld file:%s",
+                          error_nano, error_nano / kNanosecondsPerSecond,
+                          frame_is_altref ? "true" : "fasle",
+                          track->GetNumber(),
+                          file->filename().c_str());
+          negate_alignment += str;
+          if (verbose)
+            printf("%s\n", str);
+
+          if (output_string && output_alignment_stats) {
+            snprintf(str, sizeof(str), "!Key:%lld,", error_nano / 1000000ULL);
+            alignment_stats += str;
+          }
+          found_alignment = false;
+          break;
+        }
+      }
+    }
+
+    // Check if all of the audio data matches on an alignment.
+    if (have_audio_stream && found_alignment && check_for_audio_match) {
+      const int64 nano = time * golden_info->GetTimeCodeScale();
+      const WebMFile* const gold_file = webm_list.at(0);
+      const mkvparser::Cues* const gold_cues = cues_list.at(0);
+      const mkvparser::Track* const gold_track = audio_track_list.at(0);
+      const mkvparser::Track* const gold_video = video_track_list.at(0);
+      const mkvparser::CuePoint::TrackPosition* tp;
+      if (!gold_cues->Find(nano, gold_video, cp, tp))
+        return false;
+
+      // Get the first audio block time.
+      int64 gold_time = 0;
+      if (!gold_file->GetFirstBlockTime(*cp,
+                                        gold_track->GetNumber(),
+                                        &gold_time))
+        return false;
+
+      for (unsigned int i = 1; i < cues_list.size(); ++i) {
+        cues = cues_list.at(i);
+        const mkvparser::Track* const track = audio_track_list.at(i);
+        const mkvparser::Track* const vid_track = video_track_list.at(i);
+        const mkvparser::CuePoint::TrackPosition* tp;
+
+        if (!cues->Find(nano, vid_track, cp, tp))
+          return false;
+
+        int64 audio_time = 0;
+        const WebMFile* const file = webm_list.at(i);
+        if (!file->GetFirstBlockTime(*cp, track->GetNumber(), &audio_time))
+          return false;
+
+        if (gold_time != audio_time) {
+          char str[4096];
+          int off = snprintf(str, sizeof(str), " |!Audio");
+          off += snprintf(str + off, sizeof(str) - off,
+                          " time_g:%lld time:%lld file_g:%s file:%s",
+                          gold_time, audio_time,
+                          gold_file->filename().c_str(),
+                          file->filename().c_str());
+          negate_alignment += str;
+
+          if (verbose)
+            printf("%s\n", str);
+
+          if (output_string && output_alignment_stats) {
+            snprintf(str, sizeof(str), "!Audio:%lld,",
+                     audio_time / 1000000ULL);
+            alignment_stats += str;
+          }
+
+          found_alignment = false;
+          break;
+        }
+      }
+    }
+
+    // Find minimum time after |time| across all files.
+    int64 minimum_time = 0x7fffffffffffffffLL;
+    for (unsigned int i = 0; i < cues_list.size(); ++i) {
+      cues = cues_list.at(i);
+      const mkvparser::Track* const track = video_track_list.at(i);
+      const mkvparser::CuePoint::TrackPosition* tp;
+      const int64 nano = time * golden_info->GetTimeCodeScale();
+      if (!cues->Find(nano, track, cp, tp))
+        return false;
+
+      cp = cues->GetNext(cp);
+      if (cp && cp->GetTimeCode() < minimum_time)
+        minimum_time = cp->GetTimeCode();
+    }
+
+    if (minimum_time == 0x7fffffffffffffffLL) {
+      if (output_string) {
+        if (output_alignment_stats)
+          *output_string = alignment_stats;
+        else if (output_alignment_times)
+          *output_string = alignment_times;
+      }
+
+      if (verbose)
+        printf("Could not find next CuePoint assume files are done.\n");
+      break;
+    }
+
+    if (found_alignment) {
+      if (verbose)
+        printf("Found alignment at time:%lld\n", time);
+      if (output_string) {
+        if (output_alignment_stats) {
+          char str[4096];
+          snprintf(str, sizeof(str), "Time:%lld", time);
+          if (time)
+            alignment_stats += ",";
+          alignment_stats += str;
+        } else if (output_alignment_times) {
+          char str[4096];
+          snprintf(str, sizeof(str), "%lld", time);
+          if (time)
+            alignment_times += ",";
+          alignment_times += str;
+        }
+      }
+      no_alignment_timecode = time +
+          static_cast<int64>((seconds * kNanosecondsPerSecond) /
+                             golden_info->GetTimeCodeScale());
+      last_alignment = time;
+      negate_alignment.clear();
+    }
+
+    time = minimum_time;
+  }
+
+  return true;
+}
+
 bool WebMFile::CheckForCues() const {
   if (!segment_.get())
     return false;
@@ -310,12 +616,24 @@ bool WebMFile::CheckForCues() const {
   return b;
 }
 
-bool WebMFile::CuesFirstInCluster() const {
+bool WebMFile::CuesFirstInCluster(TrackTypes type,
+                                  webm_tools::int64* error_nano) const {
   const mkvparser::Cues* const cues = GetCues();
   if (!cues)
     return false;
 
-  const mkvparser::Track* const track = GetTrack(0);
+  const mkvparser::Track* track = NULL;
+  switch (type) {
+    case kVideo:
+      track = GetVideoTrack();
+      break;
+    case kAudio:
+      track = GetAudioTrack();
+      break;
+    default:
+      track = GetTrack(0);
+      break;
+  }
   if (!track)
     return false;
 
@@ -324,42 +642,8 @@ bool WebMFile::CuesFirstInCluster() const {
     return false;
 
   while (cp != NULL) {
-    // Check Block number
-    const mkvparser::CuePoint::TrackPosition* const tp = cp->Find(track);
-    if (!tp || tp->m_block != 1)
+    if (!StartsWithKey(*cp, *track, error_nano, NULL))
       return false;
-
-    // Find the first block that matches the CuePoint track number. This is
-    // done because the block number may not be set which defaults to 1.
-    const mkvparser::Cluster* cluster =
-        segment_->FindCluster(cp->GetTime(segment_.get()));
-    if (!cluster)
-      return false;
-
-    const mkvparser::BlockEntry* block_entry;
-    int status = cluster->GetFirst(block_entry);
-    if (status)
-      return false;
-
-    while (block_entry != NULL && !block_entry->EOS()) {
-      const mkvparser::Block* const block = block_entry->GetBlock();
-      if (block->GetTrackNumber() == tp->m_track) {
-        // Check if the block is a key frame and check if the block has the
-        // same time as the cue point.
-        if (!block->IsKey())
-          return false;
-
-        if (block->GetTime(cluster) != cp->GetTime(segment_.get()))
-          return false;
-
-        break;
-      }
-
-      status = cluster->GetNext(block_entry, block_entry);
-      if (status)
-        return false;
-    }
-
     cp = cues->GetNext(cp);
   }
 
@@ -509,6 +793,12 @@ string WebMFile::GetMimeTypeWithCodec() const {
   }
 
   return mimetype;
+}
+
+const mkvparser::SegmentInfo* WebMFile::GetSegmentInfo() const {
+  if (!segment_.get())
+    return NULL;
+  return segment_->GetInfo();
 }
 
 int64 WebMFile::GetSegmentStartOffset() const {
@@ -781,6 +1071,37 @@ int64 WebMFile::GetClusterRangeStart() const {
   return start;
 }
 
+bool WebMFile::GetFirstBlockTime(const mkvparser::CuePoint& cp,
+                                 int64 track_num,
+                                 int64* nanoseconds) const {
+  // Find the first block that matches the CuePoint track number. This is
+  // done because the block number may not be set which defaults to 1.
+  const mkvparser::Cluster* const cluster =
+      segment_->FindCluster(cp.GetTime(segment_.get()));
+  if (!cluster)
+    return false;
+
+  const mkvparser::BlockEntry* block_entry;
+  int status = cluster->GetFirst(block_entry);
+  if (status)
+    return false;
+
+  while (block_entry != NULL && !block_entry->EOS()) {
+    const mkvparser::Block* const block = block_entry->GetBlock();
+    if (block->GetTrackNumber() == track_num) {
+      if (nanoseconds)
+        *nanoseconds = block->GetTime(cluster);
+      return true;
+    }
+
+    status = cluster->GetNext(block_entry, block_entry);
+    if (status)
+      return false;
+  }
+
+  return false;
+}
+
 const CueDesc* WebMFile::GetCueDescFromTime(int64 time) const {
   if (!segment_.get())
     return NULL;
@@ -906,6 +1227,8 @@ bool WebMFile::LoadCueDescList() {
     const int64 time = cp->GetTime(segment_.get());
 
     const mkvparser::CuePoint::TrackPosition* const tp = cp->Find(track);
+    if (!tp)
+      return false;
     const int64 offset = tp->m_pos;
 
     if (last_time_ns != -1) {
@@ -1035,4 +1358,78 @@ int WebMFile::PeakBandwidth(int64 time_ns,
   return 0;
 }
 
-}  // namespace webm_dash
+bool WebMFile::StartsWithKey(const mkvparser::CuePoint& cp,
+                             const mkvparser::Track& track,
+                             int64* error_nano,
+                             bool* frame_is_altref) const {
+  if (frame_is_altref)
+    *frame_is_altref = false;
+
+  const mkvparser::CuePoint::TrackPosition* const tp = cp.Find(&track);
+  if (!tp)
+    return false;
+
+  // Find the first block that matches the CuePoint track number. This is
+  // done because the block number may not be set which defaults to 1.
+  const mkvparser::Cluster* const cluster =
+      segment_->FindCluster(cp.GetTime(segment_.get()));
+  if (!cluster)
+    return false;
+
+  const mkvparser::BlockEntry* block_entry;
+  int status = cluster->GetFirst(block_entry);
+  if (status)
+    return false;
+
+  bool rv = true;
+  while (block_entry != NULL && !block_entry->EOS()) {
+    const mkvparser::Block* const block = block_entry->GetBlock();
+    if (block->GetTrackNumber() == tp->m_track) {
+      // Check if the block is a key frame and check if the block has the
+      // same time as the cue point.
+      if (!block->IsKey()) {
+        if (error_nano)
+          *error_nano = block->GetTime(cluster);
+        rv = false;
+      }
+
+      if (block->GetTime(cluster) != cp.GetTime(segment_.get())) {
+        if (error_nano)
+          *error_nano = block->GetTime(cluster);
+        rv = false;
+      }
+
+      if (frame_is_altref) {
+        // Only check the first frame.
+        const mkvparser::Block::Frame& frame = block->GetFrame(0);
+        if (frame.len > 0) {
+          vector<unsigned char> vector_data;
+          vector_data.resize(frame.len);
+          unsigned char* data = &vector_data[0];
+          if (data) {
+            if (!frame.Read(reader_.get(), data)) {
+              // We have the data add another check to make sure the data is
+              // a key frame.
+              const bool vp8_key = !(data[0] & 1);
+              if (!vp8_key) {
+                if (error_nano)
+                  *error_nano = block->GetTime(cluster);
+                rv = false;
+              }
+              *frame_is_altref = ((data[0] >> 4) & 1) ? false : true;
+            }
+          }
+        }
+      }
+      break;
+    }
+
+    status = cluster->GetNext(block_entry, block_entry);
+    if (status)
+      return false;
+  }
+
+  return rv;
+}
+
+}  // namespace webm_tools
