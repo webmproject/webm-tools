@@ -1,0 +1,276 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAHn//McE\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-03-23T22:04:25Z",
+      "side": 1,
+      "message": "In general you should avoid calling container.end() in a loop, since that function must construct an object each pass through the loop.  More efficient to say:\n\ntypedef vector\u003cconst WebFile*\u003e::const_iterator iter_t;\niter_t iter \u003d webm_list.begin();\nconst iter_t iter_end webm_list.end();\n\nwhile (iter !\u003d iter_end) {\n  const WebFile* const pf \u003d *iter++;\n...\n}",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//MZc\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-03-23T22:04:25Z",
+      "side": 1,
+      "message": "You can remove a level of indentation if you handle the NULL case as an early return.",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//MZA\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-03-23T22:04:25Z",
+      "side": 1,
+      "message": "You use of (*iter)-\u003emf() is really ugly.  Use a ref to permanently deref the iter, e.g.\n\nconst WebFile* const pf \u003d *iter;\n\nconst Cues* const cues \u003d pf-\u003eGetCues();\n...",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//MYQ\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-03-23T22:04:25Z",
+      "side": 1,
+      "message": "Is this bool value used anywhere else?  Can you say:\n\nif (const Track* aud_track \u003d pf-\u003eGetAudioTrack())\n   audio_track_list.push_back(aud_track);\n\n?",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//MW4\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-03-23T22:04:25Z",
+      "side": 1,
+      "message": "Technically this type should be cue_list::size_type.  You could say:\n\nconst cues_list_t::size_type j \u003d cues_list.size();\n\nfor (cues_list_t::size_type i \u003d 0; i !\u003d j; ++i) {  ... }\n\nNo big deal, but it\u0027s slightly more portable not to assume that size_type is the same size as int.",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//MWc\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-03-23T22:04:25Z",
+      "side": 1,
+      "message": "OK, I see that have_audio_stream is used here too.",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//MV8\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-03-23T22:04:25Z",
+      "side": 1,
+      "message": "Get rid of this local variable.",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//MWI\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-03-23T22:04:25Z",
+      "side": 1,
+      "message": "Just handle the NULL case with an early return.",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//MVw\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-03-23T22:04:25Z",
+      "side": 1,
+      "message": "You might want to for the pathological case of GetTrack returning NULL (although Cues::Find does handle that case already).",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//MV4\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-03-23T22:04:25Z",
+      "side": 1,
+      "message": "You can say here instead:\n\nreturn cues-\u003eFind(0, track, cue, tp);",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//MVc\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 800,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-03-23T22:04:25Z",
+      "side": 1,
+      "message": "These checks should not be necessary: if you don\u0027t have a segment, then your initialization should have failed, n\u0027est-ce pas?",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//MVQ\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1092,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-03-23T22:04:25Z",
+      "side": 1,
+      "message": "Is this test really necessary?  Is it meaningful to pass in NULL as the value of nanoseconds?  Can you handle that case as an early return?",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//MTg\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1384,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-03-23T22:04:25Z",
+      "side": 1,
+      "message": "Once rv is set to false, its value doesn\u0027t change.  Any way to simplify if once rv is determined?  (Just an idea.)",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//MS8\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1402,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-03-23T22:04:25Z",
+      "side": 1,
+      "message": "This feels like you have two separate functions.  There\u0027s this extra stuff you do if frame_is_altref is not NULL.  (This is called \"control coupling\".)",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//Mds\u003d",
+        "filename": "shared/webm_file.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-03-23T22:04:25Z",
+      "side": 1,
+      "message": "Note that you are returning the result by value.  Was this your intent?  It would be better (perhaps) to either return a const reference to std::string, or (better) return a const char*.  Something like:\n\nconst std::string\u0026 filename() const { ... };\n\n//or\n\nconst char* filename() const { ... };",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//Mc4\u003d",
+        "filename": "shared/webm_file.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-03-23T22:04:25Z",
+      "side": 1,
+      "message": "Are you sure you need to store this value?  This is mostly intended to merely identify the file type.  (And why is it being stored as a pointer value?)",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
