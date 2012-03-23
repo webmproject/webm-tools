@@ -47,7 +47,7 @@
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
-				WarningLevel="3"
+				WarningLevel="4"
 				DebugInformationFormat="4"
 				DisableSpecificWarnings="4996"
 			/>
@@ -123,7 +123,7 @@
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
-				WarningLevel="3"
+				WarningLevel="4"
 				DebugInformationFormat="3"
 				DisableSpecificWarnings="4996"
 			/>
@@ -203,7 +203,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\webm_file.cc"
+				RelativePath="..\shared\webm_file.cc"
 				>
 			</File>
 		</Filter>
@@ -233,7 +233,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\webm_file.h"
+				RelativePath="..\shared\webm_file.h"
 				>
 			</File>
 			<File
