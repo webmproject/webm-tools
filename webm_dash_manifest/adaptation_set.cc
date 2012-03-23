@@ -23,6 +23,7 @@ using std::string;
 using std::vector;
 using webm_tools::Indent;
 using webm_tools::kNanosecondsPerSecond;
+using webm_tools::WebMFile;
 
 namespace webm_dash {
 
@@ -292,7 +293,7 @@ bool AdaptationSet::SubsegmentAlignment() const {
       iter != representations_.end();
       ++iter) {
     const Representation* const r = *iter;
-    if (!r->CheckCuesAlignement(**golden_iter))
+    if (!r->CheckCuesAlignment(**golden_iter))
       return false;
   }
 
