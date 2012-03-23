@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "AAAAHn//MK4\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-03-23T23:19:06Z",
+      "side": 1,
+      "message": "Maybe it\u0027s overkill, but...\n\n  if (webm_list.empty()) {\n    return false;\n  }\n\n?",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//McE\u003d",
         "filename": "shared/webm_file.cc",
         "patchSetId": 1
@@ -70,6 +87,40 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//MKs\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-03-23T23:19:06Z",
+      "side": 1,
+      "message": "Should there be a constant for this val?",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//MKo\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-03-23T23:19:06Z",
+      "side": 1,
+      "message": "CueIter typedef to make this more readable?",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//MW4\u003d",
         "filename": "shared/webm_file.cc",
         "patchSetId": 1
@@ -87,6 +138,40 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//MKk\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-03-23T23:19:06Z",
+      "side": 1,
+      "message": "\u003d NULL?",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//MKc\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-03-23T23:19:06Z",
+      "side": 1,
+      "message": "init this?",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//MWc\u003d",
         "filename": "shared/webm_file.cc",
         "patchSetId": 1
@@ -98,6 +183,57 @@
       "writtenOn": "2012-03-23T22:04:25Z",
       "side": 1,
       "message": "OK, I see that have_audio_stream is used here too.",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//MIM\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-03-23T23:19:06Z",
+      "side": 1,
+      "message": "Probably should be a constant...",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//MIE\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-03-23T23:19:06Z",
+      "side": 1,
+      "message": "init?",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//MII\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-03-23T23:19:06Z",
+      "side": 1,
+      "message": "Ditto.",
       "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -172,6 +308,23 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//MHs\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 799,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-03-23T23:19:06Z",
+      "side": 1,
+      "message": "I think if (!segment_) would do, but not going to hurt anything",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//MVc\u003d",
         "filename": "shared/webm_file.cc",
         "patchSetId": 1
@@ -200,6 +353,23 @@
       "writtenOn": "2012-03-23T22:04:25Z",
       "side": 1,
       "message": "Is this test really necessary?  Is it meaningful to pass in NULL as the value of nanoseconds?  Can you handle that case as an early return?",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//MLE\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1379,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-03-23T23:19:06Z",
+      "side": 1,
+      "message": "\u003d NULL?",
       "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -240,6 +410,57 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//MeM\u003d",
+        "filename": "shared/webm_file.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-03-23T23:19:06Z",
+      "side": 1,
+      "message": "s/CuePoiunt/CuePoint/",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//Md8\u003d",
+        "filename": "shared/webm_file.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-03-23T23:19:06Z",
+      "side": 1,
+      "message": "s/if/why/ \n\nI think you want a why there, but this sentence a bit tough to follow.",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//Mec\u003d",
+        "filename": "shared/webm_file.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-03-23T23:19:06Z",
+      "side": 1,
+      "message": "This block could use some breaking up... it\u0027ll make a big comment block even bigger, but starting a new line for each arg would help quite a bit.",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//Mds\u003d",
         "filename": "shared/webm_file.h",
         "patchSetId": 1
@@ -251,6 +472,23 @@
       "writtenOn": "2012-03-23T22:04:25Z",
       "side": 1,
       "message": "Note that you are returning the result by value.  Was this your intent?  It would be better (perhaps) to either return a const reference to std::string, or (better) return a const char*.  Something like:\n\nconst std::string\u0026 filename() const { ... };\n\n//or\n\nconst char* filename() const { ... };",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//MdY\u003d",
+        "filename": "shared/webm_file.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-03-23T23:19:06Z",
+      "side": 1,
+      "message": "|cue_desc_list_| would be more informative than \"CueDesc list\" (imo)",
       "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
