@@ -8,8 +8,8 @@
  *  be found in the AUTHORS file in the root of the source tree.
  */
 
-#ifndef WEBM_DASH_MANIFEST_WEBM_FILE_H_
-#define WEBM_DASH_MANIFEST_WEBM_FILE_H_
+#ifndef SHARED_WEBM_FILE_H_
+#define SHARED_WEBM_FILE_H_
 
 #include <memory>
 #include <string>
@@ -19,22 +19,24 @@
 
 namespace mkvparser {
 class AudioTrack;
+class Block;
+class Cluster;
 class Cues;
 class CuePoint;
-struct EBMLHeader;
 class MkvReader;
 class Segment;
+class SegmentInfo;
 class Track;
 class VideoTrack;
 }  // namespace mkvparser
 
-namespace webm_dash {
+namespace webm_tools {
 
 struct CueDesc {
-  webm_tools::int64 start_time_ns;
-  webm_tools::int64 end_time_ns;
-  webm_tools::int64 start_offset;
-  webm_tools::int64 end_offset;
+  int64 start_time_ns;
+  int64 end_time_ns;
+  int64 start_offset;
+  int64 end_offset;
 };
 
 // This class is used to load a WebM file using libwebm. The class adds
@@ -43,6 +45,11 @@ struct CueDesc {
 // functions may be called.
 class WebMFile {
  public:
+  enum TrackTypes {
+    kUnknown = 0,
+    kVideo = 1,
+    kAudio = 2,
+  };
   explicit WebMFile(const std::string& filename);
   ~WebMFile();
 
@@ -60,7 +67,7 @@ class WebMFile {
   // Return values < 0 are errors. Return value of 0 is success.
   int BufferSizeAfterTime(double time,
                           double search_sec,
-                          webm_tools::int64 kbps,
+                          int64 kbps,
                           double* buffer,
                           double* sec_counted) const;
 
@@ -75,9 +82,9 @@ class WebMFile {
   // data.
   // Return values < 0 are errors. Return value of 0 is success.
   // Return value of 1 is the function encountered a buffer underrun.
-  int BufferSizeAfterTimeDownloaded(webm_tools::int64 time_ns,
+  int BufferSizeAfterTimeDownloaded(int64 time_ns,
                                     double search_sec,
-                                    webm_tools::int64 bps,
+                                    int64 bps,
                                     double min_buffer,
                                     double* buffer,
                                     double* sec_to_download) const;
@@ -93,14 +100,43 @@ class WebMFile {
   // Returns true if the start time and the block number of all the cue
   // points in the webm file are equal to all of the cue points in
   // |webm_file|.
-  bool CheckCuesAlignement(const WebMFile& webm_file) const;
+  bool CheckCuesAlignment(const WebMFile& webm_file) const;
+
+// Returns true if the CuePoints across |webm_list| are aligned with respect
+// to time.
+// |seconds| is the range in seconds that the function is allowed to search
+// for alignment. I.e. If file A had a CuePoint every 5 seconds and file B
+// had a CuePoint every 15 seconds then the files would be aligned
+// if |seconds| >= 15.0.
+// |check_for_sap| if true checks if potentially aligned CuePoints start with
+// a key frame. I.e. The first frame in the Custer is a key frame.
+// |check_for_audio_match| if true checks that the first audio block in
+// potentially aligned CuePoints are the same.
+// |verbose| if true outputs more information to stdout.
+// |output_alignment_times| if true will append the aligned CuePoint times in
+// seconds to |output_string|.
+// |output_alignment_stats| if true will append the aligned CuePoint times in
+// seconds and the reason why potentially aligned CuePoints were rejected.
+// |output_alignment_stats| supersedes |output_alignment_times|.
+// |output_string| is an output parameter with information on why the function
+// returned false and/or the output from |output_alignment_stats| or
+// |output_alignment_times|. |output_string| may be NULL.
+  static bool CheckCuesAlignmentList(
+      const std::vector<const WebMFile*>& webm_list,
+      double seconds,
+      bool check_for_sap,
+      bool check_for_audio_match,
+      bool verbose,
+      bool output_alignment_times,
+      bool output_alignment_stats,
+      std::string* output_string);
 
   // Returns true if the file has a Cues element.
   bool CheckForCues() const;
 
   // Returns true if the first Block of every CuePoint is the first Block in
   // the Cluster for that track.
-  bool CuesFirstInCluster() const;
+  bool CuesFirstInCluster(TrackTypes type) const;
 
   // Returns the number of channels in the first audio track. Returns 0 if
   // there is no audio track.
@@ -112,7 +148,7 @@ class WebMFile {
 
   // Calculate and return average bandwidth for the WebM file in kilobits
   // per second.
-  webm_tools::int64 GetAverageBandwidth() const;
+  int64 GetAverageBandwidth() const;
 
   // Returns the codec string associated with the file. If the CodecID
   // is V_VP8 then the string returned will be "vp8". If the CodecID is
@@ -126,16 +162,16 @@ class WebMFile {
   const mkvparser::Cues* GetCues() const;
 
   // Returns the duration of the file in nanoseconds.
-  webm_tools::int64 GetDurationNanoseconds() const;
+  int64 GetDurationNanoseconds() const;
 
   // Returns the byte offset in the file for the start of the Segment Info and
   // Tracks element starting with the EBML element ID to the end offset of the
   // element. A return value of -1 for either value indicates an error.
-  void GetHeaderRange(webm_tools::int64* start, webm_tools::int64* end) const;
+  void GetHeaderRange(int64* start, int64* end) const;
 
   // Calculate and return maximum bandwidth for the WebM file in kilobits
   // per second.
-  webm_tools::int64 GetMaximumBandwidth() const;
+  int64 GetMaximumBandwidth() const;
 
   // Returns the mimetype string associated with the file. Returns
   // "video/webm" if the file is a valid WebM file. Returns the empty string
@@ -147,8 +183,11 @@ class WebMFile {
   // empty string if not a valid WebM file.
   std::string GetMimeTypeWithCodec() const;
 
+  // Returns the SegmentInfo element.
+  const mkvparser::SegmentInfo* GetSegmentInfo() const;
+
   // Returns the starting byte offset the segment element.
-  webm_tools::int64 GetSegmentStartOffset() const;
+  int64 GetSegmentStartOffset() const;
 
   // Returns the average framerate of the first video track. Returns 0.0 if
   // there is no video track or there is no FrameRate element.
@@ -172,25 +211,23 @@ class WebMFile {
   // prebuffer of |prebuffer_ns|. This function will iterate over all the Cue
   // points to get the maximum bandwidth from all Cue points.Return values < 0
   // are errors.
-  webm_tools::int64 PeakBandwidthOverFile(
-        webm_tools::int64 prebuffer_ns) const;
+  int64 PeakBandwidthOverFile(int64 prebuffer_ns) const;
 
-  std::string filename() const { return filename_; }
+  const std::string& filename() const { return filename_; }
 
  private:
   // Calculate and return average bandwidth for the WebM file in kilobits
   // per second starting from |cp|. If |cp| is NULL calculate the bandwidth
   // over the entire file. Return 0 on error.
-  webm_tools::int64 CalculateBandwidth(const mkvparser::CuePoint* cp) const;
+  int64 CalculateBandwidth(const mkvparser::CuePoint* cp) const;
 
   // Returns the frame rate for |track_number|. The frame rate is calculated
   // from all the frames in the Clusters. Returns 0.0 if it cannot calculate
   // the frame rate.
-  double CalculateFrameRate(webm_tools::int64 track_number) const;
+  double CalculateFrameRate(int track_number) const;
 
-  // Returns true if the first four bytes of the doctype of the WebM file
-  // match "webm".
-  bool CheckDocType() const;
+  // Returns true if the first four bytes of |doc_type| match "webm".
+  bool CheckDocType(const std::string& doc_type) const;
 
   // Returns the |start| and |end| byte offsets and the start and end times
   // of the requested chunk. |start_time_nano| is the time in nano seconds
@@ -198,12 +235,12 @@ class WebMFile {
   // the time in nano seconds exclusive to end searching for in the Cues
   // element. If you want to get the entries Cues element set |end_time_nano|
   // to max of webm_tools::int64.
-  void FindCuesChunk(webm_tools::int64 start_time_nano,
-                     webm_tools::int64 end_time_nano,
-                     webm_tools::int64* start,
-                     webm_tools::int64* end,
-                     webm_tools::int64* cue_start_time,
-                     webm_tools::int64* cue_end_time) const;
+  void FindCuesChunk(int64 start_time_nano,
+                     int64 end_time_nano,
+                     int64* start,
+                     int64* end,
+                     int64* cue_start_time,
+                     int64* cue_end_time) const;
 
   // Return the first audio track. Returns NULL if there are no audio tracks.
   const mkvparser::AudioTrack* GetAudioTrack() const;
@@ -211,17 +248,39 @@ class WebMFile {
   // Returns the byte offset in the file for the start of the first Cluster
   // element starting with the EBML element ID. A value of -1 indicates there
   // was an error.
-  webm_tools::int64 GetClusterRangeStart() const;
+  int64 GetClusterRangeStart() const;
 
   // Returns the CueDesc associated with |time|. |time| is the time in
   // nanoseconds. Returns NULL if it cannot find a CueDesc.
-  const CueDesc* GetCueDescFromTime(webm_tools::int64 time) const;
+  const CueDesc* GetCueDescFromTime(int64 time) const;
+
+  // Returns the time in nanoseconds of the first Block in the Cluster
+  // referenced by |cp|. |cp| is the CuePoint that references the Cluster to
+  // search. |track_num| is the number of the Track to look for the first
+  // Block. |nanoseconds| is the output time in nanoseconds. |nanoseconds| is
+  // set only if the function returns true. Returns false if it could not
+  // find a Block of |track_num| within the Cluster. Returns false if
+  // nanoseconds is NULL.
+  bool GetFirstBlockTime(const mkvparser::CuePoint& cp,
+                         int track_num,
+                         int64* nanoseconds) const;
+
+  // Returns true if the Block of |track| within the Cluster represented by
+  // index is valid. |cp| is the CuePoint that references the Cluster to
+  // search. |track| the Track to look for. |index| is the index of the Block.
+  // |block| is the output variable to get the Block. Returns false if the
+  // function cannot find the Block referenced by |track| and |index|. Returns
+  // false if |block| is NULL.
+  bool GetIndexedBlock(const mkvparser::CuePoint& cp,
+                       const mkvparser::Track& track,
+                       int index,
+                       const mkvparser::Cluster** cluster,
+                       const mkvparser::Block** block) const;
 
   // Returns the byte offset in the file for the start of the SegmentInfo
   // element starting with the EBML element ID to the end offset of the
   // element.
-  void GetSegmentInfoRange(webm_tools::int64* start,
-                           webm_tools::int64* end) const;
+  void GetSegmentInfoRange(int64* start, int64* end) const;
 
   // Returns the Track by an index. Returns NULL if it cannot find the track
   // represented by |index|.
@@ -229,33 +288,40 @@ class WebMFile {
 
   // Returns the byte offset in the file for the start of the Tracks element
   // starting with the EBML element ID to the end offset of the element.
-  void GetTracksRange(webm_tools::int64* start, webm_tools::int64* end) const;
+  void GetTracksRange(int64* start, int64* end) const;
 
   // Return the first video track. Returns NULL if there are no video tracks.
   const mkvparser::VideoTrack* GetVideoTrack() const;
 
-  // Populates the CueDesc list form the Cues element. Returns true on success.
+  // Populates |cue_desc_list_| from the Cues element. Returns true on success.
   bool LoadCueDescList();
+
+  // Returns true if |block| is an altref frame.
+  bool IsFrameAltref(const mkvparser::Block& block) const;
 
   // Returns the peak bandwidth starting at |time_ns| taking into account a
   // prebuffer of |prebuffer_ns|. The peak bandwidth is returned in the out
   // parameter |bandwidth|. Return values < 0 are errors. Return value of 0
   // is success.
-  int PeakBandwidth(webm_tools::int64 time_ns,
-                    webm_tools::int64 prebuffer_ns,
+  int PeakBandwidth(int64 time_ns,
+                    int64 prebuffer_ns,
                     double* bandwidth) const;
 
+  // Returns true if |block| is a key frame. |cp| is the CuePoint that
+  // references the Cluster to search. |cluster| is the Cluster that contains
+  // |block|. |block| is the Block to check.
+  bool StartsWithKey(const mkvparser::CuePoint& cp,
+                     const mkvparser::Cluster& cluster,
+                     const mkvparser::Block& block) const;
+
   // Time in nano seconds to split up the Cues element into the chunkindexlist.
-  webm_tools::int64 cue_chunk_time_nano_;
+  int64 cue_chunk_time_nano_;
 
   // CuesDesc list.
   std::vector<CueDesc> cue_desc_list_;
 
   // Path to WebM file.
   const std::string filename_;
-
-  // EBML header of the file.
-  std::auto_ptr<mkvparser::EBMLHeader> ebml_header_;
 
   // libwebm reader
   std::auto_ptr<mkvparser::MkvReader> reader_;
@@ -266,6 +332,6 @@ class WebMFile {
   WEBM_TOOLS_DISALLOW_COPY_AND_ASSIGN(WebMFile);
 };
 
-}  // namespace webm_dash
+}  // namespace webm_tools
 
-#endif  // WEBM_DASH_MANIFEST_WEBM_FILE_H_
+#endif  // SHARED_WEBM_FILE_H_
