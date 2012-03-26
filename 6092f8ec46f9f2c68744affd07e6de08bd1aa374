@@ -282,6 +282,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//K+8\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-03-26T21:15:52Z",
+      "side": 1,
+      "message": "Strange, at least at() and operator[] should be defined to take a size_type.",
+      "parentUuid": "AAAAHn//LSU\u003d",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//MKk\u003d",
         "filename": "shared/webm_file.cc",
         "patchSetId": 1
