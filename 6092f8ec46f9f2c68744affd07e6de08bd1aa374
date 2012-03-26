@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//LYc\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-03-26T19:06:52Z",
+      "side": 1,
+      "message": "Added a check if file list is less than 2. Done.",
+      "parentUuid": "AAAAHn//MK4\u003d",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//McE\u003d",
         "filename": "shared/webm_file.cc",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2012-03-23T22:04:25Z",
       "side": 1,
       "message": "In general you should avoid calling container.end() in a loop, since that function must construct an object each pass through the loop.  More efficient to say:\n\ntypedef vector\u003cconst WebFile*\u003e::const_iterator iter_t;\niter_t iter \u003d webm_list.begin();\nconst iter_t iter_end webm_list.end();\n\nwhile (iter !\u003d iter_end) {\n  const WebFile* const pf \u003d *iter++;\n...\n}",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//LYA\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-03-26T19:06:52Z",
+      "side": 1,
+      "message": "I changed the for loop to construct the end condition in the beginning and only check the end variable. This keeps the iterator variables in the loop scope.",
+      "parentUuid": "AAAAHn//McE\u003d",
       "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//LX8\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-03-26T19:06:52Z",
+      "side": 1,
+      "message": "Yeah but error string is allowed to be NULL. Added text to  function comment.",
+      "parentUuid": "AAAAHn//MZc\u003d",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//MZA\u003d",
         "filename": "shared/webm_file.cc",
         "patchSetId": 1
@@ -64,6 +118,24 @@
       "writtenOn": "2012-03-23T22:04:25Z",
       "side": 1,
       "message": "You use of (*iter)-\u003emf() is really ugly.  Use a ref to permanently deref the iter, e.g.\n\nconst WebFile* const pf \u003d *iter;\n\nconst Cues* const cues \u003d pf-\u003eGetCues();\n...",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//LX4\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-03-26T19:06:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//MZA\u003d",
       "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//LX0\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-03-26T19:06:52Z",
+      "side": 1,
+      "message": "Yes it is used later in the function.",
+      "parentUuid": "AAAAHn//MYQ\u003d",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//MKs\u003d",
         "filename": "shared/webm_file.cc",
         "patchSetId": 1
@@ -98,6 +188,24 @@
       "writtenOn": "2012-03-23T23:19:06Z",
       "side": 1,
       "message": "Should there be a constant for this val?",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//LWM\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-03-26T19:06:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//MKs\u003d",
       "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//LWA\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-03-26T19:06:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//MKo\u003d",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//MW4\u003d",
         "filename": "shared/webm_file.cc",
         "patchSetId": 1
@@ -132,6 +258,24 @@
       "writtenOn": "2012-03-23T22:04:25Z",
       "side": 1,
       "message": "Technically this type should be cue_list::size_type.  You could say:\n\nconst cues_list_t::size_type j \u003d cues_list.size();\n\nfor (cues_list_t::size_type i \u003d 0; i !\u003d j; ++i) {  ... }\n\nNo big deal, but it\u0027s slightly more portable not to assume that size_type is the same size as int.",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//LSU\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-03-26T19:06:52Z",
+      "side": 1,
+      "message": "I changed the end condition to check a const variable. I looked into changing the loop to return size_type, but then I should really be casting all the places I call at(). So I\u0027m going to leave as it is now using unsigned integral for code clarity.",
+      "parentUuid": "AAAAHn//MW4\u003d",
       "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//LSM\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-03-26T19:06:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//MKk\u003d",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//MKc\u003d",
         "filename": "shared/webm_file.cc",
         "patchSetId": 1
@@ -166,6 +328,24 @@
       "writtenOn": "2012-03-23T23:19:06Z",
       "side": 1,
       "message": "init this?",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//LSA\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-03-26T19:06:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//MKc\u003d",
       "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -189,6 +369,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//LSI\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-03-26T19:06:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//MWc\u003d",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//MIM\u003d",
         "filename": "shared/webm_file.cc",
         "patchSetId": 1
@@ -200,6 +398,24 @@
       "writtenOn": "2012-03-23T23:19:06Z",
       "side": 1,
       "message": "Probably should be a constant...",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//LR8\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-03-26T19:06:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//MIM\u003d",
       "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -223,6 +439,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//LRs\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-03-26T19:06:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//MIE\u003d",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//MII\u003d",
         "filename": "shared/webm_file.cc",
         "patchSetId": 1
@@ -234,6 +468,24 @@
       "writtenOn": "2012-03-23T23:19:06Z",
       "side": 1,
       "message": "Ditto.",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//LRo\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 549,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-03-26T19:06:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//MII\u003d",
       "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -257,6 +509,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//LRQ\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-03-26T19:06:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//MV8\u003d",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//MWI\u003d",
         "filename": "shared/webm_file.cc",
         "patchSetId": 1
@@ -268,6 +538,24 @@
       "writtenOn": "2012-03-23T22:04:25Z",
       "side": 1,
       "message": "Just handle the NULL case with an early return.",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//LRM\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-03-26T19:06:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//MWI\u003d",
       "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -291,6 +579,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//LRI\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-03-26T19:06:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//MVw\u003d",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//MV4\u003d",
         "filename": "shared/webm_file.cc",
         "patchSetId": 1
@@ -302,6 +608,24 @@
       "writtenOn": "2012-03-23T22:04:25Z",
       "side": 1,
       "message": "You can say here instead:\n\nreturn cues-\u003eFind(0, track, cue, tp);",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//LRE\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 616,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-03-26T19:06:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//MV4\u003d",
       "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -325,6 +649,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//LQw\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 799,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-03-26T19:06:52Z",
+      "side": 1,
+      "message": "auto_ptr doesn\u0027t have the \"!\" operator.",
+      "parentUuid": "AAAAHn//MHs\u003d",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//MVc\u003d",
         "filename": "shared/webm_file.cc",
         "patchSetId": 1
@@ -336,6 +678,24 @@
       "writtenOn": "2012-03-23T22:04:25Z",
       "side": 1,
       "message": "These checks should not be necessary: if you don\u0027t have a segment, then your initialization should have failed, n\u0027est-ce pas?",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//LQs\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 800,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-03-26T19:06:52Z",
+      "side": 1,
+      "message": "These are there to check if someone created a WebMFile and called this function without calling Init() first.",
+      "parentUuid": "AAAAHn//MVc\u003d",
       "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -359,6 +719,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//LQg\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1092,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-03-26T19:06:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//MVQ\u003d",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//MLE\u003d",
         "filename": "shared/webm_file.cc",
         "patchSetId": 1
@@ -370,6 +748,24 @@
       "writtenOn": "2012-03-23T23:19:06Z",
       "side": 1,
       "message": "\u003d NULL?",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//LQc\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1379,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-03-26T19:06:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//MLE\u003d",
       "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -393,6 +789,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//LI4\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1384,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-03-26T19:06:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//MTg\u003d",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//MS8\u003d",
         "filename": "shared/webm_file.cc",
         "patchSetId": 1
@@ -404,6 +818,24 @@
       "writtenOn": "2012-03-23T22:04:25Z",
       "side": 1,
       "message": "This feels like you have two separate functions.  There\u0027s this extra stuff you do if frame_is_altref is not NULL.  (This is called \"control coupling\".)",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//LIw\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1402,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-03-26T19:06:52Z",
+      "side": 1,
+      "message": "I changed this function into three separate functions, GetIndexedBlock, IsFrameAltref, and StartsWithKey.",
+      "parentUuid": "AAAAHn//MS8\u003d",
       "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -427,6 +859,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//LcI\u003d",
+        "filename": "shared/webm_file.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-03-26T19:06:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//MeM\u003d",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//Md8\u003d",
         "filename": "shared/webm_file.h",
         "patchSetId": 1
@@ -438,6 +888,24 @@
       "writtenOn": "2012-03-23T23:19:06Z",
       "side": 1,
       "message": "s/if/why/ \n\nI think you want a why there, but this sentence a bit tough to follow.",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//LcE\u003d",
+        "filename": "shared/webm_file.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-03-26T19:06:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//Md8\u003d",
       "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -461,6 +929,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//LcA\u003d",
+        "filename": "shared/webm_file.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-03-26T19:06:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//Mec\u003d",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//Mds\u003d",
         "filename": "shared/webm_file.h",
         "patchSetId": 1
@@ -472,6 +958,24 @@
       "writtenOn": "2012-03-23T22:04:25Z",
       "side": 1,
       "message": "Note that you are returning the result by value.  Was this your intent?  It would be better (perhaps) to either return a const reference to std::string, or (better) return a const char*.  Something like:\n\nconst std::string\u0026 filename() const { ... };\n\n//or\n\nconst char* filename() const { ... };",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//LYg\u003d",
+        "filename": "shared/webm_file.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-03-26T19:06:52Z",
+      "side": 1,
+      "message": "I actually don\u0027t remember why I switched from const std::string\u0026. Done.",
+      "parentUuid": "AAAAHn//Mds\u003d",
       "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -495,6 +999,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAHn//Lb8\u003d",
+        "filename": "shared/webm_file.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-03-26T19:06:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAHn//MdY\u003d",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAHn//Mc4\u003d",
         "filename": "shared/webm_file.h",
         "patchSetId": 1
@@ -506,6 +1028,24 @@
       "writtenOn": "2012-03-23T22:04:25Z",
       "side": 1,
       "message": "Are you sure you need to store this value?  This is mostly intended to merely identify the file type.  (And why is it being stored as a pointer value?)",
+      "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAHn//LZY\u003d",
+        "filename": "shared/webm_file.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-03-26T19:06:52Z",
+      "side": 1,
+      "message": "I removed ebml_header_ as I only check the DocType in Init(). Done.",
+      "parentUuid": "AAAAHn//Mc4\u003d",
       "revId": "6092f8ec46f9f2c68744affd07e6de08bd1aa374",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
