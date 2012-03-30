@@ -161,7 +161,7 @@ void AdaptationSet::OutputDashManifest(FILE* o, Indent* indent) const {
   indent->Adjust(webm_tools::kIncreaseIndent);
   fprintf(o, "%s<AdaptationSet id=\"%s\"", indent->indent_str().c_str(),
           id_.c_str());
-  fprintf(o, " mimetype=\"%s\"", mimetype_.c_str());
+  fprintf(o, " mimeType=\"%s\"", mimetype_.c_str());
   fprintf(o, " codecs=\"%s\"", codec_.c_str());
 
   if (!lang_.empty())
