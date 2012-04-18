@@ -1,16 +1,22 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "webm_crypt", "webm_crypt_2010.vcxproj", "{7A216236-33B9-4CD8-B78F-23169A2E7B09}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "webm_crypt_2010", "webm_crypt_2010.vcxproj", "{7A216236-33B9-4CD8-B78F-23169A2E7B09}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug DLL|Win32 = Debug DLL|Win32
 		Debug|Win32 = Debug|Win32
+		Release DLL|Win32 = Release DLL|Win32
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A216236-33B9-4CD8-B78F-23169A2E7B09}.Debug DLL|Win32.ActiveCfg = Debug DLL|Win32
+		{7A216236-33B9-4CD8-B78F-23169A2E7B09}.Debug DLL|Win32.Build.0 = Debug DLL|Win32
 		{7A216236-33B9-4CD8-B78F-23169A2E7B09}.Debug|Win32.ActiveCfg = Debug|Win32
 		{7A216236-33B9-4CD8-B78F-23169A2E7B09}.Debug|Win32.Build.0 = Debug|Win32
+		{7A216236-33B9-4CD8-B78F-23169A2E7B09}.Release DLL|Win32.ActiveCfg = Release DLL|Win32
+		{7A216236-33B9-4CD8-B78F-23169A2E7B09}.Release DLL|Win32.Build.0 = Release DLL|Win32
 		{7A216236-33B9-4CD8-B78F-23169A2E7B09}.Release|Win32.ActiveCfg = Release|Win32
 		{7A216236-33B9-4CD8-B78F-23169A2E7B09}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection

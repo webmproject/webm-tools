@@ -1,3 +1,4 @@
 *.sln        -crlf
 *.vcproj     -crlf
 *.vcxproj     -crlf
+*.vsprops    -crlf
