@@ -41,13 +41,13 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="D:\Chromium\src, ../../libwebm"
+				AdditionalIncludeDirectories="D:\Chromium\src;../../libwebm;../shared"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
-				WarningLevel="3"
+				WarningLevel="4"
 				DebugInformationFormat="4"
 				DisableSpecificWarnings="4996"
 			/>
@@ -118,12 +118,12 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="D:\Chromium\src, ../../libwebm"
+				AdditionalIncludeDirectories="D:\Chromium\src;../../libwebm;../shared"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
-				WarningLevel="3"
+				WarningLevel="4"
 				DebugInformationFormat="3"
 				DisableSpecificWarnings="4996"
 			/>
@@ -180,6 +180,10 @@
 			>
 			<File
 				RelativePath=".\webm_crypt.cc"
+				>
+			</File>
+			<File
+				RelativePath="..\shared\webm_endian.cc"
 				>
 			</File>
 		</Filter>

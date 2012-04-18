@@ -181,6 +181,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\shared\webm_endian.cc"
+				>
+			</File>
+			<File
 				RelativePath=".\webm_info.cc"
 				>
 			</File>
@@ -192,6 +196,10 @@
 			>
 			<File
 				RelativePath="..\shared\indent.h"
+				>
+			</File>
+			<File
+				RelativePath="..\shared\webm_endian.h"
 				>
 			</File>
 		</Filter>
