@@ -18,6 +18,7 @@
 
 namespace {
 
+using mkvparser::ContentEncoding;
 using std::string;
 using std::wstring;
 using webm_tools::Indent;
@@ -262,6 +263,78 @@ bool OutputTracks(const mkvparser::Segment& segment,
     if (private_data)
       fprintf(o, "%sPrivateData(size): %d\n",
               indent->indent_str().c_str(), static_cast<int>(private_size));
+
+    if (track->GetContentEncodingCount() > 0) {
+      // Only check the first content encoding.
+      const ContentEncoding* const encoding =
+          track->GetContentEncodingByIndex(0);
+      if (!encoding) {
+        printf("Could not get first ContentEncoding.\n");
+        return NULL;
+      }
+
+      fprintf(o, "%sContentEncodingOrder : %lld\n",
+          indent->indent_str().c_str(), encoding->encoding_order());
+      fprintf(o, "%sContentEncodingScope : %lld\n",
+          indent->indent_str().c_str(), encoding->encoding_scope());
+      fprintf(o, "%sContentEncodingType  : %lld\n",
+          indent->indent_str().c_str(), encoding->encoding_type());
+
+      if (encoding->GetEncryptionCount() > 0) {
+        // Only check the first encryption.
+        const ContentEncoding::ContentEncryption* const encryption =
+            encoding->GetEncryptionByIndex(0);
+        if (!encryption) {
+          printf("Could not get first ContentEncryption.\n");
+          return false;
+        }
+
+        fprintf(o, "%sContentEncAlgo       : %lld\n",
+            indent->indent_str().c_str(), encryption->algo);
+
+        if (encryption->key_id_len > 0) {
+          fprintf(o, "%sContentEncKeyID      : 0x", indent->indent_str().c_str());
+          for (int k = 0; k < encryption->key_id_len; ++k) {
+            fprintf(o, "%x", encryption->key_id[k]);
+          }
+          fprintf(o, "\n");
+        }
+
+        if (encryption->signature_len > 0) {
+          fprintf(o, "%sContentSignature     : 0x", indent->indent_str().c_str());
+          for (int k = 0; k < encryption->signature_len; ++k) {
+            fprintf(o, "%x", encryption->signature[k]);
+          }
+          fprintf(o, "\n");
+        }
+
+        if (encryption->sig_key_id_len > 0) {
+          fprintf(o, "%sContentSigKeyID      : 0x", indent->indent_str().c_str());
+          for (int k = 0; k < encryption->sig_key_id_len; ++k) {
+            fprintf(o, "%x", encryption->sig_key_id[k]);
+          }
+          fprintf(o, "\n");
+        }
+
+        fprintf(o, "%sContentSigAlgo       : %lld\n",
+            indent->indent_str().c_str(), encryption->sig_algo);
+        fprintf(o, "%sContentSigHashAlgo   : %lld\n",
+            indent->indent_str().c_str(), encryption->sig_hash_algo);
+
+        const ContentEncoding::ContentEncAESSettings* const aes =
+            &encryption->aes_settings;
+        if (aes->cipher_init_data_len > 0) {
+          fprintf(o, "%sCipherMode           : %lld\n",
+              indent->indent_str().c_str(), aes->cipher_mode);
+          fprintf(o, "%sCipherInitData       : 0x",
+              indent->indent_str().c_str());
+          for (int k = 0; k < aes->cipher_init_data_len; ++k) {
+            fprintf(o, "%x", aes->cipher_init_data[k]);
+          }
+          fprintf(o, "\n");
+        }
+      }
+    }
 
     if (track_type == VIDEO_TRACK) {
       const mkvparser::VideoTrack* const video_track =
