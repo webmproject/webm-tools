@@ -18,6 +18,7 @@
 
 #if defined(_MSC_VER)
 #define snprintf sprintf_s
+#define strtoull _strtoui64
 #endif
 
 namespace webm_tools {
