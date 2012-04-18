@@ -21,6 +21,7 @@
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
+			InheritedPropertySheets=".\environment.vsprops"
 			CharacterSet="1"
 			>
 			<Tool
@@ -41,13 +42,13 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="D:\Chromium\src, ../../libwebm"
+				AdditionalIncludeDirectories="&quot;$(CHROMIUM_INC)&quot;;../../libwebm;../shared"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
-				WarningLevel="3"
+				WarningLevel="4"
 				DebugInformationFormat="4"
 				DisableSpecificWarnings="4996"
 			/>
@@ -64,7 +65,7 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="Dbghelp.lib Ws2_32.lib base.lib crcrypto.lib dynamic_annotations.lib libwebm.lib"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="D:\Chromium\src\build\Debug\lib;../../libwebm/Debug"
+				AdditionalLibraryDirectories="&quot;$(CHROMIUM_INC)\build\Debug\lib&quot;;../../libwebm/Debug"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				TargetMachine="1"
@@ -96,6 +97,7 @@
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
+			InheritedPropertySheets=".\environment.vsprops"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
 			>
@@ -118,12 +120,12 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="D:\Chromium\src, ../../libwebm"
+				AdditionalIncludeDirectories="&quot;$(CHROMIUM_INC)&quot;;../../libwebm;../shared"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
-				WarningLevel="3"
+				WarningLevel="4"
 				DebugInformationFormat="3"
 				DisableSpecificWarnings="4996"
 			/>
@@ -140,7 +142,7 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="Dbghelp.lib Ws2_32.lib base.lib crcrypto.lib dynamic_annotations.lib libwebm.lib"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="D:\Chromium\src\build\Release\lib;../../libwebm/Release"
+				AdditionalLibraryDirectories="&quot;$(CHROMIUM_INC)\build\Release\lib&quot;;../../libwebm/Release"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				OptimizeReferences="2"
@@ -180,6 +182,10 @@
 			>
 			<File
 				RelativePath=".\webm_crypt.cc"
+				>
+			</File>
+			<File
+				RelativePath="..\shared\webm_endian.cc"
 				>
 			</File>
 		</Filter>
