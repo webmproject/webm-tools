@@ -21,6 +21,7 @@
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
+			InheritedPropertySheets=".\environment.vsprops"
 			CharacterSet="1"
 			>
 			<Tool
@@ -96,6 +97,7 @@
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
+			InheritedPropertySheets=".\environment.vsprops"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
 			>
@@ -204,6 +206,10 @@
 			</File>
 			<File
 				RelativePath="..\shared\webm_file.cc"
+				>
+			</File>
+			<File
+				RelativePath="..\shared\webm_endian.cc"
 				>
 			</File>
 		</Filter>
