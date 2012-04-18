@@ -14,22 +14,20 @@
 #include "indent.h"
 #include "mkvreader.hpp"
 #include "mkvparser.hpp"
-#include "webm_tools_types.h"
+#include "webm_endian.h"
 
 namespace {
 
+using mkvparser::ContentEncoding;
 using std::string;
 using std::wstring;
 using webm_tools::Indent;
 using webm_tools::int64;
+using webm_tools::uint8;
+using webm_tools::uint64;
 using webm_tools::kNanosecondsPerSecond;
 
-enum {
-  VIDEO_TRACK = 1,
-  AUDIO_TRACK = 2
-};
-
-const char VERSION_STRING[] = "1.0.0.0";
+const char VERSION_STRING[] = "1.0.1.0";
 
 struct Options {
   Options();
@@ -50,6 +48,7 @@ struct Options {
   bool output_blocks;
   bool output_vp8_info;
   bool output_clusters_size;
+  bool output_encrypted_info;
 };
 
 Options::Options()
@@ -65,7 +64,8 @@ Options::Options()
       output_clusters(false),
       output_blocks(false),
       output_vp8_info(false),
-      output_clusters_size(false) {
+      output_clusters_size(false),
+      output_encrypted_info(false) {
 }
 
 void Options::SetAll(bool value) {
@@ -82,6 +82,7 @@ void Options::SetAll(bool value) {
   output_blocks = value;
   output_vp8_info = value;
   output_clusters_size = value;
+  output_encrypted_info = value;
 }
 
 void Usage() {
@@ -104,6 +105,7 @@ void Usage() {
   printf("  -blocks <bool>        Output Blocks (false)\n");
   printf("  -vp8_info <bool>      Output VP8 information (false)\n");
   printf("  -clusters_size <bool> Output Total Clusters size (false)\n");
+  printf("  -encrypted_info <bool> Output encrypted frame info (false)\n");
 }
 
 // TODO(fgalligan): Add support for non-ascii.
@@ -263,7 +265,74 @@ bool OutputTracks(const mkvparser::Segment& segment,
       fprintf(o, "%sPrivateData(size): %d\n",
               indent->indent_str().c_str(), static_cast<int>(private_size));
 
-    if (track_type == VIDEO_TRACK) {
+    if (track->GetContentEncodingCount() > 0) {
+      // Only check the first content encoding.
+      const ContentEncoding* const encoding =
+          track->GetContentEncodingByIndex(0);
+      if (!encoding) {
+        printf("Could not get first ContentEncoding.\n");
+        return NULL;
+      }
+
+      fprintf(o, "%sContentEncodingOrder : %lld\n",
+          indent->indent_str().c_str(), encoding->encoding_order());
+      fprintf(o, "%sContentEncodingScope : %lld\n",
+          indent->indent_str().c_str(), encoding->encoding_scope());
+      fprintf(o, "%sContentEncodingType  : %lld\n",
+          indent->indent_str().c_str(), encoding->encoding_type());
+
+      if (encoding->GetEncryptionCount() > 0) {
+        // Only check the first encryption.
+        const ContentEncoding::ContentEncryption* const encryption =
+            encoding->GetEncryptionByIndex(0);
+        if (!encryption) {
+          printf("Could not get first ContentEncryption.\n");
+          return false;
+        }
+
+        fprintf(o, "%sContentEncAlgo       : %lld\n",
+            indent->indent_str().c_str(), encryption->algo);
+
+        if (encryption->key_id_len > 0) {
+          fprintf(o, "%sContentEncKeyID      : 0x",
+                  indent->indent_str().c_str());
+          for (int k = 0; k < encryption->key_id_len; ++k) {
+            fprintf(o, "%x", encryption->key_id[k]);
+          }
+          fprintf(o, "\n");
+        }
+
+        if (encryption->signature_len > 0) {
+          fprintf(o, "%sContentSignature     : 0x",
+                  indent->indent_str().c_str());
+          for (int k = 0; k < encryption->signature_len; ++k) {
+            fprintf(o, "%x", encryption->signature[k]);
+          }
+          fprintf(o, "\n");
+        }
+
+        if (encryption->sig_key_id_len > 0) {
+          fprintf(o, "%sContentSigKeyID      : 0x",
+                  indent->indent_str().c_str());
+          for (int k = 0; k < encryption->sig_key_id_len; ++k) {
+            fprintf(o, "%x", encryption->sig_key_id[k]);
+          }
+          fprintf(o, "\n");
+        }
+
+        fprintf(o, "%sContentSigAlgo       : %lld\n",
+            indent->indent_str().c_str(), encryption->sig_algo);
+        fprintf(o, "%sContentSigHashAlgo   : %lld\n",
+            indent->indent_str().c_str(), encryption->sig_hash_algo);
+
+        const ContentEncoding::ContentEncAESSettings& aes =
+            encryption->aes_settings;
+        fprintf(o, "%sCipherMode           : %lld\n",
+            indent->indent_str().c_str(), aes.cipher_mode);
+      }
+    }
+
+    if (track_type == mkvparser::Track::kVideo) {
       const mkvparser::VideoTrack* const video_track =
           static_cast<const mkvparser::VideoTrack* const>(track);
       const int64 width = video_track->GetWidth();
@@ -276,7 +345,7 @@ bool OutputTracks(const mkvparser::Segment& segment,
       if (frame_rate > 0.0)
         fprintf(o, "%sFrameRate   : %g\n",
                 indent->indent_str().c_str(), video_track->GetFrameRate());
-    } else if (track_type == AUDIO_TRACK) {
+    } else if (track_type == mkvparser::Track::kAudio) {
       const mkvparser::AudioTrack* const audio_track =
           static_cast<const mkvparser::AudioTrack* const>(track);
       const int64 channels = audio_track->GetChannels();
@@ -368,14 +437,14 @@ bool OutputCluster(const mkvparser::Cluster& cluster,
       }
 
       const int64 track_type = track->GetType();
-      if ((track_type == VIDEO_TRACK && options.output_video) ||
-          (track_type == AUDIO_TRACK && options.output_audio)) {
+      if ((track_type == mkvparser::Track::kVideo && options.output_video) ||
+          (track_type == mkvparser::Track::kAudio && options.output_audio)) {
         const int64 time_ns = block->GetTime(&cluster);
         const bool is_key = block->IsKey();
 
         fprintf(o, "%sBlock: type:%s frame:%s",
                 indent->indent_str().c_str(),
-                track_type == VIDEO_TRACK ? "V" : "A",
+                track_type == mkvparser::Track::kVideo ? "V" : "A",
                 is_key ? "I" : "P");
         if (options.output_seconds)
           fprintf(o, " secs:%5g", time_ns / kNanosecondsPerSecond);
@@ -387,6 +456,55 @@ bool OutputCluster(const mkvparser::Cluster& cluster,
         if (options.output_size)
           fprintf(o, " size_payload: %lld", block->m_size);
 
+        const int kChecksumSize = 12;
+        const uint8 KEncryptedBit = 0x1;
+        const int kSignalByteSize = 1;
+        bool encrypted_stream = false;
+        if (options.output_encrypted_info) {
+          if (track->GetContentEncodingCount() > 0) {
+            // Only check the first content encoding.
+            const ContentEncoding* const encoding =
+                track->GetContentEncodingByIndex(0);
+            if (encoding) {
+              if (encoding->GetEncryptionCount() > 0) {
+                const ContentEncoding::ContentEncryption* const encryption =
+                    encoding->GetEncryptionByIndex(0);
+                if (encryption) {
+                  const ContentEncoding::ContentEncAESSettings& aes =
+                      encryption->aes_settings;
+                  if (aes.cipher_mode == 1) {
+                    encrypted_stream = true;
+                  }
+                }
+              }
+            }
+          }
+
+          if (encrypted_stream) {
+            const mkvparser::Block::Frame& frame = block->GetFrame(0);
+            if (frame.len > static_cast<int>(vector_data.size())) {
+              vector_data.resize(frame.len + 1024);
+            }
+
+            unsigned char* data = &vector_data[0];
+            if (frame.Read(reader, data) < 0) {
+              fprintf(stderr, "Could not read frame.\n");
+              return false;
+            }
+
+            const bool encrypted_frame =
+                (data[kChecksumSize] & KEncryptedBit) ? 1 : 0;
+            fprintf(o, " enc: %d", encrypted_frame ? 1 : 0);
+
+            if (encrypted_frame) {
+              uint64 iv;
+              memcpy(&iv, data + (kChecksumSize + kSignalByteSize), sizeof(iv));
+              iv = webm_tools::bigendian_to_host(iv);
+              fprintf(o, " iv: %lld", iv);
+            }
+          }
+        }
+
         if (options.output_vp8_info) {
           const int frame_count = block->GetFrameCount();
 
@@ -396,7 +514,7 @@ bool OutputCluster(const mkvparser::Cluster& cluster,
           }
 
           for (int i = 0; i < frame_count; ++i) {
-            if (track_type == VIDEO_TRACK) {
+            if (track_type == mkvparser::Track::kVideo) {
               const mkvparser::Block::Frame& frame = block->GetFrame(i);
               if (frame.len > static_cast<int>(vector_data.size())) {
                 vector_data.resize(frame.len + 1024);
@@ -411,16 +529,31 @@ bool OutputCluster(const mkvparser::Cluster& cluster,
               if (frame_count > 1)
                 fprintf(o, "\n%sVP8 data     :", indent->indent_str().c_str());
 
-              const int vp8_key = !(data[0] & 1);
-              const int vp8_version = (data[0] >> 1) & 7;
-              const int vp8_altref = !((data[0] >> 4) & 1);
-              const int vp8_partition_length =
-                  (data[0] | (data[1] << 8) | (data[2] << 16)) >> 5;
-              fprintf(o, " key:%d v:%d altref:%d partition_length:%d"
+              bool encrypted_frame = false;
+              int frame_offset = 0;
+              if (encrypted_stream) {
+                if (data[kChecksumSize] & KEncryptedBit) {
+                  encrypted_frame = true;
+                } else {
+                  frame_offset = kChecksumSize + kSignalByteSize;
+                }
+              }
+
+              if (!encrypted_frame) {
+                data += frame_offset;
+                const unsigned int temp =
+                  (data[2] << 16) | (data[1] << 8) | data[0];
+
+                const int vp8_key = !(temp & 0x1);
+                const int vp8_version = (temp >> 1) & 0x7;
+                const int vp8_altref = !((temp >> 4) & 0x1);
+                const int vp8_partition_length = (temp >> 5) & 0x7FFFF;
+                fprintf(o, " key:%d v:%d altref:%d partition_length:%d"
                       , vp8_key
                       , vp8_version
                       , vp8_altref
                       , vp8_partition_length);
+              }
             }
           }
 
@@ -489,6 +622,8 @@ int main(int argc, char* argv[]) {
       options.output_vp8_info = !!strcmp("false", argv[++i]);
     } else if (!strcmp("-clusters_size", argv[i]) && i < argc_check) {
       options.output_clusters_size = !!strcmp("false", argv[++i]);
+    } else if (!strcmp("-encrypted_info", argv[i]) && i < argc_check) {
+      options.output_encrypted_info = !!strcmp("false", argv[++i]);
     }
   }
 
