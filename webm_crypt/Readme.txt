@@ -1,4 +1,4 @@
-// Copyright (c) 2011 The WebM project authors. All Rights Reserved.
+// Copyright (c) 2012 The WebM project authors. All Rights Reserved.
 //
 // Use of this source code is governed by a BSD-style license
 // that can be found in the LICENSE file in the root of the source
@@ -15,21 +15,18 @@
    chromium/src/base/third_party/dynamic_annotations.sln solutions.
 3. Get the libwebm source code.
    git clone http://git.chromium.org/webm/libwebm.git
-4. Pull the encryption patch.
-   git fetch http://gerrit.chromium.org/gerrit/p/webm/libwebm refs/changes/03/9803/4 && git checkout FETCH_HEAD
+4. Chose the configuration that matchs the chromium libs. I.e. "Debug DLL",
+   "Debug", "Release", or "Release DLL"
 5. Build libwebm.
-6. Change the webm_crypt solution to point to your libs and build.
+6. Open environment.props file and change CHROMIUM_INC's value to your
+   Chromium's src directory.
 
 // Build instructions for Linux:
 1. Follow http://code.google.com/p/chromium/wiki/LinuxBuildInstructions to
    build chrome application.
 2. Get the libwebm source code.
    git clone http://git.chromium.org/webm/libwebm.git
-3. Pull the encryption patch.
-   git fetch http://gerrit.chromium.org/gerrit/p/webm/libwebm refs/changes/03/9803/4 && git checkout FETCH_HEAD
-4. Build libwebm.
-5. Change Makefile to point to your libs and build.
+3. Build libwebm.
+4. Change Makefile to point to your libs and build.
 
 Known Issues:
-
-Currently crashes on Linux.
