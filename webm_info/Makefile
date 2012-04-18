@@ -1,5 +1,5 @@
 LIBWEBM := ../../libwebm
-OBJECTS := ../shared/indent.o webm_info.o
+OBJECTS := ../shared/indent.o ../shared/webm_endian.o webm_info.o
 EXE := webm_info
 INCLUDES = -I$(LIBWEBM) -I../shared
 DEBUG := -g
