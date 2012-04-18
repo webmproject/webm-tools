@@ -1,4 +1,4 @@
-// Copyright (c) 2011 The WebM project authors. All Rights Reserved.
+// Copyright (c) 2012 The WebM project authors. All Rights Reserved.
 //
 // Use of this source code is governed by a BSD-style license
 // that can be found in the LICENSE file in the root of the source
@@ -32,4 +32,5 @@
 
 Known Issues:
 
-Currently crashes on Linux.
+- Windows crypto does not support CTR. http://code.google.com/p/webm/issues/detail?id=423
+- Linux does not work SymmetricKey::Import. http://code.google.com/p/webm/issues/detail?id=422
