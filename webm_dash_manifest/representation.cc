@@ -195,7 +195,7 @@ bool Representation::OutputSegmentBase(FILE* o, Indent* indent) const {
     webm_file_->GetHeaderRange(&start, &end);
 
     indent->Adjust(webm_tools::kIncreaseIndent);
-    fprintf(o, "%s<Initialisation", indent->indent_str().c_str());
+    fprintf(o, "%s<Initialization", indent->indent_str().c_str());
     fprintf(o, " range=\"%lld-%lld\" />\n", start, end);
     indent->Adjust(webm_tools::kDecreaseIndent);
 
