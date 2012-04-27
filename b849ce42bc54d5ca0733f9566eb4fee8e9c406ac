@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAKn//2g8\u003d",
+        "filename": "webm_crypt/Readme.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-04-27T17:53:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAKn//3pM\u003d",
+      "revId": "b849ce42bc54d5ca0733f9566eb4fee8e9c406ac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAKn//3ZE\u003d",
         "filename": "webm_crypt/webm_crypt.cc",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2012-04-25T22:15:40Z",
       "side": 1,
       "message": "Are you sure you don\u0027t want to use a more specific name, e.g. CRYPTO_VERSION_STRING ?  This will make it easier to grep the binary.",
+      "revId": "b849ce42bc54d5ca0733f9566eb4fee8e9c406ac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAKn//2g0\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-04-27T17:53:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAKn//3ZE\u003d",
       "revId": "b849ce42bc54d5ca0733f9566eb4fee8e9c406ac",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAKn//2gk\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-04-27T17:53:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAKn//3n8\u003d",
+      "revId": "b849ce42bc54d5ca0733f9566eb4fee8e9c406ac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAKn//3oA\u003d",
         "filename": "webm_crypt/webm_crypt.cc",
         "patchSetId": 1
@@ -64,6 +118,24 @@
       "writtenOn": "2012-04-25T20:49:30Z",
       "side": 1,
       "message": "size_t",
+      "revId": "b849ce42bc54d5ca0733f9566eb4fee8e9c406ac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAKn//2gY\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-04-27T17:53:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAKn//3oA\u003d",
       "revId": "b849ce42bc54d5ca0733f9566eb4fee8e9c406ac",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAKn//2gA\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-04-27T17:53:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAKn//3nM\u003d",
+      "revId": "b849ce42bc54d5ca0733f9566eb4fee8e9c406ac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAKn//3eA\u003d",
         "filename": "webm_crypt/webm_crypt.cc",
         "patchSetId": 1
@@ -98,6 +188,24 @@
       "writtenOn": "2012-04-25T20:49:30Z",
       "side": 1,
       "message": "couldn\u0027t you just use a running total? or is the data guaranteed to be \u003d\u003dsizeof? If so this shouldn\u0027t be necessary.",
+      "revId": "b849ce42bc54d5ca0733f9566eb4fee8e9c406ac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAKn//1VU\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-04-27T17:53:43Z",
+      "side": 1,
+      "message": "I changed it to use a running total. I was cheating a little as the last 4 bytes will always be 0, so I made the code more explicit as to what I was initializing everything too.",
+      "parentUuid": "AAAAKn//3eA\u003d",
       "revId": "b849ce42bc54d5ca0733f9566eb4fee8e9c406ac",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAKn//1LE\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-04-27T17:53:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAKn//3Xw\u003d",
+      "revId": "b849ce42bc54d5ca0733f9566eb4fee8e9c406ac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAKn//3d8\u003d",
         "filename": "webm_crypt/webm_crypt.cc",
         "patchSetId": 1
@@ -132,6 +258,24 @@
       "writtenOn": "2012-04-25T20:49:30Z",
       "side": 1,
       "message": "string(16, \u00270\u0027) might be more readable.",
+      "revId": "b849ce42bc54d5ca0733f9566eb4fee8e9c406ac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAKn//2fk\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-04-27T17:53:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAKn//3d8\u003d",
       "revId": "b849ce42bc54d5ca0733f9566eb4fee8e9c406ac",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAKn//1V8\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-04-27T17:53:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAKn//3XU\u003d",
+      "revId": "b849ce42bc54d5ca0733f9566eb4fee8e9c406ac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAKn//3XQ\u003d",
         "filename": "webm_crypt/webm_crypt.cc",
         "patchSetId": 1
@@ -166,6 +328,24 @@
       "writtenOn": "2012-04-25T22:15:40Z",
       "side": 1,
       "message": "Use your new renaming here instead.",
+      "revId": "b849ce42bc54d5ca0733f9566eb4fee8e9c406ac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAKn//1V4\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-04-27T17:53:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAKn//3XQ\u003d",
       "revId": "b849ce42bc54d5ca0733f9566eb4fee8e9c406ac",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -189,6 +369,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAKn//1V0\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 507,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-04-27T17:53:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAKn//3XI\u003d",
+      "revId": "b849ce42bc54d5ca0733f9566eb4fee8e9c406ac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAKn//3XE\u003d",
         "filename": "webm_crypt/webm_crypt.cc",
         "patchSetId": 1
@@ -206,6 +404,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAKn//1Vw\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-04-27T17:53:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAKn//3XE\u003d",
+      "revId": "b849ce42bc54d5ca0733f9566eb4fee8e9c406ac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAKn//3VA\u003d",
         "filename": "webm_crypt/webm_crypt.cc",
         "patchSetId": 1
@@ -217,6 +433,24 @@
       "writtenOn": "2012-04-25T22:15:40Z",
       "side": 1,
       "message": "safe assumption?",
+      "revId": "b849ce42bc54d5ca0733f9566eb4fee8e9c406ac",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAKn//1Vk\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1367,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-04-27T17:53:43Z",
+      "side": 1,
+      "message": "I check above that the type is either audio or video.",
+      "parentUuid": "AAAAKn//3VA\u003d",
       "revId": "b849ce42bc54d5ca0733f9566eb4fee8e9c406ac",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
