@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAKn//0bk\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-04-28T01:09:07Z",
+      "side": 1,
+      "message": "If your intent is to grep the binary for version info, this is better than what you had before, but you still might want to incorporate some text to identify the library name, e.g.\n\nstatic const char ... \u003d \"WEBM CRYPT VERSION 0.1.0.0\";\n\nor something like that.  Maybe John K. has some ideas.\n\nBut if you\u0027re just using it to synthesize a value for muxerApp or writerApp, you\u0027re probably OK.",
+      "revId": "2f4c6b3697f1d6503912b92e099128ae0e7a9beb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAKn//0bI\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-04-28T01:09:07Z",
+      "side": 1,
+      "message": "You should check the return value here too, since this is how you know that you have an MKV file.",
+      "revId": "2f4c6b3697f1d6503912b92e099128ae0e7a9beb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAKn//0aY\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1149,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-04-28T01:09:07Z",
+      "side": 1,
+      "message": "Here and elsewhere, can\u0027t you say:\n\nscoped_ptr\u003cSegment\u003e segment;\n\nOpenWebmFiles(..., \u0026segment, ...);  //etc\n\nWhy do you need a raw pointer, if Open has type Segment** ?\n\n(I could be wrong about this, since I don\u0027t know anything about scoped_ptr.  However, the MS COM SMARTPTR_TYPEDEF works that way.)",
+      "revId": "2f4c6b3697f1d6503912b92e099128ae0e7a9beb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
