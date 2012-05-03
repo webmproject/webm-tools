@@ -67,6 +67,40 @@
       "revId": "273f49e7f2c88f072cd9d6dd310783b3cba66581",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAKn//vKQ\u003d",
+        "filename": "webm_info/webm_info.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-05-03T23:51:59Z",
+      "side": 1,
+      "message": "Is there any particular reason why you renamed this as a pointer?  Why not as a reference?",
+      "revId": "273f49e7f2c88f072cd9d6dd310783b3cba66581",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAKn//vKM\u003d",
+        "filename": "webm_info/webm_info.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-05-03T23:51:59Z",
+      "side": 1,
+      "message": "This has been fixed in later versions of the parser (Track::kVideo).",
+      "revId": "273f49e7f2c88f072cd9d6dd310783b3cba66581",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
