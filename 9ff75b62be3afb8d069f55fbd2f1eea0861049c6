@@ -16,6 +16,24 @@
       "revId": "9ff75b62be3afb8d069f55fbd2f1eea0861049c6",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAKn//hNY\u003d",
+        "filename": "webm_crypt/webm_crypt.vcproj",
+        "patchSetId": 5
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-05-18T19:33:58Z",
+      "side": 1,
+      "message": "I added a vsprops file and updated the readme on how to build.",
+      "parentUuid": "AAAAKn//hRI\u003d",
+      "revId": "9ff75b62be3afb8d069f55fbd2f1eea0861049c6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
