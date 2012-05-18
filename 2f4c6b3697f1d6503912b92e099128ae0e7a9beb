@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAKn//hk8\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-05-18T16:47:27Z",
+      "side": 1,
+      "message": "Just the output on command line and writerApp.",
+      "parentUuid": "AAAAKn//0bk\u003d",
+      "revId": "2f4c6b3697f1d6503912b92e099128ae0e7a9beb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAKn//0bI\u003d",
         "filename": "webm_crypt/webm_crypt.cc",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAKn//hkw\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-05-18T16:47:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAKn//0bI\u003d",
+      "revId": "2f4c6b3697f1d6503912b92e099128ae0e7a9beb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAKn//0aY\u003d",
         "filename": "webm_crypt/webm_crypt.cc",
         "patchSetId": 3
@@ -47,6 +83,24 @@
       "writtenOn": "2012-04-28T01:09:07Z",
       "side": 1,
       "message": "Here and elsewhere, can\u0027t you say:\n\nscoped_ptr\u003cSegment\u003e segment;\n\nOpenWebmFiles(..., \u0026segment, ...);  //etc\n\nWhy do you need a raw pointer, if Open has type Segment** ?\n\n(I could be wrong about this, since I don\u0027t know anything about scoped_ptr.  However, the MS COM SMARTPTR_TYPEDEF works that way.)",
+      "revId": "2f4c6b3697f1d6503912b92e099128ae0e7a9beb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAKn//hj0\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1149,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-05-18T16:47:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAKn//0aY\u003d",
       "revId": "2f4c6b3697f1d6503912b92e099128ae0e7a9beb",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
