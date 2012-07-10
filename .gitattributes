@@ -1,2 +1,3 @@
 *.sln        -crlf
 *.vcproj     -crlf
+*.vcxproj     -crlf
