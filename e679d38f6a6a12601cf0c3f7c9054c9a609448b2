@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAALn//4ZE\u003d",
+        "filename": "webm_crypt/webm_crypt_2010.vcxproj",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-07-12T19:06:15Z",
+      "side": 1,
+      "message": "Suggestion/not going to -1 this: make this big ball of nasty a vsprop, and reference the variable the vsprop defines so that we see only $(ChromeIncludes) (or whatever) in the project file.",
+      "revId": "e679d38f6a6a12601cf0c3f7c9054c9a609448b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAALn//4ZA\u003d",
+        "filename": "webm_crypt/webm_crypt_2010.vcxproj",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-07-12T19:06:15Z",
+      "side": 1,
+      "message": "Might want to do the same with NSPR/NSS defines.",
+      "revId": "e679d38f6a6a12601cf0c3f7c9054c9a609448b2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
