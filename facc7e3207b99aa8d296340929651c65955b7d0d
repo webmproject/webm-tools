@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAMX///FA\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-07-25T18:06:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAMH///AI\u003d",
+      "revId": "facc7e3207b99aa8d296340929651c65955b7d0d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAMH///AE\u003d",
         "filename": "webm_crypt/webm_crypt.cc",
         "patchSetId": 10
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAMX///Eg\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-07-25T18:06:13Z",
+      "side": 1,
+      "message": "Done. I don\u0027t think I had the anonymous namespace before.",
+      "parentUuid": "AAAAMH///AE\u003d",
+      "revId": "facc7e3207b99aa8d296340929651c65955b7d0d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAMH//++A\u003d",
         "filename": "webm_crypt/webm_crypt.cc",
         "patchSetId": 10
@@ -47,6 +83,24 @@
       "writtenOn": "2012-07-24T21:40:48Z",
       "side": 1,
       "message": "Make this static?",
+      "revId": "facc7e3207b99aa8d296340929651c65955b7d0d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAMX///EM\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-07-25T18:06:13Z",
+      "side": 1,
+      "message": "Why would I make this static if it is inside an anonymous namespace?",
+      "parentUuid": "AAAAMH//++A\u003d",
       "revId": "facc7e3207b99aa8d296340929651c65955b7d0d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
