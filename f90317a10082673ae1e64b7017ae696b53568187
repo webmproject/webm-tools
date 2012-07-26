@@ -107,6 +107,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAMX//93M\u003d",
+        "filename": "webm_crypt/Readme.txt",
+        "patchSetId": 14
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-07-26T15:46:12Z",
+      "side": 1,
+      "message": "If the main point is to match the chromium build you should probably mention that Debug DLL matches the components build, and that Debug matches the standard build.\n\nI.e. usage in place of \"that is\" works, but I don\u0027t understand the point of using it if that\u0027s what you\u0027re trying to say. Brevity is nice and all, but clarity is probably more important here. (yeah, I\u0027m probably being a pita) :)",
+      "parentUuid": "AAAAMX//940\u003d",
+      "revId": "f90317a10082673ae1e64b7017ae696b53568187",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAMX//+SI\u003d",
         "filename": "webm_crypt/Readme.txt",
         "patchSetId": 14
