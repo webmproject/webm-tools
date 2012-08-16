@@ -294,10 +294,10 @@ bool OutputTracks(const mkvparser::Segment& segment,
                 indent->indent_str().c_str(), encryption->algo);
 
         if (encryption->key_id_len > 0) {
-          fprintf(o, "%sContentEncKeyID      : 0x",
+          fprintf(o, "%sContentEncKeyID      : ",
                   indent->indent_str().c_str());
           for (int k = 0; k < encryption->key_id_len; ++k) {
-            fprintf(o, "%x", encryption->key_id[k]);
+            fprintf(o, "0x%02x, ", encryption->key_id[k]);
           }
           fprintf(o, "\n");
         }
