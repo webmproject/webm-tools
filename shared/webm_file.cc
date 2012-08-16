@@ -27,7 +27,8 @@ typedef vector<const WebMFile*>::const_iterator WebMConstIterator;
 typedef vector<const mkvparser::Cues*>::const_iterator CuesConstIterator;
 
 WebMFile::WebMFile(const string& filename)
-    : cue_chunk_time_nano_(LLONG_MAX),
+    : calculated_file_stats_(false),
+      cue_chunk_time_nano_(LLONG_MAX),
       filename_(filename) {
 }
 
@@ -71,7 +72,46 @@ bool WebMFile::Init() {
     return false;
   }
 
+  if (!GenerateStats()) {
+    fprintf(stderr, "GenerateStats() failed.\n");
+    return false;
+  }
+
   return true;
+}
+
+bool WebMFile::HasAudio() const {
+  return (GetAudioTrack() != NULL);
+}
+
+int WebMFile::AudioChannels() const {
+  int channels = 0;
+  const mkvparser::AudioTrack* const aud_track = GetAudioTrack();
+  if (aud_track) {
+    channels = static_cast<int>(aud_track->GetChannels());
+  }
+
+  return channels;
+}
+
+int WebMFile::AudioSampleRate() const {
+  int sample_rate = 0;
+  const mkvparser::AudioTrack* const aud_track = GetAudioTrack();
+  if (aud_track) {
+    sample_rate = static_cast<int>(aud_track->GetSamplingRate());
+  }
+
+  return sample_rate;
+}
+
+int WebMFile::AudioSampleSize() const {
+  int sample_size = 0;
+  const mkvparser::AudioTrack* const aud_track = GetAudioTrack();
+  if (aud_track) {
+    sample_size = static_cast<int>(aud_track->GetBitDepth());
+  }
+
+  return sample_size;
 }
 
 int WebMFile::BufferSizeAfterTime(double time,
@@ -285,7 +325,7 @@ bool WebMFile::CheckCuesAlignment(const WebMFile& webm_file) const {
 
     cp = cues->GetNext(cp);
     cp_int = cues_int->GetNext(cp_int);
-  } while (cp != NULL);
+  } while (cp);
 
   return true;
 }
@@ -381,9 +421,9 @@ bool WebMFile::CheckCuesAlignmentList(
     // Check if all cues have the same alignment.
     bool found_alignment = true;
 
-    const unsigned int cues_list_size =
-        static_cast<unsigned int>(cues_list.size());
-    for (unsigned int i = 0; i < cues_list_size; ++i) {
+    typedef vector<const mkvparser::Cues*>::size_type cues_size_type;
+    cues_size_type cues_list_size = cues_list.size();
+    for (cues_size_type i = 0; i < cues_list_size; ++i) {
       const mkvparser::Cues* const cues = cues_list.at(i);
       const mkvparser::Track* const track = video_track_list.at(i);
       const mkvparser::CuePoint::TrackPosition* tp = NULL;
@@ -440,7 +480,7 @@ bool WebMFile::CheckCuesAlignmentList(
 
     // Check if all of the cues start with a key frame.
     if (found_alignment && check_for_sap) {
-      for (unsigned int i = 0; i < cues_list.size(); ++i) {
+      for (cues_size_type i = 0; i < cues_list_size; ++i) {
         const mkvparser::Cues* const cues = cues_list.at(i);
         const mkvparser::Track* const track = video_track_list.at(i);
         const mkvparser::CuePoint::TrackPosition* tp = NULL;
@@ -500,7 +540,7 @@ bool WebMFile::CheckCuesAlignmentList(
                                         &gold_time))
         return false;
 
-      for (unsigned int i = 1; i < cues_list.size(); ++i) {
+      for (cues_size_type i = 1; i < cues_list_size; ++i) {
         const mkvparser::Cues* const cues = cues_list.at(i);
         const mkvparser::Track* const aud_track = audio_track_list.at(i);
         const mkvparser::Track* const vid_track = video_track_list.at(i);
@@ -537,7 +577,7 @@ bool WebMFile::CheckCuesAlignmentList(
 
     // Find minimum time after |time| across all files.
     int64 minimum_time = LLONG_MAX;
-    for (unsigned int i = 0; i < cues_list.size(); ++i) {
+    for (cues_size_type i = 0; i < cues_list_size; ++i) {
       const mkvparser::Cues* const cues = cues_list.at(i);
       const mkvparser::Track* const track = video_track_list.at(i);
       const mkvparser::CuePoint* cp = NULL;
@@ -645,7 +685,7 @@ bool WebMFile::CuesFirstInCluster(TrackTypes type) const {
   if (!cp)
     return false;
 
-  while (cp != NULL) {
+  while (cp) {
     const mkvparser::Block* block = NULL;
     const mkvparser::Cluster* cluster = NULL;
 
@@ -661,28 +701,40 @@ bool WebMFile::CuesFirstInCluster(TrackTypes type) const {
   return true;
 }
 
-int WebMFile::GetAudioChannels() const {
-  int channels = 0;
-  const mkvparser::AudioTrack* const aud_track = GetAudioTrack();
-  if (aud_track) {
-    channels = static_cast<int>(aud_track->GetChannels());
-  }
+int64 WebMFile::FileAverageBitsPerSecond() const {
+  const int64 file_length = FileLength();
+  const int64 duration = GetDurationNanoseconds();
 
-  return channels;
+  return static_cast<int64>(8.0 * file_length /
+                            (duration / kNanosecondsPerSecond));
 }
 
-int WebMFile::GetAudioSampleRate() const {
-  int sample_rate = 0;
-  const mkvparser::AudioTrack* const aud_track = GetAudioTrack();
-  if (aud_track) {
-    sample_rate = static_cast<int>(aud_track->GetSamplingRate());
-  }
-
-  return sample_rate;
+int64 WebMFile::FileLength() const {
+  if (!reader_.get())
+    return 0;
+  int64 total;
+  int64 available;
+  if (reader_->Length(&total, &available) < 0)
+    return 0;
+  return total;
 }
 
-int64 WebMFile::GetAverageBandwidth() const {
-  return CalculateBandwidth(NULL);
+int64 WebMFile::FileMaximumBitsPerSecond() const {
+  const mkvparser::Cues* const cues = GetCues();
+  if (!cues)
+    return 0;
+
+  const mkvparser::CuePoint* cp = cues->GetFirst();
+  int64 max_bps = 0;
+  while (cp) {
+    const int64 bps = CalculateBitsPerSecond(cp);
+    if (bps > max_bps)
+      max_bps = bps;
+
+    cp = cues->GetNext(cp);
+  }
+
+  return max_bps;
 }
 
 string WebMFile::GetCodec() const {
@@ -744,24 +796,6 @@ void WebMFile::GetHeaderRange(int64* start, int64* end) const {
     *end = GetClusterRangeStart();
 }
 
-int64 WebMFile::GetMaximumBandwidth() const {
-  const mkvparser::Cues* const cues = GetCues();
-  if (!cues)
-    return 0;
-
-  const mkvparser::CuePoint* cp = cues->GetFirst();
-  int64 max_bandwidth = 0;
-  while (cp != NULL) {
-    const int64 bandwidth = CalculateBandwidth(cp);
-    if (bandwidth > max_bandwidth)
-      max_bandwidth = bandwidth;
-
-    cp = cues->GetNext(cp);
-  }
-
-  return max_bandwidth;
-}
-
 string WebMFile::GetMimeType() const {
   string mimetype("video/webm");
   const string codec = GetCodec();
@@ -818,36 +852,6 @@ int64 WebMFile::GetSegmentStartOffset() const {
   return segment_->m_start;
 }
 
-double WebMFile::GetVideoFramerate() const {
-  double rate = 0.0;
-  const mkvparser::VideoTrack* const vid_track = GetVideoTrack();
-  if (vid_track) {
-    rate = vid_track->GetFrameRate();
-  }
-
-  return rate;
-}
-
-int WebMFile::GetVideoHeight() const {
-  int height = 0;
-  const mkvparser::VideoTrack* const vid_track = GetVideoTrack();
-  if (vid_track) {
-    height = static_cast<int>(vid_track->GetHeight());
-  }
-
-  return height;
-}
-
-int WebMFile::GetVideoWidth() const {
-  int width = 0;
-  const mkvparser::VideoTrack* const vid_track = GetVideoTrack();
-  if (vid_track) {
-    width = static_cast<int>(vid_track->GetWidth());
-  }
-
-  return width;
-}
-
 bool WebMFile::OnlyOneStream() const {
   const mkvparser::AudioTrack* const aud_track = GetAudioTrack();
   const mkvparser::VideoTrack* const vid_track = GetVideoTrack();
@@ -883,30 +887,163 @@ bool WebMFile::OnlyOneStream() const {
   return true;
 }
 
-int64 WebMFile::PeakBandwidthOverFile(int64 prebuffer_ns) const {
+int64 WebMFile::PeakBitsPerSecondOverFile(int64 prebuffer_ns) const {
   const mkvparser::Cues* const cues = GetCues();
   if (!cues)
     return 0;
 
   const mkvparser::CuePoint* cp = cues->GetFirst();
-  double max_bandwidth = 0.0;
-  while (cp != NULL) {
+  double max_bps = 0.0;
+  while (cp) {
     const int64 start_nano = cp->GetTime(segment_.get());
     double bps = 0.0;
-    const int rv = PeakBandwidth(start_nano, prebuffer_ns, &bps);
+    const int rv = PeakBitsPerSecond(start_nano, prebuffer_ns, &bps);
     if (rv < 0)
       return rv;
 
-    if (bps > max_bandwidth)
-      max_bandwidth = bps;
+    if (bps > max_bps)
+      max_bps = bps;
 
     cp = cues->GetNext(cp);
   }
 
-  return static_cast<int64>(max_bandwidth);
+  return static_cast<int64>(max_bps);
 }
 
-int64 WebMFile::CalculateBandwidth(const mkvparser::CuePoint* cp) const {
+int64 WebMFile::TrackAverageBitsPerSecond(TrackTypes type) const {
+  const mkvparser::Track* track = NULL;
+  switch (type) {
+    case kVideo:
+      track = GetVideoTrack();
+      break;
+    case kAudio:
+      track = GetAudioTrack();
+      break;
+    default:
+      break;
+  }
+  if (!track)
+    return 0;
+
+  return CalculateTrackBitsPerSecond(track->GetNumber(), NULL);
+}
+
+int64 WebMFile::TrackCount(TrackTypes type) const {
+  if (!segment_.get())
+    return 0;
+
+  const mkvparser::Tracks* const tracks = segment_->GetTracks();
+  if (!tracks)
+    return 0;
+
+  int64 track_count = 0;
+  uint32 i = 0;
+  const uint32 j = tracks->GetTracksCount();
+
+  while (i != j) {
+    const mkvparser::Track* const track = tracks->GetTrackByIndex(i++);
+    if (track == NULL)
+      continue;
+
+    if (track->GetType() == type)
+      track_count++;
+  }
+
+  return track_count;
+}
+
+int64 WebMFile::TrackFrameCount(TrackTypes type) const {
+  const mkvparser::Track* track = NULL;
+  switch (type) {
+    case kVideo:
+      track = GetVideoTrack();
+      break;
+    case kAudio:
+      track = GetAudioTrack();
+      break;
+    default:
+      break;
+  }
+  if (!track)
+    return 0;
+
+  return CalculateTrackFrameCount(track->GetNumber(), NULL);
+}
+
+int64 WebMFile::TrackSize(TrackTypes type) const {
+  const mkvparser::Track* track = NULL;
+  switch (type) {
+    case kVideo:
+      track = GetVideoTrack();
+      break;
+    case kAudio:
+      track = GetAudioTrack();
+      break;
+    default:
+      break;
+  }
+  if (!track)
+    return 0;
+
+  return CalculateTrackSize(track->GetNumber(), NULL);
+}
+
+int64 WebMFile::TrackStartNanoseconds(TrackTypes type) const {
+  if (!calculated_file_stats_)
+    return 0;
+
+  const mkvparser::Track* track = NULL;
+  switch (type) {
+    case kVideo:
+      track = GetVideoTrack();
+      break;
+    case kAudio:
+      track = GetAudioTrack();
+      break;
+    default:
+      break;
+  }
+  if (!track)
+    return 0;
+
+  return tracks_start_milli_.find(track->GetNumber())->second;
+}
+
+bool WebMFile::HasVideo() const {
+  return (GetVideoTrack() != NULL);
+}
+
+double WebMFile::VideoFramerate() const {
+  double rate = 0.0;
+  const mkvparser::VideoTrack* const vid_track = GetVideoTrack();
+  if (vid_track) {
+    rate = vid_track->GetFrameRate();
+  }
+
+  return rate;
+}
+
+int WebMFile::VideoHeight() const {
+  int height = 0;
+  const mkvparser::VideoTrack* const vid_track = GetVideoTrack();
+  if (vid_track) {
+    height = static_cast<int>(vid_track->GetHeight());
+  }
+
+  return height;
+}
+
+int WebMFile::VideoWidth() const {
+  int width = 0;
+  const mkvparser::VideoTrack* const vid_track = GetVideoTrack();
+  if (vid_track) {
+    width = static_cast<int>(vid_track->GetWidth());
+  }
+
+  return width;
+}
+
+int64 WebMFile::CalculateBitsPerSecond(const mkvparser::CuePoint* cp) const {
   if (!segment_.get())
     return 0;
 
@@ -923,7 +1060,7 @@ int64 WebMFile::CalculateBandwidth(const mkvparser::CuePoint* cp) const {
   int64 filesize = 0;
   const int64 start = cluster->GetTime();
   const int64 start_offset = cluster->m_element_start;
-  while ((cluster != NULL) && !cluster->EOS()) {
+  while (cluster && !cluster->EOS()) {
     if ((cluster->m_element_start + cluster->GetElementSize()) > filesize)
       filesize = cluster->m_element_start + cluster->GetElementSize();
 
@@ -937,36 +1074,18 @@ int64 WebMFile::CalculateBandwidth(const mkvparser::CuePoint* cp) const {
   const int64 duration = segment_->GetInfo()->GetDuration() - start;
   if (duration <= 0)
     return 0;
-  const int64 bandwidth =
-    static_cast<int64>((filesize * 8) / (duration / kNanosecondsPerSecond)
-                       / 1000);
-  return bandwidth;
+
+  const double bitrate =
+      (filesize * 8) / (duration / kNanosecondsPerSecond);
+  return static_cast<int64>(bitrate);
 }
 
 double WebMFile::CalculateFrameRate(int track_number) const {
   if (segment_->GetInfo()->GetDuration() == 0)
     return 0.0;
-
-  int frames = 0;
-  const mkvparser::Cluster* cluster = segment_->GetFirst();
-  while ((cluster != NULL) && !cluster->EOS()) {
-    const mkvparser::BlockEntry* block_entry;
-    int status = cluster->GetFirst(block_entry);
-    if (status)
-      return false;
-
-    while ((block_entry != NULL) && !block_entry->EOS()) {
-      const mkvparser::Block* const block = block_entry->GetBlock();
-      if (track_number == block->GetTrackNumber())
-        frames += block->GetFrameCount();
-
-      status = cluster->GetNext(block_entry, block_entry);
-      if (status)
-        return false;
-    }
-
-    cluster = segment_->GetNext(cluster);
-  }
+  if (!calculated_file_stats_)
+    return 0;
+  const int64 frames = tracks_frame_count_.find(track_number)->second;
 
   const double seconds =
       segment_->GetInfo()->GetDuration() / kNanosecondsPerSecond;
@@ -975,8 +1094,124 @@ double WebMFile::CalculateFrameRate(int track_number) const {
   return frame_rate;
 }
 
-bool WebMFile::CheckDocType(const std::string& doc_type) const {
-  return doc_type.compare(0, 4, "webm") == 0;
+int64 WebMFile::CalculateTrackBitsPerSecond(
+    int track_number,
+    const mkvparser::CuePoint* cp) const {
+  int64 size = 0;
+  int64 start_ns = 0;
+  if (cp == NULL) {
+    if (!calculated_file_stats_)
+      return 0;
+
+    size = tracks_size_.find(track_number)->second;
+  } else {
+    const mkvparser::Cluster* cluster =
+        segment_->FindCluster(cp->GetTime(segment_.get()));
+    if (!cluster)
+      return 0;
+
+    start_ns = cluster->GetTime();
+    while (cluster && !cluster->EOS()) {
+      const mkvparser::BlockEntry* block_entry;
+      int status = cluster->GetFirst(block_entry);
+      if (status)
+        return false;
+
+      while (block_entry && !block_entry->EOS()) {
+        const mkvparser::Block* const block = block_entry->GetBlock();
+        if (track_number == block->GetTrackNumber())
+          size += block->m_size;
+
+        status = cluster->GetNext(block_entry, block_entry);
+        if (status)
+          return 0;
+      }
+
+      cluster = segment_->GetNext(cluster);
+    }
+  }
+
+  const int64 duration = GetDurationNanoseconds() - start_ns;
+  const double bitrate = (size * 8) / (duration / kNanosecondsPerSecond);
+  return static_cast<int64>(bitrate);
+}
+
+int64 WebMFile::CalculateTrackFrameCount(int track_number,
+                                         const mkvparser::CuePoint* cp) const {
+  int64 frames = 0;
+  if (cp == NULL) {
+    if (!calculated_file_stats_)
+      return 0;
+
+    frames = tracks_frame_count_.find(track_number)->second;
+  } else {
+    const mkvparser::Cluster* cluster =
+        segment_->FindCluster(cp->GetTime(segment_.get()));
+    if (!cluster)
+      return 0;
+
+    while (cluster && !cluster->EOS()) {
+      const mkvparser::BlockEntry* block_entry;
+      int status = cluster->GetFirst(block_entry);
+      if (status)
+        return false;
+
+      while (block_entry && !block_entry->EOS()) {
+        const mkvparser::Block* const block = block_entry->GetBlock();
+        if (track_number == block->GetTrackNumber())
+          frames++;
+
+        status = cluster->GetNext(block_entry, block_entry);
+        if (status)
+          return 0;
+      }
+
+      cluster = segment_->GetNext(cluster);
+    }
+  }
+
+  return frames;
+}
+
+int64 WebMFile::CalculateTrackSize(int track_number,
+                                   const mkvparser::CuePoint* cp) const {
+  int64 size = 0;
+  if (cp == NULL) {
+    if (!calculated_file_stats_)
+      return 0;
+
+    size = tracks_size_.find(track_number)->second;
+  } else {
+    const mkvparser::Cluster* cluster =
+        segment_->FindCluster(cp->GetTime(segment_.get()));
+    if (!cluster)
+      return 0;
+
+    while (cluster && !cluster->EOS()) {
+      const mkvparser::BlockEntry* block_entry;
+      int status = cluster->GetFirst(block_entry);
+      if (status)
+        return false;
+
+      while (block_entry && !block_entry->EOS()) {
+        const mkvparser::Block* const block = block_entry->GetBlock();
+        if (track_number == block->GetTrackNumber())
+          size += block->m_size;
+
+        status = cluster->GetNext(block_entry, block_entry);
+        if (status)
+          return 0;
+      }
+
+      cluster = segment_->GetNext(cluster);
+    }
+  }
+
+  return size;
+}
+
+bool WebMFile::CheckDocType(const string& doc_type) const {
+  return (doc_type.compare(0, 4, "webm") == 0);
 }
 
 void WebMFile::FindCuesChunk(int64 start_time_nano,
@@ -1034,6 +1269,62 @@ void WebMFile::FindCuesChunk(int64 start_time_nano,
   }
 }
 
+bool WebMFile::GenerateStats() {
+  if (calculated_file_stats_)
+    return true;
+
+  const mkvparser::Tracks* const tracks = segment_->GetTracks();
+  if (!tracks)
+    return 0;
+
+  std::pair<std::map<int, int64>::iterator, bool> ret;
+  const int32 track_count = static_cast<int32>(tracks->GetTracksCount());
+  for (int i = 0; i < track_count; ++i) {
+    const mkvparser::Track* const track = tracks->GetTrackByIndex(i);
+    const int track_number = track->GetNumber();
+
+    ret = tracks_size_.insert(std::pair<int, int64>(track_number, 0));
+    if (!ret.second)
+      return false;
+    ret = tracks_frame_count_.insert(std::pair<int, int64>(track_number, 0));
+    if (!ret.second)
+      return false;
+    ret = tracks_start_milli_.insert(std::pair<int, int64>(track_number, -1));
+    if (!ret.second)
+      return false;
+  }
+
+  const mkvparser::Cluster* cluster = segment_->GetFirst();
+  if (!cluster)
+    return false;
+
+  while (cluster && !cluster->EOS()) {
+    const mkvparser::BlockEntry* block_entry;
+    int status = cluster->GetFirst(block_entry);
+    if (status)
+      return false;
+
+    while (block_entry && !block_entry->EOS()) {
+      const mkvparser::Block* const block = block_entry->GetBlock();
+      const int track_number = block->GetTrackNumber();
+
+      tracks_size_[track_number] += block->m_size;
+      tracks_frame_count_[track_number]++;
+      if (tracks_start_milli_[track_number] == -1)
+        tracks_start_milli_[track_number] = block->GetTime(cluster);
+
+      status = cluster->GetNext(block_entry, block_entry);
+      if (status)
+        return false;
+    }
+
+    cluster = segment_->GetNext(cluster);
+  }
+
+  calculated_file_stats_ = true;
+  return true;
+}
+
 const mkvparser::AudioTrack* WebMFile::GetAudioTrack() const {
   if (!segment_.get())
     return NULL;
@@ -1042,19 +1333,15 @@ const mkvparser::AudioTrack* WebMFile::GetAudioTrack() const {
   if (!tracks)
     return NULL;
 
-  unsigned int i = 0;
-  const unsigned int j = tracks->GetTracksCount();
-
-  // TODO(fgalligan): This should be an enum of mkvparser::Tracks
-  enum { VIDEO_TRACK = 1, AUDIO_TRACK = 2 };
-
+  uint32 i = 0;
+  const uint32 j = tracks->GetTracksCount();
   while (i != j) {
     const mkvparser::Track* const track = tracks->GetTrackByIndex(i++);
 
     if (track == NULL)
       continue;
 
-    if (track->GetType() == AUDIO_TRACK)
+    if (track->GetType() == mkvparser::Track::kAudio)
       return static_cast<const mkvparser::AudioTrack*>(track);
   }
 
@@ -1093,7 +1380,7 @@ bool WebMFile::GetFirstBlockTime(const mkvparser::CuePoint& cp,
   if (status)
     return false;
 
-  while (block_entry != NULL && !block_entry->EOS()) {
+  while (block_entry && !block_entry->EOS()) {
     const mkvparser::Block* const block = block_entry->GetBlock();
     if (block->GetTrackNumber() == track_num) {
       *nanoseconds = block->GetTime(cluster);
@@ -1165,7 +1452,7 @@ bool WebMFile::GetIndexedBlock(const mkvparser::CuePoint& cp,
     return false;
 
   int block_index = -1;
-  while (block_entry != NULL && !block_entry->EOS()) {
+  while (block_entry && !block_entry->EOS()) {
     const mkvparser::Block* const curr_block = block_entry->GetBlock();
     if (curr_block->GetTrackNumber() == tp->m_track) {
       block_index++;
@@ -1201,7 +1488,7 @@ void WebMFile::GetSegmentInfoRange(int64* start, int64* end) const {
   }
 }
 
-const mkvparser::Track* WebMFile::GetTrack(unsigned int index) const {
+const mkvparser::Track* WebMFile::GetTrack(uint32 index) const {
   if (!segment_.get())
     return NULL;
 
@@ -1237,11 +1524,8 @@ const mkvparser::VideoTrack* WebMFile::GetVideoTrack() const {
   if (!tracks)
     return NULL;
 
-  unsigned int i = 0;
-  const unsigned int j = tracks->GetTracksCount();
-
-  // TODO(fgalligan): This should be an enum of mkvparser::Tracks
-  enum { VIDEO_TRACK = 1, AUDIO_TRACK = 2 };
+  uint32 i = 0;
+  const uint32 j = tracks->GetTracksCount();
 
   while (i != j) {
     const mkvparser::Track* const track = tracks->GetTrackByIndex(i++);
@@ -1249,7 +1533,7 @@ const mkvparser::VideoTrack* WebMFile::GetVideoTrack() const {
     if (track == NULL)
       continue;
 
-    if (track->GetType() == VIDEO_TRACK)
+    if (track->GetType() == mkvparser::Track::kVideo)
       return static_cast<const mkvparser::VideoTrack*>(track);
   }
 
@@ -1273,7 +1557,7 @@ bool WebMFile::LoadCueDescList() {
   int64 last_time_ns = -1;
   int64 last_offset = -1;
 
-  while (cp != NULL) {
+  while (cp) {
     const int64 time = cp->GetTime(segment_.get());
 
     const mkvparser::CuePoint::TrackPosition* const tp = cp->Find(track);
@@ -1326,24 +1610,25 @@ bool WebMFile::IsFrameAltref(const mkvparser::Block& block) const {
   return false;
 }
 
-int WebMFile::PeakBandwidth(int64 time_ns,
-                            int64 prebuffer_ns,
-                            double* bandwidth) const {
-  if (!bandwidth)
+int WebMFile::PeakBitsPerSecond(int64 time_ns,
+                                int64 prebuffer_ns,
+                                double* bits_per_second) const {
+  if (!bits_per_second)
     return -1;
 
   const CueDesc* const desc_beg = GetCueDescFromTime(time_ns);
   if (!desc_beg) {
-    fprintf(stderr,
-            "PeakBandwidth() GetCueDescFromTime returned NULL. time_ns:%lld\n",
-            time_ns);
+    fprintf(
+        stderr,
+        "PeakBitsPerSecond() GetCueDescFromTime returned NULL. time_ns:%lld\n",
+        time_ns);
     return -1;
   }
 
   // TODO(fgalligan): Handle non-cue start time.
   if (desc_beg->start_time_ns != time_ns) {
     fprintf(stderr,
-            "PeakBandwidth() CueDesc time != time_ns. time:%lld"
+            "PeakBitsPerSecond() CueDesc time != time_ns. time:%lld"
             " time_ns:%lld\n",
             desc_beg->start_time_ns, time_ns);
     return -1;
@@ -1367,7 +1652,7 @@ int WebMFile::PeakBandwidth(int64 time_ns,
 
   if (!desc_end) {
     // The prebuffer is larger than the duration.
-    *bandwidth = 0.0;
+    *bits_per_second = 0.0;
     if (segment_->GetInfo()->GetDuration() >= prebuffered_ns)
       return -1;
     return 0;
@@ -1383,23 +1668,23 @@ int WebMFile::PeakBandwidth(int64 time_ns,
 
   const double prebuffer = prebuffer_ns / kNanosecondsPerSecond;
   // Set this to 0.0 in case our prebuffer buffers the entire video.
-  *bandwidth = 0.0;
+  *bits_per_second = 0.0;
   do {
     const int64 desc_bytes = desc_end->end_offset - desc_beg->start_offset;
     const int64 desc_ns = desc_end->end_time_ns - desc_beg->start_time_ns;
     const double desc_sec = desc_ns / kNanosecondsPerSecond;
-    const double bits_per_second = (desc_bytes * 8) / desc_sec;
+    const double calc_bits_per_second = (desc_bytes * 8) / desc_sec;
 
     // Drop the bps by the percentage of bytes buffered.
     const double percent = (desc_bytes - prebuffer_bytes) / desc_bytes;
-    const double mod_bits_per_second = bits_per_second * percent;
+    const double mod_bits_per_second = calc_bits_per_second * percent;
 
     if (prebuffer < desc_sec) {
       const double search_sec =
           static_cast<double>(segment_->GetInfo()->GetDuration()) /
                               kNanosecondsPerSecond;
 
-      // Add 1 so the bandwidth should be a little bit greater than file
+      // Add 1 so the bits per second should be a little bit greater than file
       // datarate.
       const int64 bps = static_cast<int64>(mod_bits_per_second) + 1;
       const double min_buffer = 0.0;
@@ -1413,10 +1698,11 @@ int WebMFile::PeakBandwidth(int64 time_ns,
                                                    &sec_to_download);
       if (rv < 0) {
         fprintf(stderr,
-                "PeakBandwidth() BufferSizeAfterTimeDownloaded rv:%d\n", rv);
+                "PeakBitsPerSecond() BufferSizeAfterTimeDownloaded rv:%d\n",
+                rv);
         return rv;
       } else if (rv == 0) {
-        *bandwidth = static_cast<double>(bps);
+        *bits_per_second = static_cast<double>(bps);
         break;
       }
     }
