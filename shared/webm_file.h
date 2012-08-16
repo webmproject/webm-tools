@@ -11,6 +11,7 @@
 #ifndef SHARED_WEBM_FILE_H_
 #define SHARED_WEBM_FILE_H_
 
+#include <map>
 #include <memory>
 #include <string>
 #include <vector>
@@ -56,6 +57,21 @@ class WebMFile {
   // Load and parse the webm file. Returns false if the DocType is not "webm"
   // Returns true if the file has been loaded and verified.
   bool Init();
+
+  // Returns true if the file contains at least one audio track.
+  bool Audio() const;
+
+  // Returns the number of channels of the first audio track. Returns 0 if
+  // there is no audio track.
+  int AudioChannels() const;
+
+  // Returns the sample rate of the first audio track. Returns 0 if there is
+  // no audio track.
+  int AudioSampleRate() const;
+
+  // Returns the audio sample size in bits per sample of the first audio track.
+  // Returns 0 if there no audio track.
+  int AudioSampleSize() const;
 
   // Returns how many seconds are in |buffer| after |search_sec| has passed.
   // |time| is the start time in seconds. |search_sec| is the number of
@@ -138,17 +154,15 @@ class WebMFile {
   // the Cluster for that track.
   bool CuesFirstInCluster(TrackTypes type) const;
 
-  // Returns the number of channels in the first audio track. Returns 0 if
-  // there is no audio track.
-  int GetAudioChannels() const;
 
-  // Returns the sample rate in the first audio track. Returns 0 if there is
-  // no audio track.
-  int GetAudioSampleRate() const;
+  // Calculate and return average bits per second for the WebM file.
+  int64 FileAverageBitsPerSecond() const;
 
-  // Calculate and return average bandwidth for the WebM file in kilobits
-  // per second.
-  int64 GetAverageBandwidth() const;
+  // Returns the length of the file in bytes.
+  int64 FileLength() const;
+
+  // Calculate and return maximum bits per second for the WebM file.
+  int64 FileMaximumBitsPerSecond() const;
 
   // Returns the codec string associated with the file. If the CodecID
   // is V_VP8 then the string returned will be "vp8". If the CodecID is
@@ -169,10 +183,6 @@ class WebMFile {
   // element. A return value of -1 for either value indicates an error.
   void GetHeaderRange(int64* start, int64* end) const;
 
-  // Calculate and return maximum bandwidth for the WebM file in kilobits
-  // per second.
-  int64 GetMaximumBandwidth() const;
-
   // Returns the mimetype string associated with the file. Returns
   // "video/webm" if the file is a valid WebM file. Returns the empty string
   // if not a valid WebM file.
@@ -189,42 +199,79 @@ class WebMFile {
   // Returns the starting byte offset the segment element.
   int64 GetSegmentStartOffset() const;
 
-  // Returns the average framerate of the first video track. Returns 0.0 if
-  // there is no video track or there is no FrameRate element.
-  double GetVideoFramerate() const;
-
-  // Returns the height in pixels of the first video track. Returns 0 if there
-  // is no video track.
-  int GetVideoHeight() const;
-
-  // Returns the width in pixels of the first video track. Returns 0 if there
-  // is no video track.
-  int GetVideoWidth() const;
-
   // Returns true if the first video track equals V_VP8 or the first audio
   // track equals A_VORBIS. Returns false if there are no audio or video
   // tracks. Returns false if there is both a video tack and an audio track.
   // This is because for adaptive streaming we want the streams to be separate.
   bool OnlyOneStream() const;
 
-  // Returns the peak bandwidth over the entire file taking into account a
+  // Returns the peak bits per second over the entire file taking into account a
   // prebuffer of |prebuffer_ns|. This function will iterate over all the Cue
-  // points to get the maximum bandwidth from all Cue points.Return values < 0
-  // are errors.
-  int64 PeakBandwidthOverFile(int64 prebuffer_ns) const;
+  // points to get the maximum bits per second from all Cue points. Return
+  // values < 0 are errors.
+  int64 PeakBitsPerSecondOverFile(int64 prebuffer_ns) const;
+
+  // Returns average bits per second for the first track of track |type|.
+  // Returns 0 on error.
+  int64 TrackAverageBitsPerSecond(TrackTypes type) const;
+
+  // Returns number of tracks for track of |type|.
+  int64 TrackCount(TrackTypes type) const;
+
+  // Returns number of frames for the first track of |type|. Returns 0 on error.
+  int64 TrackFrameCount(TrackTypes type) const;
+
+  // Returns size in bytes for the first track of |type|. Returns 0 on error.
+  int64 TrackSize(TrackTypes type) const;
+
+  // Returns start time in nanoseconds for the first track of |type|. Returns 0
+  // on error.
+  int64 TrackStartNanoseconds(TrackTypes type) const;
+
+  // Returns true if the file contains at least one video track.
+  bool Video() const;
+
+  // Returns the average framerate of the first video track. Returns 0.0 if
+  // there is no video track or there is no FrameRate element.
+  double VideoFramerate() const;
+
+  // Returns the height in pixels of the first video track. Returns 0 if there
+  // is no video track.
+  int VideoHeight() const;
+
+  // Returns the width in pixels of the first video track. Returns 0 if there
+  // is no video track.
+  int VideoWidth() const;
 
   const std::string& filename() const { return filename_; }
 
  private:
-  // Calculate and return average bandwidth for the WebM file in kilobits
-  // per second starting from |cp|. If |cp| is NULL calculate the bandwidth
-  // over the entire file. Return 0 on error.
-  int64 CalculateBandwidth(const mkvparser::CuePoint* cp) const;
+  // Calculate and returns average bits per second for the WebM file starting
+  // from |cp|. If |cp| is NULL calculate the bits per second over the entire
+  // file. Returns 0 on error.
+  int64 CalculateBitsPerSecond(const mkvparser::CuePoint* cp) const;
 
   // Returns the frame rate for |track_number|. The frame rate is calculated
   // from all the frames in the Clusters. Returns 0.0 if it cannot calculate
   // the frame rate.
   double CalculateFrameRate(int track_number) const;
+
+  // Returns average bits per second for |track_number| starting from |cp|. If
+  // |cp| is NULL calculate the bits per second over the entire file.
+  // Returns 0 on error.
+  int64 CalculateTrackBitsPerSecond(int track_number,
+                                    const mkvparser::CuePoint* cp) const;
+
+  // Returns the number of frames for |track_number| starting from |cp|. If
+  // |cp| is NULL calculate the number of frames over the entire file. Returns
+  // 0 on error.
+  int64 CalculateTrackFrameCount(int track_number,
+                                 const mkvparser::CuePoint* cp) const;
+
+  // Returns size in bytes for |track_number| starting from |cp|. If |cp| is
+  // NULL calculate the size over the entire file. Returns 0 on error.
+  int64 CalculateTrackSize(int track_number,
+                           const mkvparser::CuePoint* cp) const;
 
   // Returns true if the first four bytes of |doc_type| match "webm".
   bool CheckDocType(const std::string& doc_type) const;
@@ -241,6 +288,12 @@ class WebMFile {
                      int64* end,
                      int64* cue_start_time,
                      int64* cue_end_time) const;
+
+  // Calculates private per Track statistics on the WebM file. This function
+  // parses all of the Blocks within the file and stores per Track information
+  // to query later. This is an optimization as parsing every Block in a WebM
+  // file can take a long time. Returns true on success.
+  bool GenerateStats();
 
   // Return the first audio track. Returns NULL if there are no audio tracks.
   const mkvparser::AudioTrack* GetAudioTrack() const;
@@ -284,7 +337,7 @@ class WebMFile {
 
   // Returns the Track by an index. Returns NULL if it cannot find the track
   // represented by |index|.
-  const mkvparser::Track* GetTrack(unsigned int index) const;
+  const mkvparser::Track* GetTrack(uint32 index) const;
 
   // Returns the byte offset in the file for the start of the Tracks element
   // starting with the EBML element ID to the end offset of the element.
@@ -299,13 +352,13 @@ class WebMFile {
   // Returns true if |block| is an altref frame.
   bool IsFrameAltref(const mkvparser::Block& block) const;
 
-  // Returns the peak bandwidth starting at |time_ns| taking into account a
-  // prebuffer of |prebuffer_ns|. The peak bandwidth is returned in the out
-  // parameter |bandwidth|. Return values < 0 are errors. Return value of 0
-  // is success.
-  int PeakBandwidth(int64 time_ns,
-                    int64 prebuffer_ns,
-                    double* bandwidth) const;
+  // Returns the peak bits per seconds starting at |time_ns| taking into
+  // account a prebuffer of |prebuffer_ns|. The peak bits per seconds is
+  // returned in the out parameter |bits_per_second|. Return values < 0 are
+  // errors. Return value of 0 is success.
+  int PeakBitsPerSecond(int64 time_ns,
+                        int64 prebuffer_ns,
+                        double* bits_per_second) const;
 
   // Returns true if |block| is a key frame. |cp| is the CuePoint that
   // references the Cluster to search. |cluster| is the Cluster that contains
@@ -313,6 +366,9 @@ class WebMFile {
   bool StartsWithKey(const mkvparser::CuePoint& cp,
                      const mkvparser::Cluster& cluster,
                      const mkvparser::Block& block) const;
+
+  // Flag telling if the internal per Track statistics have been calculated.
+  bool calculated_file_stats_;
 
   // Time in nano seconds to split up the Cues element into the chunkindexlist.
   int64 cue_chunk_time_nano_;
@@ -328,6 +384,17 @@ class WebMFile {
 
   // Main WebM element.
   std::auto_ptr<mkvparser::Segment> segment_;
+
+  // Member variables used to calculate information about the WebM file which
+  // only need to be parsed once. Key is the Track number.
+  // |tracks_size_| Size in bytes of all Blocks per Track.
+  std::map<int, int64> tracks_size_;
+
+  // Count of all Blocks per Track.
+  std::map<int, int64> tracks_frame_count_;
+
+  // Start time in milliseconds per Track.
+  std::map<int, int64> tracks_start_milli_;
 
   WEBM_TOOLS_DISALLOW_COPY_AND_ASSIGN(WebMFile);
 };
