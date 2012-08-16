@@ -86,19 +86,19 @@ bool Representation::CheckCuesAlignment(
 }
 
 int Representation::GetAudioSampleRate() const {
-  return webm_file_->GetAudioSampleRate();
+  return webm_file_->AudioSampleRate();
 }
 
 double Representation::GetVideoFramerate() const {
-  return webm_file_->GetVideoFramerate();
+  return webm_file_->VideoFramerate();
 }
 
 int Representation::GetVideoHeight() const {
-  return webm_file_->GetVideoHeight();
+  return webm_file_->VideoHeight();
 }
 
 int Representation::GetVideoWidth() const {
-  return webm_file_->GetVideoWidth();
+  return webm_file_->VideoWidth();
 }
 
 bool Representation::OutputDashManifest(FILE* o, Indent* indent) const {
@@ -114,13 +114,13 @@ bool Representation::OutputDashManifest(FILE* o, Indent* indent) const {
 
   // Video
   if (output_video_width_) {
-    const int width = webm_file_->GetVideoWidth();
+    const int width = webm_file_->VideoWidth();
     if (width > 0) {
       fprintf(o, " width=\"%d\"", width);
     }
   }
   if (output_video_height_) {
-    const int height = webm_file_->GetVideoHeight();
+    const int height = webm_file_->VideoHeight();
     if (height > 0) {
       fprintf(o, " height=\"%d\"", height);
     }
@@ -130,13 +130,13 @@ bool Representation::OutputDashManifest(FILE* o, Indent* indent) const {
   // long time as it must go through every block in the file. For now only
   // output the framerate if the FrameRate element is set in the file. This
   // will most likely need to change later.
-  const double rate = webm_file_->GetVideoFramerate();
+  const double rate = webm_file_->VideoFramerate();
   if (rate > 0.0) {
     fprintf(o, " framerate=\"%g\"", rate);
   }
 
   if (output_audio_sample_rate_) {
-    const int sample_rate = webm_file_->GetAudioSampleRate();
+    const int sample_rate = webm_file_->AudioSampleRate();
     if (sample_rate > 0) {
       fprintf(o, " audioSamplingRate=\"%d\"", sample_rate);
     }
