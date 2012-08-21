@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAPX//8IE\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 424,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-08-21T16:53:54Z",
+      "side": 1,
+      "message": "Since you\u0027re already casting stuff, you might as well get rid of the unsigned type:\n\nhttp://google-styleguide.googlecode.com/svn/trunk/cppguide.xml#Integer_Types\n\nI realize this isn\u0027t the exact situation outlined in the style guide, but it seems like (as it rarely seems to do) it\u0027s trying to establish a hard and fast rule instead of providing semi-ambiguous guidance.\n\nSeems like this is rather prevalent throughout-- save for another patch, if you\u0027d like.",
+      "revId": "cd69f54efe25c1dd2b0820ec770000140d1420ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPX//8HU\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1189,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-08-21T16:53:54Z",
+      "side": 1,
+      "message": "Could be just while (cluster \u0026\u0026 !cluster-\u003eEOS()) {",
+      "revId": "cd69f54efe25c1dd2b0820ec770000140d1420ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPX//8HQ\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1195,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-08-21T16:53:54Z",
+      "side": 1,
+      "message": "Ditto.",
+      "revId": "cd69f54efe25c1dd2b0820ec770000140d1420ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPX//8HM\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1213,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-08-21T16:53:54Z",
+      "side": 1,
+      "message": "Hmm.. perens around conditional. Might be overkill here.",
+      "revId": "cd69f54efe25c1dd2b0820ec770000140d1420ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPX//8Gs\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1300,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-08-21T16:53:54Z",
+      "side": 1,
+      "message": "You can ignore the (cluster \u0026\u0026  !cluster-\u003eEOS()), or save it for another patchset.",
+      "revId": "cd69f54efe25c1dd2b0820ec770000140d1420ed",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
