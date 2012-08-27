@@ -12,6 +12,8 @@
 
 #include <climits>
 #include <cstring>
+#include <string>
+#include <vector>
 
 #include "mkvreader.hpp"
 
