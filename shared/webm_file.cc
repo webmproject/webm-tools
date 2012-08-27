@@ -12,6 +12,11 @@
 
 #include <climits>
 #include <cstring>
+#include <map>
+#include <memory>
+#include <string>
+#include <utility>
+#include <vector>
 
 #include "mkvreader.hpp"
 
