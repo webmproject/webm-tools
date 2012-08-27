@@ -95,8 +95,7 @@ class WebMFile {
   // underrun condition. |buffer| is an input/output parameter. The amount of
   // time in seconds will be added to the value passed into |buffer|.
   // |sec_to_download| is the time in seconds that it took to download the
-  // data.
-  // Return values < 0 are errors. Return value of 0 is success.
+  // data. Return values < 0 are errors. Return value of 0 is success.
   // Return value of 1 is the function encountered a buffer underrun.
   int BufferSizeAfterTimeDownloaded(int64 time_ns,
                                     double search_sec,
@@ -119,18 +118,15 @@ class WebMFile {
   bool CheckCuesAlignment(const WebMFile& webm_file) const;
 
 // Returns true if the CuePoints across |webm_list| are aligned with respect
-// to time.
-// |seconds| is the range in seconds that the function is allowed to search
-// for alignment. I.e. If file A had a CuePoint every 5 seconds and file B
-// had a CuePoint every 15 seconds then the files would be aligned
-// if |seconds| >= 15.0.
-// |check_for_sap| if true checks if potentially aligned CuePoints start with
-// a key frame. I.e. The first frame in the Custer is a key frame.
-// |check_for_audio_match| if true checks that the first audio block in
-// potentially aligned CuePoints are the same.
-// |verbose| if true outputs more information to stdout.
-// |output_alignment_times| if true will append the aligned CuePoint times in
-// seconds to |output_string|.
+// to time. |seconds| is the range in seconds that the function is allowed to
+// search for alignment. I.e. If file A had a CuePoint every 5 seconds and
+// file B had a CuePoint every 15 seconds then the files would be aligned
+// if |seconds| >= 15.0. |check_for_sap| if true checks if potentially aligned
+// CuePoints start with a key frame. I.e. The first frame in the Custer is a
+// key frame. |check_for_audio_match| if true checks that the first audio
+// block in potentially aligned CuePoints are the same. |verbose| if true
+// outputs more information to stdout. |output_alignment_times| if true will
+// append the aligned CuePoint times in seconds to |output_string|.
 // |output_alignment_stats| if true will append the aligned CuePoint times in
 // seconds and the reason why potentially aligned CuePoints were rejected.
 // |output_alignment_stats| supersedes |output_alignment_times|.
