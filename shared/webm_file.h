@@ -22,8 +22,8 @@ namespace mkvparser {
 class AudioTrack;
 class Block;
 class Cluster;
-class Cues;
 class CuePoint;
+class Cues;
 class MkvReader;
 class Segment;
 class SegmentInfo;
@@ -51,6 +51,7 @@ class WebMFile {
     kVideo = 1,
     kAudio = 2,
   };
+
   explicit WebMFile(const std::string& filename);
   ~WebMFile();
 

@@ -13,6 +13,7 @@
 #include "dash_model.h"
 #include "indent.h"
 #include "mkvreader.hpp"
+#include "webm_constants.h"
 #include "webm_file.h"
 
 using std::string;
