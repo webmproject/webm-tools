@@ -17,6 +17,7 @@
 #include "dash_model.h"
 #include "indent.h"
 #include "representation.h"
+#include "webm_consts.h"
 #include "webm_file.h"
 
 using std::string;

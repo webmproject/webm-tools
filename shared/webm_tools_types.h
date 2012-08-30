@@ -29,9 +29,6 @@ typedef unsigned int       uint32;
 typedef long long          int64;   // NOLINT
 typedef unsigned long long uint64;  // NOLINT
 
-const double kNanosecondsPerSecond = 1000000000.0;
-const int kNanosecondsPerMillisecond = 1000000;
-
 }  // namespace webm_tools
 
 #endif  // SHARED_WEBM_TOOLS_TYPES_H_
