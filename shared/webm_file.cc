@@ -11,6 +11,8 @@
 #include "webm_file.h"
 
 #include <climits>
+#include <cstddef>
+#include <cstdio>
 #include <cstring>
 #include <map>
 #include <memory>
@@ -18,15 +20,19 @@
 #include <utility>
 #include <vector>
 
+#include "mkvparser.hpp"
 #include "mkvreader.hpp"
+#include "webm_constants.h"
+
+namespace mkvparser {
+class BlockEntry;
+class Tracks;
+}  // namespace mkvparser
+
+namespace webm_tools {
 
 using std::string;
 using std::vector;
-using webm_tools::int64;
-using webm_tools::uint8;
-using webm_tools::kNanosecondsPerSecond;
-
-namespace webm_tools {
 
 typedef vector<const WebMFile*>::const_iterator WebMConstIterator;
 typedef vector<const mkvparser::Cues*>::const_iterator CuesConstIterator;
