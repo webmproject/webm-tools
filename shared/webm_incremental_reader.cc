@@ -13,6 +13,7 @@
 #include <cstdio>
 #include <cstring>
 
+#include "mkvparser.hpp"
 #include "mkvreader.hpp"
 
 namespace webm_tools {
