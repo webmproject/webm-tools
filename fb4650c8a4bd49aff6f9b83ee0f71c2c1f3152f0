@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAPn//wVw\u003d",
+        "filename": "shared/webm_incremental_reader.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-09-11T16:00:20Z",
+      "side": 1,
+      "message": "I changed the function to return an error if it gets sets more than once. I can\u0027t think of a reason why this value should get set more than once. Changed the parameter name to position.",
+      "parentUuid": "AAAAPn//w4I\u003d",
+      "revId": "fb4650c8a4bd49aff6f9b83ee0f71c2c1f3152f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAPn//w4g\u003d",
         "filename": "shared/webm_incremental_reader.h",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAPn//wVs\u003d",
+        "filename": "shared/webm_incremental_reader.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-09-11T16:00:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAPn//w4g\u003d",
+      "revId": "fb4650c8a4bd49aff6f9b83ee0f71c2c1f3152f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAPn//w4c\u003d",
         "filename": "shared/webm_incremental_reader.h",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2012-09-11T00:33:40Z",
       "side": 1,
       "message": "s/represents/means that/ OR\n\n-1 represents an unknown segment size.",
+      "revId": "fb4650c8a4bd49aff6f9b83ee0f71c2c1f3152f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//wVo\u003d",
+        "filename": "shared/webm_incremental_reader.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-09-11T16:00:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAPn//w4c\u003d",
       "revId": "fb4650c8a4bd49aff6f9b83ee0f71c2c1f3152f0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
