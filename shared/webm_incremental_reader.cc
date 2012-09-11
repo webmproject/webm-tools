@@ -43,16 +43,12 @@ int WebmIncrementalReader::SetBufferWindow(const uint8* ptr_buffer,
 bool WebmIncrementalReader::SetEndOfSegmentPosition(int64 position) {
   // Check if end position has already been set.
   if (end_of_segment_position_ != -1) {
-    if (end_of_segment_position_ == position)
-      return true;
-    return false;
+    return (end_of_segment_position_ == position);
   }
 
   // Check if |position| is invalid.
   if (position <= 0) {
-    if (position == -1)
-      return true;
-    return false;
+    return (position == -1);
   }
   end_of_segment_position_ = position;
   return true;
