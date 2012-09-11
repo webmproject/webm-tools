@@ -24,6 +24,7 @@ class Block;
 class Cluster;
 class CuePoint;
 class Cues;
+class IMkvReader;
 class MkvReader;
 class Segment;
 class SegmentInfo;
@@ -32,6 +33,8 @@ class VideoTrack;
 }  // namespace mkvparser
 
 namespace webm_tools {
+
+class WebmIncrementalReader;
 
 struct CueDesc {
   int64 start_time_ns;
@@ -42,36 +45,68 @@ struct CueDesc {
 
 // This class is used to load a WebM file using libwebm. The class adds
 // convenience functions to gather information about WebM files. The class is
-// dependent on libwebm. Code using this class must call Init() before other
-// functions may be called.
+// dependent on libwebm.
+//
+// WebMFile can be used to parse a WebM file incrementally or to parse the the
+// entire file. To parse the entire file call ParseFile() after the class is
+// created. The parse a WebM file incrementally call ParseNextChunk with
+// sequential chunks. If a level 1 WebM element is parsed the size of the
+// element is passed back. The calling code is responsible for removing the
+// data of the element that was just parsed.Once the end of the file is known
+// a call to SetEndOfFilePosition should be made.
+//
+// The code using WebMFile must pay attention to the state of WebMFile as the
+// values returned may change over time if parsing incrementally. The state
+// starts in kParsingHeaders. After the parser has parsed all of the header
+// data the state will transition to kParsingClusters. After the parser has
+// finished parsing all of the cluster the state will transition to
+// kParsingDone. Check the functions comments as to what state the parser needs
+// to be in to output valid values.
 class WebMFile {
  public:
+  typedef std::vector<uint8> Buffer;
+
   enum TrackTypes {
     kUnknown = 0,
     kVideo = 1,
     kAudio = 2,
   };
 
-  explicit WebMFile(const std::string& filename);
+  enum Status {
+    kInvalidWebM = -2,
+    kParsingError = -1,
+    kParsingHeader = 1,
+    kParsingClusters = 2,
+    kParsingFinalElements = 3,
+    kParsingDone = 4,
+  };
+
+  WebMFile();
+  //explicit WebMFile(const std::string& filename);
   ~WebMFile();
 
   // Load and parse the webm file. Returns false if the DocType is not "webm"
   // Returns true if the file has been loaded and verified.
-  bool Init();
+  //bool Init();
+  bool ParseFile(const std::string& filename);
 
-  // Returns true if the file contains at least one audio track.
+  // Returns true if the file contains at least one audio track. Parser
+  // state must be >= kParsingClusters for output to be valid.
   bool HasAudio() const;
 
   // Returns the number of channels of the first audio track. Returns 0 if
-  // there is no audio track.
+  // there is no audio track. Parser state must be >= kParsingClusters for
+  // output to be valid.
   int AudioChannels() const;
 
   // Returns the sample rate of the first audio track. Returns 0 if there is
-  // no audio track.
+  // no audio track. Parser state must be >= kParsingClusters for output to be
+  // valid.
   int AudioSampleRate() const;
 
   // Returns the audio sample size in bits per sample of the first audio track.
-  // Returns 0 if there no audio track.
+  // Returns 0 if there no audio track. Parser state must be >=
+  // kParsingClusters for output to be valid.
   int AudioSampleSize() const;
 
   // Returns how many seconds are in |buffer| after |search_sec| has passed.
@@ -81,7 +116,8 @@ class WebMFile {
   // seconds will be added to the value passed into |buffer|. |sec_counted|
   // is the time in seconds used to perform the calculation. |sec_counted|
   // may be different than |search_sec| is it is near the end of the clip.
-  // Return values < 0 are errors. Return value of 0 is success.
+  // Return values < 0 are errors. Return value of 0 is success. Parser state
+  // must equal kParsingDone for output to be valid.
   int BufferSizeAfterTime(double time,
                           double search_sec,
                           int64 kbps,
@@ -97,7 +133,8 @@ class WebMFile {
   // time in seconds will be added to the value passed into |buffer|.
   // |sec_to_download| is the time in seconds that it took to download the
   // data. Return values < 0 are errors. Return value of 0 is success.
-  // Return value of 1 is the function encountered a buffer underrun.
+  // Return value of 1 is the function encountered a buffer underrun. Parser
+  // state must equal kParsingDone for output to be valid.
   int BufferSizeAfterTimeDownloaded(int64 time_ns,
                                     double search_sec,
                                     int64 bps,
@@ -107,15 +144,17 @@ class WebMFile {
 
   // Returns the average framerate of the first video track. Returns 0.0 if
   // there is no video track or we cannot calculate an average framerate.
+  // Parser state must equal kParsingDone for output to be valid.
   double CalculateVideoFrameRate() const;
 
   // Returns true if the TrackNumber, CodecID and CodecPrivate in the webm
-  // file are equal to the values in |webm_file|.
+  // file are equal to the values in |webm_file|. Parser states must be >=
+  // kParsingClusters for output to be valid.
   bool CheckBitstreamSwitching(const WebMFile& webm_file) const;
 
   // Returns true if the start time and the block number of all the cue
   // points in the webm file are equal to all of the cue points in
-  // |webm_file|.
+  // |webm_file|. Parser states must equal kParsingDone for output to be valid.
   bool CheckCuesAlignment(const WebMFile& webm_file) const;
 
   // Returns true if the CuePoints across |webm_list| are aligned with respect
@@ -133,7 +172,8 @@ class WebMFile {
   // |output_alignment_stats| supersedes |output_alignment_times|.
   // |output_string| is an output parameter with information on why the function
   // returned false and/or the output from |output_alignment_stats| or
-  // |output_alignment_times|. |output_string| may be NULL.
+  // |output_alignment_times|. |output_string| may be NULL. Parser states must
+  // equal kParsingDone for output to be valid.
   static bool CheckCuesAlignmentList(
       const std::vector<const WebMFile*>& webm_list,
       double seconds,
@@ -144,20 +184,26 @@ class WebMFile {
       bool output_alignment_stats,
       std::string* output_string);
 
-  // Returns true if the file has a Cues element.
+  // Returns true if the file has a Cues element. Parser state must equal
+  // kParsingDone for output to be valid.
   bool CheckForCues() const;
 
   // Returns true if the first Block of every CuePoint is the first Block in
-  // the Cluster for that track.
+  // the Cluster for that track. Parser state must equal kParsingDone for
+  // output to be valid.
   bool CuesFirstInCluster(TrackTypes type) const;
 
-  // Calculate and returns average bits per second for the WebM file.
+  // Calculate and returns average bits per second for the WebM file. Parser
+  // state must be >= kParsingClusters and the end position must be set for
+  // output to be valid.
   int64 FileAverageBitsPerSecond() const;
 
-  // Returns the length of the file in bytes.
+  // Returns the length of the file in bytes. Parser state must be >=
+  // kParsingClusters and the end position must be set for output to be valid.
   int64 FileLength() const;
 
-  // Calculate and return maximum bits per second for the WebM file.
+  // Calculates and returns maximum bits per second for the WebM file. Parser
+  // state must equal kParsingDone for output to be valid.
   int64 FileMaximumBitsPerSecond() const;
 
   // Returns the codec string associated with the file. If the CodecID
@@ -165,13 +211,16 @@ class WebMFile {
   // A_VORBIS then the string returned will be "vorbis". If there is more
   // than one track in the file the codecs will be in a comma separated list
   // like "vp8, vorbis". If the CodecID is anything else then the string
-  // returned will be empty.
+  // returned will be empty. Parser state must be >= kParsingClusters for
+  // output to be valid.
   std::string GetCodec() const;
 
-  // Returns the Cues from the webm file.
+  // Returns the Cues from the webm file. Parser state must equal kParsingDone
+  // for output to be valid.
   const mkvparser::Cues* GetCues() const;
 
-  // Returns the duration of the file in nanoseconds.
+  // Returns the duration of the file in nanoseconds. Parser state must be >=
+  // kParsingClusters for output to be valid.
   int64 GetDurationNanoseconds() const;
 
   // Returns the byte offset in the file for the start of the Segment Info and
@@ -181,50 +230,72 @@ class WebMFile {
 
   // Returns the mimetype string associated with the file. Returns
   // "video/webm" if the file is a valid WebM file. Returns the empty string
-  // if not a valid WebM file.
+  // if not a valid WebM file. Parser state must be >= kParsingClusters for
+  // output to be valid.
   std::string GetMimeType() const;
 
   // Returns the mimetype with the codec parameter for the first two tracks
   // in the file. The format is defined by the WebM specification. Returns the
-  // empty string if not a valid WebM file.
+  // empty string if not a valid WebM file. Parser state must be >=
+  // kParsingClusters for output to be valid.
   std::string GetMimeTypeWithCodec() const;
 
-  // Returns the SegmentInfo element.
+  // Returns the SegmentInfo element. Parser state must be >= kParsingClusters
+  // for output to be valid.
   const mkvparser::SegmentInfo* GetSegmentInfo() const;
 
-  // Returns the starting byte offset the segment element.
+  // Returns the starting byte offset for the Segment element. Parser state must
+  // be >= kParsingClusters for output to be valid.
   int64 GetSegmentStartOffset() const;
+
+  // Returns the current state of the parser.
+  Status GetState() const;
 
   // Returns true if the first video track equals V_VP8 or the first audio
   // track equals A_VORBIS. Returns false if there are no audio or video
   // tracks. Returns false if there is both a video tack and an audio track.
-  // This is because for adaptive streaming we want the streams to be separate.
+  // Parser state must be >= kParsingClusters for output to be valid.
   bool OnlyOneStream() const;
+
+  // Parses the next WebM chunk in |buf|. If a level 1 WebM element is parsed
+  // the size of the element is passed back in |ptr_element_size|. Data in |buf|
+  // must not be removed until the offset is passed back in |ptr_element_size|.
+  // Returns the current state of the parser or returns kParsingError if the
+  // parser encountered an error.
+  Status ParseNextChunk(const Buffer& buf, int32* ptr_element_size);
 
   // Returns the peak bits per second over the entire file taking into account a
   // prebuffer of |prebuffer_ns|. This function will iterate over all the Cue
   // points to get the maximum bits per second from all Cue points. Return
-  // values < 0 are errors.
+  // values < 0 are errors. Parser state must equal kParsingDone for output to
+  // be valid.
   int64 PeakBitsPerSecondOverFile(int64 prebuffer_ns) const;
 
+  // Sets the reader end of file offset.
+  bool SetEndOfFilePosition(int64 offset);
+
   // Returns average bits per second for the first track of track |type|.
-  // Returns 0 on error.
+  // Parser state must equal kParsingDone for output to be valid.
   int64 TrackAverageBitsPerSecond(TrackTypes type) const;
 
-  // Returns number of tracks for track of |type|.
+  // Returns number of tracks for track of |type|. Parser state must be >=
+  // kParsingClusters for output to be valid.
   int64 TrackCount(TrackTypes type) const;
 
-  // Returns number of frames for the first track of |type|. Returns 0 on error.
+  // Returns number of frames for the first track of |type|. Parser state must
+  // equal kParsingDone for output to be valid.
   int64 TrackFrameCount(TrackTypes type) const;
 
-  // Returns size in bytes for the first track of |type|. Returns 0 on error.
+  // Returns size in bytes for the first track of |type|. Parser state must
+  // equal kParsingDone for output to be valid.
   int64 TrackSize(TrackTypes type) const;
 
-  // Returns start time in nanoseconds for the first track of |type|. Returns 0
-  // on error.
+  // Returns start time in nanoseconds for the first track of |type|. Parser
+  // state must be >= kParsingClusters for output to be valid.
   int64 TrackStartNanoseconds(TrackTypes type) const;
 
-  // Returns true if the file contains at least one video track.
+  // Returns true if the file contains at least one video track. Parser state
+  // must be >= kParsingClusters for output to be valid.
   bool HasVideo() const;
 
   // Returns the average framerate of the first video track. Returns 0.0 if
@@ -232,16 +303,21 @@ class WebMFile {
   double VideoFramerate() const;
 
   // Returns the height in pixels of the first video track. Returns 0 if there
-  // is no video track.
+  // is no video track. Parser state must be >= kParsingClusters for output to
+  // be valid.
   int VideoHeight() const;
 
   // Returns the width in pixels of the first video track. Returns 0 if there
-  // is no video track.
+  // is no video track. Parser state must be >= kParsingClusters for output to
+  // be valid.
   int VideoWidth() const;
 
   const std::string& filename() const { return filename_; }
 
  private:
+  // Parse function pointer type.
+  typedef Status (WebMFile::*ParseFunc)(int32* ptr_element_size);
+
   // Calculate and returns average bits per second for the WebM file starting
   // from |cp|. If |cp| is NULL calculate the bits per second over the entire
   // file. Returns 0 on error.
@@ -342,6 +418,16 @@ class WebMFile {
   // Return the first video track. Returns NULL if there are no video tracks.
   const mkvparser::VideoTrack* GetVideoTrack() const;
 
+  // Tries to parse a cluster.  Returns |kNeedMoreData| when more data is
+  // needed. Returns |kSuccess| and sets |ptr_element_size| when all cluster
+  // data has been parsed.
+  Status ParseCluster(int32* ptr_element_size);
+
+  // Tries to parse the segment headers: segment info and segment tracks.
+  // Returns |kNeedMoreData| if more data is needed.  Returns |kSuccess| and
+  // sets |ptr_element_size| when successful.
+  Status ParseSegmentHeaders(int32* ptr_element_size);
+
   // Populates |cue_desc_list_| from the Cues element. Returns true on success.
   bool LoadCueDescList();
 
@@ -366,6 +452,9 @@ class WebMFile {
   // Flag telling if the internal per Track statistics have been calculated.
   bool calculated_file_stats_;
 
+  // Bytes read in partially parsed cluster.
+  int64 cluster_parse_offset_;
+
   // Time in nano seconds to split up the Cues element into the chunkindexlist.
   int64 cue_chunk_time_nano_;
 
@@ -373,13 +462,40 @@ class WebMFile {
   std::vector<CueDesc> cue_desc_list_;
 
   // Path to WebM file.
-  const std::string filename_;
+  std::string filename_;
 
-  // libwebm reader
-  std::auto_ptr<mkvparser::MkvReader> reader_;
+  // Parsing function-- either |ParseSegmentHeaders| or |ParseCluster|.
+  ParseFunc parse_func_;
 
-  // Main WebM element.
+  // Pointer to current cluster when |ParseCluster| only partially parses
+  // cluster data.  NULL otherwise. Note that |ptr_cluster_| is memory owned by
+  // libwebm's mkvparser.
+  const mkvparser::Cluster* ptr_cluster_;
+
+  // Base IMkvReader interface that gets set to |file_reader_| if ParseFile is
+  // called or |incremental_reader_| if parsing a WebM file incrementally.
+  mkvparser::IMkvReader* reader_;
+
+  // libwebm file reader that implements the IMkvReader interface required by
+  // libwebm's mkvparser.
+  std::auto_ptr<mkvparser::MkvReader> file_reader_;
+
+  // Buffer object that implements the IMkvReader interface required by
+  // libwebm's mkvparser using a window into the |buf| argument passed to
+  // |Parse|.
+  std::auto_ptr<WebmIncrementalReader> incremental_reader_;
+
+  // Pointer to libwebm segment.
   std::auto_ptr<mkvparser::Segment> segment_;
+
+  // The current state of the parser. The state starts in kParsingHeaders.
+  // After the parser has parsed all of the header data the state will
+  // transition to kParsingClusters. After the parser has finished parsing all
+  // of the cluster the state will transition to kParsingDone.
+  Status state_;
+
+  // Sum of parsed element lengths.  Used to update |parser_| window.
+  int64 total_bytes_parsed_;
 
   // Member variables used to calculate information about the WebM file which
   // only need to be parsed once. Key is the Track number.
