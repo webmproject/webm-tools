@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAPn//w4I\u003d",
+        "filename": "shared/webm_incremental_reader.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-09-11T00:33:40Z",
+      "side": 1,
+      "message": "A few things:\n\n  1. Why not make this return void, and make it a simple setter.\n  2. If you\u0027re fine with 1, add a getter.\n  3. Make them both inline.\n\nAnd, a naming nit:\n\nHow about end_position instead of offset? Seems clearer when we\u0027re dealing with absolute positioning.",
+      "revId": "fb4650c8a4bd49aff6f9b83ee0f71c2c1f3152f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//w4g\u003d",
+        "filename": "shared/webm_incremental_reader.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-09-11T00:33:40Z",
+      "side": 1,
+      "message": "Remove this.\n\nYou shouldn\u0027t need to-- I can\u0027t envision a situation where you would have that large a buffer window, but I guess anything is possible.",
+      "revId": "fb4650c8a4bd49aff6f9b83ee0f71c2c1f3152f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//w4c\u003d",
+        "filename": "shared/webm_incremental_reader.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-09-11T00:33:40Z",
+      "side": 1,
+      "message": "s/represents/means that/ OR\n\n-1 represents an unknown segment size.",
+      "revId": "fb4650c8a4bd49aff6f9b83ee0f71c2c1f3152f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
