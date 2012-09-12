@@ -14,6 +14,7 @@
 #include "indent.h"
 #include "mkvreader.hpp"
 #include "mkvparser.hpp"
+#include "webm_constants.h"
 #include "webm_endian.h"
 
 namespace {
