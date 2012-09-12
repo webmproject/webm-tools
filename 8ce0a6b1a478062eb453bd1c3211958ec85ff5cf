@@ -1,0 +1,327 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAPn//uqM\u003d",
+        "filename": "shared/webm_incremental_parser.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-09-12T22:36:28Z",
+      "side": 1,
+      "message": "Are you sure this include is needed?",
+      "revId": "8ce0a6b1a478062eb453bd1c3211958ec85ff5cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//uo8\u003d",
+        "filename": "shared/webm_incremental_parser.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-09-12T22:36:28Z",
+      "side": 1,
+      "message": "If you store the reader by value, then you can get rid of this operation.",
+      "revId": "8ce0a6b1a478062eb453bd1c3211958ec85ff5cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//uhU\u003d",
+        "filename": "shared/webm_incremental_parser.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-09-12T22:36:28Z",
+      "side": 1,
+      "message": "Note that parsing the cues element can take some time, if this is a longish stream (say).\n\nI\u0027m not sure what this will do if the cues are located after the clusters.",
+      "revId": "8ce0a6b1a478062eb453bd1c3211958ec85ff5cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//uhI\u003d",
+        "filename": "shared/webm_incremental_parser.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-09-12T22:36:28Z",
+      "side": 1,
+      "message": "Suppose track(0) is an audio track, and the cues only exist for the video track?",
+      "revId": "8ce0a6b1a478062eb453bd1c3211958ec85ff5cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//ug0\u003d",
+        "filename": "shared/webm_incremental_parser.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-09-12T22:36:28Z",
+      "side": 1,
+      "message": "Suppose you have the lions clip, which contains a single large cluster (the only one, in fact), and which contains several keyframes.  Is this input OK?",
+      "revId": "8ce0a6b1a478062eb453bd1c3211958ec85ff5cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//ugo\u003d",
+        "filename": "shared/webm_incremental_parser.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-09-12T22:36:28Z",
+      "side": 1,
+      "message": "If this is a short file (less than 1s), then duration / 10^9 will be 0 (integer division).",
+      "revId": "8ce0a6b1a478062eb453bd1c3211958ec85ff5cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//ugY\u003d",
+        "filename": "shared/webm_incremental_parser.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-09-12T22:36:28Z",
+      "side": 1,
+      "message": "How about:\n\nint64\u0026 max_bps \u003d *maximum_bps;\nmax_bps \u003d 0;\n\nThen you can delete the declaration and assignment below.",
+      "revId": "8ce0a6b1a478062eb453bd1c3211958ec85ff5cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//ugU\u003d",
+        "filename": "shared/webm_incremental_parser.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-09-12T22:36:28Z",
+      "side": 1,
+      "message": "How about:\n\nstring\u0026 codec_temp \u003d *codec;\ncodec_temp.clear();\n\nThen you can remove the declaration and assignment below.",
+      "revId": "8ce0a6b1a478062eb453bd1c3211958ec85ff5cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//ueY\u003d",
+        "filename": "shared/webm_incremental_parser.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-09-12T22:36:28Z",
+      "side": 1,
+      "message": "How about:\n\nstring\u0026 mimetype_temp \u003d *mimetype;\n\nThen you can remove the declaration and assignment below.",
+      "revId": "8ce0a6b1a478062eb453bd1c3211958ec85ff5cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//ueQ\u003d",
+        "filename": "shared/webm_incremental_parser.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-09-12T22:36:28Z",
+      "side": 1,
+      "message": "Here and elsewhere, I\u0027m not following you can simultaneously have \n\nstate \u003e kParsingHeader\n\nand \n\nsegment \u003d\u003d NULL",
+      "revId": "8ce0a6b1a478062eb453bd1c3211958ec85ff5cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//udY\u003d",
+        "filename": "shared/webm_incremental_parser.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-09-12T22:36:28Z",
+      "side": 1,
+      "message": "If you have 2 boolean variables, you should only require two tests to determine which of the 4 states you\u0027re in.  You make 4 tests here.  Why?",
+      "revId": "8ce0a6b1a478062eb453bd1c3211958ec85ff5cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//udM\u003d",
+        "filename": "shared/webm_incremental_parser.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-09-12T22:36:28Z",
+      "side": 1,
+      "message": "Why fall through here?  If you know that the strings match, then just return true immediately.  Otherwise you have to make another redundant check of vid_track.",
+      "revId": "8ce0a6b1a478062eb453bd1c3211958ec85ff5cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//uc4\u003d",
+        "filename": "shared/webm_incremental_parser.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-09-12T22:36:28Z",
+      "side": 1,
+      "message": "Why pass this as a vector here?  If you reader only depends on a pointer and a size, then why not pass that?\n\nOtherwise, your caller is going to have to copy the data from his source into a vector-style buffer, and then call you.  Too much copying, especially when clusters are large, as in HD clips.",
+      "revId": "8ce0a6b1a478062eb453bd1c3211958ec85ff5cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//ucU\u003d",
+        "filename": "shared/webm_incremental_parser.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-09-12T22:36:28Z",
+      "side": 1,
+      "message": "What is the client supposed to do if the parse fails (as it eventually will) when E_BUFFER_NOT_FULL?",
+      "revId": "8ce0a6b1a478062eb453bd1c3211958ec85ff5cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//ucM\u003d",
+        "filename": "shared/webm_incremental_parser.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-09-12T22:36:28Z",
+      "side": 1,
+      "message": "Why post-fix increment?",
+      "revId": "8ce0a6b1a478062eb453bd1c3211958ec85ff5cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//ubs\u003d",
+        "filename": "shared/webm_incremental_parser.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-09-12T22:36:28Z",
+      "side": 1,
+      "message": "Suppose map::find returns map::end()?",
+      "revId": "8ce0a6b1a478062eb453bd1c3211958ec85ff5cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//uZM\u003d",
+        "filename": "shared/webm_incremental_parser.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1054,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-09-12T22:36:28Z",
+      "side": 1,
+      "message": "What is the client supposed to do with this status?",
+      "revId": "8ce0a6b1a478062eb453bd1c3211958ec85ff5cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//uZQ\u003d",
+        "filename": "shared/webm_incremental_parser.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1128,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-09-12T22:36:28Z",
+      "side": 1,
+      "message": "Suppose you don\u0027t have enough data in your cache.  What should the client do?",
+      "revId": "8ce0a6b1a478062eb453bd1c3211958ec85ff5cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//upI\u003d",
+        "filename": "shared/webm_incremental_parser.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-09-12T22:36:28Z",
+      "side": 1,
+      "message": "Why is this object being stored by reference instead of by value?",
+      "revId": "8ce0a6b1a478062eb453bd1c3211958ec85ff5cf",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
