@@ -78,14 +78,16 @@ bool WebMFile::Init() {
     return false;
   }
 
-  if (!LoadCueDescList()) {
-    fprintf(stderr, "LoadCueDescList() failed.\n");
-    return false;
-  }
-
   if (!GenerateStats()) {
     fprintf(stderr, "GenerateStats() failed.\n");
     return false;
+  }
+
+  if (CheckForCues()) {
+    if (!LoadCueDescList()) {
+      fprintf(stderr, "LoadCueDescList() failed.\n");
+      return false;
+    }
   }
 
   return true;
