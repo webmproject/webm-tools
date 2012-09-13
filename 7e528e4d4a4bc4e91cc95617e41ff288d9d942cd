@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAPn//tgY\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-09-13T19:20:59Z",
+      "side": 1,
+      "message": "I would have done this differently, using separate subclasses: one for non-incremental reading and another for incremental reading.  The ParseFile method would only be a member of the non-incremental WebMFile abstract. \n\nYou don\u0027t have to do it that way, but you have a few places where you check whether you have an incremental reader -- but such checks would not be necessary in a subclass-specific operation.\n\nWhat you have will work but this class is really doing double-duty.",
+      "revId": "7e528e4d4a4bc4e91cc95617e41ff288d9d942cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
