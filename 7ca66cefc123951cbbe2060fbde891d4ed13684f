@@ -1,0 +1,191 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAPn//uPI\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 700,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-09-13T02:29:12Z",
+      "side": 1,
+      "message": "From: Matthew Heaney\t\t3:36 PM\nNote that parsing the cues element can take some time, if this is a longish stream (say).\nI\u0027m not sure what this will do if the cues are located after the clusters.",
+      "revId": "7ca66cefc123951cbbe2060fbde891d4ed13684f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//uO4\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 713,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-09-13T02:29:12Z",
+      "side": 1,
+      "message": "Matthew Heaney\t\t3:36 PM\nSuppose track(0) is an audio track, and the cues only exist for the video track?",
+      "revId": "7ca66cefc123951cbbe2060fbde891d4ed13684f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//uO0\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 716,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-09-13T02:29:12Z",
+      "side": 1,
+      "message": "Matthew Heaney\t\t3:36 PM\nSuppose you have the lions clip, which contains a single large cluster (the only one, in fact), and which contains several keyframes. Is this input OK?",
+      "revId": "7ca66cefc123951cbbe2060fbde891d4ed13684f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//uOw\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 770,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-09-13T02:29:12Z",
+      "side": 1,
+      "message": "Matthew Heaney\t\t3:36 PM\nIf this is a short file (less than 1s), then duration / 10^9 will be 0 (integer division).",
+      "revId": "7ca66cefc123951cbbe2060fbde891d4ed13684f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//uOo\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 938,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-09-13T02:29:12Z",
+      "side": 1,
+      "message": "Matthew Heaney\t\t3:36 PM\nHere and elsewhere, I\u0027m not following you can simultaneously have\nstate \u003e kParsingHeader\nand\nsegment \u003d\u003d NULL",
+      "revId": "7ca66cefc123951cbbe2060fbde891d4ed13684f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//uOU\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 951,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-09-13T02:29:12Z",
+      "side": 1,
+      "message": "Matthew Heaney\t\t3:36 PM\nIf you have 2 boolean variables, you should only require two tests to determine which of the 4 states you\u0027re in. You make 4 tests here. Why?",
+      "revId": "7ca66cefc123951cbbe2060fbde891d4ed13684f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//uOQ\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 968,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-09-13T02:29:12Z",
+      "side": 1,
+      "message": "Matthew Heaney\t\t3:36 PM\nWhy fall through here? If you know that the strings match, then just return true immediately. Otherwise you have to make another redundant check of vid_track.",
+      "revId": "7ca66cefc123951cbbe2060fbde891d4ed13684f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//uOI\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1007,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-09-13T02:29:12Z",
+      "side": 1,
+      "message": "Matthew Heaney\t\t3:36 PM\nWhat is the client supposed to do if the parse fails (as it eventually will) when E_BUFFER_NOT_FULL?",
+      "revId": "7ca66cefc123951cbbe2060fbde891d4ed13684f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//uOE\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1084,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-09-13T02:29:12Z",
+      "side": 1,
+      "message": "Matthew Heaney\t\t3:36 PM\nWhy post-fix increment?",
+      "revId": "7ca66cefc123951cbbe2060fbde891d4ed13684f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//uOA\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1153,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-09-13T02:29:12Z",
+      "side": 1,
+      "message": "Matthew Heaney\t\t3:36 PM\nSuppose map::find returns map::end()?",
+      "revId": "7ca66cefc123951cbbe2060fbde891d4ed13684f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//uNw\u003d",
+        "filename": "shared/webm_file.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 481,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-09-13T02:29:12Z",
+      "side": 1,
+      "message": "Matthew Heaney\t\t3:36 PM\nWhy is this object being stored by reference instead of by value?",
+      "revId": "7ca66cefc123951cbbe2060fbde891d4ed13684f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
