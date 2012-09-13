@@ -16,6 +16,397 @@
       "revId": "7e528e4d4a4bc4e91cc95617e41ff288d9d942cd",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//teg\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 748,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-09-13T19:52:26Z",
+      "side": 1,
+      "message": "could just be 1 const assignment at the end + return 0 elsewhere",
+      "revId": "7e528e4d4a4bc4e91cc95617e41ff288d9d942cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//tec\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 763,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-09-13T19:52:26Z",
+      "side": 1,
+      "message": "here too",
+      "revId": "7e528e4d4a4bc4e91cc95617e41ff288d9d942cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//teY\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 777,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-09-13T19:52:26Z",
+      "side": 1,
+      "message": "and this could be moved closer to the loop",
+      "revId": "7e528e4d4a4bc4e91cc95617e41ff288d9d942cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//teQ\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 881,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-09-13T19:52:26Z",
+      "side": 1,
+      "message": "could just be \u0027mimetype \u003d ...\u0027",
+      "revId": "7e528e4d4a4bc4e91cc95617e41ff288d9d942cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//teA\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 979,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-09-13T19:52:26Z",
+      "side": 1,
+      "message": "duplicate to 975",
+      "revId": "7e528e4d4a4bc4e91cc95617e41ff288d9d942cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//td8\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1031,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-09-13T19:52:26Z",
+      "side": 1,
+      "message": "just return 0",
+      "revId": "7e528e4d4a4bc4e91cc95617e41ff288d9d942cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//td4\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-09-13T19:52:26Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "7e528e4d4a4bc4e91cc95617e41ff288d9d942cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//td0\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1053,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-09-13T19:52:26Z",
+      "side": 1,
+      "message": "just return 0",
+      "revId": "7e528e4d4a4bc4e91cc95617e41ff288d9d942cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//tdw\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1057,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-09-13T19:52:26Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "7e528e4d4a4bc4e91cc95617e41ff288d9d942cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//tds\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1077,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-09-13T19:52:26Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "7e528e4d4a4bc4e91cc95617e41ff288d9d942cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//tdo\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1090,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-09-13T19:52:26Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "7e528e4d4a4bc4e91cc95617e41ff288d9d942cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//tdg\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1098,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-09-13T19:52:26Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "7e528e4d4a4bc4e91cc95617e41ff288d9d942cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//tdk\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1111,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-09-13T19:52:26Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "7e528e4d4a4bc4e91cc95617e41ff288d9d942cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//tdc\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1119,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-09-13T19:52:26Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "7e528e4d4a4bc4e91cc95617e41ff288d9d942cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//tdY\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1121,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-09-13T19:52:26Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "7e528e4d4a4bc4e91cc95617e41ff288d9d942cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//tdU\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1135,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-09-13T19:52:26Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "7e528e4d4a4bc4e91cc95617e41ff288d9d942cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//tdQ\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1744,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-09-13T19:52:26Z",
+      "side": 1,
+      "message": "you can scope this both in the if() and for().",
+      "revId": "7e528e4d4a4bc4e91cc95617e41ff288d9d942cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//tc0\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1825,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-09-13T19:52:26Z",
+      "side": 1,
+      "message": "can be scoped to the if() and made const below",
+      "revId": "7e528e4d4a4bc4e91cc95617e41ff288d9d942cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//tco\u003d",
+        "filename": "shared/webm_file.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-09-13T19:52:26Z",
+      "side": 1,
+      "message": "drop the final \u0027the\u0027",
+      "revId": "7e528e4d4a4bc4e91cc95617e41ff288d9d942cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//tck\u003d",
+        "filename": "shared/webm_file.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-09-13T19:52:26Z",
+      "side": 1,
+      "message": "To parse a...",
+      "revId": "7e528e4d4a4bc4e91cc95617e41ff288d9d942cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//tcc\u003d",
+        "filename": "shared/webm_file.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-09-13T19:52:26Z",
+      "side": 1,
+      "message": "space after the period",
+      "revId": "7e528e4d4a4bc4e91cc95617e41ff288d9d942cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//tcU\u003d",
+        "filename": "shared/webm_file.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-09-13T19:52:26Z",
+      "side": 1,
+      "message": "Check the function or function\u0027s?",
+      "revId": "7e528e4d4a4bc4e91cc95617e41ff288d9d942cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//tmU\u003d",
+        "filename": "shared/webm_file.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2012-09-13T19:52:26Z",
+      "side": 1,
+      "message": "this change should have come first; followed by the incremental framework, it will break webm_dash_manifest",
+      "revId": "7e528e4d4a4bc4e91cc95617e41ff288d9d942cd",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
