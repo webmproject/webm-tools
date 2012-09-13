@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAPn//uNc\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 700,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-09-13T02:55:13Z",
+      "side": 1,
+      "message": "I haven\u0027t had any issues.",
+      "parentUuid": "AAAAPn//uPI\u003d",
+      "revId": "7ca66cefc123951cbbe2060fbde891d4ed13684f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAPn//uO4\u003d",
         "filename": "shared/webm_file.cc",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2012-09-13T02:29:12Z",
       "side": 1,
       "message": "Matthew Heaney\t\t3:36 PM\nSuppose track(0) is an audio track, and the cues only exist for the video track?",
+      "revId": "7ca66cefc123951cbbe2060fbde891d4ed13684f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//uNY\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 713,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-09-13T02:55:13Z",
+      "side": 1,
+      "message": "Added a TODO:",
+      "parentUuid": "AAAAPn//uO4\u003d",
       "revId": "7ca66cefc123951cbbe2060fbde891d4ed13684f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAPn//uM4\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 716,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-09-13T02:55:13Z",
+      "side": 1,
+      "message": "Should be fine. I can test if you give me the clip.",
+      "parentUuid": "AAAAPn//uO0\u003d",
+      "revId": "7ca66cefc123951cbbe2060fbde891d4ed13684f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAPn//uOw\u003d",
         "filename": "shared/webm_file.cc",
         "patchSetId": 4
@@ -64,6 +118,24 @@
       "writtenOn": "2012-09-13T02:29:12Z",
       "side": 1,
       "message": "Matthew Heaney\t\t3:36 PM\nIf this is a short file (less than 1s), then duration / 10^9 will be 0 (integer division).",
+      "revId": "7ca66cefc123951cbbe2060fbde891d4ed13684f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//uMg\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 770,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-09-13T02:55:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAPn//uOw\u003d",
       "revId": "7ca66cefc123951cbbe2060fbde891d4ed13684f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAPn//uL8\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 938,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-09-13T02:55:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAPn//uOo\u003d",
+      "revId": "7ca66cefc123951cbbe2060fbde891d4ed13684f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAPn//uOU\u003d",
         "filename": "shared/webm_file.cc",
         "patchSetId": 4
@@ -98,6 +188,24 @@
       "writtenOn": "2012-09-13T02:29:12Z",
       "side": 1,
       "message": "Matthew Heaney\t\t3:36 PM\nIf you have 2 boolean variables, you should only require two tests to determine which of the 4 states you\u0027re in. You make 4 tests here. Why?",
+      "revId": "7ca66cefc123951cbbe2060fbde891d4ed13684f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//uLw\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 951,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-09-13T02:55:13Z",
+      "side": 1,
+      "message": "I don\u0027t understand how you would want me to write the code?",
+      "parentUuid": "AAAAPn//uOU\u003d",
       "revId": "7ca66cefc123951cbbe2060fbde891d4ed13684f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAPn//uLo\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 968,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-09-13T02:55:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAPn//uOQ\u003d",
+      "revId": "7ca66cefc123951cbbe2060fbde891d4ed13684f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAPn//uOI\u003d",
         "filename": "shared/webm_file.cc",
         "patchSetId": 4
@@ -132,6 +258,24 @@
       "writtenOn": "2012-09-13T02:29:12Z",
       "side": 1,
       "message": "Matthew Heaney\t\t3:36 PM\nWhat is the client supposed to do if the parse fails (as it eventually will) when E_BUFFER_NOT_FULL?",
+      "revId": "7ca66cefc123951cbbe2060fbde891d4ed13684f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//uLg\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1007,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-09-13T02:55:13Z",
+      "side": 1,
+      "message": "Check the function comment. I can change if it is not clear.",
+      "parentUuid": "AAAAPn//uOI\u003d",
       "revId": "7ca66cefc123951cbbe2060fbde891d4ed13684f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAPn//uLc\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1084,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-09-13T02:55:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAPn//uOE\u003d",
+      "revId": "7ca66cefc123951cbbe2060fbde891d4ed13684f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAPn//uOA\u003d",
         "filename": "shared/webm_file.cc",
         "patchSetId": 4
@@ -166,6 +328,24 @@
       "writtenOn": "2012-09-13T02:29:12Z",
       "side": 1,
       "message": "Matthew Heaney\t\t3:36 PM\nSuppose map::find returns map::end()?",
+      "revId": "7ca66cefc123951cbbe2060fbde891d4ed13684f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//uLQ\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1153,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-09-13T02:55:13Z",
+      "side": 1,
+      "message": "The keys are setup from all of the tracks. I\u0027m not sure how this could return map::end.",
+      "parentUuid": "AAAAPn//uOA\u003d",
       "revId": "7ca66cefc123951cbbe2060fbde891d4ed13684f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
