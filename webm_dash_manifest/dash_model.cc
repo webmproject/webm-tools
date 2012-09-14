@@ -71,17 +71,20 @@ DashModel::~DashModel() {
 }
 
 bool DashModel::Init() {
-  for (WebMFileIterator webm_iter = webm_files_.begin();
-      webm_iter != webm_files_.end();
-      ++webm_iter) {
-    if ((*webm_iter)->Init() == false)
+  for (vector<string>::const_iterator file_iter = webm_filenames_.begin();
+       file_iter != webm_filenames_.end();
+       ++file_iter) {
+    std::auto_ptr<WebMFile> webm(new WebMFile());
+    if (!webm->ParseFile(*file_iter))
       return false;
 
     if (profile_ == DashModel::webm_on_demand) {
-      if (!(*webm_iter)->OnlyOneStream()) {
+      if (!webm->OnlyOneStream()) {
         return false;
       }
     }
+
+    webm_files_.push_back(webm.release());
   }
 
   AdaptationSetIterator as_iter;
@@ -154,7 +157,7 @@ void DashModel::AppendBaseUrl(const string& url) {
 }
 
 void DashModel::AppendInputFile(const string& filename) {
-  webm_files_.push_back(new WebMFile(filename));
+  webm_filenames_.push_back(filename);
 }
 
 void DashModel::AddPeriod()  {
