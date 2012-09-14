@@ -104,6 +104,9 @@ class DashModel {
   // List of base urls for the mpd.
   std::vector<std::string> base_urls_;
 
+  // List of input WebM filenames.
+  std::vector<std::string> webm_filenames_;
+
   // List of input WebM files.
   std::vector<webm_tools::WebMFile*> webm_files_;
 
