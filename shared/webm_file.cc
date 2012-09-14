@@ -44,6 +44,7 @@ WebMFile::WebMFile()
       cluster_parse_offset_(0),
       cue_chunk_time_nano_(LLONG_MAX),
       end_of_file_position_(-1),
+      file_duration_nano_(-1),
       parse_func_(&WebMFile::ParseSegmentHeaders),
       ptr_cluster_(NULL),
       reader_(NULL),
@@ -841,7 +842,10 @@ int64 WebMFile::GetDurationNanoseconds() const {
     return 0;
   if (!segment_->GetInfo())
     return 0;
-  return segment_->GetInfo()->GetDuration();
+  const int64 info_duration = segment_->GetInfo()->GetDuration();
+  if (info_duration == -1)
+    return file_duration_nano_;
+  return info_duration;
 }
 
 void WebMFile::GetHeaderRange(int64* start, int64* end) const {
@@ -1197,17 +1201,14 @@ int64 WebMFile::CalculateBitsPerSecond(const mkvparser::CuePoint* cp) const {
 }
 
 double WebMFile::CalculateFrameRate(int track_number) const {
-  if (segment_->GetInfo()->GetDuration() == 0)
+  const int64 duration_nano = GetDurationNanoseconds();
+  if (duration_nano == 0)
     return 0.0;
   if (!calculated_file_stats_)
     return 0;
   const int64 frames = tracks_frame_count_.find(track_number)->second;
-
-  const double seconds =
-      segment_->GetInfo()->GetDuration() / kNanosecondsPerSecond;
-  const double frame_rate = frames / seconds;
-
-  return frame_rate;
+  const double seconds = duration_nano / kNanosecondsPerSecond;
+  return frames / seconds;
 }
 
 int64 WebMFile::CalculateTrackBitsPerSecond(
@@ -1430,8 +1431,13 @@ bool WebMFile::GenerateStats() {
 
       tracks_size_[track_number] += block->m_size;
       tracks_frame_count_[track_number]++;
+      const int64 timestamp_nano = block->GetTime(cluster);
       if (tracks_start_milli_[track_number] == -1)
-        tracks_start_milli_[track_number] = block->GetTime(cluster);
+        tracks_start_milli_[track_number] =
+            timestamp_nano / kNanosecondsPerMillisecond;
+
+      if (timestamp_nano > file_duration_nano_)
+        file_duration_nano_ = timestamp_nano;
 
       status = cluster->GetNext(block_entry, block_entry);
       if (status)
@@ -1703,7 +1709,7 @@ bool WebMFile::LoadCueDescList() {
   if (last_time_ns != -1) {
     CueDesc desc;
     desc.start_time_ns = last_time_ns;
-    desc.end_time_ns = segment_->GetInfo()->GetDuration();
+    desc.end_time_ns = GetDurationNanoseconds();
     desc.start_offset = last_offset;
     desc.end_offset = cues->m_element_start;
     cue_desc_list_.push_back(desc);
@@ -1920,7 +1926,7 @@ int WebMFile::PeakBitsPerSecond(int64 time_ns,
   if (!desc_end) {
     // The prebuffer is larger than the duration.
     *bits_per_second = 0.0;
-    if (segment_->GetInfo()->GetDuration() >= prebuffered_ns)
+    if (GetDurationNanoseconds() >= prebuffered_ns)
       return -1;
     return 0;
   }
@@ -1948,8 +1954,7 @@ int WebMFile::PeakBitsPerSecond(int64 time_ns,
 
     if (prebuffer < desc_sec) {
       const double search_sec =
-          static_cast<double>(segment_->GetInfo()->GetDuration()) /
-                              kNanosecondsPerSecond;
+          static_cast<double>(GetDurationNanoseconds()) / kNanosecondsPerSecond;
 
       // Add 1 so the bits per second should be a little bit greater than file
       // datarate.

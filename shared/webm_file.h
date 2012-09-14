@@ -464,6 +464,9 @@ class WebMFile {
   // indicates the file position has not been set.
   int64 end_of_file_position_;
 
+  // Calculated file duration in nanoseconds.
+  int64 file_duration_nano_;
+
   // Path to WebM file.
   std::string filename_;
 
