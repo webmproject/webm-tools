@@ -12,7 +12,6 @@
 
 #include "base/base_switches.h"
 #include "crypto/encryptor.h"
-#include "crypto/hmac.h"
 #include "crypto/symmetric_key.h"
 #include "mkvmuxer.hpp"
 #include "mkvmuxerutil.hpp"
@@ -24,6 +23,7 @@
 
 // This application uses the crypto library from the Chromium project. See the
 // readme.txt for build instructions.
+// TODO(fgalligan) Remove Chromium crypto library requirement.
 
 namespace {
 
@@ -32,7 +32,7 @@ using crypto::SymmetricKey;
 using mkvparser::ContentEncoding;
 using std::string;
 
-const char WEBM_CRYPT_VERSION_STRING[] = "0.1.0.0";
+const char WEBM_CRYPT_VERSION_STRING[] = "0.2.0.0";
 
 // Struct to hold encryption settings for a single WebM stream.
 struct EncryptionSettings {
@@ -44,8 +44,7 @@ struct EncryptionSettings {
         unencrypted_range(0) {
   }
 
-  // Path to a file which holds the base secret to derive the encryption and
-  // HMAC keys.
+  // Path to a file which holds the base secret.
   string base_secret_file;
 
   // AES encryption algorithm. Currently only "CTR" is supported.
@@ -69,7 +68,6 @@ struct WebMCryptSettings {
         output(),
         video(true),
         audio(false),
-        check_integrity(true),
         no_encryption(false),
         aud_enc(),
         vid_enc() {
@@ -87,9 +85,6 @@ struct WebMCryptSettings {
   // Flag telling if the audio stream should be encrypted.
   bool audio;
 
-  // Flag telling if the app should check the integrity of the data on decrypt.
-  bool check_integrity;
-
   // Flag telling if the app should not encrypt or decrypt the data. This
   // should only be used to test the other parts of the system.
   bool no_encryption;
@@ -106,39 +101,32 @@ struct WebMCryptSettings {
 // http://wiki.webmproject.org/encryption/webm-encryption-rfc
 class EncryptModule {
  public:
-  static const size_t kDefaultContentIDSize = 32;
-  static const size_t kHMACKeySize = 20;
+  static const size_t kDefaultContentIDSize = 16;
   static const size_t kKeySize = 16;
-  static const size_t kIntegrityCheckSize = 12;
   static const size_t kSHA1DigestSize = 20;
   static const uint8 kEncryptedFrame = 0x1;
 
-  // |enc| Encryption settings for a stream. |key| Encryption key for a
-  // stream and is owned by this class.
+  // |enc| Encryption settings for a stream. |secret| Encryption key for a
+  // stream.
   EncryptModule(const EncryptionSettings& enc, const string& secret);
   ~EncryptModule() {}
 
-  // Initializes encryption and HMAC keys. Returns true on success.
+  // Initializes encryption key. Returns true on success.
   bool Init();
 
-  // Encrypts |data| according to the encryption settings and encryption key.
-  // |length| is the size of |data| in bytes. |encrypt_frame| tells the
-  // encryptor whether to encrypt the frame or just add an HMAC to the
-  // unencrypted frame. |ciphertext| is the returned encrypted data. Returns
-  // true if |data| was encrypted and passed back through |ciphertext|.
-  bool EncryptData(const uint8* data,
+  // Processes |plaintext| according to the encryption settings,
+  // |encrypt_frame|, and |key_|. |length| is the size of |plaintext| in bytes.
+  // |encrypt_frame| tells the encryptor whether to encrypt the frame or just
+  // add a signal byte to the unencrypted frame. |ciphertext| is the returned
+  // encrypted data if |encrypt_frame| is true and signal byte + |plain_text|
+  // if |encrypt_frame| is false. Returns true if |plaintext| was processed and
+  // passed back through |ciphertext|.
+  bool ProcessData(const uint8* plaintext,
                    size_t length,
                    bool encrypt_frame,
                    string* ciphertext);
 
   void set_do_not_encrypt(bool flag) { do_not_encrypt_ = flag; }
-
-  // Derives encryption key and HMAC key from |secret| according to WebM
-  // specification. |raw_enc| is the output for encryption key. |raw_hmac| is
-  // the output for HMAC key. Returns true on success.
-  static bool DeriveRawKeys(const string& secret,
-                            string* raw_enc,
-                            string* raw_hmac);
 
   // Generates a 16 byte CTR Counter Block. The format is
   // | iv | block counter |. |iv| is an 8 byte CTR IV. |counter_block| is an
@@ -156,14 +144,8 @@ class EncryptModule {
   // Encryption key for the stream.
   scoped_ptr<SymmetricKey> key_;
 
-  // HMAC key for the stream.
-  string hmac_key_;
-
   // The next IV.
   uint64 next_iv_;
-
-  // String that holds the data to derive the encryption and HMAC keys.
-  const string secret_;
 };
 
 EncryptModule::EncryptModule(const EncryptionSettings& enc,
@@ -171,18 +153,11 @@ EncryptModule::EncryptModule(const EncryptionSettings& enc,
     : do_not_encrypt_(false),
       enc_(enc),
       key_(NULL),
-      next_iv_(enc.initial_iv),
-      secret_(secret) {
+      next_iv_(enc.initial_iv) {
+  key_.reset(SymmetricKey::Import(SymmetricKey::AES, secret));
 }
 
 bool EncryptModule::Init() {
-  string raw_enc_key;
-  if (!EncryptModule::DeriveRawKeys(secret_, &raw_enc_key, &hmac_key_)) {
-    fprintf(stderr, "Error generating raw keys from secret.\n");
-    return false;
-  }
-
-  key_.reset(SymmetricKey::Import(SymmetricKey::AES, raw_enc_key));
   if (!key_.get()) {
     fprintf(stderr, "Error creating encryption key.\n");
     return false;
@@ -190,7 +165,7 @@ bool EncryptModule::Init() {
   return true;
 }
 
-bool EncryptModule::EncryptData(const uint8* data, size_t length,
+bool EncryptModule::ProcessData(const uint8* plaintext, size_t length,
                                 bool encrypt_frame,
                                 string* ciphertext) {
   if (!ciphertext)
@@ -219,77 +194,25 @@ bool EncryptModule::EncryptData(const uint8* data, size_t length,
       return false;
     }
 
-    const string plaintext(reinterpret_cast<const char*>(data), length);
-    if (!encryptor.Encrypt(plaintext, ciphertext)) {
+    const string data_to_encrypt(reinterpret_cast<const char*>(plaintext),
+                                 length);
+    if (!encryptor.Encrypt(data_to_encrypt, ciphertext)) {
       fprintf(stderr, "Could not encrypt data.\n");
       return false;
     }
 
     // Prepend the IV.
     const uint64 be_iv = webm_tools::host_to_bigendian(iv);
-    char temp[sizeof(be_iv)];
-    memcpy(temp, &be_iv, sizeof(be_iv));
-    ciphertext->insert(0, temp, sizeof(be_iv));
+    char temp[sizeof(be_iv) + 1];
+    memcpy(temp + 1, &be_iv, sizeof(be_iv));
+    ciphertext->insert(0, temp, sizeof(temp));
   } else {
-    ciphertext->assign(reinterpret_cast<const char*>(data), length);
+    ciphertext->resize(length + 1);
+    ciphertext->insert(1, reinterpret_cast<const char*>(plaintext), length);
   }
 
   const uint8 signal_byte = encrypt_the_frame ? kEncryptedFrame : 0;
-  ciphertext->insert(0, 1, signal_byte);
-
-  crypto::HMAC hmac(crypto::HMAC::SHA1);
-  if (!hmac.Init(reinterpret_cast<const uint8*>(hmac_key_.data()),
-                 hmac_key_.size())) {
-    fprintf(stderr, "Could not initialize HMAC.\n");
-    return false;
-  }
-
-  uint8 calculated_hmac[kSHA1DigestSize];
-  if (!hmac.Sign(*ciphertext, calculated_hmac, kSHA1DigestSize)) {
-    fprintf(stderr, "Could not calculate HMAC.\n");
-    return false;
-  }
-
-  // Prepend an integrity check.
-  const char* const hmac_data = reinterpret_cast<const char*>(calculated_hmac);
-  ciphertext->insert(0, hmac_data, kIntegrityCheckSize);
-  return true;
-}
-
-bool EncryptModule::DeriveRawKeys(const string& secret,
-                                  string* raw_enc,
-                                  string* raw_hmac) {
-  if (!raw_enc || !raw_hmac)
-    return false;
-
-  if (secret.length() != EncryptModule::kKeySize) {
-    fprintf(stderr, "Base secret != kKeySize. length:%zu\n", secret.length());
-    return false;
-  }
-
-  crypto::HMAC hmac(crypto::HMAC::SHA1);
-  if (!hmac.Init(reinterpret_cast<const uint8*>(secret.data()),
-                 secret.size())) {
-    fprintf(stderr, "Could not initialize HMAC with secret data.\n");
-    return false;
-  }
-
-  uint8 calculated_hmac[EncryptModule::kSHA1DigestSize];
-  string seed("encryption-key");
-  if (!hmac.Sign(seed, calculated_hmac, EncryptModule::kSHA1DigestSize)) {
-    fprintf(stderr, "Could not calculate HMAC.\n");
-    return false;
-  }
-  const char* hmac_data = reinterpret_cast<const char*>(calculated_hmac);
-  raw_enc->insert(0, hmac_data, EncryptModule::kKeySize);
-
-  seed = "hmac-key";
-  if (!hmac.Sign(seed, calculated_hmac, EncryptModule::kSHA1DigestSize)) {
-    fprintf(stderr, "Could not calculate HMAC.\n");
-    return false;
-  }
-  hmac_data = reinterpret_cast<const char*>(calculated_hmac);
-  raw_hmac->insert(0, hmac_data, EncryptModule::kHMACKeySize);
+  ciphertext->replace(0, 1, 1, signal_byte);
   return true;
 }
 
@@ -313,6 +236,8 @@ bool EncryptModule::GenerateCounterBlock(uint64 iv, string* counter_block) {
 // RFC specification.
 class DecryptModule {
  public:
+  // |enc| Encryption settings for a stream. |secret| Decryption key for a
+  // stream. |no_decrypt| If true do not decrypt the stream.
   DecryptModule(const EncryptionSettings& enc,
                 const string& secret,
                 bool no_decrypt);
@@ -324,11 +249,10 @@ class DecryptModule {
 
   // Decrypts |data| according to the encryption settings and encryption key.
   // |length| is the size of |data| in bytes. |decrypttext| is the returned
-  // decrypted data. Returns true if |data| was decrypted and passed back
-  // through |decrypttext|.
+  // decrypted data if |data| was decrypted. If data was unencrypted then
+  // |decrypttext| is the original plaintext. Returns true if |data| was
+  // decrypted and passed back through |decrypttext|.
   bool DecryptData(const uint8* data, size_t length, string* decrypttext);
-
-  void set_check_integrity(bool check) { check_integrity_ = check; }
 
  private:
   // Flag telling if the class should not decrypt the data. This should
@@ -341,15 +265,6 @@ class DecryptModule {
   // Encryption key for the stream.
   scoped_ptr<SymmetricKey> key_;
 
-  // Flag to check the integrity of the data.
-  bool check_integrity_;
-
-  // HMAC key for the stream.
-  string hmac_key_;
-
-  // String that holds the data to derive the encryption and HMAC keys.
-  const string secret_;
-
   // Decryption class.
   Encryptor encryptor_;
 };
@@ -359,20 +274,11 @@ DecryptModule::DecryptModule(const EncryptionSettings& enc,
                              bool no_decrypt)
     : do_not_decrypt_(no_decrypt),
       enc_(enc),
-      key_(NULL),
-      check_integrity_(true),
-      secret_(secret),
-      encryptor_() {
+      key_(NULL) {
+  key_.reset(SymmetricKey::Import(SymmetricKey::AES, secret));
 }
 
 bool DecryptModule::Init() {
-  string raw_enc_key;
-  if (!EncryptModule::DeriveRawKeys(secret_, &raw_enc_key, &hmac_key_)) {
-    fprintf(stderr, "Error generating raw keys from secret.\n");
-    return false;
-  }
-
-  key_.reset(SymmetricKey::Import(SymmetricKey::AES, raw_enc_key));
   if (!key_.get()) {
     fprintf(stderr, "Error creating encryption key.\n");
     return false;
@@ -392,43 +298,12 @@ bool DecryptModule::DecryptData(const uint8* data, size_t length,
   if (!decrypttext)
     return false;
 
-  if (check_integrity_) {
-    crypto::HMAC hmac(crypto::HMAC::SHA1);
-    if (!hmac.Init(reinterpret_cast<const uint8*>(hmac_key_.data()),
-                   hmac_key_.size())) {
-      fprintf(stderr, "Could not initialize HMAC.\n");
-      return false;
-    }
-
-    const string check_text(
-        reinterpret_cast<const char*>(
-            data + EncryptModule::kIntegrityCheckSize),
-        length - EncryptModule::kIntegrityCheckSize);
-    uint8 calculated_hmac[EncryptModule::kSHA1DigestSize];
-    if (!hmac.Sign(check_text,
-                   calculated_hmac,
-                   EncryptModule::kSHA1DigestSize)) {
-      fprintf(stderr, "Could not calculate HMAC.\n");
-      return false;
-    }
-
-    const string hmac_trunc(reinterpret_cast<const char*>(calculated_hmac),
-                            EncryptModule::kIntegrityCheckSize);
-    const string hmac_data(reinterpret_cast<const char*>(data),
-                           EncryptModule::kIntegrityCheckSize);
-    if (hmac_data.compare(hmac_trunc) != 0) {
-      fprintf(stderr, "Integrity Check Failure. Skipping frame.\n");
-      decrypttext->clear();
-      return true;
-    }
-  }
-
   if (!do_not_decrypt_) {
-    const uint8 signal_byte = data[EncryptModule::kIntegrityCheckSize];
+    const uint8 signal_byte = data[0];
 
     if (signal_byte & EncryptModule::kEncryptedFrame) {
       uint64 iv;
-      memcpy(&iv, data + EncryptModule::kIntegrityCheckSize + 1, sizeof(iv));
+      memcpy(&iv, data + 1, sizeof(iv));
       iv = webm_tools::bigendian_to_host(iv);
 
       string counter_block;
@@ -442,8 +317,8 @@ bool DecryptModule::DecryptData(const uint8* data, size_t length,
         return false;
       }
 
-      const size_t offset = EncryptModule::kIntegrityCheckSize + 1 + sizeof(iv);
-      // Skip past the integrity check and IV.
+      const size_t offset = 1 + sizeof(iv);
+      // Skip past the IV.
       const string encryptedtext(
           reinterpret_cast<const char*>(data + offset),
           length - offset);
@@ -452,12 +327,12 @@ bool DecryptModule::DecryptData(const uint8* data, size_t length,
         return false;
       }
     } else {
-      const size_t offset = EncryptModule::kIntegrityCheckSize + 1;
+      const size_t offset = 1;
       decrypttext->assign(reinterpret_cast<const char*>(data + offset),
                           length - offset);
     }
   } else {
-    const size_t offset = EncryptModule::kIntegrityCheckSize + 1;
+    const size_t offset = 1;
     decrypttext->assign(reinterpret_cast<const char*>(data + offset),
                         length - offset);
   }
@@ -476,7 +351,6 @@ void Usage() {
   printf("  -audio <bool>         Process audio stream. (Default false)\n");
   printf("  -video <bool>         Process video stream. (Default true)\n");
   printf("  -decrypt              Decrypt the stream. (Default encrypt)\n");
-  printf("  -check_integrity      Check Integrity of data. (Default true)\n");
   printf("  -no_encryption        Test flag which will not encrypt or\n");
   printf("                        decrypt the data. (Default false)\n");
   printf("  \n");
@@ -1167,7 +1041,7 @@ int WebMEncrypt(const WebMCryptSettings& webm_crypt) {
             const bool encrypt_frame =
                 time_milli >= webm_crypt.aud_enc.unencrypted_range;
             if (track_type == mkvparser::Track::kAudio) {
-              if (!audio_encryptor.EncryptData(data.get(),
+              if (!audio_encryptor.ProcessData(data.get(),
                                                frame.len,
                                                encrypt_frame,
                                                &ciphertext)) {
@@ -1177,7 +1051,7 @@ int WebMEncrypt(const WebMCryptSettings& webm_crypt) {
             } else {
               const bool encrypt_frame =
                   time_milli >= webm_crypt.vid_enc.unencrypted_range;
-              if (!video_encryptor.EncryptData(data.get(),
+              if (!video_encryptor.ProcessData(data.get(),
                                                frame.len,
                                                encrypt_frame,
                                                &ciphertext)) {
@@ -1421,7 +1295,6 @@ int WebMDecrypt(const WebMCryptSettings& webm_crypt) {
     fprintf(stderr, "Could not initialize audio decryptor.\n");
     return -1;
   }
-  audio_decryptor.set_check_integrity(webm_crypt.check_integrity);
 
   DecryptModule video_decryptor(vid_enc,
                                 vid_base_secret,
@@ -1430,7 +1303,6 @@ int WebMDecrypt(const WebMCryptSettings& webm_crypt) {
     fprintf(stderr, "Could not initialize video decryptor.\n");
     return -1;
   }
-  video_decryptor.set_check_integrity(webm_crypt.check_integrity);
 
   const mkvparser::Cluster* cluster = parser_segment->GetFirst();
   while ((cluster != NULL) && !cluster->EOS()) {
@@ -1487,8 +1359,6 @@ int WebMDecrypt(const WebMCryptSettings& webm_crypt) {
               }
             }
 
-            // DecryptData may return true without decrypting data if the
-            // integrity check failed.
             if (!decrypttext.empty()) {
               if (!muxer_segment->AddFrame(
                       reinterpret_cast<const uint8*>(decrypttext.data()),
@@ -1596,8 +1466,6 @@ int main(int argc, char* argv[]) {
       webm_crypt_settings.video = !strcmp("true", argv[++i]);
     } else if (!strcmp("-decrypt", argv[i])) {
       encrypt = false;
-    } else if (!strcmp("-check_integrity", argv[i]) && i < argc_check) {
-      webm_crypt_settings.check_integrity = !strcmp("true", argv[++i]);
     } else if (!strcmp("-no_encryption", argv[i]) && i < argc_check) {
       webm_crypt_settings.no_encryption = !strcmp("true", argv[++i]);
     } else if (!strcmp("-audio_options", argv[i]) && i < argc_check) {
