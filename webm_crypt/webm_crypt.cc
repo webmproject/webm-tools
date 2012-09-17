@@ -19,6 +19,7 @@
 #include "mkvparser.hpp"
 #include "mkvreader.hpp"
 #include "mkvwriter.hpp"
+#include "webm_constants.h"
 #include "webm_endian.h"
 
 // This application uses the crypto library from the Chromium project. See the
