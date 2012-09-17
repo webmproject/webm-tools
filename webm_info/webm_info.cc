@@ -457,7 +457,6 @@ bool OutputCluster(const mkvparser::Cluster& cluster,
         if (options.output_size)
           fprintf(o, " size_payload: %lld", block->m_size);
 
-        const int kChecksumSize = 12;
         const uint8 KEncryptedBit = 0x1;
         const int kSignalByteSize = 1;
         bool encrypted_stream = false;
@@ -493,13 +492,12 @@ bool OutputCluster(const mkvparser::Cluster& cluster,
               return false;
             }
 
-            const bool encrypted_frame =
-                (data[kChecksumSize] & KEncryptedBit) ? 1 : 0;
+            const bool encrypted_frame = (data[0] & KEncryptedBit) ? 1 : 0;
             fprintf(o, " enc: %d", encrypted_frame ? 1 : 0);
 
             if (encrypted_frame) {
               uint64 iv;
-              memcpy(&iv, data + (kChecksumSize + kSignalByteSize), sizeof(iv));
+              memcpy(&iv, data + kSignalByteSize, sizeof(iv));
               iv = webm_tools::bigendian_to_host(iv);
               fprintf(o, " iv: %llu", iv);
             }
@@ -533,10 +531,10 @@ bool OutputCluster(const mkvparser::Cluster& cluster,
               bool encrypted_frame = false;
               int frame_offset = 0;
               if (encrypted_stream) {
-                if (data[kChecksumSize] & KEncryptedBit) {
+                if (data[0] & KEncryptedBit) {
                   encrypted_frame = true;
                 } else {
-                  frame_offset = kChecksumSize + kSignalByteSize;
+                  frame_offset = kSignalByteSize;
                 }
               }
 
