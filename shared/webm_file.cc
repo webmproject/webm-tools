@@ -967,6 +967,9 @@ WebMFile::Status WebMFile::ParseNextChunk(const uint8* data, int32 size,
     return kParsingError;
   }
 
+  // Set state to need more data.
+  *bytes_read = -1;
+
   if (!incremental_reader_.get()) {
     incremental_reader_.reset(
         new (std::nothrow) WebmIncrementalReader());  // NOLINT
