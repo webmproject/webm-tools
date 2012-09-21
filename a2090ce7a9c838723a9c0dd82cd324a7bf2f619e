@@ -16,6 +16,24 @@
       "revId": "a2090ce7a9c838723a9c0dd82cd324a7bf2f619e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//nqg\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 971,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-09-21T21:10:56Z",
+      "side": 1,
+      "message": "Right above this I check if bytes_read is not null.",
+      "parentUuid": "AAAAPn//n1Q\u003d",
+      "revId": "a2090ce7a9c838723a9c0dd82cd324a7bf2f619e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
