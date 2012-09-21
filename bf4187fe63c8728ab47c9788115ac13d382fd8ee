@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAPn//n0A\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-09-21T21:06:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAPn//oB8\u003d",
+      "revId": "bf4187fe63c8728ab47c9788115ac13d382fd8ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAPn//oB0\u003d",
         "filename": "webm_crypt/webm_crypt.cc",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2012-09-21T17:04:42Z",
       "side": 1,
       "message": "How does the caller know the length of ciphertext? length+1? Might be better and more future-proof to return the size.",
+      "revId": "bf4187fe63c8728ab47c9788115ac13d382fd8ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//nz0\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-09-21T21:06:49Z",
+      "side": 1,
+      "message": "It is a std::strings o they just call size(). That would probably be evident if I moved this to it\u0027s own file.",
+      "parentUuid": "AAAAPn//oB0\u003d",
       "revId": "bf4187fe63c8728ab47c9788115ac13d382fd8ee",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAPn//nzU\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-09-21T21:06:49Z",
+      "side": 1,
+      "message": "Not for now. I want to remove the libcrypto dependency at some point. http://code.google.com/p/webm/issues/detail?id\u003d462\n\nI wasn\u0027t to worried about the performance. I wanted to get the code to work correctly. If someone really has an issue with the copy we could add StringPiece.",
+      "parentUuid": "AAAAPn//oBY\u003d",
+      "revId": "bf4187fe63c8728ab47c9788115ac13d382fd8ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAPn//oBU\u003d",
         "filename": "webm_crypt/webm_crypt.cc",
         "patchSetId": 2
@@ -64,6 +118,24 @@
       "writtenOn": "2012-09-21T17:04:42Z",
       "side": 1,
       "message": "Another copy here and 214.",
+      "revId": "bf4187fe63c8728ab47c9788115ac13d382fd8ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//nrk\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-09-21T21:06:49Z",
+      "side": 1,
+      "message": "I\u0027m not sure how I could get rid of this copy.",
+      "parentUuid": "AAAAPn//oBU\u003d",
       "revId": "bf4187fe63c8728ab47c9788115ac13d382fd8ee",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAPn//nrg\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-09-21T21:06:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAPn//oBc\u003d",
+      "revId": "bf4187fe63c8728ab47c9788115ac13d382fd8ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAPn//oBE\u003d",
         "filename": "webm_crypt/webm_crypt.cc",
         "patchSetId": 2
@@ -104,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAPn//nrY\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-09-21T21:06:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAPn//oBE\u003d",
+      "revId": "bf4187fe63c8728ab47c9788115ac13d382fd8ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAPn//oBA\u003d",
         "filename": "webm_crypt/webm_crypt.cc",
         "patchSetId": 2
@@ -115,6 +223,24 @@
       "writtenOn": "2012-09-21T17:04:42Z",
       "side": 1,
       "message": "Do you need to retain this or is key_ all you really need?",
+      "revId": "bf4187fe63c8728ab47c9788115ac13d382fd8ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//nrI\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-09-21T21:06:49Z",
+      "side": 1,
+      "message": "Removed.",
+      "parentUuid": "AAAAPn//oBA\u003d",
       "revId": "bf4187fe63c8728ab47c9788115ac13d382fd8ee",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
