@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAPn//oB8\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1000158
+      },
+      "writtenOn": "2012-09-21T17:04:42Z",
+      "side": 1,
+      "message": "s/encryption key/|key_|/. You might swap |key_| and |encrypt_frame| too.",
+      "revId": "bf4187fe63c8728ab47c9788115ac13d382fd8ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//oB0\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1000158
+      },
+      "writtenOn": "2012-09-21T17:04:42Z",
+      "side": 1,
+      "message": "How does the caller know the length of ciphertext? length+1? Might be better and more future-proof to return the size.",
+      "revId": "bf4187fe63c8728ab47c9788115ac13d382fd8ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//oBY\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1000158
+      },
+      "writtenOn": "2012-09-21T17:04:42Z",
+      "side": 1,
+      "message": "Should we worry about the extra copies, especially if this was being run for a lot of files?",
+      "revId": "bf4187fe63c8728ab47c9788115ac13d382fd8ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//oBU\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1000158
+      },
+      "writtenOn": "2012-09-21T17:04:42Z",
+      "side": 1,
+      "message": "Another copy here and 214.",
+      "revId": "bf4187fe63c8728ab47c9788115ac13d382fd8ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//oBc\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1000158
+      },
+      "writtenOn": "2012-09-21T17:04:42Z",
+      "side": 1,
+      "message": "Another copy. This one could be avoided by resizing and inserting at 1 at 212 and 214.",
+      "revId": "bf4187fe63c8728ab47c9788115ac13d382fd8ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//oBE\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1000158
+      },
+      "writtenOn": "2012-09-21T17:04:42Z",
+      "side": 1,
+      "message": "s/with/and had/.\nThe current text sounds like the signal byte was used as the key.\nDoes this function support blocks without a signal byte? If not, then you can just drop \"with a signal byte\".",
+      "revId": "bf4187fe63c8728ab47c9788115ac13d382fd8ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//oBA\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1000158
+      },
+      "writtenOn": "2012-09-21T17:04:42Z",
+      "side": 1,
+      "message": "Do you need to retain this or is key_ all you really need?",
+      "revId": "bf4187fe63c8728ab47c9788115ac13d382fd8ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
