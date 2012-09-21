@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAPn//n1Q\u003d",
+        "filename": "shared/webm_file.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 971,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-09-21T19:11:16Z",
+      "side": 1,
+      "message": "It doesn\u0027t hurt to do this right up at the top of the function.  You do have a few kParsingError return values below, which aren\u0027t really any different from the error return that begins the function.",
+      "revId": "a2090ce7a9c838723a9c0dd82cd324a7bf2f619e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
