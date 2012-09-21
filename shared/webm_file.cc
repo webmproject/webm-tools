@@ -910,6 +910,10 @@ string WebMFile::GetMimeTypeWithCodec() const {
   return mimetype;
 }
 
+const mkvparser::Segment* WebMFile::GetSegment() const {
+  return segment_.get();
+}
+
 const mkvparser::SegmentInfo* WebMFile::GetSegmentInfo() const {
   if (state_ <= kParsingHeader)
     return NULL;

@@ -236,6 +236,10 @@ class WebMFile {
   // kParsingClusters for output to be valid.
   std::string GetMimeTypeWithCodec() const;
 
+  // Returns the Segment element. Returns NULL if the segment has not been
+  // created.
+  const mkvparser::Segment* GetSegment() const;
+
   // Returns the SegmentInfo element. Parser state must be >= kParsingClusters
   // for output to be valid.
   const mkvparser::SegmentInfo* GetSegmentInfo() const;
