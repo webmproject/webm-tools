@@ -72,6 +72,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAPn//nQw\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1000158
+      },
+      "writtenOn": "2012-09-22T03:38:34Z",
+      "side": 1,
+      "message": "Oh, duh.\nOkay, why do we input a buffer and get back a string?",
+      "parentUuid": "AAAAPn//nz0\u003d",
+      "revId": "bf4187fe63c8728ab47c9788115ac13d382fd8ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAPn//oBY\u003d",
         "filename": "webm_crypt/webm_crypt.cc",
         "patchSetId": 2
@@ -136,6 +154,24 @@
       "side": 1,
       "message": "I\u0027m not sure how I could get rid of this copy.",
       "parentUuid": "AAAAPn//oBU\u003d",
+      "revId": "bf4187fe63c8728ab47c9788115ac13d382fd8ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAPn//nQk\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1000158
+      },
+      "writtenOn": "2012-09-22T03:38:34Z",
+      "side": 1,
+      "message": "You would need to have populated bytes 9 and beyond with the encrypted block. Since Encrypt() takes a string, though, that\u0027s not possible.",
+      "parentUuid": "AAAAPn//nrk\u003d",
       "revId": "bf4187fe63c8728ab47c9788115ac13d382fd8ee",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
