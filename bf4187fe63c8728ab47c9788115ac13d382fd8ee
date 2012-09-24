@@ -90,6 +90,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAPn//miQ\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-09-24T16:52:20Z",
+      "side": 1,
+      "message": "I think this is an artifact of the changing encryption for WebM. At one point I think there was a lot less copying. Anyway I changed it to return a buffer and a size. I didn\u0027t change the decrypt as then I would have added an extra copy.",
+      "parentUuid": "AAAAPn//nQw\u003d",
+      "revId": "bf4187fe63c8728ab47c9788115ac13d382fd8ee",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAPn//oBY\u003d",
         "filename": "webm_crypt/webm_crypt.cc",
         "patchSetId": 2
