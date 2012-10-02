@@ -314,6 +314,7 @@ class WebMFile {
 
   const std::string& filename() const { return filename_; }
   Status state() const { return state_; }
+  mkvparser::IMkvReader* reader() { return reader_; }
 
  private:
   // Parse function pointer type.
