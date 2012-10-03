@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAQH//9j8\u003d",
+        "filename": "shared/webm_file.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-10-03T01:36:41Z",
+      "side": 1,
+      "message": "Note that this isn\u0027t \"const correct\".  In general if a member function returns T* then the function itself should be non-const.  The issue here is that you caller could modify the reader object (because it\u0027s T* not const T*) and in principle this could affect the behavior the WebmFile instance.",
+      "revId": "a0cba8007a731898c473140239cb89092117921b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
