@@ -2,6 +2,57 @@
   "comments": [
     {
       "key": {
+        "uuid": "AAAAQH//9kI\u003d",
+        "filename": "shared/webm_chunk_writer.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-10-03T01:38:33Z",
+      "side": 1,
+      "message": "from Write?",
+      "revId": "593aa5a142a6f1f3f590da3f12514218666cb775",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQH//9kA\u003d",
+        "filename": "shared/webm_chunk_writer.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-10-03T01:38:33Z",
+      "side": 1,
+      "message": "s/WebmChunkBuffer/WriteBuffer/ ?\nI know this was my wording, but: s/Constructed from user\u0027s/Uses |WriteBuffer| passed to |Init()|/.",
+      "revId": "593aa5a142a6f1f3f590da3f12514218666cb775",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQH//9kY\u003d",
+        "filename": "shared/webm_live_muxer.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-10-03T01:38:33Z",
+      "side": 1,
+      "message": "Remove configuration pointer stuff from comment.",
+      "revId": "593aa5a142a6f1f3f590da3f12514218666cb775",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAQH//9kk\u003d",
         "filename": "shared/webm_live_muxer.h",
         "patchSetId": 2
@@ -19,6 +70,23 @@
     },
     {
       "key": {
+        "uuid": "AAAAQH//9kU\u003d",
+        "filename": "shared/webm_live_muxer.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-10-03T01:38:33Z",
+      "side": 1,
+      "message": "I can\u0027t remember if there was a reason why this was not const string\u0026- does that work? If it does, please change it.",
+      "revId": "593aa5a142a6f1f3f590da3f12514218666cb775",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAQH//9kg\u003d",
         "filename": "shared/webm_live_muxer.h",
         "patchSetId": 2
@@ -30,6 +98,40 @@
       "writtenOn": "2012-10-03T01:37:20Z",
       "side": 1,
       "message": "As above.",
+      "revId": "593aa5a142a6f1f3f590da3f12514218666cb775",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQH//9kQ\u003d",
+        "filename": "shared/webm_live_muxer.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-10-03T01:38:33Z",
+      "side": 1,
+      "message": "Ditto.",
+      "revId": "593aa5a142a6f1f3f590da3f12514218666cb775",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQH//9kM\u003d",
+        "filename": "shared/webm_live_muxer.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2012-10-03T01:38:33Z",
+      "side": 1,
+      "message": "Not really anything to do here now, but we should consider copying an earlier version of scoped_ptr.h from chromium (from back when it was header only).",
       "revId": "593aa5a142a6f1f3f590da3f12514218666cb775",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
