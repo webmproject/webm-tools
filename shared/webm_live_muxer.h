@@ -29,11 +29,10 @@ class WebMChunkWriter;
 // WebM muxing class built atop libwebm. Provides buffers containing WebM
 // "chunks". Chunks will be comprised of one or more full level 1 WebM
 // Elements. The first chunk will include EBMLHeader, Segment, SegmentInfo,
-// Tracks and may include one or more Cluster Elements.
+// Tracks and may include one or more Cluster Elements. All other chunks will
+// be comprised of one or more full Clusters.
 //
 // Notes:
-// - Only the first chunk written is metadata. All other chunks are clusters.
-//
 // - All element size values are set to unknown (an EBML encoded -1).
 //
 // - Users MUST call |Init()| before any other method.
@@ -110,6 +109,11 @@ class WebMLiveMuxer {
   // fails.
   int AddAudioTrack(int sample_rate, int channels,
                     const uint8* private_data, size_t private_size);
+
+  // Adds |enc_key_id| as the ContnetEncKeyID element to the Track represented
+  // by |track_num|. |enc_key_id_size| is the size of |enc_key_id| in bytes.
+  bool AddContentEncKeyId(uint64 track_num,
+                          const uint8* enc_key_id, size_t enc_key_id_size);
 
   // Adds a video track to |ptr_segment_|, and returns the track number [1-127].
   // Returns |kVideoTrackAlreadyExists| when the video track has already been
