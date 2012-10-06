@@ -89,14 +89,15 @@ int WebMLiveMuxer::AddAudioTrack(int sample_rate, int channels,
     return kAudioTrackAlreadyExists;
   }
 
-  audio_track_num_ = ptr_segment_->AddAudioTrack(sample_rate, channels, 0);
-  if (!audio_track_num_) {
+  const uint64 audio_track_num =
+      ptr_segment_->AddAudioTrack(sample_rate, channels, 0);
+  if (!audio_track_num) {
     fprintf(stderr, "cannot AddAudioTrack on segment.\n");
     return kAudioTrackError;
   }
   mkvmuxer::AudioTrack* const ptr_audio_track =
       static_cast<mkvmuxer::AudioTrack*>(
-          ptr_segment_->GetTrackByNumber(audio_track_num_));
+          ptr_segment_->GetTrackByNumber(audio_track_num));
   if (!ptr_audio_track) {
     fprintf(stderr, "Unable to access audio track.\n");
     return kAudioTrackError;
@@ -105,7 +106,35 @@ int WebMLiveMuxer::AddAudioTrack(int sample_rate, int channels,
     fprintf(stderr, "Unable to write audio track codec private data.\n");
     return kAudioTrackError;
   }
+  audio_track_num_ = audio_track_num;
   return audio_track_num_;
+}
+
+bool WebMLiveMuxer::AddContentEncKeyId(uint64 track_num,
+                                       const uint8* enc_key_id,
+                                       size_t enc_key_id_size) {
+  mkvmuxer::Track* const track = ptr_segment_->GetTrackByNumber(track_num);
+  if (!track) {
+    fprintf(stderr, "Could not get Track.\n");
+    return false;
+  }
+  if (!track->AddContentEncoding()) {
+    fprintf(stderr, "Could not add ContentEncoding.\n");
+    return false;
+  }
+
+  mkvmuxer::ContentEncoding* const encoding =
+      track->GetContentEncodingByIndex(0);
+  if (!encoding) {
+    fprintf(stderr, "Could not add ContentEncoding.\n");
+    return false;
+  }
+
+  if (!encoding->SetEncryptionID(enc_key_id, enc_key_id_size)) {
+    fprintf(stderr, "Could not set encryption id for video track.\n");
+    return false;
+  }
+  return true;
 }
 
 int WebMLiveMuxer::AddVideoTrack(int width, int height) {
@@ -113,11 +142,12 @@ int WebMLiveMuxer::AddVideoTrack(int width, int height) {
     fprintf(stderr, "Cannot add video track: it already exists.\n");
     return kVideoTrackAlreadyExists;
   }
-  video_track_num_ = ptr_segment_->AddVideoTrack(width, height, 0);
-  if (!video_track_num_) {
+  const uint64 video_track_num = ptr_segment_->AddVideoTrack(width, height, 0);
+  if (!video_track_num) {
     fprintf(stderr, "cannot AddVideoTrack on segment.\n");
     return kVideoTrackError;
   }
+  video_track_num_ = video_track_num;
   return video_track_num_;
 }
 

@@ -111,6 +111,11 @@ class WebMLiveMuxer {
   int AddAudioTrack(int sample_rate, int channels,
                     const uint8* private_data, size_t private_size);
 
+  // Adds |enc_key_id| as the ContnetEncKeyID element to the Track represented
+  // by |track_num|. |enc_key_id_size| is the size of |enc_key_id| in bytes.
+  bool AddContentEncKeyId(uint64 track_num,
+                          const uint8* enc_key_id, size_t enc_key_id_size);
+
   // Adds a video track to |ptr_segment_|, and returns the track number [1-127].
   // Returns |kVideoTrackAlreadyExists| when the video track has already been
   // added. Returns |kVideoTrackError| when adding the track to the segment
