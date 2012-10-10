@@ -47,7 +47,7 @@ class WebMChunkWriter : public mkvmuxer::IMkvWriter {
   virtual int64 Position() const { return bytes_written_; }
 
   // Not seekable, return |kNotImplemented| on seek attempts.
-  virtual int32 Position(int64) { return kNotImplemented; }  // NOLINT
+  virtual int32 Position(int64 /* pos */) { return kNotImplemented; }
 
   // Always returns false: |WebMChunkWriter| is never seekable. Written data
   // goes into a vector, and data is buffered only until a chunk is completed.
