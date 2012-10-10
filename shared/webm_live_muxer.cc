@@ -20,7 +20,9 @@
 
 namespace mkvmuxer {
 class AudioTrack;
+class ContentEncoding;
 class SegmentInfo;
+class Track;
 }
 
 namespace webm_tools {
