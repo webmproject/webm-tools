@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAQn//+TU\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1000158
+      },
+      "writtenOn": "2012-10-12T22:55:12Z",
+      "side": 1,
+      "message": "counter_block.resize(keySize);",
+      "revId": "4ba4d9202f2a36df0f8d1887723b076255958ed2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQn//+Tk\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1000158
+      },
+      "writtenOn": "2012-10-12T22:55:12Z",
+      "side": 1,
+      "message": "DCHECK(kIvSize \u003d\u003d iv.length()).\nI\u0027d rather use the latter, but it\u0027s unnecessary CPU cycles.",
+      "revId": "4ba4d9202f2a36df0f8d1887723b076255958ed2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQn//+TA\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 1000158
+      },
+      "writtenOn": "2012-10-12T22:55:12Z",
+      "side": 1,
+      "message": "Check total length before accessing the memory.",
+      "revId": "4ba4d9202f2a36df0f8d1887723b076255958ed2",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
