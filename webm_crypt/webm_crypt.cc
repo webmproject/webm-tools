@@ -32,7 +32,7 @@ using crypto::SymmetricKey;
 using mkvparser::ContentEncoding;
 using std::string;
 
-const char WEBM_CRYPT_VERSION_STRING[] = "0.2.0.0";
+const char WEBM_CRYPT_VERSION_STRING[] = "0.3.0.0";
 
 // Struct to hold encryption settings for a single WebM stream.
 struct EncryptionSettings {
@@ -102,6 +102,7 @@ struct WebMCryptSettings {
 class EncryptModule {
  public:
   static const size_t kDefaultContentIDSize = 16;
+  static const size_t kIVSize = 8;
   static const size_t kKeySize = 16;
   static const size_t kSHA1DigestSize = 20;
   static const size_t kSignalByteSize = 1;
@@ -132,7 +133,7 @@ class EncryptModule {
   // Generates a 16 byte CTR Counter Block. The format is
   // | iv | block counter |. |iv| is an 8 byte CTR IV. |counter_block| is an
   // output string containing the Counter Block. Returns true on success.
-  static bool GenerateCounterBlock(uint64 iv, string* counter_block);
+  static bool GenerateCounterBlock(const string& iv, string* counter_block);
 
  private:
   // Flag telling if the class should not encrypt the data. This should
@@ -186,8 +187,9 @@ bool EncryptModule::ProcessData(const uint8* plaintext, size_t size,
     // Set the IV.
     const uint64 iv = next_iv_++;
 
+    const string iv_str(reinterpret_cast<const char*>(&iv), sizeof(iv));
     string counter_block;
-    if (!GenerateCounterBlock(iv, &counter_block)) {
+    if (!GenerateCounterBlock(iv_str, &counter_block)) {
       fprintf(stderr, "Could not generate counter block.\n");
       return false;
     }
@@ -206,14 +208,13 @@ bool EncryptModule::ProcessData(const uint8* plaintext, size_t size,
     }
 
     // Prepend the IV.
-    const uint64 be_iv = webm_tools::host_to_bigendian(iv);
-    cipher_temp_size += sizeof(be_iv);
+    cipher_temp_size += sizeof(iv);
     cipher_temp.reset(new (std::nothrow) uint8[cipher_temp_size]);  // NOLINT
     if (!cipher_temp.get())
       return false;
 
-    memcpy(cipher_temp.get() + kSignalByteSize, &be_iv, sizeof(be_iv));
-    memcpy(cipher_temp.get() + sizeof(be_iv) + kSignalByteSize,
+    memcpy(cipher_temp.get() + kSignalByteSize, &iv, sizeof(iv));
+    memcpy(cipher_temp.get() + sizeof(iv) + kSignalByteSize,
            encrypted_text.data(), encrypted_text.size());
   } else {
     cipher_temp.reset(new (std::nothrow) uint8[cipher_temp_size]);  // NOLINT
@@ -231,19 +232,15 @@ bool EncryptModule::ProcessData(const uint8* plaintext, size_t size,
   return true;
 }
 
-bool EncryptModule::GenerateCounterBlock(uint64 iv, string* counter_block) {
-  if (!counter_block)
+bool EncryptModule::GenerateCounterBlock(const string& iv,
+                                         string* counter_block) {
+  if (!counter_block || iv.size() != kIVSize)
     return false;
-  char temp[kKeySize];
 
-  // Set the IV.
-  memcpy(temp, &iv, sizeof(iv));
-  const uint32 offset = sizeof(iv);
+  counter_block->reserve(kKeySize);
+  counter_block->append(iv);
+  counter_block->append(kKeySize - kIVSize, 0);
 
-  // Set block counter to all 0's.
-  memset(temp + offset, 0, kKeySize - offset);
-
-  counter_block->assign(temp, sizeof(temp));
   return true;
 }
 
@@ -315,12 +312,21 @@ bool DecryptModule::DecryptData(const uint8* data, size_t length,
     return false;
 
   if (!do_not_decrypt_) {
+    if (length == 0) {
+      fprintf(stderr, "Length of encrypted data is 0.\n");
+      return false;
+    }
     const uint8 signal_byte = data[0];
 
     if (signal_byte & EncryptModule::kEncryptedFrame) {
-      uint64 iv;
-      memcpy(&iv, data + EncryptModule::kSignalByteSize, sizeof(iv));
-      iv = webm_tools::bigendian_to_host(iv);
+      if (length < EncryptModule::kSignalByteSize + EncryptModule::kIVSize) {
+        fprintf(stderr, "Not enough data to read IV.\n");
+        return false;
+      }
+
+      const char* iv_data =
+          reinterpret_cast<const char*>(data + EncryptModule::kSignalByteSize);
+      const string iv(iv_data, EncryptModule::kIVSize);
 
       string counter_block;
       if (!EncryptModule::GenerateCounterBlock(iv, &counter_block)) {
