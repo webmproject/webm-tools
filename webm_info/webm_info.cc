@@ -498,8 +498,7 @@ bool OutputCluster(const mkvparser::Cluster& cluster,
             if (encrypted_frame) {
               uint64 iv;
               memcpy(&iv, data + kSignalByteSize, sizeof(iv));
-              iv = webm_tools::bigendian_to_host(iv);
-              fprintf(o, " iv: %llu", iv);
+              fprintf(o, " iv: %llx", iv);
             }
           }
         }
