@@ -32,7 +32,7 @@ using crypto::SymmetricKey;
 using mkvparser::ContentEncoding;
 using std::string;
 
-const char WEBM_CRYPT_VERSION_STRING[] = "0.3.0.0";
+const char WEBM_CRYPT_VERSION_STRING[] = "0.3.1.0";
 
 // Struct to hold encryption settings for a single WebM stream.
 struct EncryptionSettings {
@@ -69,6 +69,7 @@ struct WebMCryptSettings {
         video(true),
         audio(false),
         no_encryption(false),
+        match_src_clusters(false),
         aud_enc(),
         vid_enc() {
   }
@@ -88,6 +89,9 @@ struct WebMCryptSettings {
   // Flag telling if the app should not encrypt or decrypt the data. This
   // should only be used to test the other parts of the system.
   bool no_encryption;
+
+  // Flag telling app to match the placement of the source WebM Clusters.
+  bool match_src_clusters;
 
   // Encryption settings for the audio stream.
   EncryptionSettings aud_enc;
@@ -375,6 +379,7 @@ void Usage() {
   printf("  -decrypt              Decrypt the stream. (Default encrypt)\n");
   printf("  -no_encryption        Test flag which will not encrypt or\n");
   printf("                        decrypt the data. (Default false)\n");
+  printf("  -match_src_clusters   Flag to match source WebM (Default false)\n");
   printf("  \n");
   printf("-audio_options <string> Semicolon separated name value pair.\n");
   printf("  content_id=<string>   Encryption content ID. (Default empty)\n");
@@ -1019,6 +1024,7 @@ int WebMEncrypt(const WebMCryptSettings& webm_crypt) {
   }
   video_encryptor.set_do_not_encrypt(webm_crypt.no_encryption);
 
+  const mkvparser::Cluster* prev_cluster = NULL;
   const mkvparser::Cluster* cluster = parser_segment->GetFirst();
   while ((cluster != NULL) && !cluster->EOS()) {
     const mkvparser::BlockEntry* block_entry;
@@ -1053,6 +1059,11 @@ int WebMEncrypt(const WebMCryptSettings& webm_crypt) {
 
           if (frame.Read(&reader, data.get()))
             return -1;
+
+          if (webm_crypt.match_src_clusters && prev_cluster != cluster) {
+            muxer_segment->ForceNewClusterOnNextFrame();
+            prev_cluster = cluster;
+          }
 
           const uint64 track_num =
               (track_type == mkvparser::Track::kAudio) ? aud_track : vid_track;
@@ -1493,6 +1504,8 @@ int main(int argc, char* argv[]) {
       encrypt = false;
     } else if (!strcmp("-no_encryption", argv[i]) && i < argc_check) {
       webm_crypt_settings.no_encryption = !strcmp("true", argv[++i]);
+    } else if (!strcmp("-match_src_clusters", argv[i]) && i < argc_check) {
+      webm_crypt_settings.match_src_clusters = !strcmp("true", argv[++i]);
     } else if (!strcmp("-audio_options", argv[i]) && i < argc_check) {
       string option_list(argv[++i]);
       ParseStreamOptions(option_list, &webm_crypt_settings.aud_enc);
