@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAQn//034\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1488,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-10-25T18:55:27Z",
+      "side": 1,
+      "message": "I still haven\u0027t figured out what this is for.  argv[argc] is defined to be NULL, if that makes a difference.  (But no need to change it here.)",
+      "revId": "e505d99cea2b6c1f3b6a2b38cf5834374292e5a6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQn//02g\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1507,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-10-25T18:55:27Z",
+      "side": 1,
+      "message": "Note that here and elsewhere, this isn\u0027t really correct.  If you have a matching switch, but haven\u0027t specified a switch value (which is a separate argument on the command line), then that\u0027s an error and you should abort the parse.",
+      "revId": "e505d99cea2b6c1f3b6a2b38cf5834374292e5a6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQn//02c\u003d",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1516,
+      "author": {
+        "id": 1002833
+      },
+      "writtenOn": "2012-10-25T18:55:27Z",
+      "side": 1,
+      "message": "Note that here and elsewhere, if you have a switch that isn\u0027t defined, you should alert the user and abort the parse.",
+      "revId": "e505d99cea2b6c1f3b6a2b38cf5834374292e5a6",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
