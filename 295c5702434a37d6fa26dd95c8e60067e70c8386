@@ -11,6 +11,15 @@ Change-Id: I295c5702434a37d6fa26dd95c8e60067e70c8386
 Code-Review+2: Frank Galligan <fgalligan@google.com>
 Verified+1: James Zern <jzern@google.com>
 Submitted-by: James Zern <jzern@google.com>
+Submitted-at: Thu, 08 Mar 2012 16:07:10 -0700
+Reviewed-on: https://gerrit.chromium.org/gerrit/17621
+Project: webm/webm-tools
+Branch: refs/heads/master
+
+Change-Id: I295c5702434a37d6fa26dd95c8e60067e70c8386
+Code-Review+2: Frank Galligan <fgalligan@google.com>
+Verified+1: James Zern <jzern@google.com>
+Submitted-by: James Zern <jzern@google.com>
 Submitted-at: Thu, 08 Mar 2012 15:07:10 -0800
 Reviewed-on: https://gerrit.chromium.org/gerrit/17621
 Project: webm/webm-tools
