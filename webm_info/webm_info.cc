@@ -50,6 +50,7 @@ struct Options {
   bool output_vp8_info;
   bool output_clusters_size;
   bool output_encrypted_info;
+  bool is_vpnext;
 };
 
 Options::Options()
@@ -66,7 +67,8 @@ Options::Options()
       output_blocks(false),
       output_vp8_info(false),
       output_clusters_size(false),
-      output_encrypted_info(false) {
+      output_encrypted_info(false),
+      is_vpnext(false) {
 }
 
 void Options::SetAll(bool value) {
@@ -107,6 +109,7 @@ void Usage() {
   printf("  -vp8_info <bool>      Output VP8 information (false)\n");
   printf("  -clusters_size <bool> Output Total Clusters size (false)\n");
   printf("  -encrypted_info <bool> Output encrypted frame info (false)\n");
+  printf("  -vpnext <bool> Assume input file has vpnext bitstream (false)\n");
 }
 
 // TODO(fgalligan): Add support for non-ascii.
@@ -365,6 +368,18 @@ bool OutputTracks(const mkvparser::Segment& segment,
   return true;
 }
 
+void read_frame_length(unsigned char *data, unsigned long *length,
+                       unsigned long *offset) {
+  unsigned long value = 0;
+  int i = -1;
+  do {
+      i++;
+      value |= (data[i] & 0x7F) << (i * 7);
+  } while (data[i] >> 7);
+  *offset += ++i;
+  *length = value;
+}
+
 bool OutputCluster(const mkvparser::Cluster& cluster,
                    const mkvparser::Tracks& tracks,
                    const Options& options,
@@ -540,15 +555,43 @@ bool OutputCluster(const mkvparser::Cluster& cluster,
 
               if (!encrypted_frame) {
                 data += frame_offset;
-                const unsigned int temp =
-                    (data[2] << 16) | (data[1] << 8) | data[0];
+                unsigned int temp;
 
-                const int vp8_key = !(temp & 0x1);
-                const int vp8_version = (temp >> 1) & 0x7;
-                const int vp8_altref = !((temp >> 4) & 0x1);
-                const int vp8_partition_length = (temp >> 5) & 0x7FFFF;
-                fprintf(o, " key:%d v:%d altref:%d partition_length:%d",
-                        vp8_key, vp8_version, vp8_altref, vp8_partition_length);
+                int vp8_packed = data[0] & 0x01;
+                int vp8_key, vp8_version, vp8_altref, vp8_partition_length;
+                unsigned long length = 0;
+                unsigned long offset = 1;
+                if (options.is_vpnext) {
+                  if (vp8_packed) {
+                    read_frame_length(data + offset, &length, &offset);
+                    temp = (data[offset + 2] << 16)
+                                    | (data[offset + 1] << 8) | data[offset];
+                    vp8_key = !(temp & 0x1);
+                    vp8_version = (temp >> 1) & 0x7;
+                    vp8_altref = !((temp >> 4) & 0x1);
+                    vp8_partition_length = length;
+                    fprintf(o," packed frame - "
+                              " contains an altref and a p-frame\n");
+                    fprintf(o, "\t\t\t\t\t\t\t\t packed:1 "
+                               "key:%d v:%d altref:%d partition_length:%d",
+                               vp8_key, vp8_version, vp8_altref,
+                               vp8_partition_length);
+                    fprintf(o, "\n\t\t\t\t\t\t\t\t");
+                    offset += length + 1;
+                  }
+                  read_frame_length(data + offset, &length, &offset);
+                } else {
+                  offset = 0;
+                }
+                temp = (data[offset + 2] << 16) |
+                            (data[offset + 1] << 8) | data[offset];
+                vp8_key = !(temp & 0x1);
+                vp8_version = (temp >> 1) & 0x7;
+                vp8_altref = !((temp >> 4) & 0x1);
+                vp8_partition_length = (options.is_vpnext) ?
+                                        length : (temp >> 5) & 0x7FFFF;
+                fprintf(o, " packed:0 key:%d v:%d altref:%d partition_length:%d",
+                       vp8_key, vp8_version, vp8_altref, vp8_partition_length);
               }
             }
           }
@@ -620,6 +663,8 @@ int main(int argc, char* argv[]) {
       options.output_clusters_size = !!strcmp("false", argv[++i]);
     } else if (!strcmp("-encrypted_info", argv[i]) && i < argc_check) {
       options.output_encrypted_info = !!strcmp("false", argv[++i]);
+    } else if (!strcmp("-vpnext", argv[i]) && i < argc_check) {
+      options.is_vpnext = !!strcmp("false", argv[++i]);
     }
   }
 
