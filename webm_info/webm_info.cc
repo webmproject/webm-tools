@@ -50,6 +50,7 @@ struct Options {
   bool output_vp8_info;
   bool output_clusters_size;
   bool output_encrypted_info;
+  bool is_vpnext;
 };
 
 Options::Options()
@@ -66,7 +67,8 @@ Options::Options()
       output_blocks(false),
       output_vp8_info(false),
       output_clusters_size(false),
-      output_encrypted_info(false) {
+      output_encrypted_info(false),
+      is_vpnext(false) {
 }
 
 void Options::SetAll(bool value) {
@@ -107,6 +109,7 @@ void Usage() {
   printf("  -vp8_info <bool>      Output VP8 information (false)\n");
   printf("  -clusters_size <bool> Output Total Clusters size (false)\n");
   printf("  -encrypted_info <bool> Output encrypted frame info (false)\n");
+  printf("  -vpnext <bool>        Assume input file has vpnext bitstream (false)\n");
 }
 
 // TODO(fgalligan): Add support for non-ascii.
@@ -365,6 +368,54 @@ bool OutputTracks(const mkvparser::Segment& segment,
   return true;
 }
 
+void read_frame_length(const unsigned char* data, int size, int* length,
+                              int* offset) {
+  int value = 0, index, i = 0;
+  do {
+    size -= value + i;
+    i = 0;
+    value = 0;
+    do {
+      index = size - 1 - i;
+      value <<= 7;
+      value |= (data[index] & 0x7F);
+      i++;
+    } while (!(data[index] >> 7));
+  } while (value + i < size);
+  *length = value;
+  *offset = i;
+}
+
+void print_vp8_info(unsigned char* data, int size, int is_vpnext, FILE *o) {
+  int length = 0, offset = 0;
+  unsigned int temp;
+  unsigned char altref_frame;
+  int i = 0;
+
+  do {
+    altref_frame = !(*data & 0x10);
+    temp = (data[2] << 16) | (data[1] << 8) | data[0];
+    const int vp8_key = !(temp & 0x1);
+    const int vp8_version = (temp >> 1) & 0x7;
+    const int vp8_partition_length = (temp >> 5) & 0x7FFFF;
+    if(is_vpnext) {
+      read_frame_length(data, size, &length, &offset);
+      offset += length;
+    }
+    data += offset;
+    size -= offset;
+    if(is_vpnext && (i > 0 || altref_frame)) {
+      fprintf(o, " packed [%d]: {", i);
+    }
+    fprintf(o, " key:%d v:%d altref:%d partition_length:%d",
+                vp8_key, vp8_version, altref_frame, vp8_partition_length);
+    if(is_vpnext && (i > 0 || altref_frame)) {
+      fprintf(o, " }");
+    }
+    i++;
+  } while (altref_frame && is_vpnext);
+}
+
 bool OutputCluster(const mkvparser::Cluster& cluster,
                    const mkvparser::Tracks& tracks,
                    const Options& options,
@@ -540,15 +591,7 @@ bool OutputCluster(const mkvparser::Cluster& cluster,
 
               if (!encrypted_frame) {
                 data += frame_offset;
-                const unsigned int temp =
-                    (data[2] << 16) | (data[1] << 8) | data[0];
-
-                const int vp8_key = !(temp & 0x1);
-                const int vp8_version = (temp >> 1) & 0x7;
-                const int vp8_altref = !((temp >> 4) & 0x1);
-                const int vp8_partition_length = (temp >> 5) & 0x7FFFF;
-                fprintf(o, " key:%d v:%d altref:%d partition_length:%d",
-                        vp8_key, vp8_version, vp8_altref, vp8_partition_length);
+                print_vp8_info(data, frame.len, options.is_vpnext, o);
               }
             }
           }
@@ -620,6 +663,8 @@ int main(int argc, char* argv[]) {
       options.output_clusters_size = !!strcmp("false", argv[++i]);
     } else if (!strcmp("-encrypted_info", argv[i]) && i < argc_check) {
       options.output_encrypted_info = !!strcmp("false", argv[++i]);
+    } else if (!strcmp("-vpnext", argv[i]) && i < argc_check) {
+      options.is_vpnext = !!strcmp("false", argv[++i]);
     }
   }
 
