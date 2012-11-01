@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAQ3//68I\u003d",
+        "filename": "webm_info/webm_info.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-11-01T18:28:36Z",
+      "side": 1,
+      "message": "nit: Align Assume with most of the other options.\n\n\nprintf(\"  -vpnext \u003cbool\u003e              Assume input file.....",
+      "revId": "395e66f376eec4171ae7630702b616571cbda5bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQ3//66A\u003d",
+        "filename": "webm_info/webm_info.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-11-01T18:28:36Z",
+      "side": 1,
+      "message": "Make data const.\n\nAlso put the asterisk adjacent to the type to be consistent in this file.\n\nChange unsigned long to unsigned int to be consistent with this file. Might be better to change length to size_t.",
+      "revId": "395e66f376eec4171ae7630702b616571cbda5bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQ3//658\u003d",
+        "filename": "webm_info/webm_info.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-11-01T18:28:36Z",
+      "side": 1,
+      "message": "You can set i to 0 and then pre-incrment i in your while check.",
+      "revId": "395e66f376eec4171ae7630702b616571cbda5bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQ3//65U\u003d",
+        "filename": "webm_info/webm_info.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 560,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-11-01T18:28:36Z",
+      "side": 1,
+      "message": "Change this to const and move to after is_vpnext scope. Should probably add kPackedFrameBit const. (But I know that as not as consistent as it should be in this file.)",
+      "revId": "395e66f376eec4171ae7630702b616571cbda5bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQ3//65E\u003d",
+        "filename": "webm_info/webm_info.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-11-01T18:28:36Z",
+      "side": 1,
+      "message": "You could change this to while(data[offset] \u0026 kPackedFrameBit) in case in the future there is more than one packed frame, but that could always be changed later.",
+      "revId": "395e66f376eec4171ae7630702b616571cbda5bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQ3//63U\u003d",
+        "filename": "webm_info/webm_info.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-11-01T18:28:36Z",
+      "side": 1,
+      "message": "refactor the vp8 parsing and output code to another function.",
+      "revId": "395e66f376eec4171ae7630702b616571cbda5bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQ3//63c\u003d",
+        "filename": "webm_info/webm_info.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-11-01T18:28:36Z",
+      "side": 1,
+      "message": "I think for now I would keep the output on one line.\n\nMaybe \"packed [0] key: v:... [1] key: v:...\"",
+      "revId": "395e66f376eec4171ae7630702b616571cbda5bb",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
