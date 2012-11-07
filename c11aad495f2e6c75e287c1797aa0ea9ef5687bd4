@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAQ3//3ak\u003d",
+        "filename": "webm_info/webm_info.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-11-07T17:19:58Z",
+      "side": 1,
+      "message": "offset is probably a bad name. Maybe change offset to size_length and length to frame_length.",
+      "revId": "c11aad495f2e6c75e287c1797aa0ea9ef5687bd4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAQ3//3ac\u003d",
+        "filename": "webm_info/webm_info.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2012-11-07T17:19:58Z",
+      "side": 1,
+      "message": "You don\u0027t need to explicitly set index every time though the loop. You can set it above this loop and the decrement in the while check.",
+      "revId": "c11aad495f2e6c75e287c1797aa0ea9ef5687bd4",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
