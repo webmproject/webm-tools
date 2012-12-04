@@ -86,6 +86,11 @@ class WebMFile {
   // Returns true if the file has been loaded and verified.
   bool ParseFile(const std::string& filename);
 
+  // Loads and parses the webm file. |reader| is an object that implements the
+  // mkvparser::IMkvReader interface. Returns false if the DocType is not
+  // "webm". Returns true if the file has been loaded and verified.
+  bool ParseFile(mkvparser::IMkvReader* reader);
+
   // Returns true if the file contains at least one audio track. Parser
   // state must be >= kParsingClusters for output to be valid.
   bool HasAudio() const;

@@ -75,7 +75,17 @@ bool WebMFile::ParseFile(const string& filename) {
     fprintf(stderr, "Error trying to open file:%s\n", filename_.c_str());
     return false;
   }
-  reader_ = file_reader_.get();
+
+  return ParseFile(file_reader_.get());
+}
+
+bool WebMFile::ParseFile(mkvparser::IMkvReader* reader) {
+  if (state_ != kParsingHeader) {
+    fprintf(stderr, "Error ParseFile. state_:%d != kParsingHeader\n", state_);
+    return false;
+  }
+
+  reader_ = reader;
 
   int64 pos = 0;
   mkvparser::EBMLHeader ebml_header;
