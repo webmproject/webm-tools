@@ -1,0 +1,13 @@
+This is the VP8 Alpha Encoder which can produce VP8 videos with alpha channel
+from raw AYUV videos. This is dependent on libvpx being made previously on the
+correct level (in ../../).
+
+To convert an avi/vp6a video with alpha into raw ayuv video, use:
+  ffmpeg -i <input_file> -f rawvideo -vcodec rawvideo -an -pix_fmt yuva420p raw.out
+
+Make sure to note down the width and height in the output.
+
+Then, you can encode the raw file with VP8 along with the alpha using:
+  ./alpha_encoder <width> <height> raw.out vp8alpha.webm
+
+The design doc of how this works can be found here: http://goo.gl/wCP1y
