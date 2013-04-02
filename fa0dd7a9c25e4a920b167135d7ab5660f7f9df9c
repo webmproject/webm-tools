@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAW3//4FQ\u003d",
+        "filename": "alpha_encoder/Makefile",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-02T23:57:49Z",
+      "side": 1,
+      "message": "don\u0027t do this; just take the default CC",
+      "revId": "fa0dd7a9c25e4a920b167135d7ab5660f7f9df9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAW3//4FA\u003d",
+        "filename": "alpha_encoder/Makefile",
+        "patchSetId": 3
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-02T23:57:49Z",
+      "side": 1,
+      "message": "this isn\u0027t necessary either; see the other Makefiles in this project and their use of %.o: %.c",
+      "revId": "fa0dd7a9c25e4a920b167135d7ab5660f7f9df9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAW3//4E8\u003d",
+        "filename": "alpha_encoder/Makefile",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-02T23:57:49Z",
+      "side": 1,
+      "message": "why not use libwebm to mux?",
+      "revId": "fa0dd7a9c25e4a920b167135d7ab5660f7f9df9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAW3//4E0\u003d",
+        "filename": "alpha_encoder/alpha_encoder.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-02T23:57:49Z",
+      "side": 1,
+      "message": "why isn\u0027t this source c++ and using libwebm?\nthose should both be todos at least",
+      "revId": "fa0dd7a9c25e4a920b167135d7ab5660f7f9df9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAW3//4Ek\u003d",
+        "filename": "alpha_encoder/alpha_encoder.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-02T23:57:49Z",
+      "side": 1,
+      "message": "so now we\u0027re duping this between libvpx? it should be split into something more reusable or rolled back into the libmkv source from where it started...",
+      "revId": "fa0dd7a9c25e4a920b167135d7ab5660f7f9df9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
