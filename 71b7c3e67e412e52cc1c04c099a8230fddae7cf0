@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAW3//434\u003d",
+        "filename": "alpha_encoder/README",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-04-02T21:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAW3//5Fw\u003d",
+      "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAW3//5Fo\u003d",
         "filename": "alpha_encoder/alpha_encoder.c",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2013-04-02T16:44:18Z",
       "side": 1,
       "message": "nit: space",
+      "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAW3//43w\u003d",
+        "filename": "alpha_encoder/alpha_encoder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-04-02T21:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAW3//5Fo\u003d",
       "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAW3//43s\u003d",
+        "filename": "alpha_encoder/alpha_encoder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-04-02T21:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAW3//5FU\u003d",
+      "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAW3//5FI\u003d",
         "filename": "alpha_encoder/alpha_encoder.c",
         "patchSetId": 2
@@ -64,6 +118,24 @@
       "writtenOn": "2013-04-02T16:44:18Z",
       "side": 1,
       "message": "nit: Includes should be ordered alphabetically\n\nhttp://google-styleguide.googlecode.com/svn/trunk/cppguide.xml#Names_and_Order_of_Includes",
+      "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAW3//43k\u003d",
+        "filename": "alpha_encoder/alpha_encoder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-04-02T21:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAW3//5FI\u003d",
       "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAW3//43g\u003d",
+        "filename": "alpha_encoder/alpha_encoder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-04-02T21:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAW3//5Eo\u003d",
+      "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAW3//5EQ\u003d",
         "filename": "alpha_encoder/alpha_encoder.c",
         "patchSetId": 2
@@ -98,6 +188,24 @@
       "writtenOn": "2013-04-02T16:44:18Z",
       "side": 1,
       "message": "Why the undef? Can you just create MY_CHAR_BIT?\n\nSee bullet #3 http://google-styleguide.googlecode.com/svn/trunk/cppguide.xml#Preprocessor_Macros",
+      "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAW3//43c\u003d",
+        "filename": "alpha_encoder/alpha_encoder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-04-02T21:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAW3//5EQ\u003d",
       "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAW3//43Y\u003d",
+        "filename": "alpha_encoder/alpha_encoder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-04-02T21:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAW3//5EU\u003d",
+      "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAW3//5EI\u003d",
         "filename": "alpha_encoder/alpha_encoder.c",
         "patchSetId": 2
@@ -132,6 +258,24 @@
       "writtenOn": "2013-04-02T16:44:18Z",
       "side": 1,
       "message": "Indent should be 2 spaces in the file.",
+      "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAW3//42w\u003d",
+        "filename": "alpha_encoder/alpha_encoder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-04-02T21:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAW3//5EI\u003d",
       "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAW3//42s\u003d",
+        "filename": "alpha_encoder/alpha_encoder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-04-02T21:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAW3//5D4\u003d",
+      "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAW3//5Dk\u003d",
         "filename": "alpha_encoder/alpha_encoder.c",
         "patchSetId": 2
@@ -166,6 +328,24 @@
       "writtenOn": "2013-04-02T16:44:18Z",
       "side": 1,
       "message": "Spaces after the comma.",
+      "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAW3//4bs\u003d",
+        "filename": "alpha_encoder/alpha_encoder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-04-02T21:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAW3//5Dk\u003d",
       "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -189,6 +369,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAW3//41w\u003d",
+        "filename": "alpha_encoder/alpha_encoder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-04-02T21:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAW3//5DI\u003d",
+      "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAW3//5DA\u003d",
         "filename": "alpha_encoder/alpha_encoder.c",
         "patchSetId": 2
@@ -200,6 +398,24 @@
       "writtenOn": "2013-04-02T16:44:18Z",
       "side": 1,
       "message": "Open curly brace on same line of last parameter\n\nhttp://google-styleguide.googlecode.com/svn/trunk/cppguide.xml#Function_Declarations_and_Definitions",
+      "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAW3//41s\u003d",
+        "filename": "alpha_encoder/alpha_encoder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-04-02T21:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAW3//5DA\u003d",
       "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -223,6 +439,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAW3//41o\u003d",
+        "filename": "alpha_encoder/alpha_encoder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-04-02T21:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAW3//5Cg\u003d",
+      "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAW3//5C4\u003d",
         "filename": "alpha_encoder/alpha_encoder.c",
         "patchSetId": 2
@@ -234,6 +468,24 @@
       "writtenOn": "2013-04-02T16:44:18Z",
       "side": 1,
       "message": "Open curly race should be on same line throughout file.",
+      "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAW3//41k\u003d",
+        "filename": "alpha_encoder/alpha_encoder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-04-02T21:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAW3//5C4\u003d",
       "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -274,6 +526,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAW3//41M\u003d",
+        "filename": "alpha_encoder/alpha_encoder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-04-02T21:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAW3//5BM\u003d",
+      "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAW3//4+4\u003d",
         "filename": "alpha_encoder/alpha_encoder.c",
         "patchSetId": 2
@@ -285,6 +555,24 @@
       "writtenOn": "2013-04-02T16:44:18Z",
       "side": 1,
       "message": "const",
+      "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAW3//41I\u003d",
+        "filename": "alpha_encoder/alpha_encoder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-04-02T21:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAW3//4+4\u003d",
       "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -308,6 +596,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAW3//4y4\u003d",
+        "filename": "alpha_encoder/alpha_encoder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-04-02T21:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAW3//5Aw\u003d",
+      "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAW3//5Ag\u003d",
         "filename": "alpha_encoder/alpha_encoder.c",
         "patchSetId": 2
@@ -319,6 +625,24 @@
       "writtenOn": "2013-04-02T16:44:18Z",
       "side": 1,
       "message": "I don\u0027t know if EbmlLoc makes the code more readable. But either way you should be consistent with the typename.",
+      "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAW3//4yw\u003d",
+        "filename": "alpha_encoder/alpha_encoder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-04-02T21:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAW3//5Ag\u003d",
       "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -342,6 +666,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAW3//4ys\u003d",
+        "filename": "alpha_encoder/alpha_encoder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-04-02T21:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAW3//4/8\u003d",
+      "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAW3//5AU\u003d",
         "filename": "alpha_encoder/alpha_encoder.c",
         "patchSetId": 2
@@ -353,6 +695,24 @@
       "writtenOn": "2013-04-02T16:44:18Z",
       "side": 1,
       "message": "newline",
+      "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAW3//4yo\u003d",
+        "filename": "alpha_encoder/alpha_encoder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-04-02T21:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAW3//5AU\u003d",
       "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -376,6 +736,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAW3//4yk\u003d",
+        "filename": "alpha_encoder/alpha_encoder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-04-02T21:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAW3//5AQ\u003d",
+      "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAW3//4/E\u003d",
         "filename": "alpha_encoder/alpha_encoder.c",
         "patchSetId": 2
@@ -387,6 +765,24 @@
       "writtenOn": "2013-04-02T16:44:18Z",
       "side": 1,
       "message": "Return type should be on same line as function name\n\nhttp://google-styleguide.googlecode.com/svn/trunk/cppguide.xml#Function_Declarations_and_Definitions",
+      "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAW3//4yU\u003d",
+        "filename": "alpha_encoder/alpha_encoder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-04-02T21:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAW3//4/E\u003d",
       "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -410,6 +806,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAW3//4yM\u003d",
+        "filename": "alpha_encoder/alpha_encoder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-04-02T21:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAW3//4+8\u003d",
+      "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAW3//4+o\u003d",
         "filename": "alpha_encoder/alpha_encoder.c",
         "patchSetId": 2
@@ -421,6 +835,24 @@
       "writtenOn": "2013-04-02T16:44:18Z",
       "side": 1,
       "message": "spacing",
+      "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAW3//4x8\u003d",
+        "filename": "alpha_encoder/alpha_encoder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-04-02T21:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAW3//4+o\u003d",
       "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -444,6 +876,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAW3//4x4\u003d",
+        "filename": "alpha_encoder/alpha_encoder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-04-02T21:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAW3//4+c\u003d",
+      "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAW3//4+U\u003d",
         "filename": "alpha_encoder/alpha_encoder.c",
         "patchSetId": 2
@@ -455,6 +905,24 @@
       "writtenOn": "2013-04-02T16:44:18Z",
       "side": 1,
       "message": "remove line",
+      "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAW3//4xY\u003d",
+        "filename": "alpha_encoder/alpha_encoder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-04-02T21:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAW3//4+U\u003d",
       "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -489,6 +957,24 @@
       "writtenOn": "2013-04-02T16:44:18Z",
       "side": 1,
       "message": "spacing",
+      "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAW3//4w8\u003d",
+        "filename": "alpha_encoder/alpha_encoder.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 581,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-04-02T21:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAW3//4+Q\u003d",
       "revId": "71b7c3e67e412e52cc1c04c099a8230fddae7cf0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
