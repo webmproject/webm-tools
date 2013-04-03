@@ -84,6 +84,24 @@
       "revId": "fa0dd7a9c25e4a920b167135d7ab5660f7f9df9c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXH///ps\u003d",
+        "filename": "alpha_encoder/alpha_encoder.c",
+        "patchSetId": 3
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2013-04-03T18:34:14Z",
+      "side": 1,
+      "message": "Please use libwebm for muxing. If it doesn\u0027t support something we need for VP8 alpha, then please add it.",
+      "parentUuid": "AAAAW3//4Ek\u003d",
+      "revId": "fa0dd7a9c25e4a920b167135d7ab5660f7f9df9c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
