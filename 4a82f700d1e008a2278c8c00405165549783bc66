@@ -1,0 +1,327 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAXX//3Nw\u003d",
+        "filename": "alpha_encoder/README",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-24T20:00:26Z",
+      "side": 1,
+      "message": "you could use -c:v instead of -vcodec to shorten this line",
+      "revId": "4a82f700d1e008a2278c8c00405165549783bc66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXX//3Ns\u003d",
+        "filename": "alpha_encoder/README",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-24T20:00:26Z",
+      "side": 1,
+      "message": "just wondering if  y4m be a possibility (in the future)?",
+      "revId": "4a82f700d1e008a2278c8c00405165549783bc66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXX//3Mw\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-24T20:00:26Z",
+      "side": 1,
+      "message": "can these be sorted?",
+      "revId": "4a82f700d1e008a2278c8c00405165549783bc66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXX//3Ms\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-24T20:00:26Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "4a82f700d1e008a2278c8c00405165549783bc66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXX//3Mk\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-24T20:00:26Z",
+      "side": 1,
+      "message": "I think the preference in this meta-project is to place [*\u0026] next to the type.\nalso: const char*",
+      "revId": "4a82f700d1e008a2278c8c00405165549783bc66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXX//3MY\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-24T20:00:26Z",
+      "side": 1,
+      "message": "prefer uint8",
+      "revId": "4a82f700d1e008a2278c8c00405165549783bc66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXX//3ME\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-24T20:00:26Z",
+      "side": 1,
+      "message": "scope \u0027i\u0027 to the for loops",
+      "revId": "4a82f700d1e008a2278c8c00405165549783bc66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXX//3MQ\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-24T20:00:26Z",
+      "side": 1,
+      "message": "seems this is more a line/row rather than a \u0027plane\u0027",
+      "revId": "4a82f700d1e008a2278c8c00405165549783bc66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXX//3MM\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-24T20:00:26Z",
+      "side": 1,
+      "message": "prefer pre-increment",
+      "revId": "4a82f700d1e008a2278c8c00405165549783bc66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXX//3MU\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-24T20:00:26Z",
+      "side": 1,
+      "message": "prefer uint32",
+      "revId": "4a82f700d1e008a2278c8c00405165549783bc66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXX//3MI\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-24T20:00:26Z",
+      "side": 1,
+      "message": "should be delete []",
+      "revId": "4a82f700d1e008a2278c8c00405165549783bc66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXX//3L4\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-24T20:00:26Z",
+      "side": 1,
+      "message": "use snprintf or even string",
+      "revId": "4a82f700d1e008a2278c8c00405165549783bc66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXX//3MA\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-24T20:00:26Z",
+      "side": 1,
+      "message": "// namespace",
+      "revId": "4a82f700d1e008a2278c8c00405165549783bc66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXX//3L8\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-24T20:00:26Z",
+      "side": 1,
+      "message": "break this line",
+      "revId": "4a82f700d1e008a2278c8c00405165549783bc66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXX//3L0\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-24T20:00:26Z",
+      "side": 1,
+      "message": "-v usually means \u0027verbose\u0027, maybe another character or go to a longer opt",
+      "revId": "4a82f700d1e008a2278c8c00405165549783bc66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXX//3Lo\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-24T20:00:26Z",
+      "side": 1,
+      "message": "you can use \u0027--\u0027 to short circuit command processing, in case there\u0027s a conflict with vpxenc options",
+      "revId": "4a82f700d1e008a2278c8c00405165549783bc66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXX//3Lk\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-24T20:00:26Z",
+      "side": 1,
+      "message": "you can use string",
+      "revId": "4a82f700d1e008a2278c8c00405165549783bc66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXX//3Lg\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-24T20:00:26Z",
+      "side": 1,
+      "message": "errors should go to stderr",
+      "revId": "4a82f700d1e008a2278c8c00405165549783bc66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXX//3Lc\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-24T20:00:26Z",
+      "side": 1,
+      "message": "can most of the remaining be broken up and moved to more telling functions?",
+      "revId": "4a82f700d1e008a2278c8c00405165549783bc66",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
