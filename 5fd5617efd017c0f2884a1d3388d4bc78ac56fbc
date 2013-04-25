@@ -317,6 +317,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAXX//1r4\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2013-04-25T21:52:46Z",
+      "side": 1,
+      "message": "This is too large for Windows. The max is 8192 per MSDN for cmd.exe (well, 2048 if we care about win2k/winNT, but we should not), and system() passes this string to the command interpreter (which is cmd.exe).\n\nAlso, iirc, snprintf isn\u0027t going to work on windows (I don\u0027t see any macro abuse here, is it being pulled in from elsewhere?).\n\nIn light of the above, why not:\n\n- use std::ostringstream (but what about the style guide, you say. Psssh, this is a sample app, bonus points for being simple, and ostringstream is a lot easier to grok then macro nonsense because of snprintf vs _snprintf.)\n- confirm that ostringstream::str().length() \u003c\u003d 8192",
+      "parentUuid": "AAAAXX//1vc\u003d",
+      "revId": "5fd5617efd017c0f2884a1d3388d4bc78ac56fbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAXX//1yg\u003d",
         "filename": "alpha_encoder/alpha_encoder.cc",
         "patchSetId": 3
