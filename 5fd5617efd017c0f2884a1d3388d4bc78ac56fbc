@@ -1,0 +1,276 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAXX//1z8\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-25T21:10:48Z",
+      "side": 1,
+      "message": "may as well be cstdio for consistency",
+      "revId": "5fd5617efd017c0f2884a1d3388d4bc78ac56fbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXX//1z4\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-25T21:10:48Z",
+      "side": 1,
+      "message": "const char*\n\nCreateInputFiles()\n\nhttp://google-styleguide.googlecode.com/svn/trunk/cppguide.xml#Function_Names",
+      "revId": "5fd5617efd017c0f2884a1d3388d4bc78ac56fbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXX//1z0\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-25T21:10:48Z",
+      "side": 1,
+      "message": "do this at 37 and make is FILE* const; ditto for the rest. you could then move their locations to just before the if().\n\nnote this will leak file handles on open failure...",
+      "revId": "5fd5617efd017c0f2884a1d3388d4bc78ac56fbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXX//1zw\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-25T21:10:48Z",
+      "side": 1,
+      "message": "uint8",
+      "revId": "5fd5617efd017c0f2884a1d3388d4bc78ac56fbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXX//1ys\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-25T21:10:48Z",
+      "side": 1,
+      "message": "since you have uint64 as a using, this should be one too same for uint8",
+      "revId": "5fd5617efd017c0f2884a1d3388d4bc78ac56fbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXX//1y4\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-25T21:10:48Z",
+      "side": 1,
+      "message": "uint32",
+      "revId": "5fd5617efd017c0f2884a1d3388d4bc78ac56fbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXX//1zQ\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-25T21:10:48Z",
+      "side": 1,
+      "message": "Encode()",
+      "revId": "5fd5617efd017c0f2884a1d3388d4bc78ac56fbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXX//1zY\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-25T21:10:48Z",
+      "side": 1,
+      "message": "const string\u0026 and technically const will go before the int;s.",
+      "revId": "5fd5617efd017c0f2884a1d3388d4bc78ac56fbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXX//1zo\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-25T21:10:48Z",
+      "side": 1,
+      "message": "this could be a string",
+      "revId": "5fd5617efd017c0f2884a1d3388d4bc78ac56fbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXX//1yg\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-25T21:10:48Z",
+      "side": 1,
+      "message": "Init",
+      "revId": "5fd5617efd017c0f2884a1d3388d4bc78ac56fbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXX//1yc\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-25T21:10:48Z",
+      "side": 1,
+      "message": "const char* and make this param first",
+      "revId": "5fd5617efd017c0f2884a1d3388d4bc78ac56fbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXX//1yY\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-25T21:10:48Z",
+      "side": 1,
+      "message": "Cleanup()",
+      "revId": "5fd5617efd017c0f2884a1d3388d4bc78ac56fbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXX//1yU\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-25T21:10:48Z",
+      "side": 1,
+      "message": "WriteTrack",
+      "revId": "5fd5617efd017c0f2884a1d3388d4bc78ac56fbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXX//1yQ\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-25T21:10:48Z",
+      "side": 1,
+      "message": "WriteClusters",
+      "revId": "5fd5617efd017c0f2884a1d3388d4bc78ac56fbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXX//1yI\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-25T21:10:48Z",
+      "side": 1,
+      "message": "const",
+      "revId": "5fd5617efd017c0f2884a1d3388d4bc78ac56fbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXX//1yE\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-25T21:10:48Z",
+      "side": 1,
+      "message": "const",
+      "revId": "5fd5617efd017c0f2884a1d3388d4bc78ac56fbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
