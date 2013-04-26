@@ -335,6 +335,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAXX//1aA\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-04-26T00:21:12Z",
+      "side": 1,
+      "message": "this is why StringPrintf and variants exist.\n\nhttp://code.google.com/p/re2/source/browse/util/stringprintf.cc\n\na temp is probably fine here though, mind the stack size as Tom says.",
+      "parentUuid": "AAAAXX//1r4\u003d",
+      "revId": "5fd5617efd017c0f2884a1d3388d4bc78ac56fbc",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAXX//1yg\u003d",
         "filename": "alpha_encoder/alpha_encoder.cc",
         "patchSetId": 3
