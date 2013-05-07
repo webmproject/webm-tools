@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAXn//5U0\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-05-07T21:57:36Z",
+      "side": 1,
+      "message": "\u003e also note you really only need 1 full row for the read and maybe one of the const u/v\u0027s.\n\nthis is still true; at least add a TODO",
+      "revId": "a0b56b24cac527e9080c1bf28ce08006fb34b484",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXn//5VY\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-05-07T21:57:36Z",
+      "side": 1,
+      "message": "use \u0027%\u0027",
+      "revId": "a0b56b24cac527e9080c1bf28ce08006fb34b484",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
