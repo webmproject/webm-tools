@@ -265,6 +265,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAXn//5L4\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-05-07T22:35:14Z",
+      "side": 1,
+      "message": "sorry. right now it seems like that\u0027s the case. what is the expected behavior? (what i see is, if the frame is short/corrupt the decode will fail, so there\u0027s no need to handle it separately).",
+      "parentUuid": "AAAAXn//5Uw\u003d",
+      "revId": "2b05365012d8f5c516a7045285873722a9b262e9",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAXX//1CQ\u003d",
         "filename": "alpha_encoder/alpha_encoder.cc",
         "patchSetId": 4
