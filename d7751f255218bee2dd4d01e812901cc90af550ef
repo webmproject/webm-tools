@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAXn//5Ik\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-05-07T23:32:34Z",
+      "side": 1,
+      "message": "this outer while() doesn\u0027t seem necessary given the outer for loop condition",
+      "revId": "d7751f255218bee2dd4d01e812901cc90af550ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXn//5IY\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-05-07T23:32:34Z",
+      "side": 1,
+      "message": "...to vpxenc as is...",
+      "revId": "d7751f255218bee2dd4d01e812901cc90af550ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXn//5DU\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-05-07T23:32:34Z",
+      "side": 1,
+      "message": "indent 4",
+      "revId": "d7751f255218bee2dd4d01e812901cc90af550ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXn//5DY\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-05-07T23:32:34Z",
+      "side": 1,
+      "message": "indent 4",
+      "revId": "d7751f255218bee2dd4d01e812901cc90af550ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXn//5DM\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-05-07T23:32:34Z",
+      "side": 1,
+      "message": "fix alignment",
+      "revId": "d7751f255218bee2dd4d01e812901cc90af550ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXn//5C8\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-05-07T23:32:34Z",
+      "side": 1,
+      "message": "you\u0027re inconsistent with pointer checks in this function; I prefer the more explicit \u003d\u003d NULL, but the rest of the project uses !pointer I believe",
+      "revId": "d7751f255218bee2dd4d01e812901cc90af550ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXn//5B4\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-05-07T23:32:34Z",
+      "side": 1,
+      "message": "delete[] seems to predominate",
+      "revId": "d7751f255218bee2dd4d01e812901cc90af550ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXn//5B8\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-05-07T23:32:34Z",
+      "side": 1,
+      "message": "const char**",
+      "revId": "d7751f255218bee2dd4d01e812901cc90af550ef",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
