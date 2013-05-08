@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAXn//30k\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-05-08T19:41:11Z",
+      "side": 1,
+      "message": "sort these",
+      "revId": "ee76b725c6525ae36b8857b7614a8f3db6fd5840",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXn//3wE\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-05-08T19:41:11Z",
+      "side": 1,
+      "message": "short lines like 99/100, 223/224 can be combined if you prefer",
+      "revId": "ee76b725c6525ae36b8857b7614a8f3db6fd5840",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXn//3z4\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-05-08T19:41:11Z",
+      "side": 1,
+      "message": "seems this is unnecessary as you\u0027ve got everything fully qualified",
+      "revId": "ee76b725c6525ae36b8857b7614a8f3db6fd5840",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXn//3v0\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-05-08T19:41:11Z",
+      "side": 1,
+      "message": "these could be uint8",
+      "revId": "ee76b725c6525ae36b8857b7614a8f3db6fd5840",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAXn//3vg\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2013-05-08T19:41:11Z",
+      "side": 1,
+      "message": "just noting that on failure the working directory will be left in a messy state...",
+      "revId": "ee76b725c6525ae36b8857b7614a8f3db6fd5840",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
