@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAX3//++I\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-05-09T19:22:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAXn//30k\u003d",
+      "revId": "ee76b725c6525ae36b8857b7614a8f3db6fd5840",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAXn//3h0\u003d",
         "filename": "alpha_encoder/alpha_encoder.cc",
         "patchSetId": 7
@@ -30,6 +48,24 @@
       "writtenOn": "2013-05-08T21:10:02Z",
       "side": 1,
       "message": "What happens if vpxenc picks different keyframes for the alpha vs the main video? I think at this point you will need to force a key frame on both encodes. Add a TODO to encode the main video. Then parse the main video. Then encode the alpha matching key frames exactly.",
+      "revId": "ee76b725c6525ae36b8857b7614a8f3db6fd5840",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAX3//+9U\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-05-09T19:22:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAXn//3h0\u003d",
       "revId": "ee76b725c6525ae36b8857b7614a8f3db6fd5840",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAX3//++A\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-05-09T19:22:33Z",
+      "side": 1,
+      "message": "not a fan of one line if\u0027s. leaving it as it is.",
+      "parentUuid": "AAAAXn//3wE\u003d",
+      "revId": "ee76b725c6525ae36b8857b7614a8f3db6fd5840",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAXn//3z4\u003d",
         "filename": "alpha_encoder/alpha_encoder.cc",
         "patchSetId": 7
@@ -64,6 +118,24 @@
       "writtenOn": "2013-05-08T19:41:11Z",
       "side": 1,
       "message": "seems this is unnecessary as you\u0027ve got everything fully qualified",
+      "revId": "ee76b725c6525ae36b8857b7614a8f3db6fd5840",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAX3//+98\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-05-09T19:22:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAXn//3z4\u003d",
       "revId": "ee76b725c6525ae36b8857b7614a8f3db6fd5840",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAX3//+9M\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-05-09T19:22:33Z",
+      "side": 1,
+      "message": "sorry, but why ?",
+      "parentUuid": "AAAAXn//3jw\u003d",
+      "revId": "ee76b725c6525ae36b8857b7614a8f3db6fd5840",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAXn//3v0\u003d",
         "filename": "alpha_encoder/alpha_encoder.cc",
         "patchSetId": 7
@@ -104,6 +194,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAX3//+94\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-05-09T19:22:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAXn//3v0\u003d",
+      "revId": "ee76b725c6525ae36b8857b7614a8f3db6fd5840",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAXn//3so\u003d",
         "filename": "alpha_encoder/alpha_encoder.cc",
         "patchSetId": 7
@@ -115,6 +223,24 @@
       "writtenOn": "2013-05-08T21:10:02Z",
       "side": 1,
       "message": "Hmmm what will happen if there is altref frames? I think we will have to make sure there are no altref frames in alpha and probably for now, no altref in the main video. But you should add a TODO to handle altref frames.",
+      "revId": "ee76b725c6525ae36b8857b7614a8f3db6fd5840",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAX3//+90\u003d",
+        "filename": "alpha_encoder/alpha_encoder.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2013-05-09T19:22:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAXn//3so\u003d",
       "revId": "ee76b725c6525ae36b8857b7614a8f3db6fd5840",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
