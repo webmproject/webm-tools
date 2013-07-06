@@ -33,6 +33,9 @@ const char VERSION_STRING[] = "1.0.1.0";
 struct Options {
   Options();
 
+  // Returns true if |value| matches -|option| or -no|option|.
+  static bool IsBooleanOption(const string& option, const string& value);
+
   // Set all of the member variables to |value|.
   void SetAll(bool value);
 
@@ -88,29 +91,36 @@ void Options::SetAll(bool value) {
   output_encrypted_info = value;
 }
 
+bool Options::IsBooleanOption(const string& option, const string& value) {
+  const string opt = "-" + option;
+  const string noopt = "-no" + option;
+  return value == opt || value == noopt;
+}
+
 void Usage() {
-  printf("Usage: webm_dump [options] -i input\n");
+  printf("Usage: webm_info [options] -i input\n");
   printf("\n");
   printf("Main options:\n");
   printf("  -h | -?               show help\n");
   printf("  -v                    show version\n");
-  printf("  -all <bool>           Set all output options to <bool>\n");
-  printf("  -video <bool>         Output video tracks (true)\n");
-  printf("  -audio <bool>         Output audio tracks (true)\n");
-  printf("  -size <bool>          Output element sizes (false)\n");
-  printf("  -offset <bool>        Output element offsets (false)\n");
-  printf("  -times_seconds <bool> Output times as seconds (true)\n");
-  printf("  -ebml_header <bool>   Output EBML header (true)\n");
-  printf("  -segment <bool>       Output Segment (true)\n");
-  printf("  -segment_info <bool>  Output SegmentInfo (true)\n");
-  printf("  -tracks <bool>        Output Tracks (true)\n");
-  printf("  -clusters <bool>      Output Clusters (false)\n");
-  printf("  -blocks <bool>        Output Blocks (false)\n");
-  printf("  -vp8_info <bool>      Output VP8 information (false)\n");
-  printf("  -clusters_size <bool> Output Total Clusters size (false)\n");
-  printf("  -encrypted_info <bool> Output encrypted frame info (false)\n");
-  printf("  -vpnext <bool>        Assume input file has vpnext bitstream "
+  printf("  -all                  Enable all output options.\n");
+  printf("  -video                Output video tracks (true)\n");
+  printf("  -audio                Output audio tracks (true)\n");
+  printf("  -size                 Output element sizes (false)\n");
+  printf("  -offset               Output element offsets (false)\n");
+  printf("  -times_seconds        Output times as seconds (true)\n");
+  printf("  -ebml_header          Output EBML header (true)\n");
+  printf("  -segment              Output Segment (true)\n");
+  printf("  -segment_info         Output SegmentInfo (true)\n");
+  printf("  -tracks               Output Tracks (true)\n");
+  printf("  -clusters             Output Clusters (false)\n");
+  printf("  -blocks               Output Blocks (false)\n");
+  printf("  -vp8_info             Output VP8 information (false)\n");
+  printf("  -clusters_size        Output Total Clusters size (false)\n");
+  printf("  -encrypted_info       Output encrypted frame info (false)\n");
+  printf("  -vpnext               Assume input file has vpnext bitstream "
          "(false)\n");
+  printf("\nOutput options may be negated by prefixing 'no'.\n");
 }
 
 // TODO(fgalligan): Add support for non-ascii.
@@ -637,39 +647,38 @@ int main(int argc, char* argv[]) {
       printf("version: %s\n", VERSION_STRING);
     } else if (!strcmp("-i", argv[i]) && i < argc_check) {
       input = argv[++i];
-    } else if (!strcmp("-all", argv[i]) && i < argc_check) {
-      const bool value = !!strcmp("false", argv[++i]);
-      options.SetAll(value);
-    } else if (!strcmp("-video", argv[i]) && i < argc_check) {
-      options.output_video = !!strcmp("false", argv[++i]);
-    } else if (!strcmp("-audio", argv[i]) && i < argc_check) {
-      options.output_audio = !!strcmp("false", argv[++i]);
-    } else if (!strcmp("-size", argv[i]) && i < argc_check) {
-      options.output_size = !!strcmp("false", argv[++i]);
-    } else if (!strcmp("-offset", argv[i]) && i < argc_check) {
-      options.output_offset = !!strcmp("false", argv[++i]);
-    } else if (!strcmp("-times_seconds", argv[i]) && i < argc_check) {
-      options.output_seconds = !!strcmp("false", argv[++i]);
-    } else if (!strcmp("-ebml_header", argv[i]) && i < argc_check) {
-      options.output_ebml_header = !!strcmp("false", argv[++i]);
-    } else if (!strcmp("-segment", argv[i]) && i < argc_check) {
-      options.output_segment = !!strcmp("false", argv[++i]);
-    } else if (!strcmp("-segment_info", argv[i]) && i < argc_check) {
-      options.output_segment_info = !!strcmp("false", argv[++i]);
-    } else if (!strcmp("-tracks", argv[i]) && i < argc_check) {
-      options.output_tracks = !!strcmp("false", argv[++i]);
-    } else if (!strcmp("-clusters", argv[i]) && i < argc_check) {
-      options.output_clusters = !!strcmp("false", argv[++i]);
-    } else if (!strcmp("-blocks", argv[i]) && i < argc_check) {
-      options.output_blocks = !!strcmp("false", argv[++i]);
-    } else if (!strcmp("-vp8_info", argv[i]) && i < argc_check) {
-      options.output_vp8_info = !!strcmp("false", argv[++i]);
-    } else if (!strcmp("-clusters_size", argv[i]) && i < argc_check) {
-      options.output_clusters_size = !!strcmp("false", argv[++i]);
-    } else if (!strcmp("-encrypted_info", argv[i]) && i < argc_check) {
-      options.output_encrypted_info = !!strcmp("false", argv[++i]);
-    } else if (!strcmp("-vpnext", argv[i]) && i < argc_check) {
-      options.is_vpnext = !!strcmp("false", argv[++i]);
+    } else if (!strcmp("-all", argv[i])) {
+      options.SetAll(true);
+    } else if (Options::IsBooleanOption("video", argv[i])) {
+      options.output_video = !strcmp("-video", argv[i]);
+    } else if (Options::IsBooleanOption("audio", argv[i])) {
+      options.output_audio = !strcmp("-audio", argv[i]);
+    } else if (Options::IsBooleanOption("size", argv[i])) {
+      options.output_size = !strcmp("-size", argv[i]);
+    } else if (Options::IsBooleanOption("offset", argv[i])) {
+      options.output_offset = !strcmp("-offset", argv[i]);
+    } else if (Options::IsBooleanOption("times_seconds", argv[i])) {
+      options.output_seconds = !strcmp("-times_seconds", argv[i]);
+    } else if (Options::IsBooleanOption("ebml_header", argv[i])) {
+      options.output_ebml_header = !strcmp("-ebml_header", argv[i]);
+    } else if (Options::IsBooleanOption("segment", argv[i])) {
+      options.output_segment = !strcmp("-segment", argv[i]);
+    } else if (Options::IsBooleanOption("segment_info", argv[i])) {
+      options.output_segment_info = !strcmp("-segment_info", argv[i]);
+    } else if (Options::IsBooleanOption("tracks", argv[i])) {
+      options.output_tracks = !strcmp("-tracks", argv[i]);
+    } else if (Options::IsBooleanOption("clusters", argv[i])) {
+      options.output_clusters = !strcmp("-clusters", argv[i]);
+    } else if (Options::IsBooleanOption("blocks", argv[i])) {
+      options.output_blocks = !strcmp("-blocks", argv[i]);
+    } else if (Options::IsBooleanOption("vp8_info", argv[i])) {
+      options.output_vp8_info = !strcmp("-vp8_info", argv[i]);
+    } else if (Options::IsBooleanOption("clusters_size", argv[i])) {
+      options.output_clusters_size = !strcmp("-clusters_size", argv[i]);
+    } else if (Options::IsBooleanOption("encrypted_info", argv[i])) {
+      options.output_encrypted_info = !strcmp("-encrypted_info", argv[i]);
+    } else if (Options::IsBooleanOption("vpnext", argv[i])) {
+      options.is_vpnext = !strcmp("-vpnext", argv[i]);
     }
   }
 
