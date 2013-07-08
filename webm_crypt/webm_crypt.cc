@@ -158,7 +158,6 @@ EncryptModule::EncryptModule(const EncryptionSettings& enc,
                              const string& secret)
     : do_not_encrypt_(false),
       enc_(enc),
-      key_(NULL),
       next_iv_(enc.initial_iv) {
   key_.reset(SymmetricKey::Import(SymmetricKey::AES, secret));
 }
@@ -178,7 +177,7 @@ bool EncryptModule::ProcessData(const uint8* plaintext, size_t size,
     return false;
 
   const bool encrypt_the_frame = do_not_encrypt_ ? false : encrypt_frame;
-  scoped_array<uint8> cipher_temp;
+  scoped_ptr<uint8[]> cipher_temp;
   size_t cipher_temp_size = size + kSignalByteSize;
 
   if (encrypt_the_frame) {
@@ -290,8 +289,7 @@ DecryptModule::DecryptModule(const EncryptionSettings& enc,
                              const string& secret,
                              bool no_decrypt)
     : do_not_decrypt_(no_decrypt),
-      enc_(enc),
-      key_(NULL) {
+      enc_(enc) {
   key_.reset(SymmetricKey::Import(SymmetricKey::AES, secret));
 }
 
@@ -603,7 +601,7 @@ bool ReadDataFromFile(const string& file, string* data) {
   const int key_size = ftell(f);
   fseek(f, 0, SEEK_SET);
 
-  scoped_array<char> raw_key_buf(new (std::nothrow) char[key_size]);  // NOLINT
+  scoped_ptr<char[]> raw_key_buf(new (std::nothrow) char[key_size]);  // NOLINT
   const int bytes_read = fread(raw_key_buf.get(), 1, key_size, f);
   fclose(f);
 
@@ -1008,7 +1006,7 @@ int WebMEncrypt(const WebMCryptSettings& webm_crypt) {
   muxer_segment->CuesTrack(vid_track);
 
   // Write clusters
-  scoped_array<uint8> data;
+  scoped_ptr<uint8[]> data;
   int data_len = 0;
   EncryptModule audio_encryptor(webm_crypt.aud_enc, aud_base_secret);
   if (webm_crypt.audio && !audio_encryptor.Init()) {
@@ -1322,7 +1320,7 @@ int WebMDecrypt(const WebMCryptSettings& webm_crypt) {
   muxer_segment->CuesTrack(vid_track);
 
   // Write clusters
-  scoped_array<uint8> data;
+  scoped_ptr<uint8[]> data;
   int data_len = 0;
   DecryptModule audio_decryptor(aud_enc,
                                 aud_base_secret,
