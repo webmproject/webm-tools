@@ -25,6 +25,7 @@ using std::wstring;
 using webm_tools::Indent;
 using webm_tools::int64;
 using webm_tools::uint8;
+using webm_tools::uint32;
 using webm_tools::uint64;
 using webm_tools::kNanosecondsPerSecond;
 
@@ -50,10 +51,9 @@ struct Options {
   bool output_tracks;
   bool output_clusters;
   bool output_blocks;
-  bool output_vp8_info;
+  bool output_codec_info;
   bool output_clusters_size;
   bool output_encrypted_info;
-  bool is_vpnext;
 };
 
 Options::Options()
@@ -68,10 +68,9 @@ Options::Options()
       output_tracks(true),
       output_clusters(false),
       output_blocks(false),
-      output_vp8_info(false),
+      output_codec_info(false),
       output_clusters_size(false),
-      output_encrypted_info(false),
-      is_vpnext(false) {
+      output_encrypted_info(false) {
 }
 
 void Options::SetAll(bool value) {
@@ -86,7 +85,7 @@ void Options::SetAll(bool value) {
   output_tracks = value;
   output_clusters = value;
   output_blocks = value;
-  output_vp8_info = value;
+  output_codec_info = value;
   output_clusters_size = value;
   output_encrypted_info = value;
 }
@@ -115,11 +114,9 @@ void Usage() {
   printf("  -tracks               Output Tracks (true)\n");
   printf("  -clusters             Output Clusters (false)\n");
   printf("  -blocks               Output Blocks (false)\n");
-  printf("  -vp8_info             Output VP8 information (false)\n");
+  printf("  -codec_info           Output video codec information (false)\n");
   printf("  -clusters_size        Output Total Clusters size (false)\n");
   printf("  -encrypted_info       Output encrypted frame info (false)\n");
-  printf("  -vpnext               Assume input file has vpnext bitstream "
-         "(false)\n");
   printf("\nOutput options may be negated by prefixing 'no'.\n");
 }
 
@@ -400,36 +397,84 @@ void read_frame_length(const unsigned char* data, int size, int* frame_length,
   *frame_length = value;
 }
 
-// Prints vp8/vpnext specific information. For now, vpnext format is assumed
-// only if the commandline parameter -vpnext is passed.
-void print_vp8_info(unsigned char* data, int size, int is_vpnext, FILE *o) {
-  int length = 0, offset = 0;
-  unsigned int temp;
-  unsigned char altref_frame;
-  int i = 0;
+// libvpx reference: vp9/vp9_dx_iface.c
+void ParseSuperframeIndex(const uint8* data, size_t data_sz,
+                          uint32 sizes[8], int* count) {
+  const uint8 marker = data[data_sz - 1];
+  *count = 0;
+
+  if ((marker & 0xe0) == 0xc0) {
+    const int frames = (marker & 0x7) + 1;
+    const int mag = ((marker >> 3) & 0x3) + 1;
+    const size_t index_sz = 2 + mag * frames;
+
+    if (data_sz >= index_sz && data[data_sz - index_sz] == marker) {
+      // found a valid superframe index
+      const uint8* x = data + data_sz - index_sz + 1;
+
+      for (int i = 0; i < frames; ++i) {
+        uint32 this_sz = 0;
+
+        for (int j = 0; j < mag; ++j) {
+          this_sz |= (*x++) << (j * 8);
+        }
+        sizes[i] = this_sz;
+      }
+      *count = frames;
+    }
+  }
+}
+
+void PrintVP9Info(const uint8* data, int size, FILE* o) {
+  if (size < 1) return;
+
+  uint32 sizes[8];
+  int i = 0, count = 0;
+  ParseSuperframeIndex(data, size, sizes, &count);
 
   do {
-    altref_frame = !(*data & 0x10);
-    temp = (data[2] << 16) | (data[1] << 8) | data[0];
-    const int vp8_key = !(temp & 0x1);
-    const int vp8_version = (temp >> 1) & 0x7;
-    const int vp8_partition_length = (temp >> 5) & 0x7FFFF;
-    if(is_vpnext) {
-      read_frame_length(data, size, &length, &offset);
-      offset += length;
+    // const int frame_marker = (data[0] >> 6) & 0x3;
+    const int version = (data[0] >> 4) & 0x3;
+    const int key = !((data[0] >> 2) & 0x1);
+    const int altref_frame = !((data[0] >> 1) & 0x1);
+    const int error_resilient_mode = data[0] & 0x1;
+    if (key &&
+        !(size >= 4 && data[1] == 0x49 && data[2] == 0x83 && data[3] == 0x42)) {
+      fprintf(o, " invalid VP9 signature");
+      return;
     }
-    data += offset;
-    size -= offset;
-    if(is_vpnext && (i > 0 || altref_frame)) {
+
+    if (count > 0) {
       fprintf(o, " packed [%d]: {", i);
     }
-    fprintf(o, " key:%d v:%d altref:%d partition_length:%d",
-                vp8_key, vp8_version, altref_frame, vp8_partition_length);
-    if(is_vpnext && (i > 0 || altref_frame)) {
-      fprintf(o, " }");
+
+    fprintf(o, " key:%d v:%d altref:%d errm:%d",
+            key, version, altref_frame, error_resilient_mode);
+
+    if (count > 0) {
+      fprintf(o, " size: %u }", sizes[i]);
+      data += sizes[i];
+      size -= sizes[i];
     }
-    i++;
-  } while (altref_frame && is_vpnext);
+    ++i;
+  } while (i < count);
+}
+
+void PrintVP8Info(const uint8* data, int size, FILE* o) {
+  if (size < 3) return;
+
+  const uint32 bits = data[0] | (data[1] << 8) | (data[2] << 16);
+  const int key = !(bits & 0x1);
+  const int altref_frame = !((bits >> 4) & 0x1);
+  const int version = (bits >> 1) & 0x7;
+  const int partition_length = (bits >> 5) & 0x7FFFF;
+  if (key &&
+      !(size >= 6 && data[3] == 0x9d && data[4] == 0x01 && data[5] == 0x2a)) {
+    fprintf(o, " invalid VP8 signature");
+    return;
+  }
+  fprintf(o, " key:%d v:%d altref:%d partition_length:%d",
+          key, version, altref_frame, partition_length);
 }
 
 bool OutputCluster(const mkvparser::Cluster& cluster,
@@ -570,7 +615,7 @@ bool OutputCluster(const mkvparser::Cluster& cluster,
           }
         }
 
-        if (options.output_vp8_info) {
+        if (options.output_codec_info) {
           const int frame_count = block->GetFrameCount();
 
           if (frame_count > 1) {
@@ -606,7 +651,13 @@ bool OutputCluster(const mkvparser::Cluster& cluster,
 
               if (!encrypted_frame) {
                 data += frame_offset;
-                print_vp8_info(data, frame.len, options.is_vpnext, o);
+
+                const string codec_id = track->GetCodecId();
+                if (codec_id == "V_VP8") {
+                  PrintVP8Info(data, frame.len, o);
+                } else if (codec_id == "V_VP9") {
+                  PrintVP9Info(data, frame.len, o);
+                }
               }
             }
           }
@@ -671,14 +722,12 @@ int main(int argc, char* argv[]) {
       options.output_clusters = !strcmp("-clusters", argv[i]);
     } else if (Options::MatchesBooleanOption("blocks", argv[i])) {
       options.output_blocks = !strcmp("-blocks", argv[i]);
-    } else if (Options::MatchesBooleanOption("vp8_info", argv[i])) {
-      options.output_vp8_info = !strcmp("-vp8_info", argv[i]);
+    } else if (Options::MatchesBooleanOption("codec_info", argv[i])) {
+      options.output_codec_info = !strcmp("-codec_info", argv[i]);
     } else if (Options::MatchesBooleanOption("clusters_size", argv[i])) {
       options.output_clusters_size = !strcmp("-clusters_size", argv[i]);
     } else if (Options::MatchesBooleanOption("encrypted_info", argv[i])) {
       options.output_encrypted_info = !strcmp("-encrypted_info", argv[i]);
-    } else if (Options::MatchesBooleanOption("vpnext", argv[i])) {
-      options.is_vpnext = !strcmp("-vpnext", argv[i]);
     }
   }
 
