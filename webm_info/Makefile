@@ -1,9 +1,9 @@
 LIBWEBM := ../../libwebm
-OBJECTS := ../shared/indent.o ../shared/webm_endian.o webm_info.o
+OBJECTS := ../shared/indent.o ../shared/webm_endian.o ../shared/webm_file.o ../shared/webm_incremental_reader.o webm_info.o
 EXE := webm_info
 INCLUDES = -I$(LIBWEBM) -I../shared
 DEBUG := -g
-CXXFLAGS = -W -Wall -O2 $(DEBUG)
+CXXFLAGS = -W -Wall -O0 $(DEBUG)
 
 $(EXE): $(OBJECTS)
 	$(CXX) $(OBJECTS) -L$(LIBWEBM) -lwebm -o $(EXE)

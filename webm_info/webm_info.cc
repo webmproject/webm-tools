@@ -16,6 +16,7 @@
 #include "mkvparser.hpp"
 #include "webm_constants.h"
 #include "webm_endian.h"
+#include "webm_file.h"
 
 namespace {
 
@@ -28,6 +29,7 @@ using webm_tools::uint8;
 using webm_tools::uint32;
 using webm_tools::uint64;
 using webm_tools::kNanosecondsPerSecond;
+using webm_tools::WebMFile;
 
 const char VERSION_STRING[] = "1.0.1.0";
 
@@ -735,6 +737,10 @@ int main(int argc, char* argv[]) {
     Usage();
     return EXIT_FAILURE;
   }
+
+  WebMFile webm;
+  webm.ParseFile(input.c_str());
+  printf("--> %lld\n", webm.PeakBitsPerSecondOverFile(0));
 
   // TODO(fgalligan): Replace auto_ptr with scoped_ptr.
   std::auto_ptr<mkvparser::MkvReader>
