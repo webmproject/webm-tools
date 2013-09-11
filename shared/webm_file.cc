@@ -1728,7 +1728,9 @@ bool WebMFile::LoadCueDescList() {
     desc.start_time_ns = last_time_ns;
     desc.end_time_ns = GetDurationNanoseconds();
     desc.start_offset = last_offset;
-    desc.end_offset = cues->m_element_start;
+    desc.end_offset = (cues->m_element_start > GetClusterRangeStart())
+                    ? cues->m_element_start
+                    : segment_->m_size;
     cue_desc_list_.push_back(desc);
   }
 
