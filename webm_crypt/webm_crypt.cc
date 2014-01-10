@@ -379,7 +379,7 @@ void Usage() {
   printf("                        decrypt the data. (Default false)\n");
   printf("  -match_src_clusters   Flag to match source WebM (Default false)\n");
   printf("  \n");
-  printf("-audio_options <string> Semicolon separated name value pair.\n");
+  printf("-audio_options <string> Comma separated name value pair.\n");
   printf("  content_id=<string>   Encryption content ID. (Default empty)\n");
   printf("  initial_iv=<uint64>   Initial IV value. (Default random)\n");
   printf("  base_file=<string>    Path to base secret file. (Default\n");
@@ -387,7 +387,7 @@ void Usage() {
   printf("  unencrypted_range=<int64> Do not encrypt frames from\n");
   printf("                        [0, value) milliseconds (Default value=0)\n");
   printf("  \n");
-  printf("-video_options <string> Semicolon separated name value pair.\n");
+  printf("-video_options <string> Comma separated name value pair.\n");
   printf("  content_id=<string>   Encryption content ID. (Default empty)\n");
   printf("  initial_iv=<uint64>   Initial IV value. (Default random)\n");
   printf("  base_file=<string>    Path to base secret file. (Default\n");
