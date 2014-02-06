@@ -110,6 +110,15 @@ class WebMLiveMuxer {
   int AddAudioTrack(int sample_rate, int channels,
                     const uint8* private_data, size_t private_size);
 
+  // Adds an audio track with the specified |codec_id| to |ptr_segment_|, and
+  // returns the track number [1-127].
+  // Returns |kAudioTrackAlreadyExists| when the audio track has already been
+  // added. Returns |kAudioTrackError| when adding the track to the segment
+  // fails.
+  int AddAudioTrack(int sample_rate, int channels,
+                    const uint8* private_data, size_t private_size,
+                    const char* codec_id);
+
   // Adds |enc_key_id| as the ContnetEncKeyID element to the Track represented
   // by |track_num|. |enc_key_id_size| is the size of |enc_key_id| in bytes.
   bool AddContentEncKeyId(uint64 track_num,
@@ -120,6 +129,13 @@ class WebMLiveMuxer {
   // added. Returns |kVideoTrackError| when adding the track to the segment
   // fails.
   int AddVideoTrack(int width, int height);
+
+  // Adds a video track with the specified |codec_id| to |ptr_segment_|, and
+  // returns the track number [1-127].
+  // Returns |kVideoTrackAlreadyExists| when the video track has already been
+  // added. Returns |kVideoTrackError| when adding the track to the segment
+  // fails.
+  int AddVideoTrack(int width, int height, const char* codec_id);
 
   // Sets the muxer's muxing app. Must be called before any frames are written.
   bool SetMuxingApp(const std::string& muxing_app);
