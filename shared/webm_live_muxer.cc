@@ -110,6 +110,33 @@ int WebMLiveMuxer::AddAudioTrack(int sample_rate, int channels,
   return audio_track_num_;
 }
 
+int WebMLiveMuxer::AddAudioTrack(int sample_rate, int channels,
+                                 const uint8* private_data,
+                                 size_t private_size,
+                                 const char* codec_id) {
+  if (!codec_id) {
+    fprintf(stderr, "Cannot AddAudioTrack with NULL codec_id.\n");
+    return kAudioTrackError;
+  }
+  const int status = AddAudioTrack(sample_rate, channels,
+                                   private_data, private_size);
+  if (status <= 0) {
+    fprintf(stderr, "Cannot AddAudioTrack.\n");
+    return status;
+  }
+  const int audio_track_num = status;
+  mkvmuxer::AudioTrack* const audio_track =
+      static_cast<mkvmuxer::AudioTrack*>(
+          ptr_segment_->GetTrackByNumber(audio_track_num));
+  if (!audio_track) {
+    fprintf(stderr, "Unable to set audio codec_id: Track look up failed.\n");
+    return kAudioTrackError;
+  }
+
+  audio_track->set_codec_id(codec_id);
+  return audio_track_num;
+}
+
 bool WebMLiveMuxer::AddContentEncKeyId(uint64 track_num,
                                        const uint8* enc_key_id,
                                        size_t enc_key_id_size) {
@@ -152,6 +179,29 @@ int WebMLiveMuxer::AddVideoTrack(int width, int height) {
   }
   video_track_num_ = video_track_num;
   return video_track_num_;
+}
+
+
+int WebMLiveMuxer::AddVideoTrack(int width, int height, const char* codec_id) {
+  if (!codec_id) {
+    fprintf(stderr, "Cannot AddVideoTrack with NULL codec_id.\n");
+    return kVideoTrackError;
+  }
+  const int status = AddVideoTrack(width, height);
+  if (status <= 0) {
+    fprintf(stderr, "Cannot AddVideoTrack.\n");
+    return status;
+  }
+  const int video_track_num =  status;
+  mkvmuxer::VideoTrack* const video_track =
+      static_cast<mkvmuxer::VideoTrack*>(
+          ptr_segment_->GetTrackByNumber(video_track_num));
+  if (!video_track) {
+    fprintf(stderr, "Unable to set video codec_id: Track look up failed.\n");
+    return kVideoTrackError;
+  }
+  video_track->set_codec_id(codec_id);
+  return video_track_num;
 }
 
 bool WebMLiveMuxer::SetMuxingApp(const std::string& muxing_app) {
