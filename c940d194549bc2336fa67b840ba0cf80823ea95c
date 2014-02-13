@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAdn//3a8\u003d",
+        "filename": "webm_crypt/webm_crypt_2013.sln",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-02-13T20:35:41Z",
+      "side": 1,
+      "message": "This is really just a dupe of the vs2010 solution. There\u0027s no change when vs2013 loads it. The only real change is the vcxproj file the sln points at.",
+      "revId": "c940d194549bc2336fa67b840ba0cf80823ea95c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//3a0\u003d",
+        "filename": "webm_crypt/webm_crypt_2013.vcxproj",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-02-13T20:35:41Z",
+      "side": 1,
+      "message": "This PlatformToolset bit is apparently all that vs2013 really cares about after diffing against the 2010 project.",
+      "revId": "c940d194549bc2336fa67b840ba0cf80823ea95c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
