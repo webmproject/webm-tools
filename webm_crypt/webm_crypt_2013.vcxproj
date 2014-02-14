@@ -85,7 +85,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(CHROMIUM_INC)\third_party\wtl\include;$(CHROMIUM_INC);$(CHROMIUM_INC)\third_party\nss\mozilla\nsprpub\pr\include;$(CHROMIUM_INC)\third_party\nss\mozilla\nsprpub\lib\ds;$(CHROMIUM_INC)\third_party\nss\mozilla\nsprpub\lib\libc\include;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\base;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\certdb;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\certhigh;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\cryptohi;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\dev;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\freebl;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\freebl\ecl;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\nss;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\pk11wrap;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\pkcs7;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\pki;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\smime;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\softoken;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\util;..\..\libwebm;..\shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(CHROMIUM_INC);$(CHROMIUM_INC)\third_party\nss\nspr\pr\include;$(CHROMIUM_INC)\third_party\nss\nspr\lib\ds;$(CHROMIUM_INC)\third_party\nss\nspr\lib\libc\include;$(CHROMIUM_INC)\third_party\nss\nss\lib\base;$(CHROMIUM_INC)\third_party\nss\nss\lib\certdb;$(CHROMIUM_INC)\third_party\nss\nss\lib\certhigh;$(CHROMIUM_INC)\third_party\nss\nss\lib\cryptohi;$(CHROMIUM_INC)\third_party\nss\nss\lib\dev;$(CHROMIUM_INC)\third_party\nss\nss\lib\freebl;$(CHROMIUM_INC)\third_party\nss\nss\lib\freebl\ecl;$(CHROMIUM_INC)\third_party\nss\nss\lib\nss;$(CHROMIUM_INC)\third_party\nss\nss\lib\pk11wrap;$(CHROMIUM_INC)\third_party\nss\nss\lib\pkcs7;$(CHROMIUM_INC)\third_party\nss\nss\lib\pki;$(CHROMIUM_INC)\third_party\nss\nss\lib\smime;$(CHROMIUM_INC)\third_party\nss\nss\lib\softoken;$(CHROMIUM_INC)\third_party\nss\nss\lib\util;..\..\libwebm;..\shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;NO_NSPR_10_SUPPORT;NSS_ENABLE_ECC;NSS_STATIC;NSS_USE_STATIC_LIBS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -98,7 +98,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>Dbghelp.lib;Ws2_32.lib;base.lib;crcrypto.lib;dynamic_annotations.lib;libwebm.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(CHROMIUM_INC)\build\Debug\lib;..\..\lib\libwebm_2010\libwebm\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(CHROMIUM_INC)\build\Debug\lib;..\..\lib\libwebm_2013\libwebm\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
@@ -107,7 +107,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug DLL|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(CHROMIUM_INC)\third_party\wtl\include;$(CHROMIUM_INC);$(CHROMIUM_INC)\third_party\nss\mozilla\nsprpub\pr\include;$(CHROMIUM_INC)\third_party\nss\mozilla\nsprpub\lib\ds;$(CHROMIUM_INC)\third_party\nss\mozilla\nsprpub\lib\libc\include;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\base;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\certdb;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\certhigh;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\cryptohi;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\dev;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\freebl;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\freebl\ecl;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\nss;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\pk11wrap;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\pkcs7;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\pki;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\smime;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\softoken;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\util;..\..\libwebm;..\shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(CHROMIUM_INC);$(CHROMIUM_INC)\third_party\nss\nspr\pr\include;$(CHROMIUM_INC)\third_party\nss\nspr\lib\ds;$(CHROMIUM_INC)\third_party\nss\nspr\lib\libc\include;$(CHROMIUM_INC)\third_party\nss\nss\lib\base;$(CHROMIUM_INC)\third_party\nss\nss\lib\certdb;$(CHROMIUM_INC)\third_party\nss\nss\lib\certhigh;$(CHROMIUM_INC)\third_party\nss\nss\lib\cryptohi;$(CHROMIUM_INC)\third_party\nss\nss\lib\dev;$(CHROMIUM_INC)\third_party\nss\nss\lib\freebl;$(CHROMIUM_INC)\third_party\nss\nss\lib\freebl\ecl;$(CHROMIUM_INC)\third_party\nss\nss\lib\nss;$(CHROMIUM_INC)\third_party\nss\nss\lib\pk11wrap;$(CHROMIUM_INC)\third_party\nss\nss\lib\pkcs7;$(CHROMIUM_INC)\third_party\nss\nss\lib\pki;$(CHROMIUM_INC)\third_party\nss\nss\lib\smime;$(CHROMIUM_INC)\third_party\nss\nss\lib\softoken;$(CHROMIUM_INC)\third_party\nss\nss\lib\util;..\..\libwebm;..\shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;NO_NSPR_10_SUPPORT;NSS_ENABLE_ECC;NSS_STATIC;NSS_USE_STATIC_LIBS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -119,8 +119,8 @@
       <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>Dbghelp.lib;Ws2_32.lib;base.lib;crcrypto.lib;dynamic_annotations.lib;libwebm.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(CHROMIUM_INC)\build\Debug\lib;..\..\lib\libwebm_2010\libwebm\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Dbghelp.lib;Ws2_32.lib;base.lib;crcrypto.lib;dynamic_annotations.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(CHROMIUM_INC)\build\Debug\lib;..\..\lib\libwebm_2013\libwebm\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
@@ -130,7 +130,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(CHROMIUM_INC)\third_party\wtl\include;$(CHROMIUM_INC);$(CHROMIUM_INC)\third_party\nss\mozilla\nsprpub\pr\include;$(CHROMIUM_INC)\third_party\nss\mozilla\nsprpub\lib\ds;$(CHROMIUM_INC)\third_party\nss\mozilla\nsprpub\lib\libc\include;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\base;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\certdb;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\certhigh;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\cryptohi;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\dev;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\freebl;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\freebl\ecl;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\nss;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\pk11wrap;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\pkcs7;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\pki;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\smime;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\softoken;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\util;..\..\libwebm;..\shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(CHROMIUM_INC);$(CHROMIUM_INC)\third_party\nss\nspr\pr\include;$(CHROMIUM_INC)\third_party\nss\nspr\lib\ds;$(CHROMIUM_INC)\third_party\nss\nspr\lib\libc\include;$(CHROMIUM_INC)\third_party\nss\nss\lib\base;$(CHROMIUM_INC)\third_party\nss\nss\lib\certdb;$(CHROMIUM_INC)\third_party\nss\nss\lib\certhigh;$(CHROMIUM_INC)\third_party\nss\nss\lib\cryptohi;$(CHROMIUM_INC)\third_party\nss\nss\lib\dev;$(CHROMIUM_INC)\third_party\nss\nss\lib\freebl;$(CHROMIUM_INC)\third_party\nss\nss\lib\freebl\ecl;$(CHROMIUM_INC)\third_party\nss\nss\lib\nss;$(CHROMIUM_INC)\third_party\nss\nss\lib\pk11wrap;$(CHROMIUM_INC)\third_party\nss\nss\lib\pkcs7;$(CHROMIUM_INC)\third_party\nss\nss\lib\pki;$(CHROMIUM_INC)\third_party\nss\nss\lib\smime;$(CHROMIUM_INC)\third_party\nss\nss\lib\softoken;$(CHROMIUM_INC)\third_party\nss\nss\lib\util;..\..\libwebm;..\shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;NO_NSPR_10_SUPPORT;NSS_ENABLE_ECC;NSS_STATIC;NSS_USE_STATIC_LIBS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -142,7 +142,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>Dbghelp.lib;Ws2_32.lib;base.lib;crcrypto.lib;dynamic_annotations.lib;libwebm.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(CHROMIUM_INC)\build\Release\lib;..\..\lib\libwebm_2010\libwebm\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(CHROMIUM_INC)\build\Release\lib;..\..\lib\libwebm_2013\libwebm\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -154,7 +154,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(CHROMIUM_INC)\third_party\wtl\include;$(CHROMIUM_INC);$(CHROMIUM_INC)\third_party\nss\mozilla\nsprpub\pr\include;$(CHROMIUM_INC)\third_party\nss\mozilla\nsprpub\lib\ds;$(CHROMIUM_INC)\third_party\nss\mozilla\nsprpub\lib\libc\include;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\base;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\certdb;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\certhigh;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\cryptohi;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\dev;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\freebl;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\freebl\ecl;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\nss;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\pk11wrap;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\pkcs7;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\pki;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\smime;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\softoken;$(CHROMIUM_INC)\third_party\nss\mozilla\security\nss\lib\util;..\..\libwebm;..\shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(CHROMIUM_INC);$(CHROMIUM_INC)\third_party\nss\nspr\pr\include;$(CHROMIUM_INC)\third_party\nss\nspr\lib\ds;$(CHROMIUM_INC)\third_party\nss\nspr\lib\libc\include;$(CHROMIUM_INC)\third_party\nss\nss\lib\base;$(CHROMIUM_INC)\third_party\nss\nss\lib\certdb;$(CHROMIUM_INC)\third_party\nss\nss\lib\certhigh;$(CHROMIUM_INC)\third_party\nss\nss\lib\cryptohi;$(CHROMIUM_INC)\third_party\nss\nss\lib\dev;$(CHROMIUM_INC)\third_party\nss\nss\lib\freebl;$(CHROMIUM_INC)\third_party\nss\nss\lib\freebl\ecl;$(CHROMIUM_INC)\third_party\nss\nss\lib\nss;$(CHROMIUM_INC)\third_party\nss\nss\lib\pk11wrap;$(CHROMIUM_INC)\third_party\nss\nss\lib\pkcs7;$(CHROMIUM_INC)\third_party\nss\nss\lib\pki;$(CHROMIUM_INC)\third_party\nss\nss\lib\smime;$(CHROMIUM_INC)\third_party\nss\nss\lib\softoken;$(CHROMIUM_INC)\third_party\nss\nss\lib\util;..\..\libwebm;..\shared;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;NO_NSPR_10_SUPPORT;NSS_ENABLE_ECC;NSS_STATIC;NSS_USE_STATIC_LIBS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -166,7 +166,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>Dbghelp.lib;Ws2_32.lib;base.lib;crcrypto.lib;dynamic_annotations.lib;libwebm.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(CHROMIUM_INC)\build\Release\lib;..\..\lib\libwebm_2010\libwebm\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(CHROMIUM_INC)\build\Release\lib;..\..\lib\libwebm_2013\libwebm\$(Platform)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -175,6 +175,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\libwebm\mkvmuxer.cpp" />
+    <ClCompile Include="..\..\libwebm\mkvmuxerutil.cpp" />
+    <ClCompile Include="..\..\libwebm\mkvparser.cpp" />
+    <ClCompile Include="..\..\libwebm\mkvreader.cpp" />
+    <ClCompile Include="..\..\libwebm\mkvwriter.cpp" />
     <ClCompile Include="..\shared\webm_endian.cc" />
     <ClCompile Include="webm_crypt.cc" />
   </ItemGroup>
@@ -182,6 +187,12 @@
     <None Include="Readme.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\libwebm\mkvmuxer.hpp" />
+    <ClInclude Include="..\..\libwebm\mkvmuxertypes.hpp" />
+    <ClInclude Include="..\..\libwebm\mkvmuxerutil.hpp" />
+    <ClInclude Include="..\..\libwebm\mkvparser.hpp" />
+    <ClInclude Include="..\..\libwebm\mkvreader.hpp" />
+    <ClInclude Include="..\..\libwebm\mkvwriter.hpp" />
     <ClInclude Include="..\shared\webm_endian.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
