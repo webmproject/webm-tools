@@ -863,6 +863,8 @@ int WebMEncrypt(const WebMCryptSettings& webm_crypt) {
         return -1;
       }
 
+      video->set_codec_id(parser_track->GetCodecId());
+
       if (track_name)
         video->set_name(track_name);
 
@@ -938,6 +940,8 @@ int WebMEncrypt(const WebMCryptSettings& webm_crypt) {
         fprintf(stderr, "Could not get audio track.\n");
         return -1;
       }
+
+      audio->set_codec_id(parser_track->GetCodecId());
 
       if (track_name)
         audio->set_name(track_name);
@@ -1214,6 +1218,8 @@ int WebMDecrypt(const WebMCryptSettings& webm_crypt) {
         return -1;
       }
 
+      video->set_codec_id(parser_track->GetCodecId());
+
       if (track_name)
         video->set_name(track_name);
 
@@ -1271,6 +1277,8 @@ int WebMDecrypt(const WebMCryptSettings& webm_crypt) {
         fprintf(stderr, "Could not get audio track.\n");
         return -1;
       }
+
+      audio->set_codec_id(parser_track->GetCodecId());
 
       if (track_name)
         audio->set_name(track_name);
