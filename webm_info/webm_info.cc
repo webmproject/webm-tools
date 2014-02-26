@@ -54,6 +54,7 @@ struct Options {
   bool output_codec_info;
   bool output_clusters_size;
   bool output_encrypted_info;
+  bool output_cues;
 };
 
 Options::Options()
@@ -70,7 +71,8 @@ Options::Options()
       output_blocks(false),
       output_codec_info(false),
       output_clusters_size(false),
-      output_encrypted_info(false) {
+      output_encrypted_info(false),
+      output_cues(false) {
 }
 
 void Options::SetAll(bool value) {
@@ -88,6 +90,7 @@ void Options::SetAll(bool value) {
   output_codec_info = value;
   output_clusters_size = value;
   output_encrypted_info = value;
+  output_cues = value;
 }
 
 bool Options::MatchesBooleanOption(const string& option, const string& value) {
@@ -117,6 +120,7 @@ void Usage() {
   printf("  -codec_info           Output video codec information (false)\n");
   printf("  -clusters_size        Output Total Clusters size (false)\n");
   printf("  -encrypted_info       Output encrypted frame info (false)\n");
+  printf("  -cues                 Output Cues entries (false)\n");
   printf("\nOutput options may be negated by prefixing 'no'.\n");
 }
 
@@ -683,6 +687,79 @@ bool OutputCluster(const mkvparser::Cluster& cluster,
   return true;
 }
 
+bool OutputCues(const mkvparser::Segment& segment,
+                const mkvparser::Tracks& tracks,
+                const Options& options,
+                FILE* o,
+                Indent* indent) {
+  const mkvparser::Cues* const cues = segment.GetCues();
+  if (cues == NULL) {
+    fprintf(stderr, "cues is NULL.\n");
+    return false;
+  }
+
+  // Load all of the cue points.
+  while (!cues->DoneParsing())
+    cues->LoadCuePoint();
+
+  // Confirm that the input has cue points.
+  const mkvparser::CuePoint* const first_cue = cues->GetFirst();
+  if (first_cue == NULL) {
+    fprintf(o, "%sNo cue points.\n", indent->indent_str().c_str());
+    return true;
+  }
+
+  // Input has cue points, dump them:
+  fprintf(o, "%sCues:", indent->indent_str().c_str());
+  if (options.output_offset)
+    fprintf(o, " @:%lld", cues->m_element_start);
+  if (options.output_size)
+    fprintf(o, " size:%lld", cues->m_element_size);
+  fprintf(o, "\n");
+
+  const mkvparser::CuePoint* cue_point = first_cue;
+  int cue_point_num = 1;
+  const int num_tracks = tracks.GetTracksCount();
+  indent->Adjust(webm_tools::kIncreaseIndent);
+
+  do {
+    for (int track_num = 1; track_num != num_tracks; ++track_num) {
+      const mkvparser::Track* const track = tracks.GetTrackByNumber(track_num);
+      const mkvparser::CuePoint::TrackPosition* const track_pos =
+          cue_point->Find(track);
+
+      if (track_pos != NULL) {
+        const char track_type =
+            (track->GetType() == mkvparser::Track::kVideo) ? 'V' : 'A';
+        fprintf(o, "%sCue Point:%d type:%c track:%d",
+                indent->indent_str().c_str(), cue_point_num,
+                track_type, track_num);
+
+        if (options.output_seconds) {
+          fprintf(o, " secs:%g",
+                  cue_point->GetTime(&segment) / kNanosecondsPerSecond);
+        } else {
+          fprintf(o, " nano:%lld", cue_point->GetTime(&segment));
+        }
+
+        if (options.output_blocks)
+          fprintf(o, " block:%lld", track_pos->m_block);
+
+        if (options.output_offset)
+          fprintf(o, " @:%lld", track_pos->m_pos);
+
+        fprintf(o, "\n");
+      }
+    }
+
+    cue_point = cues->GetNext(cue_point);
+    ++cue_point_num;
+  } while (cue_point != NULL);
+
+  indent->Adjust(webm_tools::kDecreaseIndent);
+  return true;
+}
+
 }  // namespace
 
 int main(int argc, char* argv[]) {
@@ -728,6 +805,8 @@ int main(int argc, char* argv[]) {
       options.output_clusters_size = !strcmp("-clusters_size", argv[i]);
     } else if (Options::MatchesBooleanOption("encrypted_info", argv[i])) {
       options.output_encrypted_info = !strcmp("-encrypted_info", argv[i]);
+    } else if (Options::MatchesBooleanOption("cues", argv[i])) {
+      options.output_cues = !strcmp("-cues", argv[i]);
     }
   }
 
@@ -810,6 +889,10 @@ int main(int argc, char* argv[]) {
   if (options.output_clusters_size)
     fprintf(out, "%sClusters (size):%lld\n",
             indent.indent_str().c_str(), clusters_size);
+
+  if (options.output_cues)
+    if (!OutputCues(*segment, *tracks, options, out, &indent))
+      return EXIT_FAILURE;
 
   return EXIT_SUCCESS;
 }
