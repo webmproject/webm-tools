@@ -54,6 +54,7 @@ struct Options {
   bool output_codec_info;
   bool output_clusters_size;
   bool output_encrypted_info;
+  bool output_cues;
 };
 
 Options::Options()
@@ -70,7 +71,8 @@ Options::Options()
       output_blocks(false),
       output_codec_info(false),
       output_clusters_size(false),
-      output_encrypted_info(false) {
+      output_encrypted_info(false),
+      output_cues(false) {
 }
 
 void Options::SetAll(bool value) {
@@ -88,6 +90,7 @@ void Options::SetAll(bool value) {
   output_codec_info = value;
   output_clusters_size = value;
   output_encrypted_info = value;
+  output_cues = value;
 }
 
 bool Options::MatchesBooleanOption(const string& option, const string& value) {
@@ -117,6 +120,7 @@ void Usage() {
   printf("  -codec_info           Output video codec information (false)\n");
   printf("  -clusters_size        Output Total Clusters size (false)\n");
   printf("  -encrypted_info       Output encrypted frame info (false)\n");
+  printf("  -cues                 Output Cues entries (false)\n");
   printf("\nOutput options may be negated by prefixing 'no'.\n");
 }
 
