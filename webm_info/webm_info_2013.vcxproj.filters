@@ -24,24 +24,12 @@
     <ClCompile Include="webm_info.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="$(LIBWEBM_PATH)\mkvparser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="$(LIBWEBM_PATH)\mkvreader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\shared\indent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\shared\webm_endian.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(LIBWEBM_PATH)\mkvparser.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="$(LIBWEBM_PATH)\mkvreader.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
