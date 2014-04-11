@@ -946,6 +946,11 @@ int WebMEncrypt(const WebMCryptSettings& webm_crypt) {
       if (track_name)
         audio->set_name(track_name);
 
+      if (pAudioTrack->GetCodecDelay())
+        audio->set_codec_delay(pAudioTrack->GetCodecDelay());
+      if (pAudioTrack->GetSeekPreRoll())
+        audio->set_seek_pre_roll(pAudioTrack->GetSeekPreRoll());
+
       size_t private_size;
       const uint8* const private_data =
           pAudioTrack->GetCodecPrivate(private_size);
