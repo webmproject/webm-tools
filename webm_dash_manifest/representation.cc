@@ -185,7 +185,9 @@ bool Representation::OutputSegmentBase(FILE* o, Indent* indent) const {
     const mkvparser::Cues* const cues = webm_file_->GetCues();
     const int64 start = cues->m_element_start;
     const int64 end = start + cues->m_element_size;
-    fprintf(o, " indexRange=\"%lld-%lld\"", start, end);
+
+    // Range is based off RFC 2616. All byte positions are inclusive.
+    fprintf(o, " indexRange=\"%lld-%lld\"", start, end - 1);
   }
 
   if (output_header_) {
@@ -197,7 +199,9 @@ bool Representation::OutputSegmentBase(FILE* o, Indent* indent) const {
 
     indent->Adjust(webm_tools::kIncreaseIndent);
     fprintf(o, "%s<Initialization", indent->indent_str().c_str());
-    fprintf(o, " range=\"%lld-%lld\" />\n", start, end);
+
+    // Range is based off RFC 2616. All byte positions are inclusive.
+    fprintf(o, " range=\"%lld-%lld\" />\n", start, end - 1);
     indent->Adjust(webm_tools::kDecreaseIndent);
 
     fprintf(o, "%s</SegmentBase>\n", indent->indent_str().c_str());
