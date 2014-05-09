@@ -805,6 +805,7 @@ string WebMFile::GetCodec() const {
     return codec;
   const string vorbis_id("A_VORBIS");
   const string vp8_id("V_VP8");
+  const string vp9_id("V_VP9");
 
   const mkvparser::Track* track = GetTrack(0);
   if (track) {
@@ -813,6 +814,8 @@ string WebMFile::GetCodec() const {
       codec = "vorbis";
     else if (codec_id == vp8_id)
       codec = "vp8";
+    else if (codec_id == vp9_id)
+      codec = "vp9";
   }
 
   track = GetTrack(1);
@@ -826,6 +829,10 @@ string WebMFile::GetCodec() const {
       if (!codec.empty())
         codec += ", ";
       codec += "vp8";
+    } else if (codec_id == vp9_id) {
+      if (!codec.empty())
+        codec += ", ";
+      codec += "vp9";
     }
   }
 
@@ -887,32 +894,7 @@ string WebMFile::GetMimeTypeWithCodec() const {
   if (state_ <= kParsingHeader)
     return mimetype;
 
-  string codec;
-  const string vorbis_id("A_VORBIS");
-  const string vp8_id("V_VP8");
-  const mkvparser::Track* track = GetTrack(0);
-  if (track) {
-    string codec_id(track->GetCodecId());
-    if (codec_id == vorbis_id)
-      codec = "vorbis";
-    else if (codec_id == vp8_id)
-      codec = "vp8";
-  }
-
-  track = GetTrack(1);
-  if (track) {
-    string codec_id(track->GetCodecId());
-    if (codec_id == vorbis_id) {
-      if (!codec.empty())
-        codec += ", ";
-      codec += "vorbis";
-    } else if (codec_id == vp8_id) {
-      if (!codec.empty())
-        codec += ", ";
-      codec += "vp8";
-    }
-  }
-
+  const string codec = WebMFile::GetCodec();
   if (!codec.empty()) {
     mimetype += "; codecs=\"" + codec + "\"";
   }
@@ -963,9 +945,10 @@ bool WebMFile::OnlyOneStream() const {
 
   if (vid_track) {
     const string vp8_id("V_VP8");
+    const string vp9_id("V_VP9");
     const string codec_id(vid_track->GetCodecId());
-    if (codec_id != vp8_id) {
-      fprintf(stderr, "Video track does not match V_VP8. :%s\n",
+    if (codec_id != vp8_id && codec_id != vp9_id) {
+      fprintf(stderr, "Video track does not match V_VP8 or V_VP9. :%s\n",
               codec_id.c_str());
       return false;
     }
