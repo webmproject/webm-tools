@@ -803,6 +803,7 @@ string WebMFile::GetCodec() const {
   string codec;
   if (state_ <= kParsingHeader)
     return codec;
+  const string opus_id("A_OPUS");
   const string vorbis_id("A_VORBIS");
   const string vp8_id("V_VP8");
   const string vp9_id("V_VP9");
@@ -812,6 +813,8 @@ string WebMFile::GetCodec() const {
     const string codec_id(track->GetCodecId());
     if (codec_id == vorbis_id)
       codec = "vorbis";
+    else if (codec_id == opus_id)
+      codec = "opus";
     else if (codec_id == vp8_id)
       codec = "vp8";
     else if (codec_id == vp9_id)
@@ -825,6 +828,10 @@ string WebMFile::GetCodec() const {
       if (!codec.empty())
         codec += ", ";
       codec += "vorbis";
+    } else if (codec_id == opus_id) {
+      if (!codec.empty())
+        codec += ", ";
+      codec += "opus";
     } else if (codec_id == vp8_id) {
       if (!codec.empty())
         codec += ", ";
@@ -933,10 +940,11 @@ bool WebMFile::OnlyOneStream() const {
     return false;
 
   if (aud_track) {
+    const string opus_id("A_OPUS");
     const string vorbis_id("A_VORBIS");
     const string codec_id(aud_track->GetCodecId());
-    if (codec_id != vorbis_id) {
-      fprintf(stderr, "Audio track does not match A_VORBIS. :%s\n",
+    if (codec_id != vorbis_id && codec_id != opus_id) {
+      fprintf(stderr, "Audio track does not match A_VORBIS or A_OPUS. :%s\n",
               codec_id.c_str());
       return false;
     }
