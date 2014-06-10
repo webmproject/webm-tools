@@ -208,12 +208,17 @@ class WebMFile {
   int64 FileMaximumBitsPerSecond() const;
 
   // Returns the codec string associated with the file. If the CodecID
-  // is V_VP8 then the string returned will be "vp8". If the CodecID is
-  // A_VORBIS then the string returned will be "vorbis". If there is more
-  // than one track in the file the codecs will be in a comma separated list
-  // like "vp8, vorbis". If the CodecID is anything else then the string
-  // returned will be empty. Parser state must be >= kParsingClusters for
-  // output to be valid.
+  // CodecID  | string
+  // ------------------
+  // V_VP8    | vp8
+  // V_VP9    | vp9
+  // A_VORBIS | vorbis
+  // A_OPUS   | opus
+  //
+  // If there is more than one track in the file the codecs will be in a comma
+  // separated list like "vp8, vorbis". If the CodecID is anything else then
+  // the string returned will be empty. Parser state must be >=
+  // kParsingClusters for output to be valid.
   std::string GetCodec() const;
 
   // Returns the Cues from the webm file. Parser state must equal kParsingDone
@@ -253,10 +258,10 @@ class WebMFile {
   // be >= kParsingClusters for output to be valid.
   int64 GetSegmentStartOffset() const;
 
-  // Returns true if the first video track equals V_VP8 or the first audio
-  // track equals A_VORBIS. Returns false if there are no audio or video
-  // tracks. Returns false if there is both a video tack and an audio track.
-  // Parser state must be >= kParsingClusters for output to be valid.
+  // Returns true if the first video track equals V_VP8 / V_VP9 or the first
+  // audio track equals A_OPUS / A_VORBIS. Returns false if there are no audio
+  // or video tracks. Returns false if there is both a video tack and an audio
+  // track. Parser state must be >= kParsingClusters for output to be valid.
   bool OnlyOneStream() const;
 
   // Parses the next WebM chunk in |data|. The application owns |data|. If one
