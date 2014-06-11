@@ -860,15 +860,29 @@ int main(int argc, char* argv[]) {
     if (!OutputTracks(*(segment.get()), options, out, &indent))
       return EXIT_FAILURE;
 
-  if (options.output_clusters)
-    fprintf(out, "%sClusters (count):%ld\n",
-            indent.indent_str().c_str(), segment->GetCount());
-
   const mkvparser::Tracks* const tracks = segment->GetTracks();
   if (!tracks) {
     fprintf(stderr, "Could not get Tracks.\n");
     return EXIT_FAILURE;
   }
+
+  // If Cues are before the clusters output them first.
+  if (options.output_cues) {
+    const mkvparser::Cluster* cluster = segment->GetFirst();
+    const mkvparser::Cues* const cues = segment->GetCues();
+    if (cluster != NULL && cues != NULL) {
+      if (cues->m_element_start < cluster->m_element_start) {
+        if (!OutputCues(*segment, *tracks, options, out, &indent)) {
+          return EXIT_FAILURE;
+        }
+        options.output_cues = false;
+      }
+    }
+  }
+
+  if (options.output_clusters)
+    fprintf(out, "%sClusters (count):%ld\n",
+            indent.indent_str().c_str(), segment->GetCount());
 
   int64 clusters_size = 0;
   const mkvparser::Cluster* cluster = segment->GetFirst();
