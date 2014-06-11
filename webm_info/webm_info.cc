@@ -721,7 +721,7 @@ bool OutputCues(const mkvparser::Segment& segment,
   indent->Adjust(webm_tools::kIncreaseIndent);
 
   do {
-    for (int track_num = 1; track_num != num_tracks; ++track_num) {
+    for (int track_num = 1; track_num <= num_tracks; ++track_num) {
       const mkvparser::Track* const track = tracks.GetTrackByNumber(track_num);
       const mkvparser::CuePoint::TrackPosition* const track_pos =
           cue_point->Find(track);
