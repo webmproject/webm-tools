@@ -891,7 +891,7 @@ string WebMFile::GetMimeType() const {
   if (state_ <= kParsingHeader)
     return mimetype;
   const string codec = GetCodec();
-  if (codec == "vorbis")
+  if (codec == "opus" || codec == "vorbis")
     mimetype = "audio/webm";
   return mimetype;
 }
