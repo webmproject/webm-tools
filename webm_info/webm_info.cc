@@ -29,7 +29,7 @@ using webm_tools::uint32;
 using webm_tools::uint64;
 using webm_tools::kNanosecondsPerSecond;
 
-const char VERSION_STRING[] = "1.0.2.0";
+const char VERSION_STRING[] = "1.0.2.1";
 
 struct Options {
   Options();
@@ -567,6 +567,11 @@ bool OutputCluster(const mkvparser::Cluster& cluster,
         const int64 time_ns = block->GetTime(&cluster);
         const bool is_key = block->IsKey();
 
+        if (block_entry->GetKind() == mkvparser::BlockEntry::kBlockGroup) {
+          fprintf(o, "%sBlockGroup:\n", indent->indent_str().c_str());
+          indent->Adjust(webm_tools::kIncreaseIndent);
+        }
+
         fprintf(o, "%sBlock: type:%s frame:%s",
                 indent->indent_str().c_str(),
                 track_type == mkvparser::Track::kVideo ? "V" : "A",
@@ -676,6 +681,15 @@ bool OutputCluster(const mkvparser::Cluster& cluster,
 
           if (frame_count > 1)
             indent->Adjust(webm_tools::kDecreaseIndent);
+        }
+
+        if (block_entry->GetKind() == mkvparser::BlockEntry::kBlockGroup) {
+          const int64 discard_padding = block->GetDiscardPadding();
+          if (discard_padding != 0) {
+            fprintf(o, "\n%sDiscardPadding: %10lld",
+                    indent->indent_str().c_str(), discard_padding);
+          }
+          indent->Adjust(webm_tools::kDecreaseIndent);
         }
 
         fprintf(o, "\n");
