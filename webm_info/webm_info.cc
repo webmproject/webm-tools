@@ -29,7 +29,7 @@ using webm_tools::uint32;
 using webm_tools::uint64;
 using webm_tools::kNanosecondsPerSecond;
 
-const char VERSION_STRING[] = "1.0.1.0";
+const char VERSION_STRING[] = "1.0.2.0";
 
 struct Options {
   Options();
@@ -366,6 +366,8 @@ bool OutputTracks(const mkvparser::Segment& segment,
           static_cast<const mkvparser::AudioTrack* const>(track);
       const int64 channels = audio_track->GetChannels();
       const int64 bit_depth = audio_track->GetBitDepth();
+      const uint64 codec_delay = audio_track->GetCodecDelay();
+      const uint64 seek_preroll = audio_track->GetSeekPreRoll();
       fprintf(o, "%sChannels         : %lld\n",
               indent->indent_str().c_str(), channels);
       if (bit_depth > 0)
@@ -373,6 +375,12 @@ bool OutputTracks(const mkvparser::Segment& segment,
                 indent->indent_str().c_str(), bit_depth);
       fprintf(o, "%sSamplingFrequency: %g\n",
               indent->indent_str().c_str(), audio_track->GetSamplingRate());
+      if (codec_delay)
+        fprintf(o, "%sCodecDelay       : %llu\n",
+                indent->indent_str().c_str(), codec_delay);
+      if (seek_preroll)
+        fprintf(o, "%sSeekPreRoll      : %llu\n",
+                indent->indent_str().c_str(), seek_preroll);
     }
     indent->Adjust(webm_tools::kDecreaseIndent * 2);
   }
