@@ -10,5 +10,16 @@ Release
 # Compiled Object files
 *.o
 
+# OS X junk
+.DS_Store
+
+# Precompiled headers
+*.pch
+
+# Xcode junk
+project.xcworkspace/
+xcuserdata/
+
 # Other files
+*.swp
 *.webm
