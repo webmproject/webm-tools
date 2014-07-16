@@ -1,0 +1,552 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6A06EF181974B98300220A3F /* VPX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A06EF171974B98300220A3F /* VPX.framework */; };
+		6A06EF261974B9AD00220A3F /* mkvmuxer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A06EF1A1974B9AD00220A3F /* mkvmuxer.cpp */; };
+		6A06EF271974B9AD00220A3F /* mkvmuxerutil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A06EF1D1974B9AD00220A3F /* mkvmuxerutil.cpp */; };
+		6A06EF281974B9AD00220A3F /* mkvparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A06EF1F1974B9AD00220A3F /* mkvparser.cpp */; };
+		6A06EF291974B9AD00220A3F /* mkvreader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A06EF211974B9AD00220A3F /* mkvreader.cpp */; };
+		6A06EF2A1974B9AD00220A3F /* mkvwriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A06EF231974B9AD00220A3F /* mkvwriter.cpp */; };
+		6A4DF5E01963A49900B420A9 /* vpx_player.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6A4DF5DE1963A49900B420A9 /* vpx_player.mm */; };
+		6ABFD263196E503400B05D49 /* webm_frame_parser.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6ABFD261196E503400B05D49 /* webm_frame_parser.mm */; };
+		6AFD5A6319639660004CCF76 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFD5A6219639660004CCF76 /* Foundation.framework */; };
+		6AFD5A6519639660004CCF76 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFD5A6419639660004CCF76 /* CoreGraphics.framework */; };
+		6AFD5A6719639660004CCF76 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFD5A6619639660004CCF76 /* UIKit.framework */; };
+		6AFD5A6D19639660004CCF76 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6AFD5A6B19639660004CCF76 /* InfoPlist.strings */; };
+		6AFD5A6F19639660004CCF76 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFD5A6E19639660004CCF76 /* main.m */; };
+		6AFD5A7319639660004CCF76 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFD5A7219639660004CCF76 /* AppDelegate.m */; };
+		6AFD5A7619639660004CCF76 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AFD5A7419639660004CCF76 /* Main_iPhone.storyboard */; };
+		6AFD5A7919639660004CCF76 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AFD5A7719639660004CCF76 /* Main_iPad.storyboard */; };
+		6AFD5A7C19639660004CCF76 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6AFD5A7B19639660004CCF76 /* ViewController.mm */; };
+		6AFD5A7E19639660004CCF76 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AFD5A7D19639660004CCF76 /* Images.xcassets */; };
+		6AFD5A8519639660004CCF76 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFD5A8419639660004CCF76 /* XCTest.framework */; };
+		6AFD5A8619639660004CCF76 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFD5A6219639660004CCF76 /* Foundation.framework */; };
+		6AFD5A8719639660004CCF76 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFD5A6619639660004CCF76 /* UIKit.framework */; };
+		6AFD5A8F19639660004CCF76 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6AFD5A8D19639660004CCF76 /* InfoPlist.strings */; };
+		6AFD5A9119639660004CCF76 /* VPXTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFD5A9019639660004CCF76 /* VPXTestTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6AFD5A8819639660004CCF76 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6AFD5A5719639660004CCF76 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6AFD5A5E19639660004CCF76;
+			remoteInfo = VPXTest;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6A06EF171974B98300220A3F /* VPX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VPX.framework; path = ../../libvpx/framework/VPX.framework; sourceTree = SOURCE_ROOT; };
+		6A06EF1A1974B9AD00220A3F /* mkvmuxer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mkvmuxer.cpp; path = ../../libwebm/mkvmuxer.cpp; sourceTree = SOURCE_ROOT; };
+		6A06EF1B1974B9AD00220A3F /* mkvmuxer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mkvmuxer.hpp; path = ../../libwebm/mkvmuxer.hpp; sourceTree = SOURCE_ROOT; };
+		6A06EF1C1974B9AD00220A3F /* mkvmuxertypes.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mkvmuxertypes.hpp; path = ../../libwebm/mkvmuxertypes.hpp; sourceTree = SOURCE_ROOT; };
+		6A06EF1D1974B9AD00220A3F /* mkvmuxerutil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mkvmuxerutil.cpp; path = ../../libwebm/mkvmuxerutil.cpp; sourceTree = SOURCE_ROOT; };
+		6A06EF1E1974B9AD00220A3F /* mkvmuxerutil.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mkvmuxerutil.hpp; path = ../../libwebm/mkvmuxerutil.hpp; sourceTree = SOURCE_ROOT; };
+		6A06EF1F1974B9AD00220A3F /* mkvparser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mkvparser.cpp; path = ../../libwebm/mkvparser.cpp; sourceTree = SOURCE_ROOT; };
+		6A06EF201974B9AD00220A3F /* mkvparser.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mkvparser.hpp; path = ../../libwebm/mkvparser.hpp; sourceTree = SOURCE_ROOT; };
+		6A06EF211974B9AD00220A3F /* mkvreader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mkvreader.cpp; path = ../../libwebm/mkvreader.cpp; sourceTree = SOURCE_ROOT; };
+		6A06EF221974B9AD00220A3F /* mkvreader.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mkvreader.hpp; path = ../../libwebm/mkvreader.hpp; sourceTree = SOURCE_ROOT; };
+		6A06EF231974B9AD00220A3F /* mkvwriter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mkvwriter.cpp; path = ../../libwebm/mkvwriter.cpp; sourceTree = SOURCE_ROOT; };
+		6A06EF241974B9AD00220A3F /* mkvwriter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mkvwriter.hpp; path = ../../libwebm/mkvwriter.hpp; sourceTree = SOURCE_ROOT; };
+		6A06EF251974B9AD00220A3F /* webmids.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = webmids.hpp; path = ../../libwebm/webmids.hpp; sourceTree = SOURCE_ROOT; };
+		6A4DF5DE1963A49900B420A9 /* vpx_player.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = vpx_player.mm; path = VPXTest/vpx_player.mm; sourceTree = "<group>"; };
+		6A4DF5DF1963A49900B420A9 /* vpx_player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vpx_player.h; path = VPXTest/vpx_player.h; sourceTree = "<group>"; };
+		6ABFD260196E503400B05D49 /* vpx_test_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vpx_test_common.h; path = VPXTest/vpx_test_common.h; sourceTree = "<group>"; };
+		6ABFD261196E503400B05D49 /* webm_frame_parser.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = webm_frame_parser.mm; path = VPXTest/webm_frame_parser.mm; sourceTree = "<group>"; };
+		6ABFD262196E503400B05D49 /* webm_frame_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = webm_frame_parser.h; path = VPXTest/webm_frame_parser.h; sourceTree = "<group>"; };
+		6ABFD264196E509D00B05D49 /* vpx_frame_parser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = vpx_frame_parser.h; path = VPXTest/vpx_frame_parser.h; sourceTree = "<group>"; };
+		6AFD5A5F19639660004CCF76 /* VPXTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VPXTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6AFD5A6219639660004CCF76 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6AFD5A6419639660004CCF76 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		6AFD5A6619639660004CCF76 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		6AFD5A6A19639660004CCF76 /* VPXTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VPXTest-Info.plist"; sourceTree = "<group>"; };
+		6AFD5A6C19639660004CCF76 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6AFD5A6E19639660004CCF76 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6AFD5A7019639660004CCF76 /* VPXTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VPXTest-Prefix.pch"; sourceTree = "<group>"; };
+		6AFD5A7119639660004CCF76 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = VPXTest/AppDelegate.h; sourceTree = "<group>"; };
+		6AFD5A7219639660004CCF76 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = VPXTest/AppDelegate.m; sourceTree = "<group>"; };
+		6AFD5A7519639660004CCF76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		6AFD5A7819639660004CCF76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		6AFD5A7A19639660004CCF76 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = VPXTest/ViewController.h; sourceTree = "<group>"; };
+		6AFD5A7B19639660004CCF76 /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = ViewController.mm; path = VPXTest/ViewController.mm; sourceTree = "<group>"; };
+		6AFD5A7D19639660004CCF76 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = VPXTest/Images.xcassets; sourceTree = "<group>"; };
+		6AFD5A8319639660004CCF76 /* VPXTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VPXTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6AFD5A8419639660004CCF76 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		6AFD5A8C19639660004CCF76 /* VPXTestTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VPXTestTests-Info.plist"; sourceTree = "<group>"; };
+		6AFD5A8E19639660004CCF76 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6AFD5A9019639660004CCF76 /* VPXTestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VPXTestTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6AFD5A5C19639660004CCF76 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6AFD5A6519639660004CCF76 /* CoreGraphics.framework in Frameworks */,
+				6AFD5A6719639660004CCF76 /* UIKit.framework in Frameworks */,
+				6AFD5A6319639660004CCF76 /* Foundation.framework in Frameworks */,
+				6A06EF181974B98300220A3F /* VPX.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6AFD5A8019639660004CCF76 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6AFD5A8519639660004CCF76 /* XCTest.framework in Frameworks */,
+				6AFD5A8719639660004CCF76 /* UIKit.framework in Frameworks */,
+				6AFD5A8619639660004CCF76 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6A06EF191974B99E00220A3F /* libwebm */ = {
+			isa = PBXGroup;
+			children = (
+				6A06EF1A1974B9AD00220A3F /* mkvmuxer.cpp */,
+				6A06EF1B1974B9AD00220A3F /* mkvmuxer.hpp */,
+				6A06EF1C1974B9AD00220A3F /* mkvmuxertypes.hpp */,
+				6A06EF1D1974B9AD00220A3F /* mkvmuxerutil.cpp */,
+				6A06EF1E1974B9AD00220A3F /* mkvmuxerutil.hpp */,
+				6A06EF1F1974B9AD00220A3F /* mkvparser.cpp */,
+				6A06EF201974B9AD00220A3F /* mkvparser.hpp */,
+				6A06EF211974B9AD00220A3F /* mkvreader.cpp */,
+				6A06EF221974B9AD00220A3F /* mkvreader.hpp */,
+				6A06EF231974B9AD00220A3F /* mkvwriter.cpp */,
+				6A06EF241974B9AD00220A3F /* mkvwriter.hpp */,
+				6A06EF251974B9AD00220A3F /* webmids.hpp */,
+			);
+			name = libwebm;
+			sourceTree = "<group>";
+		};
+		6AFD5A5619639660004CCF76 = {
+			isa = PBXGroup;
+			children = (
+				6A06EF191974B99E00220A3F /* libwebm */,
+				6ABFD264196E509D00B05D49 /* vpx_frame_parser.h */,
+				6ABFD260196E503400B05D49 /* vpx_test_common.h */,
+				6ABFD261196E503400B05D49 /* webm_frame_parser.mm */,
+				6ABFD262196E503400B05D49 /* webm_frame_parser.h */,
+				6A4DF5DE1963A49900B420A9 /* vpx_player.mm */,
+				6A4DF5DF1963A49900B420A9 /* vpx_player.h */,
+				6AFD5A7119639660004CCF76 /* AppDelegate.h */,
+				6AFD5A7219639660004CCF76 /* AppDelegate.m */,
+				6AFD5A7419639660004CCF76 /* Main_iPhone.storyboard */,
+				6AFD5A7719639660004CCF76 /* Main_iPad.storyboard */,
+				6AFD5A7A19639660004CCF76 /* ViewController.h */,
+				6AFD5A7B19639660004CCF76 /* ViewController.mm */,
+				6AFD5A7D19639660004CCF76 /* Images.xcassets */,
+				6AFD5A6919639660004CCF76 /* Supporting Files */,
+				6AFD5A8A19639660004CCF76 /* VPXTestTests */,
+				6AFD5A6119639660004CCF76 /* Frameworks */,
+				6AFD5A6019639660004CCF76 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6AFD5A6019639660004CCF76 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6AFD5A5F19639660004CCF76 /* VPXTest.app */,
+				6AFD5A8319639660004CCF76 /* VPXTestTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6AFD5A6119639660004CCF76 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6A06EF171974B98300220A3F /* VPX.framework */,
+				6AFD5A6219639660004CCF76 /* Foundation.framework */,
+				6AFD5A6419639660004CCF76 /* CoreGraphics.framework */,
+				6AFD5A6619639660004CCF76 /* UIKit.framework */,
+				6AFD5A8419639660004CCF76 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6AFD5A6919639660004CCF76 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6AFD5A6A19639660004CCF76 /* VPXTest-Info.plist */,
+				6AFD5A6B19639660004CCF76 /* InfoPlist.strings */,
+				6AFD5A6E19639660004CCF76 /* main.m */,
+				6AFD5A7019639660004CCF76 /* VPXTest-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			path = VPXTest;
+			sourceTree = "<group>";
+		};
+		6AFD5A8A19639660004CCF76 /* VPXTestTests */ = {
+			isa = PBXGroup;
+			children = (
+				6AFD5A9019639660004CCF76 /* VPXTestTests.m */,
+				6AFD5A8B19639660004CCF76 /* Supporting Files */,
+			);
+			path = VPXTestTests;
+			sourceTree = "<group>";
+		};
+		6AFD5A8B19639660004CCF76 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6AFD5A8C19639660004CCF76 /* VPXTestTests-Info.plist */,
+				6AFD5A8D19639660004CCF76 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6AFD5A5E19639660004CCF76 /* VPXTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6AFD5A9419639660004CCF76 /* Build configuration list for PBXNativeTarget "VPXTest" */;
+			buildPhases = (
+				6AFD5A5B19639660004CCF76 /* Sources */,
+				6AFD5A5C19639660004CCF76 /* Frameworks */,
+				6AFD5A5D19639660004CCF76 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VPXTest;
+			productName = VPXTest;
+			productReference = 6AFD5A5F19639660004CCF76 /* VPXTest.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6AFD5A8219639660004CCF76 /* VPXTestTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6AFD5A9719639660004CCF76 /* Build configuration list for PBXNativeTarget "VPXTestTests" */;
+			buildPhases = (
+				6AFD5A7F19639660004CCF76 /* Sources */,
+				6AFD5A8019639660004CCF76 /* Frameworks */,
+				6AFD5A8119639660004CCF76 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6AFD5A8919639660004CCF76 /* PBXTargetDependency */,
+			);
+			name = VPXTestTests;
+			productName = VPXTestTests;
+			productReference = 6AFD5A8319639660004CCF76 /* VPXTestTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6AFD5A5719639660004CCF76 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = Google;
+				TargetAttributes = {
+					6AFD5A8219639660004CCF76 = {
+						TestTargetID = 6AFD5A5E19639660004CCF76;
+					};
+				};
+			};
+			buildConfigurationList = 6AFD5A5A19639660004CCF76 /* Build configuration list for PBXProject "VPXTest" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6AFD5A5619639660004CCF76;
+			productRefGroup = 6AFD5A6019639660004CCF76 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6AFD5A5E19639660004CCF76 /* VPXTest */,
+				6AFD5A8219639660004CCF76 /* VPXTestTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6AFD5A5D19639660004CCF76 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6AFD5A7919639660004CCF76 /* Main_iPad.storyboard in Resources */,
+				6AFD5A7E19639660004CCF76 /* Images.xcassets in Resources */,
+				6AFD5A7619639660004CCF76 /* Main_iPhone.storyboard in Resources */,
+				6AFD5A6D19639660004CCF76 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6AFD5A8119639660004CCF76 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6AFD5A8F19639660004CCF76 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6AFD5A5B19639660004CCF76 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A06EF291974B9AD00220A3F /* mkvreader.cpp in Sources */,
+				6A06EF271974B9AD00220A3F /* mkvmuxerutil.cpp in Sources */,
+				6A06EF281974B9AD00220A3F /* mkvparser.cpp in Sources */,
+				6A06EF2A1974B9AD00220A3F /* mkvwriter.cpp in Sources */,
+				6AFD5A7C19639660004CCF76 /* ViewController.mm in Sources */,
+				6ABFD263196E503400B05D49 /* webm_frame_parser.mm in Sources */,
+				6AFD5A7319639660004CCF76 /* AppDelegate.m in Sources */,
+				6AFD5A6F19639660004CCF76 /* main.m in Sources */,
+				6A06EF261974B9AD00220A3F /* mkvmuxer.cpp in Sources */,
+				6A4DF5E01963A49900B420A9 /* vpx_player.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6AFD5A7F19639660004CCF76 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6AFD5A9119639660004CCF76 /* VPXTestTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6AFD5A8919639660004CCF76 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6AFD5A5E19639660004CCF76 /* VPXTest */;
+			targetProxy = 6AFD5A8819639660004CCF76 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6AFD5A6B19639660004CCF76 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6AFD5A6C19639660004CCF76 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		6AFD5A7419639660004CCF76 /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6AFD5A7519639660004CCF76 /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			path = VPXTest;
+			sourceTree = "<group>";
+		};
+		6AFD5A7719639660004CCF76 /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6AFD5A7819639660004CCF76 /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			path = VPXTest;
+			sourceTree = "<group>";
+		};
+		6AFD5A8D19639660004CCF76 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6AFD5A8E19639660004CCF76 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6AFD5A9219639660004CCF76 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6AFD5A9319639660004CCF76 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6AFD5A9519639660004CCF76 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					../../libvpx/framework,
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "VPXTest/VPXTest-Prefix.pch";
+				INFOPLIST_FILE = "VPXTest/VPXTest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		6AFD5A9619639660004CCF76 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					../../libvpx/framework,
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "VPXTest/VPXTest-Prefix.pch";
+				INFOPLIST_FILE = "VPXTest/VPXTest-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		6AFD5A9819639660004CCF76 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/VPXTest.app/VPXTest";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "VPXTest/VPXTest-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "VPXTestTests/VPXTestTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		6AFD5A9919639660004CCF76 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/VPXTest.app/VPXTest";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "VPXTest/VPXTest-Prefix.pch";
+				INFOPLIST_FILE = "VPXTestTests/VPXTestTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6AFD5A5A19639660004CCF76 /* Build configuration list for PBXProject "VPXTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6AFD5A9219639660004CCF76 /* Debug */,
+				6AFD5A9319639660004CCF76 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6AFD5A9419639660004CCF76 /* Build configuration list for PBXNativeTarget "VPXTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6AFD5A9519639660004CCF76 /* Debug */,
+				6AFD5A9619639660004CCF76 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6AFD5A9719639660004CCF76 /* Build configuration list for PBXNativeTarget "VPXTestTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6AFD5A9819639660004CCF76 /* Debug */,
+				6AFD5A9919639660004CCF76 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6AFD5A5719639660004CCF76 /* Project object */;
+}
