@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAdn//fmU\u003d",
+        "filename": "vpx_ios/VPXTest/AppDelegate.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-07-16T22:53:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAdn//f5s\u003d",
+      "revId": "142aa01c167b6cb5d67e12e0c4dce5696c5dec68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAdn//f5g\u003d",
         "filename": "vpx_ios/VPXTest/AppDelegate.h",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2014-07-16T05:58:40Z",
       "side": 1,
       "message": "http://google-styleguide.googlecode.com/svn/trunk/objcguide.xml#Properties",
+      "revId": "142aa01c167b6cb5d67e12e0c4dce5696c5dec68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//fmI\u003d",
+        "filename": "vpx_ios/VPXTest/AppDelegate.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-07-16T22:53:28Z",
+      "side": 1,
+      "message": "Done (throughout)",
+      "parentUuid": "AAAAdn//f5g\u003d",
       "revId": "142aa01c167b6cb5d67e12e0c4dce5696c5dec68",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAdn//fmE\u003d",
+        "filename": "vpx_ios/VPXTest/AppDelegate.m",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-07-16T22:53:28Z",
+      "side": 1,
+      "message": "Cursed Xcode default sources... Done. Also got rid of the comments.",
+      "parentUuid": "AAAAdn//f5c\u003d",
+      "revId": "142aa01c167b6cb5d67e12e0c4dce5696c5dec68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAdn//f5M\u003d",
         "filename": "vpx_ios/VPXTest/ViewController.h",
         "patchSetId": 3
@@ -64,6 +118,24 @@
       "writtenOn": "2014-07-16T05:58:40Z",
       "side": 1,
       "message": "whitespace",
+      "revId": "142aa01c167b6cb5d67e12e0c4dce5696c5dec68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//fmA\u003d",
+        "filename": "vpx_ios/VPXTest/ViewController.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-07-16T22:53:28Z",
+      "side": 1,
+      "message": "Just the one between property and \u0027(\u0027, right?\n\nDone",
+      "parentUuid": "AAAAdn//f5M\u003d",
       "revId": "142aa01c167b6cb5d67e12e0c4dce5696c5dec68",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAdn//fl4\u003d",
+        "filename": "vpx_ios/VPXTest/vpx_frame_parser.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-07-16T22:53:28Z",
+      "side": 1,
+      "message": "Dropped length.\n\nWas nervous about std::string internals on iOS, so I used vector instead (specifically, worried about passing string::data() as the write pointer into mkvparser methods). Probably being paranoid.",
+      "parentUuid": "AAAAdn//f5I\u003d",
+      "revId": "142aa01c167b6cb5d67e12e0c4dce5696c5dec68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAdn//f5A\u003d",
         "filename": "vpx_ios/VPXTest/vpx_player.h",
         "patchSetId": 3
@@ -98,6 +188,24 @@
       "writtenOn": "2014-07-16T05:58:40Z",
       "side": 1,
       "message": "should be uppercase",
+      "revId": "142aa01c167b6cb5d67e12e0c4dce5696c5dec68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//flg\u003d",
+        "filename": "vpx_ios/VPXTest/vpx_player.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-07-16T22:53:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAdn//f5A\u003d",
       "revId": "142aa01c167b6cb5d67e12e0c4dce5696c5dec68",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAdn//flc\u003d",
+        "filename": "vpx_ios/VPXTest/vpx_player.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-07-16T22:53:28Z",
+      "side": 1,
+      "message": "Probably should have just done everything the obj-c way instead of what I did originally... oh well, done.",
+      "parentUuid": "AAAAdn//f5E\u003d",
+      "revId": "142aa01c167b6cb5d67e12e0c4dce5696c5dec68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAdn//f44\u003d",
         "filename": "vpx_ios/VPXTest/vpx_player.h",
         "patchSetId": 3
@@ -132,6 +258,24 @@
       "writtenOn": "2014-07-16T05:58:40Z",
       "side": 1,
       "message": "probably VPX is OK for the capitalization",
+      "revId": "142aa01c167b6cb5d67e12e0c4dce5696c5dec68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//fk0\u003d",
+        "filename": "vpx_ios/VPXTest/vpx_player.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-07-16T22:53:28Z",
+      "side": 1,
+      "message": "For the namespace I did s/Vpx/VPX/\n\nLeft the others alone.",
+      "parentUuid": "AAAAdn//f44\u003d",
       "revId": "142aa01c167b6cb5d67e12e0c4dce5696c5dec68",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAdn//flU\u003d",
+        "filename": "vpx_ios/VPXTest/vpx_player.mm",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-07-16T22:53:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAdn//f40\u003d",
+      "revId": "142aa01c167b6cb5d67e12e0c4dce5696c5dec68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAdn//f4o\u003d",
         "filename": "vpx_ios/VPXTest/vpx_player.mm",
         "patchSetId": 3
@@ -166,6 +328,24 @@
       "writtenOn": "2014-07-16T05:58:40Z",
       "side": 1,
       "message": "const",
+      "revId": "142aa01c167b6cb5d67e12e0c4dce5696c5dec68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//flQ\u003d",
+        "filename": "vpx_ios/VPXTest/vpx_player.mm",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-07-16T22:53:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAdn//f4o\u003d",
       "revId": "142aa01c167b6cb5d67e12e0c4dce5696c5dec68",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -189,6 +369,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAdn//flM\u003d",
+        "filename": "vpx_ios/VPXTest/vpx_player.mm",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-07-16T22:53:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAdn//f4s\u003d",
+      "revId": "142aa01c167b6cb5d67e12e0c4dce5696c5dec68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAdn//f4w\u003d",
         "filename": "vpx_ios/VPXTest/vpx_player.mm",
         "patchSetId": 3
@@ -200,6 +398,24 @@
       "writtenOn": "2014-07-16T05:58:40Z",
       "side": 1,
       "message": "// namespace VPXTest",
+      "revId": "142aa01c167b6cb5d67e12e0c4dce5696c5dec68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//flI\u003d",
+        "filename": "vpx_ios/VPXTest/vpx_player.mm",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-07-16T22:53:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAdn//f4w\u003d",
       "revId": "142aa01c167b6cb5d67e12e0c4dce5696c5dec68",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -223,6 +439,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAdn//flE\u003d",
+        "filename": "vpx_ios/VPXTest/webm_frame_parser.mm",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-07-16T22:53:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAdn//f4k\u003d",
+      "revId": "142aa01c167b6cb5d67e12e0c4dce5696c5dec68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAdn//f4g\u003d",
         "filename": "vpx_ios/testserver/server.py",
         "patchSetId": 3
@@ -234,6 +468,24 @@
       "writtenOn": "2014-07-16T05:58:40Z",
       "side": 1,
       "message": "I\u0027m going to punt on this file for now and just say lint it first...",
+      "revId": "142aa01c167b6cb5d67e12e0c4dce5696c5dec68",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//flA\u003d",
+        "filename": "vpx_ios/testserver/server.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-07-16T22:53:28Z",
+      "side": 1,
+      "message": "Did all but two things that pylint suggested. The two that I ignored were:\n\n- It wanted a docstring for main()\n- It says VPXTestServer has too many public methods (which I guess means it doesn\u0027t like SimpleHTTPServer/BaseHTTPServer)",
+      "parentUuid": "AAAAdn//f4g\u003d",
       "revId": "142aa01c167b6cb5d67e12e0c4dce5696c5dec68",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
