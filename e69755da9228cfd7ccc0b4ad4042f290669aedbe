@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAdn//fG4\u003d",
+        "filename": "vpx_ios/VPXTest/ViewController.mm",
+        "patchSetId": 7
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-07-18T18:14:08Z",
+      "side": 1,
+      "message": "That semicolon somehow snuck past my column guide. I blame xcode.",
+      "parentUuid": "AAAAdn//fPM\u003d",
+      "revId": "e69755da9228cfd7ccc0b4ad4042f290669aedbe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAdn//fPE\u003d",
         "filename": "vpx_ios/VPXTest/main.m",
         "patchSetId": 7
@@ -30,6 +48,24 @@
       "writtenOn": "2014-07-18T01:26:53Z",
       "side": 1,
       "message": "can this be const?",
+      "revId": "e69755da9228cfd7ccc0b4ad4042f290669aedbe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//fG0\u003d",
+        "filename": "vpx_ios/VPXTest/main.m",
+        "patchSetId": 7
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-07-18T18:14:08Z",
+      "side": 1,
+      "message": "Yeah, but then it needs to be cast when passed to UIApplicationMain().",
+      "parentUuid": "AAAAdn//fPE\u003d",
       "revId": "e69755da9228cfd7ccc0b4ad4042f290669aedbe",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAdn//fGw\u003d",
+        "filename": "vpx_ios/VPXTest/main.m",
+        "patchSetId": 7
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-07-18T18:14:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAdn//fPI\u003d",
+      "revId": "e69755da9228cfd7ccc0b4ad4042f290669aedbe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAdn//fO8\u003d",
         "filename": "vpx_ios/VPXTest/vpx_frame_parser.h",
         "patchSetId": 7
@@ -64,6 +118,24 @@
       "writtenOn": "2014-07-18T01:26:53Z",
       "side": 1,
       "message": "maybe ...Interface given it\u0027s pure virtual?",
+      "revId": "e69755da9228cfd7ccc0b4ad4042f290669aedbe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//fGk\u003d",
+        "filename": "vpx_ios/VPXTest/vpx_frame_parser.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-07-18T18:14:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAdn//fO8\u003d",
       "revId": "e69755da9228cfd7ccc0b4ad4042f290669aedbe",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAdn//fGo\u003d",
+        "filename": "vpx_ios/VPXTest/vpx_frame_parser.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-07-18T18:14:08Z",
+      "side": 1,
+      "message": "oops/done",
+      "parentUuid": "AAAAdn//fPA\u003d",
+      "revId": "e69755da9228cfd7ccc0b4ad4042f290669aedbe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAdn//fO4\u003d",
         "filename": "vpx_ios/VPXTestTests/VPXTestTests.m",
         "patchSetId": 7
@@ -98,6 +188,24 @@
       "writtenOn": "2014-07-18T01:26:53Z",
       "side": 1,
       "message": "is the brace position ok here?",
+      "revId": "e69755da9228cfd7ccc0b4ad4042f290669aedbe",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//fGU\u003d",
+        "filename": "vpx_ios/VPXTestTests/VPXTestTests.m",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-07-18T18:14:08Z",
+      "side": 1,
+      "message": "No/done.\n\nHadn\u0027t really looked in here yet. I think the project might need reworking for it to actually be useful. I think it needs a lib target that both VPXTest and VPXTestTests (worst name ever) can depend on.",
+      "parentUuid": "AAAAdn//fO4\u003d",
       "revId": "e69755da9228cfd7ccc0b4ad4042f290669aedbe",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
