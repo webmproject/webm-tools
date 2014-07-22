@@ -12,10 +12,13 @@
 
 #include "VPX/vpx/vpx_decoder.h"
 #include "VPX/vpx/vp8dx.h"
+#include "VPX/vpx/vp8cx.h"
+#include "VPX/vpx/vpx_encoder.h"
 
+#import "ivf_frame_parser.h"
 #include "mkvparser.hpp"
 #include "mkvreader.hpp"
-#include "webm_frame_parser.h"
+#import "webm_frame_parser.h"
 
 namespace VpxTest {
 
@@ -38,7 +41,7 @@ VpxPlayer::~VpxPlayer() {
 bool VpxPlayer::PlayFile(const char *file_path) {
   file_path_ = file_path;
 
-  if (!InitWebmParser()) {
+  if (!InitParser()) {
     NSLog(@"WebM parser init failed.");
     return false;
   }
@@ -61,17 +64,25 @@ bool VpxPlayer::PlayFile(const char *file_path) {
               frames_decoded_ / time_spent_decoding,
               decode_result ? "No errors" : "Error"];
   NSLog(@"%@", playback_result_);
+
   return true;
 }
 
-bool VpxPlayer::InitWebmParser() {
-  parser_.reset(new WebmFrameParser());
-  if (!parser_->HasVpxFrames(file_path_, &format_) ||
-      format_.codec == UNKNOWN) {
-    NSLog(@"%s has no VPX frames to decode.", file_path_.c_str());
-    return false;
+bool VpxPlayer::InitParser() {
+  parser_.reset(new IvfFrameParser());
+  if (parser_->HasVpxFrames(file_path_, &format_)) {
+    NSLog(@"Parsing %s as IVF", file_path_.c_str());
+    return true;
   }
 
+  parser_.reset(new WebmFrameParser());
+  if (parser_->HasVpxFrames(file_path_, &format_)) {
+    NSLog(@"Parsing %s as WebM", file_path_.c_str());
+    return true;
+  }
+
+  NSLog(@"%s is not a supported file type, or it has no VPX frames to decode.",
+        file_path_.c_str());
   return true;
 }
 

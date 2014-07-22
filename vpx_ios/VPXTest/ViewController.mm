@@ -11,12 +11,12 @@
 #include "VPX/vpx/vpx_config.h"
 #include "VPX/vpx/vpx_version.h"
 
-#include "vpx_player.h"
+#import "vpx_player.h"
 
 // These values must be adjusted when running on an iOS device. localhost is not
 // the address you want on the device.
 #define TEST_SERVER @"http://localhost:8000"
-#define TEST_FILE_LIST @"http://localhost:8000/webm"
+#define TEST_FILE_LIST @"http://localhost:8000/allvpx"
 
 @interface ViewController () <NSURLSessionDelegate,
                               NSURLSessionDownloadDelegate,

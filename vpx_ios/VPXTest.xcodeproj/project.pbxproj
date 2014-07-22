@@ -14,6 +14,7 @@
 		6A06EF291974B9AD00220A3F /* mkvreader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A06EF211974B9AD00220A3F /* mkvreader.cpp */; };
 		6A06EF2A1974B9AD00220A3F /* mkvwriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A06EF231974B9AD00220A3F /* mkvwriter.cpp */; };
 		6A4DF5E01963A49900B420A9 /* vpx_player.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6A4DF5DE1963A49900B420A9 /* vpx_player.mm */; };
+		6A86B4D4197D9AC40093C195 /* ivf_frame_parser.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6A86B4D3197D9AC40093C195 /* ivf_frame_parser.mm */; };
 		6ABFD263196E503400B05D49 /* webm_frame_parser.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6ABFD261196E503400B05D49 /* webm_frame_parser.mm */; };
 		6AFD5A6319639660004CCF76 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFD5A6219639660004CCF76 /* Foundation.framework */; };
 		6AFD5A6519639660004CCF76 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFD5A6419639660004CCF76 /* CoreGraphics.framework */; };
@@ -58,6 +59,8 @@
 		6A06EF251974B9AD00220A3F /* webmids.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = webmids.hpp; path = ../../libwebm/webmids.hpp; sourceTree = SOURCE_ROOT; };
 		6A4DF5DE1963A49900B420A9 /* vpx_player.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = vpx_player.mm; path = VPXTest/vpx_player.mm; sourceTree = "<group>"; };
 		6A4DF5DF1963A49900B420A9 /* vpx_player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vpx_player.h; path = VPXTest/vpx_player.h; sourceTree = "<group>"; };
+		6A86B4D2197D9AC40093C195 /* ivf_frame_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ivf_frame_parser.h; path = VPXTest/ivf_frame_parser.h; sourceTree = "<group>"; };
+		6A86B4D3197D9AC40093C195 /* ivf_frame_parser.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ivf_frame_parser.mm; path = VPXTest/ivf_frame_parser.mm; sourceTree = "<group>"; };
 		6ABFD260196E503400B05D49 /* vpx_test_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vpx_test_common.h; path = VPXTest/vpx_test_common.h; sourceTree = "<group>"; };
 		6ABFD261196E503400B05D49 /* webm_frame_parser.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = webm_frame_parser.mm; path = VPXTest/webm_frame_parser.mm; sourceTree = "<group>"; };
 		6ABFD262196E503400B05D49 /* webm_frame_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = webm_frame_parser.h; path = VPXTest/webm_frame_parser.h; sourceTree = "<group>"; };
@@ -68,7 +71,7 @@
 		6AFD5A6619639660004CCF76 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6AFD5A6A19639660004CCF76 /* VPXTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VPXTest-Info.plist"; sourceTree = "<group>"; };
 		6AFD5A6C19639660004CCF76 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6AFD5A6E19639660004CCF76 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6AFD5A6E19639660004CCF76 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = VPXTest/main.m; sourceTree = "<group>"; };
 		6AFD5A7019639660004CCF76 /* VPXTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VPXTest-Prefix.pch"; sourceTree = "<group>"; };
 		6AFD5A7119639660004CCF76 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = VPXTest/AppDelegate.h; sourceTree = "<group>"; };
 		6AFD5A7219639660004CCF76 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = VPXTest/AppDelegate.m; sourceTree = "<group>"; };
@@ -131,24 +134,27 @@
 		6AFD5A5619639660004CCF76 = {
 			isa = PBXGroup;
 			children = (
+				6AFD5A6119639660004CCF76 /* Frameworks */,
 				6A06EF191974B99E00220A3F /* libwebm */,
-				6ABFD264196E509D00B05D49 /* vpx_frame_parser.h */,
-				6ABFD260196E503400B05D49 /* vpx_test_common.h */,
-				6ABFD261196E503400B05D49 /* webm_frame_parser.mm */,
-				6ABFD262196E503400B05D49 /* webm_frame_parser.h */,
-				6A4DF5DE1963A49900B420A9 /* vpx_player.mm */,
-				6A4DF5DF1963A49900B420A9 /* vpx_player.h */,
+				6AFD5A6019639660004CCF76 /* Products */,
+				6AFD5A6919639660004CCF76 /* Supporting Files */,
 				6AFD5A7119639660004CCF76 /* AppDelegate.h */,
 				6AFD5A7219639660004CCF76 /* AppDelegate.m */,
-				6AFD5A7419639660004CCF76 /* Main_iPhone.storyboard */,
+				6AFD5A7D19639660004CCF76 /* Images.xcassets */,
+				6A86B4D2197D9AC40093C195 /* ivf_frame_parser.h */,
+				6A86B4D3197D9AC40093C195 /* ivf_frame_parser.mm */,
+				6AFD5A6E19639660004CCF76 /* main.m */,
 				6AFD5A7719639660004CCF76 /* Main_iPad.storyboard */,
+				6AFD5A7419639660004CCF76 /* Main_iPhone.storyboard */,
 				6AFD5A7A19639660004CCF76 /* ViewController.h */,
 				6AFD5A7B19639660004CCF76 /* ViewController.mm */,
-				6AFD5A7D19639660004CCF76 /* Images.xcassets */,
-				6AFD5A6919639660004CCF76 /* Supporting Files */,
+				6ABFD264196E509D00B05D49 /* vpx_frame_parser.h */,
+				6A4DF5DF1963A49900B420A9 /* vpx_player.h */,
+				6A4DF5DE1963A49900B420A9 /* vpx_player.mm */,
+				6ABFD260196E503400B05D49 /* vpx_test_common.h */,
+				6ABFD262196E503400B05D49 /* webm_frame_parser.h */,
+				6ABFD261196E503400B05D49 /* webm_frame_parser.mm */,
 				6AFD5A8A19639660004CCF76 /* VPXTestTests */,
-				6AFD5A6119639660004CCF76 /* Frameworks */,
-				6AFD5A6019639660004CCF76 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -178,7 +184,6 @@
 			children = (
 				6AFD5A6A19639660004CCF76 /* VPXTest-Info.plist */,
 				6AFD5A6B19639660004CCF76 /* InfoPlist.strings */,
-				6AFD5A6E19639660004CCF76 /* main.m */,
 				6AFD5A7019639660004CCF76 /* VPXTest-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -311,6 +316,7 @@
 				6AFD5A6F19639660004CCF76 /* main.m in Sources */,
 				6A06EF261974B9AD00220A3F /* mkvmuxer.cpp in Sources */,
 				6A4DF5E01963A49900B420A9 /* vpx_player.mm in Sources */,
+				6A86B4D4197D9AC40093C195 /* ivf_frame_parser.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

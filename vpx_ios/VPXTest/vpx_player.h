@@ -28,7 +28,7 @@ class VpxPlayer {
   NSString *playback_result() const { return playback_result_; };
 
  private:
-  bool InitWebmParser();
+  bool InitParser();
   bool InitVpxDecoder();
   bool DecodeAllVideoFrames();
 
