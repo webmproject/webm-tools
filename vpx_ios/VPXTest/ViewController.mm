@@ -34,6 +34,7 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  testFiles_ = nil;
   selectedFileIndex_ = 0;
   [self downloadFileList];
 
@@ -73,17 +74,19 @@
                           NSError *error) {
           testFiles_ =
               [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-          dispatch_async(dispatch_get_main_queue(), ^{
-              // Reload the table.
-              [self.fileList reloadData];
-              NSIndexPath *zeroPath =
-                  [NSIndexPath indexPathForRow:0 inSection:0];
-              // Select the first row.
-              [self.fileList
-                  selectRowAtIndexPath:zeroPath
-                              animated:YES
-                        scrollPosition:UITableViewScrollPositionBottom];
-          });
+          if (testFiles_ != nil) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // Reload the table.
+                [self.fileList reloadData];
+                NSIndexPath *zeroPath =
+                    [NSIndexPath indexPathForRow:0 inSection:0];
+                // Select the first row.
+                [self.fileList
+                    selectRowAtIndexPath:zeroPath
+                                animated:YES
+                          scrollPosition:UITableViewScrollPositionBottom];
+            });
+          }
       }];
   [dataTask resume];
   NSLog(@"dataTask running");
