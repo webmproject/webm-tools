@@ -10,9 +10,9 @@
 
 @interface ViewController : UIViewController<UITableViewDataSource> {
  @private
-  int64_t downloadFileIndex_;
-  int64_t playFileIndex_;
-  int64_t selectedFileIndex_;
+  NSInteger downloadFileIndex_;
+  NSInteger playFileIndex_;
+  NSInteger selectedFileIndex_;
   NSArray *testFiles_;
   NSURL *testFileDownloadURL_;
   NSURL *cacheDirectoryPath_;

@@ -61,8 +61,8 @@ bool WebmFrameParser::HasVpxFrames(const std::string &file_path,
     return false;
   }
   const uint64_t num_tracks = tracks_element->GetTracksCount();
-  uint64_t video_track_num = 0;
-  for (uint64_t track_num = 1; track_num <= num_tracks; ++track_num) {
+  NSUInteger video_track_num = 0;
+  for (NSUInteger track_num = 1; track_num <= num_tracks; ++track_num) {
     const mkvparser::Track *const track_element =
         tracks_element->GetTrackByNumber(track_num);
     if (track_element->GetType() == kVideoTrackType) {
@@ -96,8 +96,9 @@ bool WebmFrameParser::HasVpxFrames(const std::string &file_path,
   vpx_format_.height = static_cast<int>(video_track->GetHeight());
   *vpx_format = vpx_format_;
 
+  video_track_num_ = video_track_num;
   NSLog(@"Found video track! \\o/ video_track_num=%llu video_codec_id=%s.",
-        video_track_num,
+        video_track_num_,
         video_codec_id.c_str());
 
   frame_head_.cluster = segment_->GetFirst();
@@ -112,7 +113,6 @@ bool WebmFrameParser::HasVpxFrames(const std::string &file_path,
   }
 
   frame_head_.block = frame_head_.block_entry->GetBlock();
-  video_track_num_ = video_track_num;
   return true;
 }
 

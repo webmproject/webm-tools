@@ -242,7 +242,7 @@
 - (void)tableView:(UITableView *)tableView
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   selectedFileIndex_ = indexPath.row;
-  NSLog(@"touched %lld:%@", selectedFileIndex_,
+  NSLog(@"touched %lld:%@", static_cast<int64_t>(selectedFileIndex_),
         [testFiles_ objectAtIndex:indexPath.row]);
 }
 @end
