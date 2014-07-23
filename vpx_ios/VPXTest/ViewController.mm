@@ -18,9 +18,8 @@
 #define TEST_SERVER @"http://localhost:8000"
 #define TEST_FILE_LIST @"http://localhost:8000/allvpx"
 
-@interface ViewController () <NSURLSessionDelegate,
-                              NSURLSessionDownloadDelegate,
-                              UITableViewDelegate>
+@interface ViewController ()<NSURLSessionDelegate, NSURLSessionDownloadDelegate,
+                             UITableViewDelegate>
 - (void)downloadFileList;
 - (void)downloadTestFile;
 - (BOOL)copyDownloadedFileToCache:(NSURL *)downloadedFileURL;
@@ -48,10 +47,10 @@
         forControlEvents:UIControlEventTouchUpInside];
   cacheDirectoryPath_ = [NSSearchPathForDirectoriesInDomains(
       NSCachesDirectory, NSUserDomainMask, YES) lastObject];
-  [self appendToOutputTextView:
-      [NSString stringWithFormat:@"libvpx: %s %s",
-          VERSION_STRING_NOSP,
-          VPX_FRAMEWORK_TARGET]];
+  [self
+      appendToOutputTextView:[NSString stringWithFormat:@"libvpx: %s %s",
+                                                        VERSION_STRING_NOSP,
+                                                        VPX_FRAMEWORK_TARGET]];
   [self appendToOutputTextView:@"1. Touch a file."];
   [self appendToOutputTextView:@"2. Touch Download"];
   [self appendToOutputTextView:@"3. Touch Play"];
@@ -68,28 +67,24 @@
   NSURLSession *session = [NSURLSession sessionWithConfiguration:session_config
                                                         delegate:self
                                                    delegateQueue:nil];
-  NSURLSessionDataTask *dataTask =
-  [session dataTaskWithURL:[NSURL URLWithString:TEST_FILE_LIST]
-         completionHandler:^(NSData *data,
-                             NSURLResponse *response,
-                             NSError *error) {
-           testFiles_ =
-               [NSJSONSerialization JSONObjectWithData:data
-                                               options:0
-                                                 error:nil];
-           dispatch_async(dispatch_get_main_queue(), ^{
-               // Reload the table.
-               [self.fileList reloadData];
-               NSIndexPath *zeroPath = [NSIndexPath indexPathForRow:0
-                                                          inSection:0];
-               // Select the first row.
-               [self.fileList
-                   selectRowAtIndexPath:zeroPath
-                               animated:YES
-                         scrollPosition:UITableViewScrollPositionBottom];
-           });
-         }
-  ];
+  NSURLSessionDataTask *dataTask = [session
+        dataTaskWithURL:[NSURL URLWithString:TEST_FILE_LIST]
+      completionHandler:^(NSData *data, NSURLResponse *response,
+                          NSError *error) {
+          testFiles_ =
+              [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+          dispatch_async(dispatch_get_main_queue(), ^{
+              // Reload the table.
+              [self.fileList reloadData];
+              NSIndexPath *zeroPath =
+                  [NSIndexPath indexPathForRow:0 inSection:0];
+              // Select the first row.
+              [self.fileList
+                  selectRowAtIndexPath:zeroPath
+                              animated:YES
+                        scrollPosition:UITableViewScrollPositionBottom];
+          });
+      }];
   [dataTask resume];
   NSLog(@"dataTask running");
 }
@@ -128,16 +123,16 @@
   }
 
   [self appendToOutputTextView:
-      [NSString stringWithFormat:@"Played %@",
-          [testFiles_ objectAtIndex:playFileIndex_]]];
+            [NSString
+                stringWithFormat:@"Played %@",
+                                 [testFiles_ objectAtIndex:playFileIndex_]]];
   [self appendToOutputTextView:player.playback_result()];
   [self enableControls];
 }
 
 - (void)appendToOutputTextView:(NSString *)stringToAppend {
-  NSString *outputTextViewContents =
-      [NSString stringWithFormat:@"%@\n%@",
-          _outputTextView.text, stringToAppend];
+  NSString *outputTextViewContents = [NSString
+      stringWithFormat:@"%@\n%@", _outputTextView.text, stringToAppend];
   _outputTextView.text = outputTextViewContents;
 }
 
@@ -181,15 +176,15 @@
                  downloadTask:(NSURLSessionDownloadTask *)downloadTask
     didFinishDownloadingToURL:(NSURL *)location {
   if ([self copyDownloadedFileToCache:location]) {
-    NSLog(@"Finished downloading %@ to %@",
-          testFileDownloadURL_,
+    NSLog(@"Finished downloading %@ to %@", testFileDownloadURL_,
           location.path);
     dispatch_async(dispatch_get_main_queue(), ^{
-      [self.progressLabel setText:@"0% - Download another?"];
-      [self enableControls];
-      [self appendToOutputTextView:
-       [NSString stringWithFormat:@"Ready to play %@.",
-        [testFiles_ objectAtIndex:downloadFileIndex_]]];
+        [self.progressLabel setText:@"0% - Download another?"];
+        [self enableControls];
+        [self appendToOutputTextView:
+                  [NSString stringWithFormat:
+                                @"Ready to play %@.",
+                                [testFiles_ objectAtIndex:downloadFileIndex_]]];
     });
   } else {
     NSLog(@"Download failed.");
@@ -232,9 +227,8 @@
   UITableViewCell *cell =
       [tableView dequeueReusableCellWithIdentifier:fileListTableIdentifier];
   if (cell == nil) {
-    cell =
-        [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                               reuseIdentifier:fileListTableIdentifier];
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                  reuseIdentifier:fileListTableIdentifier];
     UIFont *tinyFont = [UIFont fontWithName:@"Arial" size:14.0];
     cell.textLabel.font = tinyFont;
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
@@ -245,10 +239,10 @@
 }
 
 // Tap on table Row
-- (void) tableView:(UITableView *)tableView
+- (void)tableView:(UITableView *)tableView
     didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   selectedFileIndex_ = indexPath.row;
-  NSLog(@"touched %lld:%@",
-        selectedFileIndex_, [testFiles_ objectAtIndex:indexPath.row]);
+  NSLog(@"touched %lld:%@", selectedFileIndex_,
+        [testFiles_ objectAtIndex:indexPath.row]);
 }
 @end
