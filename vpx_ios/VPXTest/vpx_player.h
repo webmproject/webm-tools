@@ -9,6 +9,8 @@
 #ifndef VPXTEST_VPXTEST_VPX_PLAYER_H_
 #define VPXTEST_VPXTEST_VPX_PLAYER_H_
 
+#include <CoreVideo/CoreVideo.h>
+
 #include <memory>
 #include <string>
 
@@ -16,6 +18,7 @@
 #include "vpx_test_common.h"
 
 struct vpx_codec_ctx;
+struct vpx_image;
 
 namespace VpxTest {
 
@@ -30,6 +33,7 @@ class VpxPlayer {
  private:
   bool InitParser();
   bool InitVpxDecoder();
+  bool DeliverVideoBuffer(struct vpx_image *image);
   bool DecodeAllVideoFrames();
 
   NSString *playback_result_;
