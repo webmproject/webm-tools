@@ -2,6 +2,91 @@
   "comments": [
     {
       "key": {
+        "uuid": "AAAAdn//a4k\u003d",
+        "filename": "vpx_ios/VPXTest/vpx_player.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2014-08-20T00:29:29Z",
+      "side": 1,
+      "message": "\u0027struct\u0027 isn\u0027t strictly necessary here",
+      "revId": "16780098d13656df8b534713bc5cde84257d69f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//a4I\u003d",
+        "filename": "vpx_ios/VPXTest/vpx_player.mm",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2014-08-20T00:29:29Z",
+      "side": 1,
+      "message": "you should add a comment about the expected format",
+      "revId": "16780098d13656df8b534713bc5cde84257d69f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//a4Y\u003d",
+        "filename": "vpx_ios/VPXTest/vpx_player.mm",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2014-08-20T00:29:29Z",
+      "side": 1,
+      "message": "NULL / nil whichever is appropriate here and throughout",
+      "revId": "16780098d13656df8b534713bc5cde84257d69f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//a4U\u003d",
+        "filename": "vpx_ios/VPXTest/vpx_player.mm",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2014-08-20T00:29:29Z",
+      "side": 1,
+      "message": "I think these 2 can be local to the loop",
+      "revId": "16780098d13656df8b534713bc5cde84257d69f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//a4Q\u003d",
+        "filename": "vpx_ios/VPXTest/vpx_player.mm",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2014-08-20T00:29:29Z",
+      "side": 1,
+      "message": "uv_width?",
+      "revId": "16780098d13656df8b534713bc5cde84257d69f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAdn//bEA\u003d",
         "filename": "vpx_ios/VPXTest/vpx_player.mm",
         "patchSetId": 4
