@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAdn//a2o\u003d",
+        "filename": "vpx_ios/VPXTest/vpx_player.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-08-20T02:26:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAdn//a4k\u003d",
+      "revId": "16780098d13656df8b534713bc5cde84257d69f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAdn//a4I\u003d",
         "filename": "vpx_ios/VPXTest/vpx_player.mm",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2014-08-20T00:29:29Z",
       "side": 1,
       "message": "you should add a comment about the expected format",
+      "revId": "16780098d13656df8b534713bc5cde84257d69f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//a2g\u003d",
+        "filename": "vpx_ios/VPXTest/vpx_player.mm",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-08-20T02:26:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAdn//a4I\u003d",
       "revId": "16780098d13656df8b534713bc5cde84257d69f0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAdn//a2c\u003d",
+        "filename": "vpx_ios/VPXTest/vpx_player.mm",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-08-20T02:26:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAdn//a4Y\u003d",
+      "revId": "16780098d13656df8b534713bc5cde84257d69f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAdn//a4U\u003d",
         "filename": "vpx_ios/VPXTest/vpx_player.mm",
         "patchSetId": 4
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAdn//a2Y\u003d",
+        "filename": "vpx_ios/VPXTest/vpx_player.mm",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-08-20T02:26:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAdn//a4U\u003d",
+      "revId": "16780098d13656df8b534713bc5cde84257d69f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAdn//a4Q\u003d",
         "filename": "vpx_ios/VPXTest/vpx_player.mm",
         "patchSetId": 4
@@ -81,6 +153,24 @@
       "writtenOn": "2014-08-20T00:29:29Z",
       "side": 1,
       "message": "uv_width?",
+      "revId": "16780098d13656df8b534713bc5cde84257d69f0",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//a2U\u003d",
+        "filename": "vpx_ios/VPXTest/vpx_player.mm",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-08-20T02:26:34Z",
+      "side": 1,
+      "message": "Done, went with uv_src_stride, and then realized I\u0027ve been copying extra bytes (uv_stride - uv_width per line) and fixed that by adding uv_src_width (image-\u003ed_w \u003e\u003e image-\u003ey_chroma_shift).",
+      "parentUuid": "AAAAdn//a4Q\u003d",
       "revId": "16780098d13656df8b534713bc5cde84257d69f0",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
