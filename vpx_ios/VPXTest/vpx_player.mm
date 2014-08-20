@@ -10,15 +10,86 @@
 #include <memory>
 #include <string>
 
+#include <CoreVideo/CoreVideo.h>
+
 #include "VPX/vpx/vpx_decoder.h"
 #include "VPX/vpx/vp8dx.h"
-#include "VPX/vpx/vp8cx.h"
 #include "VPX/vpx/vpx_encoder.h"
+#include "VPX/vpx/vpx_image.h"
 
 #import "ivf_frame_parser.h"
 #include "mkvparser.hpp"
 #include "mkvreader.hpp"
 #import "webm_frame_parser.h"
+
+namespace {
+// Expects YV12/I420 input. Creates NV12 |buffer|, and:
+// - Copies Y-plane from |image| to |buffer|.
+// - Interleaves the U and V planes of |image| into UV plane of |buffer|.
+// Returns true upon success.
+bool CopyVpxImageToPixelBuffer(const struct vpx_image *image,
+                               CVPixelBufferRef buffer) {
+  if (image == NULL || buffer == NULL) {
+    NSLog(@"Invalid args in CopyVpxImageToPixelBuffer");
+    return false;
+  }
+
+  // Lock the buffer (required for interaction with buffer).
+  if (CVPixelBufferLockBaseAddress(buffer, 0) != kCVReturnSuccess) {
+    NSLog(@"Unable to lock buffer");
+    return false;
+  }
+
+  // Copy Y-plane.
+  void *y_plane = CVPixelBufferGetBaseAddressOfPlane(buffer, 0);
+  const size_t y_stride = CVPixelBufferGetBytesPerRowOfPlane(buffer, 0);
+
+  for (int i = 0; i < image->d_h; ++i) {
+    const uint8_t *src_line =
+        image->planes[VPX_PLANE_Y] + i * image->stride[VPX_PLANE_Y];
+    uint8_t *dst_line = reinterpret_cast<uint8_t *>(y_plane) + i * y_stride;
+    memcpy(dst_line, src_line, image->d_w);
+  }
+
+  // Interleave U and V planes.
+  uint8_t *uv_plane =
+      reinterpret_cast<uint8_t*>(CVPixelBufferGetBaseAddressOfPlane(buffer, 1));
+  const size_t uv_src_stride = image->stride[VPX_PLANE_U];
+  const size_t uv_src_width = image->d_w >> image->y_chroma_shift;
+  const size_t uv_dst_height = CVPixelBufferGetHeightOfPlane(buffer, 1);
+  const size_t uv_dst_stride = CVPixelBufferGetBytesPerRowOfPlane(buffer, 1);
+
+  // For each line of U and V...
+  for (int line = 0; line < uv_dst_height; ++line) {
+    const uint8_t *src_u_component =
+        image->planes[VPX_PLANE_U] + uv_src_stride * line;
+    const uint8_t *src_v_component =
+        image->planes[VPX_PLANE_V] + uv_src_stride * line;
+    uint8_t *dst_u_component = uv_plane + uv_dst_stride * line;
+    uint8_t *dst_v_component = dst_u_component + 1;
+
+    // For each pixel on the current line...
+    for (int i = 0; i < uv_src_width; ++i) {
+      // Copy U component.
+      *dst_u_component = *src_u_component;
+      ++src_u_component;
+      dst_u_component += 2;
+      // Copy V component.
+      *dst_v_component = *src_v_component;
+      ++src_v_component;
+      dst_v_component += 2;
+    }
+  }
+
+  // Unlock the buffer.
+  if (CVPixelBufferUnlockBaseAddress(buffer, 0) != kCVReturnSuccess) {
+    NSLog(@"Unable to unlock buffer.");
+    return false;
+  }
+
+  return true;
+}
+}  // namespace
 
 namespace VpxTest {
 
@@ -107,6 +178,39 @@ bool VpxPlayer::InitVpxDecoder() {
   return true;
 }
 
+bool VpxPlayer::DeliverVideoBuffer(vpx_image *image) {
+  // TODO(tomfinegan): This is horribly inefficient. Preallocate a pool of these
+  // (CVPixelBufferPool?) instead of leaking them to GlkVideoViewController
+  // and relying on it to clean up after VpxPlayer.
+  CVPixelBufferRef buffer;
+
+  // Note: kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange is NV12.
+  const OSType pixel_fmt = kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange;
+
+  NSDictionary *pixelBufferAttributes =
+      [NSDictionary dictionaryWithObjectsAndKeys:[NSDictionary dictionary],
+          kCVPixelBufferIOSurfacePropertiesKey, nil];
+  CFDictionaryRef cfPixelBufferAttributes =
+      (__bridge CFDictionaryRef)pixelBufferAttributes;
+
+  CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault,
+                                        image->d_w, image->d_h,
+                                        pixel_fmt,
+                                        cfPixelBufferAttributes,
+                                        &buffer);
+  if (status != kCVReturnSuccess) {
+    NSLog(@"CVPixelBufferRef creation failed %d", status);
+    return false;
+  }
+
+  if (!CopyVpxImageToPixelBuffer(image, buffer)) {
+    NSLog(@"CopyVpxImageToPixelBuffer failed.");
+    return false;
+  }
+
+  return true;
+}
+
 bool VpxPlayer::DecodeAllVideoFrames() {
   std::vector<uint8_t> vpx_frame;
   uint32_t frame_length = 0;
@@ -122,6 +226,15 @@ bool VpxPlayer::DecodeAllVideoFrames() {
       ++frames_decoded_;
     else
       NSLog(@"Decode failed after %d frames", frames_decoded_);
+
+    vpx_codec_iter_t vpx_iter = NULL;
+    vpx_image_t *vpx_image = vpx_codec_get_frame(vpx_codec_ctx_, &vpx_iter);
+
+    if (vpx_image) {
+      if (!DeliverVideoBuffer(vpx_image)) {
+        NSLog(@"DeliverVideoBuffer failed.");
+      }
+    }
   }
 
   return true;
