@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAdn//aNw\u003d",
+        "filename": "vpx_ios/VPXTest/GlkVideoViewController.mm",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-08-25T23:56:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAdn//aQM\u003d",
+      "revId": "6dad341415c57314dc41c77d67f0ad7f2fc6b47c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAdn//aQI\u003d",
         "filename": "vpx_ios/VPXTest/GlkVideoViewController.mm",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2014-08-25T21:35:54Z",
       "side": 1,
       "message": "maybe a comment as to what this \u0027end\u0027s; // GlkVideo... ?",
+      "revId": "6dad341415c57314dc41c77d67f0ad7f2fc6b47c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//aNs\u003d",
+        "filename": "vpx_ios/VPXTest/GlkVideoViewController.mm",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-08-25T23:56:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAdn//aQI\u003d",
       "revId": "6dad341415c57314dc41c77d67f0ad7f2fc6b47c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAdn//aNA\u003d",
+        "filename": "vpx_ios/VPXTest/GlkVideoViewController.mm",
+        "patchSetId": 1
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-08-25T23:56:41Z",
+      "side": 1,
+      "message": "experimented a bit-- reduced accordingly. Basically, went with just the one set because:\n\n- iOS rotates the viewport with the device when going between the two landscape modes\n- VPXTest doesn\u0027t support portrait mode at the application level\n\nIt asserts if a portrait mode slips through... not ideal, but just a test app. Added comments, at least.",
+      "parentUuid": "AAAAdn//aPg\u003d",
+      "revId": "6dad341415c57314dc41c77d67f0ad7f2fc6b47c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAdn//aPc\u003d",
         "filename": "vpx_ios/VPXTest/GlkVideoViewController.mm",
         "patchSetId": 1
@@ -64,6 +118,24 @@
       "writtenOn": "2014-08-25T21:35:54Z",
       "side": 1,
       "message": "this is being defined somewhere I take it; just more typically see ndef NDEBUG",
+      "revId": "6dad341415c57314dc41c77d67f0ad7f2fc6b47c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//aNo\u003d",
+        "filename": "vpx_ios/VPXTest/GlkVideoViewController.mm",
+        "patchSetId": 1
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-08-25T23:56:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAdn//aPc\u003d",
       "revId": "6dad341415c57314dc41c77d67f0ad7f2fc6b47c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAdn//aM8\u003d",
+        "filename": "vpx_ios/VPXTest/ViewController.mm",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-08-25T23:56:41Z",
+      "side": 1,
+      "message": "Removed. Local testing junk...",
+      "parentUuid": "AAAAdn//aPY\u003d",
+      "revId": "6dad341415c57314dc41c77d67f0ad7f2fc6b47c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAdn//aPU\u003d",
         "filename": "vpx_ios/VPXTest/ViewController.mm",
         "patchSetId": 1
@@ -98,6 +188,24 @@
       "writtenOn": "2014-08-25T21:35:54Z",
       "side": 1,
       "message": "should be on the same line",
+      "revId": "6dad341415c57314dc41c77d67f0ad7f2fc6b47c",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//aM4\u003d",
+        "filename": "vpx_ios/VPXTest/ViewController.mm",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-08-25T23:56:41Z",
+      "side": 1,
+      "message": "Boo, xcode, boo. Done.",
+      "parentUuid": "AAAAdn//aPU\u003d",
       "revId": "6dad341415c57314dc41c77d67f0ad7f2fc6b47c",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
