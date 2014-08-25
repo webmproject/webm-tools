@@ -6,9 +6,13 @@
 // in the file PATENTS.  All contributing project authors may
 // be found in the AUTHORS file in the root of the source tree.
 
+#import <GLKit/GLKit.h>
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController<UITableViewDataSource> {
+#import "GlkVideoViewController.h"
+
+@interface ViewController : UIViewController<GlkVideoViewControllerDelegate,
+                                             UITableViewDataSource> {
  @private
   NSInteger downloadFileIndex_;
   NSInteger playFileIndex_;
