@@ -11,6 +11,7 @@
 #include "VPX/vpx/vpx_config.h"
 #include "VPX/vpx/vpx_version.h"
 
+#import "GlkVideoViewController.h"
 #import "vpx_player.h"
 
 // These values must be adjusted when running on an iOS device. localhost is not
@@ -18,16 +19,18 @@
 #define TEST_SERVER @"http://localhost:8000"
 #define TEST_FILE_LIST @"http://localhost:8000/allvpx"
 
-@interface ViewController ()<NSURLSessionDelegate, NSURLSessionDownloadDelegate,
-                             UITableViewDelegate>
+//#define TEST_SERVER @"http://192.168.1.250:8000"
+//#define TEST_FILE_LIST @"http://192.168.1.250:8000/allvpx"
+
+@interface ViewController()<NSURLSessionDelegate,
+                            NSURLSessionDownloadDelegate,
+                            UITableViewDelegate>
 - (void)downloadFileList;
 - (void)downloadTestFile;
 - (BOOL)copyDownloadedFileToCache:(NSURL *)downloadedFileURL;
-- (void)playFile;
 - (void)appendToOutputTextView:(NSString *)stringToAppend;
 - (void)enableControls;
 - (void)disableControls;
-
 @end
 
 @implementation ViewController
@@ -43,9 +46,9 @@
                       action:@selector(downloadTestFile)
             forControlEvents:UIControlEventTouchUpInside];
   _playButton.enabled = NO;
-  [_playButton addTarget:self
-                  action:@selector(playFile)
-        forControlEvents:UIControlEventTouchUpInside];
+  //[_playButton addTarget:self
+  //                action:@selector(playFile)
+  //      forControlEvents:UIControlEventTouchUpInside];
   cacheDirectoryPath_ = [NSSearchPathForDirectoriesInDomains(
       NSCachesDirectory, NSUserDomainMask, YES) lastObject];
   [self
@@ -115,24 +118,6 @@
   NSLog(@"downloadTask running");
 }
 
-// Plays downloaded file.
-- (void)playFile {
-  [self disableControls];
-  playFileIndex_ = selectedFileIndex_;
-
-  VpxTest::VpxPlayer player;
-  if (!player.PlayFile(downloadedFilePath_.fileSystemRepresentation)) {
-    NSLog(@"VpxPlayer::PlayFile() failed! :(");
-  }
-
-  [self appendToOutputTextView:
-            [NSString
-                stringWithFormat:@"Played %@",
-                                 [testFiles_ objectAtIndex:playFileIndex_]]];
-  [self appendToOutputTextView:player.playback_result()];
-  [self enableControls];
-}
-
 - (void)appendToOutputTextView:(NSString *)stringToAppend {
   NSString *outputTextViewContents = [NSString
       stringWithFormat:@"%@\n%@", _outputTextView.text, stringToAppend];
@@ -171,6 +156,18 @@
   _playButton.enabled = NO;
   _fileList.userInteractionEnabled = NO;
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+  if ([segue.identifier isEqualToString:@"Play"]) {
+    NSLog(@"Play seque");
+    GlkVideoViewController *playerView =
+        (GlkVideoViewController *)segue.destinationViewController;
+    playerView.fileToPlay = downloadedFilePath_.path;
+    playerView.vpxtestViewController = self;
+  }
+}
+
 
 //
 // NSURLSessionDownloadDelegate implementation
@@ -248,4 +245,17 @@
   NSLog(@"touched %lld:%@", static_cast<int64_t>(selectedFileIndex_),
         [testFiles_ objectAtIndex:indexPath.row]);
 }
+
+//
+// GlkVideoViewControllerDelegate
+//
+- (void)playbackComplete:(BOOL)status statusString:(NSString *)string {
+  playFileIndex_ = selectedFileIndex_;
+
+  [self appendToOutputTextView:
+      [NSString stringWithFormat:@"Played %@",
+          [testFiles_ objectAtIndex:playFileIndex_]]];
+  [self appendToOutputTextView:string];
+}
+
 @end

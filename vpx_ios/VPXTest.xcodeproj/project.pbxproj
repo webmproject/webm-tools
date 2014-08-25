@@ -13,9 +13,16 @@
 		6A06EF281974B9AD00220A3F /* mkvparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A06EF1F1974B9AD00220A3F /* mkvparser.cpp */; };
 		6A06EF291974B9AD00220A3F /* mkvreader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A06EF211974B9AD00220A3F /* mkvreader.cpp */; };
 		6A06EF2A1974B9AD00220A3F /* mkvwriter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6A06EF231974B9AD00220A3F /* mkvwriter.cpp */; };
+		6A3FC81B19905C3000E99B8B /* nv12_vertex_shader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 6A3FC81A19905C3000E99B8B /* nv12_vertex_shader.glsl */; };
+		6A3FC81D19905C5A00E99B8B /* nv12_fragment_shader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 6A3FC81C19905C5A00E99B8B /* nv12_fragment_shader.glsl */; };
 		6A4DF5E01963A49900B420A9 /* vpx_player.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6A4DF5DE1963A49900B420A9 /* vpx_player.mm */; };
+		6A5A8489198829970014387A /* GlkVideoViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6A5A8488198829970014387A /* GlkVideoViewController.mm */; };
+		6A5A848D1988361D0014387A /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A5A848C1988361D0014387A /* CoreVideo.framework */; };
 		6A86B4D4197D9AC40093C195 /* ivf_frame_parser.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6A86B4D3197D9AC40093C195 /* ivf_frame_parser.mm */; };
 		6ABFD263196E503400B05D49 /* webm_frame_parser.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6ABFD261196E503400B05D49 /* webm_frame_parser.mm */; };
+		6AEBB7E21982F13D001FE832 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AEBB7E11982F13D001FE832 /* GLKit.framework */; };
+		6AEBB7E41982F145001FE832 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AEBB7E31982F145001FE832 /* OpenGLES.framework */; };
+		6AEBB7E61982F157001FE832 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AEBB7E51982F157001FE832 /* QuartzCore.framework */; };
 		6AFD5A6319639660004CCF76 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFD5A6219639660004CCF76 /* Foundation.framework */; };
 		6AFD5A6519639660004CCF76 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFD5A6419639660004CCF76 /* CoreGraphics.framework */; };
 		6AFD5A6719639660004CCF76 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFD5A6619639660004CCF76 /* UIKit.framework */; };
@@ -57,14 +64,22 @@
 		6A06EF231974B9AD00220A3F /* mkvwriter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mkvwriter.cpp; path = ../../libwebm/mkvwriter.cpp; sourceTree = SOURCE_ROOT; };
 		6A06EF241974B9AD00220A3F /* mkvwriter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = mkvwriter.hpp; path = ../../libwebm/mkvwriter.hpp; sourceTree = SOURCE_ROOT; };
 		6A06EF251974B9AD00220A3F /* webmids.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = webmids.hpp; path = ../../libwebm/webmids.hpp; sourceTree = SOURCE_ROOT; };
+		6A3FC81A19905C3000E99B8B /* nv12_vertex_shader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = nv12_vertex_shader.glsl; path = VPXTest/nv12_vertex_shader.glsl; sourceTree = "<group>"; };
+		6A3FC81C19905C5A00E99B8B /* nv12_fragment_shader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = nv12_fragment_shader.glsl; path = VPXTest/nv12_fragment_shader.glsl; sourceTree = "<group>"; };
 		6A4DF5DE1963A49900B420A9 /* vpx_player.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = vpx_player.mm; path = VPXTest/vpx_player.mm; sourceTree = "<group>"; };
 		6A4DF5DF1963A49900B420A9 /* vpx_player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vpx_player.h; path = VPXTest/vpx_player.h; sourceTree = "<group>"; };
+		6A5A8487198829970014387A /* GlkVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GlkVideoViewController.h; path = VPXTest/GlkVideoViewController.h; sourceTree = "<group>"; };
+		6A5A8488198829970014387A /* GlkVideoViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = GlkVideoViewController.mm; path = VPXTest/GlkVideoViewController.mm; sourceTree = "<group>"; };
+		6A5A848C1988361D0014387A /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		6A86B4D2197D9AC40093C195 /* ivf_frame_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ivf_frame_parser.h; path = VPXTest/ivf_frame_parser.h; sourceTree = "<group>"; };
 		6A86B4D3197D9AC40093C195 /* ivf_frame_parser.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ivf_frame_parser.mm; path = VPXTest/ivf_frame_parser.mm; sourceTree = "<group>"; };
 		6ABFD260196E503400B05D49 /* vpx_test_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vpx_test_common.h; path = VPXTest/vpx_test_common.h; sourceTree = "<group>"; };
 		6ABFD261196E503400B05D49 /* webm_frame_parser.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = webm_frame_parser.mm; path = VPXTest/webm_frame_parser.mm; sourceTree = "<group>"; };
 		6ABFD262196E503400B05D49 /* webm_frame_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = webm_frame_parser.h; path = VPXTest/webm_frame_parser.h; sourceTree = "<group>"; };
 		6ABFD264196E509D00B05D49 /* vpx_frame_parser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = vpx_frame_parser.h; path = VPXTest/vpx_frame_parser.h; sourceTree = "<group>"; };
+		6AEBB7E11982F13D001FE832 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		6AEBB7E31982F145001FE832 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		6AEBB7E51982F157001FE832 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		6AFD5A5F19639660004CCF76 /* VPXTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VPXTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AFD5A6219639660004CCF76 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6AFD5A6419639660004CCF76 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -92,9 +107,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A5A848D1988361D0014387A /* CoreVideo.framework in Frameworks */,
 				6AFD5A6519639660004CCF76 /* CoreGraphics.framework in Frameworks */,
-				6AFD5A6719639660004CCF76 /* UIKit.framework in Frameworks */,
 				6AFD5A6319639660004CCF76 /* Foundation.framework in Frameworks */,
+				6AEBB7E21982F13D001FE832 /* GLKit.framework in Frameworks */,
+				6AEBB7E41982F145001FE832 /* OpenGLES.framework in Frameworks */,
+				6AFD5A6719639660004CCF76 /* UIKit.framework in Frameworks */,
+				6AEBB7E61982F157001FE832 /* QuartzCore.framework in Frameworks */,
 				6A06EF181974B98300220A3F /* VPX.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,6 +162,8 @@
 				6AFD5A7D19639660004CCF76 /* Images.xcassets */,
 				6A86B4D2197D9AC40093C195 /* ivf_frame_parser.h */,
 				6A86B4D3197D9AC40093C195 /* ivf_frame_parser.mm */,
+				6A5A8487198829970014387A /* GlkVideoViewController.h */,
+				6A5A8488198829970014387A /* GlkVideoViewController.mm */,
 				6AFD5A6E19639660004CCF76 /* main.m */,
 				6AFD5A7719639660004CCF76 /* Main_iPad.storyboard */,
 				6AFD5A7419639660004CCF76 /* Main_iPhone.storyboard */,
@@ -154,6 +175,8 @@
 				6ABFD260196E503400B05D49 /* vpx_test_common.h */,
 				6ABFD262196E503400B05D49 /* webm_frame_parser.h */,
 				6ABFD261196E503400B05D49 /* webm_frame_parser.mm */,
+				6A3FC81A19905C3000E99B8B /* nv12_vertex_shader.glsl */,
+				6A3FC81C19905C5A00E99B8B /* nv12_fragment_shader.glsl */,
 				6AFD5A8A19639660004CCF76 /* VPXTestTests */,
 			);
 			sourceTree = "<group>";
@@ -170,6 +193,10 @@
 		6AFD5A6119639660004CCF76 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6A5A848C1988361D0014387A /* CoreVideo.framework */,
+				6AEBB7E51982F157001FE832 /* QuartzCore.framework */,
+				6AEBB7E31982F145001FE832 /* OpenGLES.framework */,
+				6AEBB7E11982F13D001FE832 /* GLKit.framework */,
 				6A06EF171974B98300220A3F /* VPX.framework */,
 				6AFD5A6219639660004CCF76 /* Foundation.framework */,
 				6AFD5A6419639660004CCF76 /* CoreGraphics.framework */,
@@ -284,8 +311,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A3FC81B19905C3000E99B8B /* nv12_vertex_shader.glsl in Resources */,
 				6AFD5A7919639660004CCF76 /* Main_iPad.storyboard in Resources */,
 				6AFD5A7E19639660004CCF76 /* Images.xcassets in Resources */,
+				6A3FC81D19905C5A00E99B8B /* nv12_fragment_shader.glsl in Resources */,
 				6AFD5A7619639660004CCF76 /* Main_iPhone.storyboard in Resources */,
 				6AFD5A6D19639660004CCF76 /* InfoPlist.strings in Resources */,
 			);
@@ -313,6 +342,7 @@
 				6AFD5A7C19639660004CCF76 /* ViewController.mm in Sources */,
 				6ABFD263196E503400B05D49 /* webm_frame_parser.mm in Sources */,
 				6AFD5A7319639660004CCF76 /* AppDelegate.m in Sources */,
+				6A5A8489198829970014387A /* GlkVideoViewController.mm in Sources */,
 				6AFD5A6F19639660004CCF76 /* main.m in Sources */,
 				6A06EF261974B9AD00220A3F /* mkvmuxer.cpp in Sources */,
 				6A4DF5E01963A49900B420A9 /* vpx_player.mm in Sources */,
