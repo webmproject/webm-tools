@@ -97,7 +97,8 @@ namespace VpxTest {
 // VpxPlayer
 //
 VpxPlayer::VpxPlayer()
-    : playback_result_(nil),
+    : target_view_(NULL),
+      playback_result_(nil),
       frames_decoded_(0),
       vpx_codec_ctx_(NULL) {
 }
@@ -107,6 +108,10 @@ VpxPlayer::~VpxPlayer() {
     vpx_codec_destroy(vpx_codec_ctx_);
     delete vpx_codec_ctx_;
   }
+}
+
+void VpxPlayer::Init(GlkVideoViewController *target_view) {
+  target_view_ = target_view;
 }
 
 bool VpxPlayer::PlayFile(const char *file_path) {
@@ -179,6 +184,10 @@ bool VpxPlayer::InitVpxDecoder() {
 }
 
 bool VpxPlayer::DeliverVideoBuffer(vpx_image *image) {
+  if (target_view_ == NULL) {
+    NSLog(@"No GlkVideoViewController.");
+    return false;
+  }
   // TODO(tomfinegan): This is horribly inefficient. Preallocate a pool of these
   // (CVPixelBufferPool?) instead of leaking them to GlkVideoViewController
   // and relying on it to clean up after VpxPlayer.
@@ -208,6 +217,7 @@ bool VpxPlayer::DeliverVideoBuffer(vpx_image *image) {
     return false;
   }
 
+  [target_view_ receivePixelBuffer:buffer];
   return true;
 }
 

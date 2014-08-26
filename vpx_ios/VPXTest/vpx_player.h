@@ -12,6 +12,7 @@
 #include <memory>
 #include <string>
 
+#import "GlkVideoViewController.h"
 #include "vpx_frame_parser.h"
 #include "vpx_test_common.h"
 
@@ -25,6 +26,7 @@ class VpxPlayer {
   VpxPlayer();
   ~VpxPlayer();
 
+  void Init(GlkVideoViewController *target_view);
   bool PlayFile(const char *file_path);
   NSString *playback_result() const { return playback_result_; };
 
@@ -34,6 +36,7 @@ class VpxPlayer {
   bool DeliverVideoBuffer(vpx_image *image);
   bool DecodeAllVideoFrames();
 
+  GlkVideoViewController *target_view_;
   NSString *playback_result_;
   std::unique_ptr<VpxFrameParserInterface> parser_;
   std::string file_path_;
