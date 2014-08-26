@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAdn//aGw\u003d",
+        "filename": "vpx_ios/VPXTest/GlkVideoViewController.mm",
+        "patchSetId": 3
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-08-26T17:32:12Z",
+      "side": 1,
+      "message": "Wrote the rest of the first sentence... oops.",
+      "revId": "043eb0e268936a26b0f2686bbce9421ad0e6eb81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//aG0\u003d",
+        "filename": "vpx_ios/VPXTest/GlkVideoViewController.mm",
+        "patchSetId": 3
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-08-26T17:32:12Z",
+      "side": 1,
+      "message": "removed.",
+      "revId": "043eb0e268936a26b0f2686bbce9421ad0e6eb81",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
