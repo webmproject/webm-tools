@@ -39,6 +39,9 @@
                                 <state key="normal" title="Play">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="S7X-WT-Q0c" kind="modal" identifier="Play" id="qP4-dz-H5R"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="15" sectionHeaderHeight="5" sectionFooterHeight="5" translatesAutoresizingMaskIntoConstraints="NO" id="T7S-3w-kf6">
                                 <rect key="frame" x="20" y="20" width="984" height="400"/>
@@ -72,7 +75,28 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HoZ-XL-dFK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-249" y="-113"/>
+            <point key="canvasLocation" x="-645" y="-101"/>
+        </scene>
+        <!--GLKit View Controller-->
+        <scene sceneID="MNv-He-Cpu">
+            <objects>
+                <glkViewController autoresizesArchivedViewToFullSize="NO" preferredFramesPerSecond="30" id="S7X-WT-Q0c" customClass="GlkVideoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OhI-xC-dkd"/>
+                        <viewControllerLayoutGuide type="bottom" id="Zxg-gJ-Q6h"/>
+                    </layoutGuides>
+                    <glkView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Pfn-HJ-1e0">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                        <connections>
+                            <outlet property="delegate" destination="S7X-WT-Q0c" id="QaA-o8-lsZ"/>
+                        </connections>
+                    </glkView>
+                </glkViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MKI-rm-QgR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="552" y="-273"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
