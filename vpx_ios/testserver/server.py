@@ -12,10 +12,12 @@
 VPXTestServer - A SimpleHTTPServer based web server which provides file listings
                 in JSON to clients, and allows download of those files.
 """
+import BaseHTTPServer
 import json
 import os
 import SimpleHTTPServer
 import SocketServer
+import sys
 
 def list_files_with_suffix_as_json(file_suffixes):
     """
@@ -36,9 +38,16 @@ def list_files_with_suffix_as_json(file_suffixes):
     return json_dir_list
 
 
+class ThreadedHTTPServer(BaseHTTPServer.HTTPServer,
+                         SocketServer.ThreadingMixIn):
+    """
+    BaseHTTPServer with concurrency support.
+    """
+    pass
+
 class VPXTestServer(SimpleHTTPServer.SimpleHTTPRequestHandler):
     """
-    VPXTestServer - SimpleHTTPRequestHandlerthat implements do_GET to provide
+    VPXTestServer - SimpleHTTPRequestHandler that implements do_GET to provide
     file listings and the files in the listings to clients.
     """
     def do_GET(self):
@@ -60,8 +69,12 @@ class VPXTestServer(SimpleHTTPServer.SimpleHTTPRequestHandler):
 
 def main():
     try:
-        port = 8000
-        httpd = SocketServer.TCPServer(('', port), VPXTestServer)
+        if len(sys.argv) > 1:
+            port = int(sys.argv[1]);
+        else:
+            port = 8000
+
+        httpd = ThreadedHTTPServer(('', port), VPXTestServer)
         print 'Started VPXTestServer on port {}.'.format(port)
         httpd.serve_forever()
     except KeyboardInterrupt:
