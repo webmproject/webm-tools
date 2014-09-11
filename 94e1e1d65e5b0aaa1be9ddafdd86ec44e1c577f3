@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAdn//X1k\u003d",
+        "filename": "vpx_ios/testserver/server.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2014-09-11T02:10:45Z",
+      "side": 1,
+      "message": "fwiw dirs should be \u0027unused_dirs\u0027 to avoid lint warnings",
+      "revId": "94e1e1d65e5b0aaa1be9ddafdd86ec44e1c577f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
