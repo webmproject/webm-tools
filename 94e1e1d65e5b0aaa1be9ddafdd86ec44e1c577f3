@@ -16,6 +16,24 @@
       "revId": "94e1e1d65e5b0aaa1be9ddafdd86ec44e1c577f3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//XHA\u003d",
+        "filename": "vpx_ios/testserver/server.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-09-15T22:42:35Z",
+      "side": 1,
+      "message": "Done, but used \u0027_\u0027; unused_dirs still triggers the warning in pylint.",
+      "parentUuid": "AAAAdn//X1k\u003d",
+      "revId": "94e1e1d65e5b0aaa1be9ddafdd86ec44e1c577f3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
