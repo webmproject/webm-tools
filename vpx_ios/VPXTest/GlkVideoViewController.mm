@@ -30,6 +30,18 @@ enum {
   NUM_ATTRIBUTES
 };
 
+enum SquareVertexCoordinates {
+  kTopLeftX = 0,
+  kTopLeftY = 1,
+  kBottomLeftX = 2,
+  kBottomLeftY = 3,
+  kTopRightX = 4,
+  kTopRightY = 5,
+  kBottomRightX = 6,
+  kBottomRightY = 7,
+  kNumVertices = 8,
+};
+
 // Wraps CVPixelBufferRefs for handling clean up.
 class CVPixelBufferWrap {
  public:
@@ -336,7 +348,48 @@ class CVPixelBufferWrap {
 
   // Set vertex and texture attributes.
   const GLfloat *squareVertices = [self squareVerticesForCurrentOrientation];
-  glVertexAttribPointer(ATTRIB_VERTEX, 2, GL_FLOAT, 0, 0, squareVertices);
+
+  // Adjust the vertices so that we display the image with proper aspect ratio.
+  GLfloat verticesForAspectRatio[8];
+  memcpy(verticesForAspectRatio, squareVertices,
+         sizeof(verticesForAspectRatio));
+
+  for (int i = 0; i < kNumVertices; ++i)
+    verticesForAspectRatio[i] = squareVertices[i];
+
+  const float fwidth = width;
+  const float fheight = height;
+
+  // TODO(tomfinegan): Calculating this every frame is a waste; precalculate it.
+  if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if (fwidth / fheight > 4.0 / 3.0) {
+      // Width:height aspect ratio of clip is larger than the device; scale
+      // vertical texture coordinates.
+      const float scaleFactor = 1 / (fwidth / fheight);
+      for (int i = kTopLeftY; i < kNumVertices; i += 2)
+        verticesForAspectRatio[i] *= scaleFactor;
+    } else {
+      const float scaleFactor = 1 / (fheight / fwidth);
+      for (int i = kTopLeftX; i < kNumVertices; i += 2)
+        verticesForAspectRatio[i] *= scaleFactor;
+    }
+  } else {
+    if (fwidth / fheight >= 16.0 / 9.0) {
+      // Width:height aspect ratio of clip is larger than the device; scale
+      // vertical texture coordinates.
+      const float scaleFactor = 1 / (fheight / fwidth);
+      for (int i = kTopLeftY; i < kNumVertices; i += 2)
+        verticesForAspectRatio[i] *= scaleFactor;
+    } else {
+      const float scaleFactor = 1 / (fwidth / fheight);
+      for (int i = kTopLeftX; i < kNumVertices; i += 2)
+        verticesForAspectRatio[i] *= scaleFactor;
+    }
+  }
+
+  glVertexAttribPointer(ATTRIB_VERTEX, 2, GL_FLOAT, 0, 0,
+                        verticesForAspectRatio);
+
   glEnableVertexAttribArray(ATTRIB_VERTEX);
 
   const GLfloat *textureVertices = [self textureVerticesForCurrentOrientation];
