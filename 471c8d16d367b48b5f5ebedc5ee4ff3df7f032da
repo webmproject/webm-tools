@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAdn//WCY\u003d",
+        "filename": "vpx_ios/VPXTest/GlkVideoViewController.mm",
+        "patchSetId": 2
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2014-09-22T22:22:38Z",
+      "side": 1,
+      "message": "One of these is redundant.",
+      "revId": "471c8d16d367b48b5f5ebedc5ee4ff3df7f032da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//WCA\u003d",
+        "filename": "vpx_ios/VPXTest/GlkVideoViewController.mm",
+        "patchSetId": 2
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2014-09-22T22:22:38Z",
+      "side": 1,
+      "message": "All of this could be refactored.",
+      "revId": "471c8d16d367b48b5f5ebedc5ee4ff3df7f032da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//WCI\u003d",
+        "filename": "vpx_ios/VPXTest/GlkVideoViewController.mm",
+        "patchSetId": 2
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2014-09-22T22:22:38Z",
+      "side": 1,
+      "message": "I\u0027m not sure what is in verticesForAspectRatio, but this doesn\u0027t seem right.",
+      "revId": "471c8d16d367b48b5f5ebedc5ee4ff3df7f032da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
