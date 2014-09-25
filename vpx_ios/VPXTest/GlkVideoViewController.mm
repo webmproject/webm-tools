@@ -343,6 +343,54 @@ class CVPixelBufferWrap {
   glVertexAttribPointer(ATTRIB_TEXCOORD, 2, GL_FLOAT, 0, 0, textureVertices);
   glEnableVertexAttribArray(ATTRIB_TEXCOORD);
 
+  // TODO(tomfinegan): This only needs to be calculated once, but there's no
+  // way to determine dimensions outside of update (currently). Relocate this
+  // code once format information is available at view startup.
+  //
+  // Calculate a new viewport to maintain video aspect ratio.
+  //
+  const CGSize screen_dimensions = [UIScreen mainScreen].bounds.size;
+
+  // Flip height and width; mainScreen bounds are always portrait mode values.
+  const float screen_width = screen_dimensions.height;
+  const float screen_height = screen_dimensions.width;
+  const float screen_aspect = screen_width / screen_height;
+
+  NSLog(@"Device dimensions (landscape): %.0fx%.0f ar:%f",
+        screen_width, screen_height,
+        screen_aspect);
+
+  // Default the viewport to screen dimensions. NB: origin is bottom left.
+  float view_x = 0;
+  float view_y = 0;
+  float view_width = screen_width;
+  float view_height = screen_height;
+
+  // Calculate video aspect ratio.
+  const float fwidth = width;
+  const float fheight = height;
+  const float video_aspect = fwidth / fheight;
+
+  NSLog(@"Video dimensions: %.0fx%.0f ar:%f", fwidth, fheight, video_aspect);
+
+  // Calculate the new dimension value, and then update the origin coordinates
+  // to center the image (horizontally or vertically; as appropriate).
+  // The goal is one dimension equal to device dimension, and the other scaled
+  // so that the original image aspect ratio is maintained.
+  if (fwidth >= fheight && video_aspect >= screen_aspect) {
+    view_height = screen_width * (1.0 / video_aspect);
+    view_y = (screen_height - view_height) / 2;
+  } else {
+    view_width = screen_height * video_aspect;
+    view_x = (screen_width - view_width) / 2;
+  }
+
+  NSLog(@"View x=%f y=%f width=%f height=%f",
+        view_x, view_y, view_width, view_height);
+
+  // Adjust the viewport.
+  glViewport(view_x, view_y, view_width, view_height);
+
   // Draw.
   glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
