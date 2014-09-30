@@ -118,12 +118,12 @@ bool VpxPlayer::PlayFile(const char *file_path) {
   file_path_ = file_path;
 
   if (!InitParser()) {
-    NSLog(@"WebM parser init failed.");
+    NSLog(@"VPx parser init failed.");
     return false;
   }
 
   if (!InitVpxDecoder()) {
-    NSLog(@"VPX decoder init failed.");
+    NSLog(@"VPx decoder init failed.");
     return false;
   }
 
@@ -169,6 +169,9 @@ bool VpxPlayer::InitVpxDecoder() {
     NSLog(@"Unable to allocate Vpx context.");
     return false;
   }
+
+  NSLog(@"Decoding %dx%d %s", format_.width, format_.height,
+        format_.codec == VP8 ? "VP8" : "VP9");
 
   const int codec_status =
       vpx_codec_dec_init(vpx_codec_ctx_,
