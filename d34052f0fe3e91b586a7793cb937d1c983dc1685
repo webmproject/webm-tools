@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAdn//VO4\u003d",
+        "filename": "vpx_ios/VPXTest/GlkVideoViewController.mm",
+        "patchSetId": 4
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-10-01T04:00:24Z",
+      "side": 1,
+      "message": "This is working for vertical videos too (this: https://www.youtube.com/watch?v\u003d0ImLftO29l0 for example)",
+      "revId": "d34052f0fe3e91b586a7793cb937d1c983dc1685",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
