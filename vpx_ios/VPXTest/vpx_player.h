@@ -27,8 +27,11 @@ class VpxPlayer {
   ~VpxPlayer();
 
   void Init(GlkVideoViewController *target_view);
-  bool PlayFile(const char *file_path);
+  bool LoadFile(const char *file_path);
+  bool Play();
   NSString *playback_result() const { return playback_result_; };
+
+  VpxFormat vpx_format() const { return format_; }
 
  private:
   bool InitParser();

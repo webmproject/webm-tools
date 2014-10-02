@@ -42,6 +42,17 @@ class CVPixelBufferWrap {
 };
 }  // namespace
 
+struct ViewRectangle {
+  ViewRectangle() : view_x(0), view_y(0), view_width(0), view_height(0) {}
+  // Origin coordinates.
+  float view_x;
+  float view_y;
+
+  // View extents from origin coordinates.
+  float view_width;
+  float view_height;
+};
+
 @interface GlkVideoViewController() {
   dispatch_queue_t _playerQueue;
   CVPixelBufferRef *_pixelBuffer;
@@ -59,12 +70,14 @@ class CVPixelBufferWrap {
   CGFloat _screenHeight;
   size_t _textureWidth;
   size_t _textureHeight;
+  ViewRectangle _viewRectangle;
 
   GLuint _program;
 }
 
 @property (strong, nonatomic) EAGLContext *context;
 @property (strong, nonatomic) GLKBaseEffect *effect;
+@property VpxTest::VpxFormat vpxFormat;
 
 - (const GLfloat *)squareVerticesForCurrentOrientation;
 - (const GLfloat *)textureVerticesForCurrentOrientation;
@@ -80,9 +93,10 @@ class CVPixelBufferWrap {
 @synthesize context = _context;
 @synthesize fileToPlay = _fileToPlay;
 @synthesize vpxtestViewController = _vpxtestViewController;
+@synthesize vpxFormat = _vpxFormat;
 
 - (void)playFile {
-  bool status = _vpxPlayer.PlayFile([_fileToPlay UTF8String]);
+  bool status = _vpxPlayer.Play();
 
   // Wait for all buffers to be consumed.
   [_lock lock];
@@ -128,6 +142,13 @@ class CVPixelBufferWrap {
   _lock = [[NSLock alloc] init];
   _playerQueue = dispatch_queue_create("com.google.VPXTest.playerqueue", NULL);
   _vpxPlayer.Init(self);
+
+  if (!_vpxPlayer.LoadFile([_fileToPlay UTF8String])) {
+    NSLog(@"File load failed for %@", _fileToPlay);
+    return;
+  }
+
+  _vpxFormat = _vpxPlayer.vpx_format();
 
   [self setupGL];
 
@@ -181,6 +202,56 @@ class CVPixelBufferWrap {
 
   glUniform1i(uniforms[UNIFORM_Y], 0);
   glUniform1i(uniforms[UNIFORM_UV], 1);
+
+  //
+  // Viewport setup: Calculate a viewport that maintains video aspect ratio.
+  // The viewport values can be precalculated, but (at least currently) must be
+  // set via glViewport() on every call to :update.
+  //
+  const CGSize screen_dimensions = [UIScreen mainScreen].bounds.size;
+
+  // Flip height and width; mainScreen bounds are always portrait mode values.
+  const float screen_width = screen_dimensions.height;
+  const float screen_height = screen_dimensions.width;
+  const float screen_aspect = screen_width / screen_height;
+
+  NSLog(@"Device dimensions (landscape): %.0fx%.0f ar:%f",
+        screen_width, screen_height,
+        screen_aspect);
+
+  // Default the viewport to screen dimensions. NB: origin is bottom left.
+  float view_x = 0;
+  float view_y = 0;
+  float view_width = screen_width;
+  float view_height = screen_height;
+
+  // Calculate video aspect ratio.
+  const float fwidth = _vpxFormat.width;
+  const float fheight = _vpxFormat.height;
+  const float video_aspect = fwidth / fheight;
+
+  NSLog(@"Video dimensions: %.0fx%.0f ar:%f", fwidth, fheight, video_aspect);
+
+  // Calculate the new dimension value, and then update the origin coordinates
+  // to center the image (horizontally or vertically; as appropriate).
+  // The goal is one dimension equal to device dimension, and the other scaled
+  // so that the original image aspect ratio is maintained.
+  if (video_aspect >= screen_aspect) {
+    view_height = screen_width / video_aspect;
+    view_y = (screen_height - view_height) / 2;
+  } else {
+    view_width = screen_height * video_aspect;
+    view_x = (screen_width - view_width) / 2;
+  }
+
+  NSLog(@"View x=%f y=%f width=%f height=%f",
+        view_x, view_y, view_width, view_height);
+
+  // Save viewport dimensions.
+  _viewRectangle.view_x = view_x;
+  _viewRectangle.view_y = view_y;
+  _viewRectangle.view_width = view_width;
+  _viewRectangle.view_height = view_height;
 }
 
 - (void)teardownGL{
@@ -343,53 +414,13 @@ class CVPixelBufferWrap {
   glVertexAttribPointer(ATTRIB_TEXCOORD, 2, GL_FLOAT, 0, 0, textureVertices);
   glEnableVertexAttribArray(ATTRIB_TEXCOORD);
 
-  // TODO(tomfinegan): This only needs to be calculated once, but there's no
-  // way to determine dimensions outside of update (currently). Relocate this
-  // code once format information is available at view startup.
-  //
-  // Calculate a new viewport to maintain video aspect ratio.
-  //
-  const CGSize screen_dimensions = [UIScreen mainScreen].bounds.size;
-
-  // Flip height and width; mainScreen bounds are always portrait mode values.
-  const float screen_width = screen_dimensions.height;
-  const float screen_height = screen_dimensions.width;
-  const float screen_aspect = screen_width / screen_height;
-
-  NSLog(@"Device dimensions (landscape): %.0fx%.0f ar:%f",
-        screen_width, screen_height,
-        screen_aspect);
-
-  // Default the viewport to screen dimensions. NB: origin is bottom left.
-  float view_x = 0;
-  float view_y = 0;
-  float view_width = screen_width;
-  float view_height = screen_height;
-
-  // Calculate video aspect ratio.
-  const float fwidth = width;
-  const float fheight = height;
-  const float video_aspect = fwidth / fheight;
-
-  NSLog(@"Video dimensions: %.0fx%.0f ar:%f", fwidth, fheight, video_aspect);
-
-  // Calculate the new dimension value, and then update the origin coordinates
-  // to center the image (horizontally or vertically; as appropriate).
-  // The goal is one dimension equal to device dimension, and the other scaled
-  // so that the original image aspect ratio is maintained.
-  if (video_aspect >= screen_aspect) {
-    view_height = screen_width / video_aspect;
-    view_y = (screen_height - view_height) / 2;
-  } else {
-    view_width = screen_height * video_aspect;
-    view_x = (screen_width - view_width) / 2;
-  }
-
-  NSLog(@"View x=%f y=%f width=%f height=%f",
-        view_x, view_y, view_width, view_height);
-
-  // Adjust the viewport.
-  glViewport(view_x, view_y, view_width, view_height);
+  // Viewport needs to be set before each draw.
+  // TODO(tomfinegan): Investigate relocating texture setup. It would be nice to
+  // only do it once per video instead of once per update.
+  glViewport(_viewRectangle.view_x,
+             _viewRectangle.view_y,
+             _viewRectangle.view_width,
+             _viewRectangle.view_height);
 
   // Draw.
   glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);

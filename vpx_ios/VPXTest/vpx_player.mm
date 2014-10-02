@@ -114,7 +114,7 @@ void VpxPlayer::Init(GlkVideoViewController *target_view) {
   target_view_ = target_view;
 }
 
-bool VpxPlayer::PlayFile(const char *file_path) {
+bool VpxPlayer::LoadFile(const char *file_path) {
   file_path_ = file_path;
 
   if (!InitParser()) {
@@ -127,6 +127,10 @@ bool VpxPlayer::PlayFile(const char *file_path) {
     return false;
   }
 
+  return true;
+}
+
+bool VpxPlayer::Play() {
   const double start_time = [[NSProcessInfo processInfo] systemUptime];
   const bool decode_result = DecodeAllVideoFrames();
   const double time_spent_decoding =
