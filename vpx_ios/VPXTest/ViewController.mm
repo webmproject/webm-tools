@@ -14,11 +14,6 @@
 #import "GlkVideoViewController.h"
 #import "vpx_player.h"
 
-// These values must be adjusted when running on an iOS device. localhost is not
-// the address you want on the device.
-#define TEST_SERVER @"http://localhost:8000"
-#define TEST_FILE_LIST @"http://localhost:8000/allvpx"
-
 @interface ViewController()<NSURLSessionDelegate,
                             NSURLSessionDownloadDelegate,
                             UITableViewDelegate>
@@ -49,9 +44,15 @@
       appendToOutputTextView:[NSString stringWithFormat:@"libvpx: %s %s",
                                                         VERSION_STRING_NOSP,
                                                         VPX_FRAMEWORK_TARGET]];
+#ifdef VPXTEST_LOCAL_PLAYBACK_ONLY
   [self appendToOutputTextView:@"1. Touch a file."];
   [self appendToOutputTextView:@"2. Touch Download"];
   [self appendToOutputTextView:@"3. Touch Play"];
+
+#else
+  [self appendToOutputTextView:@"1. Touch a file."];
+  [self appendToOutputTextView:@"2. Touch Play"];
+#endif  // VPXTEST_LOCAL_PLAYBACK_ONLY
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,6 +61,19 @@
 
 // Downloads the list of test files used to populate the table view.
 - (void)downloadFileList {
+#ifdef VPXTEST_LOCAL_PLAYBACK_ONLY
+  testFiles_ = [[NSArray alloc] initWithObjects:kVp8File, kVp9File, nil];
+
+  dispatch_async(dispatch_get_main_queue(), ^{
+      // Display the file names in testFiles_
+      [self.fileList reloadData];
+
+      // Make progress bar label and download button invisible.
+      [self.progressLabel setText:@""];
+      [self.downloadButton setTitle:@"" forState:UIControlStateDisabled];
+      [self.downloadButton setTitle:@"" forState:UIControlStateNormal];
+  });
+#else
   NSURLSessionConfiguration *session_config =
       [NSURLSessionConfiguration defaultSessionConfiguration];
   NSURLSession *session = [NSURLSession sessionWithConfiguration:session_config
@@ -87,10 +101,12 @@
       }];
   [dataTask resume];
   NSLog(@"dataTask running");
+#endif  // VPXTEST_LOCAL_PLAYBACK_ONLY
 }
 
 // Downloads test file.
 - (void)downloadTestFile {
+#ifndef VPXTEST_LOCAL_PLAYBACK_ONLY
   [self disableControls];
   NSURLSessionConfiguration *session_config =
       [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -110,6 +126,7 @@
       [session downloadTaskWithURL:testFileDownloadURL_];
   [downloadTask resume];
   NSLog(@"downloadTask running");
+#endif  // VPXTEST_LOCAL_PLAYBACK_ONLY
 }
 
 - (void)appendToOutputTextView:(NSString *)stringToAppend {
@@ -237,6 +254,23 @@
   selectedFileIndex_ = indexPath.row;
   NSLog(@"touched %lld:%@", static_cast<int64_t>(selectedFileIndex_),
         [testFiles_ objectAtIndex:indexPath.row]);
+
+#ifdef VPXTEST_LOCAL_PLAYBACK_ONLY
+  if ([[testFiles_ objectAtIndex:indexPath.row] isEqualToString:kVp8File]) {
+    downloadedFilePath_ =
+        [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@",
+            [[NSBundle mainBundle] bundlePath], kVp8File]];
+  } else {
+    downloadedFilePath_ =
+        [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@",
+            [[NSBundle mainBundle] bundlePath], kVp9File]];
+  }
+
+  dispatch_async(dispatch_get_main_queue(), ^{
+      [self enableControls];
+      [self appendToOutputTextView: @"Ready to play."];
+  });
+#endif
 }
 
 //

@@ -19,6 +19,8 @@
 		6A5A8489198829970014387A /* GlkVideoViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6A5A8488198829970014387A /* GlkVideoViewController.mm */; };
 		6A5A848D1988361D0014387A /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A5A848C1988361D0014387A /* CoreVideo.framework */; };
 		6A86B4D4197D9AC40093C195 /* ivf_frame_parser.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6A86B4D3197D9AC40093C195 /* ivf_frame_parser.mm */; };
+		6A92C7FE19DE0DC80098D339 /* sintel_trailer_vp8.webm in Resources */ = {isa = PBXBuildFile; fileRef = 6A92C7FC19DE0DC80098D339 /* sintel_trailer_vp8.webm */; };
+		6A92C7FF19DE0DC80098D339 /* sintel_trailer_vp9.webm in Resources */ = {isa = PBXBuildFile; fileRef = 6A92C7FD19DE0DC80098D339 /* sintel_trailer_vp9.webm */; };
 		6ABFD263196E503400B05D49 /* webm_frame_parser.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6ABFD261196E503400B05D49 /* webm_frame_parser.mm */; };
 		6AEBB7E21982F13D001FE832 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AEBB7E11982F13D001FE832 /* GLKit.framework */; };
 		6AEBB7E41982F145001FE832 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AEBB7E31982F145001FE832 /* OpenGLES.framework */; };
@@ -73,6 +75,8 @@
 		6A5A848C1988361D0014387A /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		6A86B4D2197D9AC40093C195 /* ivf_frame_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ivf_frame_parser.h; path = VPXTest/ivf_frame_parser.h; sourceTree = "<group>"; };
 		6A86B4D3197D9AC40093C195 /* ivf_frame_parser.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ivf_frame_parser.mm; path = VPXTest/ivf_frame_parser.mm; sourceTree = "<group>"; };
+		6A92C7FC19DE0DC80098D339 /* sintel_trailer_vp8.webm */ = {isa = PBXFileReference; lastKnownFileType = file; name = sintel_trailer_vp8.webm; path = testdata/sintel_trailer_vp8.webm; sourceTree = "<group>"; };
+		6A92C7FD19DE0DC80098D339 /* sintel_trailer_vp9.webm */ = {isa = PBXFileReference; lastKnownFileType = file; name = sintel_trailer_vp9.webm; path = testdata/sintel_trailer_vp9.webm; sourceTree = "<group>"; };
 		6ABFD260196E503400B05D49 /* vpx_test_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vpx_test_common.h; path = VPXTest/vpx_test_common.h; sourceTree = "<group>"; };
 		6ABFD261196E503400B05D49 /* webm_frame_parser.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = webm_frame_parser.mm; path = VPXTest/webm_frame_parser.mm; sourceTree = "<group>"; };
 		6ABFD262196E503400B05D49 /* webm_frame_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = webm_frame_parser.h; path = VPXTest/webm_frame_parser.h; sourceTree = "<group>"; };
@@ -150,6 +154,15 @@
 			name = libwebm;
 			sourceTree = "<group>";
 		};
+		6A92C7FB19DE0DB40098D339 /* testdata */ = {
+			isa = PBXGroup;
+			children = (
+				6A92C7FC19DE0DC80098D339 /* sintel_trailer_vp8.webm */,
+				6A92C7FD19DE0DC80098D339 /* sintel_trailer_vp9.webm */,
+			);
+			name = testdata;
+			sourceTree = "<group>";
+		};
 		6AFD5A5619639660004CCF76 = {
 			isa = PBXGroup;
 			children = (
@@ -167,8 +180,9 @@
 				6AFD5A6E19639660004CCF76 /* main.m */,
 				6AFD5A7719639660004CCF76 /* Main_iPad.storyboard */,
 				6AFD5A7419639660004CCF76 /* Main_iPhone.storyboard */,
-				6AFD5A7A19639660004CCF76 /* ViewController.h */,
 				6AFD5A7B19639660004CCF76 /* ViewController.mm */,
+				6AFD5A7A19639660004CCF76 /* ViewController.h */,
+				6A92C7FB19DE0DB40098D339 /* testdata */,
 				6ABFD264196E509D00B05D49 /* vpx_frame_parser.h */,
 				6A4DF5DF1963A49900B420A9 /* vpx_player.h */,
 				6A4DF5DE1963A49900B420A9 /* vpx_player.mm */,
@@ -316,7 +330,9 @@
 				6AFD5A7E19639660004CCF76 /* Images.xcassets in Resources */,
 				6A3FC81D19905C5A00E99B8B /* nv12_fragment_shader.glsl in Resources */,
 				6AFD5A7619639660004CCF76 /* Main_iPhone.storyboard in Resources */,
+				6A92C7FE19DE0DC80098D339 /* sintel_trailer_vp8.webm in Resources */,
 				6AFD5A6D19639660004CCF76 /* InfoPlist.strings in Resources */,
+				6A92C7FF19DE0DC80098D339 /* sintel_trailer_vp9.webm in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
