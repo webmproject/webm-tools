@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAdn//U0k\u003d",
+        "filename": "vpx_ios/VPXTest/vpx_player.mm",
+        "patchSetId": 4
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2014-10-03T03:59:02Z",
+      "side": 1,
+      "message": "are cores/physical cpus treated differently? maybe a comment with a doc link if available",
+      "revId": "4db576d845e2e87784356995c62e39650b946f4d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
