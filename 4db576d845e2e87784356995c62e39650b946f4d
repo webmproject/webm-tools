@@ -16,6 +16,24 @@
       "revId": "4db576d845e2e87784356995c62e39650b946f4d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//UxI\u003d",
+        "filename": "vpx_ios/VPXTest/vpx_player.mm",
+        "patchSetId": 4
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-10-03T18:33:52Z",
+      "side": 1,
+      "message": "yes; changed to hw.physicalcpu\n\nCan\u0027t find any docs about this... aside from the sysctl man page (which omits hw.physicalcpu)",
+      "parentUuid": "AAAAdn//U0k\u003d",
+      "revId": "4db576d845e2e87784356995c62e39650b946f4d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
