@@ -73,6 +73,7 @@
 		6A5A8487198829970014387A /* GlkVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GlkVideoViewController.h; path = VPXTest/GlkVideoViewController.h; sourceTree = "<group>"; };
 		6A5A8488198829970014387A /* GlkVideoViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = GlkVideoViewController.mm; path = VPXTest/GlkVideoViewController.mm; sourceTree = "<group>"; };
 		6A5A848C1988361D0014387A /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		6A657C8819E1C3AD005EDCC9 /* download_file.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = download_file.sh; path = build/download_file.sh; sourceTree = "<group>"; };
 		6A86B4D2197D9AC40093C195 /* ivf_frame_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ivf_frame_parser.h; path = VPXTest/ivf_frame_parser.h; sourceTree = "<group>"; };
 		6A86B4D3197D9AC40093C195 /* ivf_frame_parser.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ivf_frame_parser.mm; path = VPXTest/ivf_frame_parser.mm; sourceTree = "<group>"; };
 		6A92C7FC19DE0DC80098D339 /* sintel_trailer_vp8.webm */ = {isa = PBXFileReference; lastKnownFileType = file; name = sintel_trailer_vp8.webm; path = testdata/sintel_trailer_vp8.webm; sourceTree = "<group>"; };
@@ -154,6 +155,14 @@
 			name = libwebm;
 			sourceTree = "<group>";
 		};
+		6A657C8719E1C387005EDCC9 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				6A657C8819E1C3AD005EDCC9 /* download_file.sh */,
+			);
+			name = Scripts;
+			sourceTree = "<group>";
+		};
 		6A92C7FB19DE0DB40098D339 /* testdata */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +178,7 @@
 				6AFD5A6119639660004CCF76 /* Frameworks */,
 				6A06EF191974B99E00220A3F /* libwebm */,
 				6AFD5A6019639660004CCF76 /* Products */,
+				6A657C8719E1C387005EDCC9 /* Scripts */,
 				6AFD5A6919639660004CCF76 /* Supporting Files */,
 				6AFD5A7119639660004CCF76 /* AppDelegate.h */,
 				6AFD5A7219639660004CCF76 /* AppDelegate.m */,
@@ -258,6 +268,7 @@
 			buildPhases = (
 				6AFD5A5B19639660004CCF76 /* Sources */,
 				6AFD5A5C19639660004CCF76 /* Frameworks */,
+				6A657C8619E1C139005EDCC9 /* ShellScript */,
 				6AFD5A5D19639660004CCF76 /* Resources */,
 			);
 			buildRules = (
@@ -345,6 +356,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6A657C8619E1C139005EDCC9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+				"",
+				"$(PROJECT_DIR)/testdata/sintel_trailer_vp8.webm",
+				"$(PROJECT_DIR)/testdata/sintel_trailer_vp9.webm",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/Users/tomfinegan/webm-tools/vpx_ios/build/download_file.sh";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6AFD5A5B19639660004CCF76 /* Sources */ = {
