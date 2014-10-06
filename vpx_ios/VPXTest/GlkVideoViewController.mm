@@ -15,6 +15,8 @@
 #import "vpx_player.h"
 
 namespace {
+const NSInteger kRendererFramesPerSecond = 60;
+
 // Uniform index.
 enum {
   UNIFORM_Y,
@@ -28,17 +30,6 @@ enum {
   ATTRIB_VERTEX,
   ATTRIB_TEXCOORD,
   NUM_ATTRIBUTES
-};
-
-// Wraps CVPixelBufferRefs for handling clean up.
-class CVPixelBufferWrap {
- public:
-  CVPixelBufferWrap() : buffer_(NULL) {}
-  ~CVPixelBufferWrap() { if (buffer_ != NULL) CVPixelBufferRelease(buffer_); }
-  void set_buffer(CVPixelBufferRef buffer) { buffer_ = buffer; }
-  CVPixelBufferRef buffer() const { return buffer_; }
- private:
-  CVPixelBufferRef buffer_;
 };
 }  // namespace
 
@@ -58,7 +49,7 @@ struct ViewRectangle {
   CVPixelBufferRef *_pixelBuffer;
   NSLock *_lock;
   NSInteger _count;
-  std::queue<CVPixelBufferRef> _videoBuffers;
+  std::queue<const VpxTest::VideoBuffer *> _videoBuffers;
   VpxTest::VpxPlayer _vpxPlayer;
 
   CVOpenGLESTextureCacheRef _videoTextureCache;
@@ -94,6 +85,10 @@ struct ViewRectangle {
 @synthesize fileToPlay = _fileToPlay;
 @synthesize vpxtestViewController = _vpxtestViewController;
 @synthesize vpxFormat = _vpxFormat;
+
+- (NSInteger)rendererFrameRate {
+  return kRendererFramesPerSecond;
+}
 
 - (void)playFile {
   bool status = _vpxPlayer.Play();
@@ -137,7 +132,7 @@ struct ViewRectangle {
   view.context = self.context;
   view.drawableMultisample = GLKViewDrawableMultisampleNone;
   view.contentScaleFactor = 1.0;
-  self.preferredFramesPerSecond = 60;
+  self.preferredFramesPerSecond = kRendererFramesPerSecond;
 
   _lock = [[NSLock alloc] init];
   _playerQueue = dispatch_queue_create("com.google.VPXTest.playerqueue", NULL);
@@ -326,13 +321,13 @@ struct ViewRectangle {
 // Show a video frame when one is available.
 - (void)update {
   // Check for a frame in the queue.
-  CVPixelBufferWrap buffer;
+  const VpxTest::VideoBuffer *buffer = NULL;
 
   if ([_lock tryLock] == YES) {
     if (_videoBuffers.empty()) {
       NSLog(@"buffer queue empty.");
     } else {
-      buffer.set_buffer(_videoBuffers.front());
+      buffer = _videoBuffers.front();
       _videoBuffers.pop();
       NSLog(@"popped buffer.");
     }
@@ -340,11 +335,11 @@ struct ViewRectangle {
   }
 
   // NULL buffer means no frame; do nothing.
-  if (buffer.buffer() == NULL)
+  if (buffer == NULL)
     return;
 
-  const size_t width = CVPixelBufferGetWidthOfPlane(buffer.buffer(), 0);
-  const size_t height = CVPixelBufferGetHeightOfPlane(buffer.buffer(), 0);
+  const size_t width = CVPixelBufferGetWidthOfPlane(buffer->buffer, 0);
+  const size_t height = CVPixelBufferGetHeightOfPlane(buffer->buffer, 0);
 
   // Release textures from previous frame. (Can't reuse them,
   // CVOpenGLESTextureCache doesn't provide a method that loads an image
@@ -356,7 +351,7 @@ struct ViewRectangle {
   CVReturn status =
       CVOpenGLESTextureCacheCreateTextureFromImage(kCFAllocatorDefault,
                                                    _videoTextureCache,
-                                                   buffer.buffer(),
+                                                   buffer->buffer,
                                                    NULL,
                                                    GL_TEXTURE_2D,
                                                    GL_RED_EXT,
@@ -384,7 +379,7 @@ struct ViewRectangle {
   status =
       CVOpenGLESTextureCacheCreateTextureFromImage(kCFAllocatorDefault,
                                                    _videoTextureCache,
-                                                   buffer.buffer(),
+                                                   buffer->buffer,
                                                    NULL,
                                                    GL_TEXTURE_2D,
                                                    GL_RG_EXT,
@@ -424,13 +419,17 @@ struct ViewRectangle {
 
   // Draw.
   glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
+  // Return the buffer we just displayed.
+  _vpxPlayer.ReleaseVideoBuffer(buffer);
 }
 
 // Receives buffers from player and stores them in |_videoBuffers|.
-- (void)receivePixelBuffer:(CVPixelBufferRef)pixelBuffer {
+- (void)receiveVideoBuffer:(const void*)videoBuffer {
   [_lock lock];
-  _videoBuffers.push(pixelBuffer);
-  //NSLog(@"%@", pixelBuffer);
+  const VpxTest::VideoBuffer *video_buffer =
+      reinterpret_cast<const VpxTest::VideoBuffer *>(videoBuffer);
+  _videoBuffers.push(video_buffer);
   NSLog(@"pushed buffer.");
   [_lock unlock];
 }

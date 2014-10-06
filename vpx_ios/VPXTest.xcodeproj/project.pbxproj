@@ -25,6 +25,7 @@
 		6AEBB7E21982F13D001FE832 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AEBB7E11982F13D001FE832 /* GLKit.framework */; };
 		6AEBB7E41982F145001FE832 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AEBB7E31982F145001FE832 /* OpenGLES.framework */; };
 		6AEBB7E61982F157001FE832 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AEBB7E51982F157001FE832 /* QuartzCore.framework */; };
+		6AF8732A19E1EB3800052FFD /* video_buffer_pool.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6AF8732919E1EB3800052FFD /* video_buffer_pool.mm */; };
 		6AFD5A6319639660004CCF76 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFD5A6219639660004CCF76 /* Foundation.framework */; };
 		6AFD5A6519639660004CCF76 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFD5A6419639660004CCF76 /* CoreGraphics.framework */; };
 		6AFD5A6719639660004CCF76 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFD5A6619639660004CCF76 /* UIKit.framework */; };
@@ -85,6 +86,8 @@
 		6AEBB7E11982F13D001FE832 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		6AEBB7E31982F145001FE832 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		6AEBB7E51982F157001FE832 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		6AF8732819E1EB3800052FFD /* video_buffer_pool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = video_buffer_pool.h; path = VPXTest/video_buffer_pool.h; sourceTree = "<group>"; };
+		6AF8732919E1EB3800052FFD /* video_buffer_pool.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = video_buffer_pool.mm; path = VPXTest/video_buffer_pool.mm; sourceTree = "<group>"; };
 		6AFD5A5F19639660004CCF76 /* VPXTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VPXTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AFD5A6219639660004CCF76 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6AFD5A6419639660004CCF76 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -180,6 +183,8 @@
 				6AFD5A6019639660004CCF76 /* Products */,
 				6A657C8719E1C387005EDCC9 /* Scripts */,
 				6AFD5A6919639660004CCF76 /* Supporting Files */,
+				6A92C7FB19DE0DB40098D339 /* testdata */,
+				6AFD5A8A19639660004CCF76 /* VPXTestTests */,
 				6AFD5A7119639660004CCF76 /* AppDelegate.h */,
 				6AFD5A7219639660004CCF76 /* AppDelegate.m */,
 				6AFD5A7D19639660004CCF76 /* Images.xcassets */,
@@ -190,18 +195,18 @@
 				6AFD5A6E19639660004CCF76 /* main.m */,
 				6AFD5A7719639660004CCF76 /* Main_iPad.storyboard */,
 				6AFD5A7419639660004CCF76 /* Main_iPhone.storyboard */,
+				6A3FC81A19905C3000E99B8B /* nv12_vertex_shader.glsl */,
+				6A3FC81C19905C5A00E99B8B /* nv12_fragment_shader.glsl */,
+				6AF8732819E1EB3800052FFD /* video_buffer_pool.h */,
+				6AF8732919E1EB3800052FFD /* video_buffer_pool.mm */,
 				6AFD5A7B19639660004CCF76 /* ViewController.mm */,
 				6AFD5A7A19639660004CCF76 /* ViewController.h */,
-				6A92C7FB19DE0DB40098D339 /* testdata */,
 				6ABFD264196E509D00B05D49 /* vpx_frame_parser.h */,
 				6A4DF5DF1963A49900B420A9 /* vpx_player.h */,
 				6A4DF5DE1963A49900B420A9 /* vpx_player.mm */,
 				6ABFD260196E503400B05D49 /* vpx_test_common.h */,
 				6ABFD262196E503400B05D49 /* webm_frame_parser.h */,
 				6ABFD261196E503400B05D49 /* webm_frame_parser.mm */,
-				6A3FC81A19905C3000E99B8B /* nv12_vertex_shader.glsl */,
-				6A3FC81C19905C5A00E99B8B /* nv12_fragment_shader.glsl */,
-				6AFD5A8A19639660004CCF76 /* VPXTestTests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -386,6 +391,7 @@
 				6A06EF2A1974B9AD00220A3F /* mkvwriter.cpp in Sources */,
 				6AFD5A7C19639660004CCF76 /* ViewController.mm in Sources */,
 				6ABFD263196E503400B05D49 /* webm_frame_parser.mm in Sources */,
+				6AF8732A19E1EB3800052FFD /* video_buffer_pool.mm in Sources */,
 				6AFD5A7319639660004CCF76 /* AppDelegate.m in Sources */,
 				6A5A8489198829970014387A /* GlkVideoViewController.mm in Sources */,
 				6AFD5A6F19639660004CCF76 /* main.m in Sources */,

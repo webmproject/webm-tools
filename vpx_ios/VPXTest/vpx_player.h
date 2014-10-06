@@ -12,7 +12,10 @@
 #include <memory>
 #include <string>
 
+#include <CoreVideo/CoreVideo.h>
+
 #import "GlkVideoViewController.h"
+#include "video_buffer_pool.h"
 #include "vpx_frame_parser.h"
 #include "vpx_test_common.h"
 
@@ -29,14 +32,18 @@ class VpxPlayer {
   void Init(GlkVideoViewController *target_view);
   bool LoadFile(const char *file_path);
   bool Play();
+  void ReleaseVideoBuffer(const VideoBuffer *buffer);
+
   NSString *playback_result() const { return playback_result_; };
 
   VpxFormat vpx_format() const { return format_; }
 
  private:
   bool InitParser();
+  bool InitBufferPool();
   bool InitVpxDecoder();
-  bool DeliverVideoBuffer(vpx_image *image);
+  bool DeliverVideoBuffer(const vpx_image *image,
+                          const VideoBuffer *buffer);
   bool DecodeAllVideoFrames();
 
   GlkVideoViewController *target_view_;
@@ -46,6 +53,8 @@ class VpxPlayer {
   uint32_t frames_decoded_;
   VpxFormat format_;
   vpx_codec_ctx *vpx_codec_ctx_;
+  VideoBufferPool buffer_pool_;
+  NSLock *buffer_lock_;
 };
 
 }  // namespace VpxTest
