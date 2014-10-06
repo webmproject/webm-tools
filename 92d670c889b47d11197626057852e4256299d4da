@@ -16,6 +16,24 @@
       "revId": "92d670c889b47d11197626057852e4256299d4da",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//Uls\u003d",
+        "filename": "vpx_ios/build/download_file.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-10-06T21:25:29Z",
+      "side": 1,
+      "message": "added trap",
+      "parentUuid": "AAAAdn//UpM\u003d",
+      "revId": "92d670c889b47d11197626057852e4256299d4da",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
