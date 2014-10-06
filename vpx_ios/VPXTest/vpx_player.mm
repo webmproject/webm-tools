@@ -11,6 +11,8 @@
 #include <string>
 
 #include <CoreVideo/CoreVideo.h>
+#include <sys/sysctl.h>
+#include <sys/types.h>
 
 #include "VPX/vpx/vpx_decoder.h"
 #include "VPX/vpx/vp8dx.h"
@@ -168,6 +170,15 @@ bool VpxPlayer::InitParser() {
 
 bool VpxPlayer::InitVpxDecoder() {
   vpx_codec_dec_cfg_t vpx_config = {0};
+
+  // Use number of physical CPUs threads for decoding.
+  // TODO(tomfinegan): Add a check box or something to force single threaded
+  // decode.
+  unsigned int num_processors = 0;
+  size_t length = sizeof(num_processors);
+  sysctlbyname("hw.physicalcpu", &num_processors, &length, NULL, 0);
+  vpx_config.threads = num_processors;
+
   vpx_codec_ctx_ = new vpx_codec_ctx();
   if (!vpx_codec_ctx_) {
     NSLog(@"Unable to allocate Vpx context.");
