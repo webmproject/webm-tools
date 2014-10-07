@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAdn//Uf8\u003d",
+        "filename": "vpx_ios/build/download_file.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-10-07T18:09:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAdn//UiE\u003d",
+      "revId": "d10ca3e3d3bbd297822316abb335a62f7b7767e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAdn//UiM\u003d",
         "filename": "vpx_ios/build/download_file.sh",
         "patchSetId": 6
@@ -30,6 +48,24 @@
       "writtenOn": "2014-10-07T14:57:42Z",
       "side": 1,
       "message": "$? actually",
+      "revId": "d10ca3e3d3bbd297822316abb335a62f7b7767e8",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//Uf4\u003d",
+        "filename": "vpx_ios/build/download_file.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-10-07T18:09:46Z",
+      "side": 1,
+      "message": "Hmm... not sure where I picked up $1, but it seemed to work. Done, anyway.",
+      "parentUuid": "AAAAdn//UiM\u003d",
       "revId": "d10ca3e3d3bbd297822316abb335a62f7b7767e8",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
