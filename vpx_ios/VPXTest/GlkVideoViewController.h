@@ -18,6 +18,7 @@
 @property(nonatomic, weak)
     id<GlkVideoViewControllerDelegate> vpxtestViewController;
 @property(nonatomic, strong) NSString *fileToPlay;
+@property(readonly) NSInteger rendererFrameRate;
 
-- (void)receivePixelBuffer:(CVPixelBufferRef)pixelBuffer;
+- (void)receiveVideoBuffer:(const void*)videoBuffer;
 @end

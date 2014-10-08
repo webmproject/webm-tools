@@ -32,6 +32,8 @@
 
 namespace VpxTest {
 
+const int kNumVideoBuffers = 8;
+
 enum VpxCodec {
   UNKNOWN,
   VP8,
