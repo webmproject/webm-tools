@@ -37,6 +37,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAdn//US0\u003d",
+        "filename": "vpx_ios/VPXTest/GlkVideoViewController.mm",
+        "patchSetId": 1
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2014-10-08T17:58:57Z",
+      "side": 1,
+      "message": "OK",
+      "parentUuid": "AAAAdn//UUU\u003d",
+      "revId": "a017eb2d1e93d3dc3bc3e49ee3e339092607851e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAdn//UVU\u003d",
         "filename": "vpx_ios/VPXTest/video_buffer_pool.mm",
         "patchSetId": 1
@@ -66,6 +84,24 @@
       "side": 1,
       "message": "I like to avoid multiple return points when doing so is easy.",
       "parentUuid": "AAAAdn//UVU\u003d",
+      "revId": "a017eb2d1e93d3dc3bc3e49ee3e339092607851e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//USw\u003d",
+        "filename": "vpx_ios/VPXTest/video_buffer_pool.mm",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2014-10-08T17:58:57Z",
+      "side": 1,
+      "message": "OK",
+      "parentUuid": "AAAAdn//UUI\u003d",
       "revId": "a017eb2d1e93d3dc3bc3e49ee3e339092607851e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -136,6 +172,24 @@
       "side": 1,
       "message": "OK. VpxTestPlayer? VpxPlayer? TomsIosJunk?",
       "parentUuid": "AAAAdn//UVM\u003d",
+      "revId": "a017eb2d1e93d3dc3bc3e49ee3e339092607851e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//USs\u003d",
+        "filename": "vpx_ios/VPXTest/vpx_player.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2014-10-08T17:58:57Z",
+      "side": 1,
+      "message": "For now I would just put a TODO. Maybe VpxSamplePlayer or VpxExample?\n\nProbably just VpxExample as VpxPlayer is contained in VpxExample.",
+      "parentUuid": "AAAAdn//UUQ\u003d",
       "revId": "a017eb2d1e93d3dc3bc3e49ee3e339092607851e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
