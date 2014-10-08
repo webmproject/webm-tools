@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAdn//UUU\u003d",
+        "filename": "vpx_ios/VPXTest/GlkVideoViewController.mm",
+        "patchSetId": 1
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-10-08T17:41:58Z",
+      "side": 1,
+      "message": "I\u0027m just going with the API that Apple provides: CVPixelBuffer* uses size_t for dimensions; throughout. Casting everywhere sucks.",
+      "parentUuid": "AAAAdn//UVE\u003d",
+      "revId": "a017eb2d1e93d3dc3bc3e49ee3e339092607851e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAdn//UVU\u003d",
         "filename": "vpx_ios/VPXTest/video_buffer_pool.mm",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2014-10-08T16:48:15Z",
       "side": 1,
       "message": "nit: Not needed just return the buffer directly, or finally return NULL.",
+      "revId": "a017eb2d1e93d3dc3bc3e49ee3e339092607851e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//UUI\u003d",
+        "filename": "vpx_ios/VPXTest/video_buffer_pool.mm",
+        "patchSetId": 1
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-10-08T17:41:58Z",
+      "side": 1,
+      "message": "I like to avoid multiple return points when doing so is easy.",
+      "parentUuid": "AAAAdn//UVU\u003d",
       "revId": "a017eb2d1e93d3dc3bc3e49ee3e339092607851e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAdn//UUM\u003d",
+        "filename": "vpx_ios/VPXTest/video_buffer_pool.mm",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-10-08T17:41:58Z",
+      "side": 1,
+      "message": "lol, yeah, whoops: forgot to type that line.",
+      "parentUuid": "AAAAdn//UVQ\u003d",
+      "revId": "a017eb2d1e93d3dc3bc3e49ee3e339092607851e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAdn//UVM\u003d",
         "filename": "vpx_ios/VPXTest/vpx_player.h",
         "patchSetId": 1
@@ -64,6 +118,24 @@
       "writtenOn": "2014-10-08T16:48:15Z",
       "side": 1,
       "message": "Not that yous should change it right now, but I\u0027m not sure VpxTest is the best place for this code.",
+      "revId": "a017eb2d1e93d3dc3bc3e49ee3e339092607851e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//UUQ\u003d",
+        "filename": "vpx_ios/VPXTest/vpx_player.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-10-08T17:41:58Z",
+      "side": 1,
+      "message": "OK. VpxTestPlayer? VpxPlayer? TomsIosJunk?",
+      "parentUuid": "AAAAdn//UVM\u003d",
       "revId": "a017eb2d1e93d3dc3bc3e49ee3e339092607851e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
