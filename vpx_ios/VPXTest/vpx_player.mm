@@ -102,7 +102,8 @@ VpxPlayer::VpxPlayer()
     : target_view_(NULL),
       playback_result_(nil),
       frames_decoded_(0),
-      vpx_codec_ctx_(NULL) {
+      vpx_codec_ctx_(NULL),
+      buffer_lock_(NULL) {
 }
 
 VpxPlayer::~VpxPlayer() {
@@ -114,6 +115,7 @@ VpxPlayer::~VpxPlayer() {
 
 void VpxPlayer::Init(GlkVideoViewController *target_view) {
   target_view_ = target_view;
+  buffer_lock_ = [[NSLock alloc] init];
 }
 
 bool VpxPlayer::LoadFile(const char *file_path) {
@@ -121,6 +123,11 @@ bool VpxPlayer::LoadFile(const char *file_path) {
 
   if (!InitParser()) {
     NSLog(@"VPx parser init failed.");
+    return false;
+  }
+
+  if (!InitBufferPool()) {
+    NSLog(@"Buffer pool init failed.");
     return false;
   }
 
@@ -150,6 +157,11 @@ bool VpxPlayer::Play() {
   return true;
 }
 
+void VpxPlayer::ReleaseVideoBuffer(const VpxTest::VideoBuffer *buffer) {
+  if (buffer != NULL)
+    buffer_pool_.ReleaseBuffer(buffer);
+}
+
 bool VpxPlayer::InitParser() {
   parser_.reset(new IvfFrameParser());
   if (parser_->HasVpxFrames(file_path_, &format_)) {
@@ -165,6 +177,14 @@ bool VpxPlayer::InitParser() {
 
   NSLog(@"%s is not a supported file type, or it has no VPX frames to decode.",
         file_path_.c_str());
+  return true;
+}
+
+bool VpxPlayer::InitBufferPool() {
+  if (!buffer_pool_.Init(format_.width, format_.height)) {
+    NSLog(@"Unable to initialize buffer pool.");
+    return false;
+  }
   return true;
 }
 
@@ -201,50 +221,40 @@ bool VpxPlayer::InitVpxDecoder() {
   return true;
 }
 
-bool VpxPlayer::DeliverVideoBuffer(vpx_image *image) {
+bool VpxPlayer::DeliverVideoBuffer(const vpx_image *image,
+                                   const VideoBuffer *buffer) {
   if (target_view_ == NULL) {
     NSLog(@"No GlkVideoViewController.");
     return false;
   }
-  // TODO(tomfinegan): This is horribly inefficient. Preallocate a pool of these
-  // (CVPixelBufferPool?) instead of leaking them to GlkVideoViewController
-  // and relying on it to clean up after VpxPlayer.
-  CVPixelBufferRef buffer;
 
-  // Note: kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange is NV12.
-  const OSType pixel_fmt = kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange;
-
-  NSDictionary *pixelBufferAttributes =
-      [NSDictionary dictionaryWithObjectsAndKeys:[NSDictionary dictionary],
-          kCVPixelBufferIOSurfacePropertiesKey, nil];
-  CFDictionaryRef cfPixelBufferAttributes =
-      (__bridge CFDictionaryRef)pixelBufferAttributes;
-
-  CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault,
-                                        image->d_w, image->d_h,
-                                        pixel_fmt,
-                                        cfPixelBufferAttributes,
-                                        &buffer);
-  if (status != kCVReturnSuccess) {
-    NSLog(@"CVPixelBufferRef creation failed %d", status);
-    return false;
-  }
-
-  if (!CopyVpxImageToPixelBuffer(image, buffer)) {
+  if (!CopyVpxImageToPixelBuffer(image, buffer->buffer)) {
     NSLog(@"CopyVpxImageToPixelBuffer failed.");
     return false;
   }
 
-  [target_view_ receivePixelBuffer:buffer];
+  [target_view_ receiveVideoBuffer:reinterpret_cast<const void*>(buffer)];
   return true;
 }
 
 bool VpxPlayer::DecodeAllVideoFrames() {
   std::vector<uint8_t> vpx_frame;
   uint32_t frame_length = 0;
+  // Time spent sleeping when no buffers are available in |buffer_pool_|.
+  const float kSleepInterval = 1.0 / [target_view_ rendererFrameRate];
 
   while (parser_->ReadFrame(&vpx_frame, &frame_length)) {
     //NSLog(@"Decoding frame with length: %u", frame_length);
+
+    // Get a buffer for the output frame.
+    const VideoBuffer *buffer = buffer_pool_.GetBuffer();
+
+    // Wait until we actually have a buffer (if necessary).
+    while (buffer == NULL) {
+      [NSThread sleepForTimeInterval:kSleepInterval];
+      buffer = buffer_pool_.GetBuffer();
+    }
+
     const int codec_status =
         vpx_codec_decode(vpx_codec_ctx_,
                          &vpx_frame[0],
@@ -259,7 +269,7 @@ bool VpxPlayer::DecodeAllVideoFrames() {
     vpx_image_t *vpx_image = vpx_codec_get_frame(vpx_codec_ctx_, &vpx_iter);
 
     if (vpx_image) {
-      if (!DeliverVideoBuffer(vpx_image)) {
+      if (!DeliverVideoBuffer(vpx_image, buffer)) {
         NSLog(@"DeliverVideoBuffer failed.");
       }
     }
