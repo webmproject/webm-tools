@@ -22,7 +22,7 @@
 struct vpx_codec_ctx;
 struct vpx_image;
 
-namespace VpxTest {
+namespace VpxExample {
 
 class VpxPlayer {
  public:
@@ -57,6 +57,6 @@ class VpxPlayer {
   NSLock *buffer_lock_;
 };
 
-}  // namespace VpxTest
+}  // namespace VpxExample
 
 #endif  // VPXTEST_VPXTEST_VPX_PLAYER_H_

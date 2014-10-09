@@ -13,7 +13,7 @@
 
 #include <string>
 
-namespace VpxTest {
+namespace VpxExample {
 
 namespace {
 const int kIvfFormatVersion = 0;
@@ -171,4 +171,4 @@ bool IvfFrameParser::ReadFrame(std::vector<uint8_t> *frame,
   return true;
 }
 
-}  // namespace VpxTest
+}  // namespace VpxExample

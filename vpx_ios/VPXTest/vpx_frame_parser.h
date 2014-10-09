@@ -13,7 +13,7 @@
 
 #include "vpx_test_common.h"
 
-namespace VpxTest {
+namespace VpxExample {
 
 class VpxFrameParserInterface {
  public:
@@ -24,6 +24,6 @@ class VpxFrameParserInterface {
                          uint32_t *frame_length) = 0;
 };
 
-}  // namespace VpxTest
+}  // namespace VpxExample
 
 #endif  // VPXTEST_VPXTEST_VPX_FRAME_PARSER_H_

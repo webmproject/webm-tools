@@ -23,7 +23,7 @@ class MkvReader;
 class Segment;
 }
 
-namespace VpxTest {
+namespace VpxExample {
 
 // Tracks frame index when a block has multiple frames.
 struct WebmBlockHead {
@@ -71,6 +71,6 @@ class WebmFrameParser : public VpxFrameParserInterface {
   std::unique_ptr<mkvparser::Segment> segment_;
 };
 
-}  // namespace VpxTest
+}  // namespace VpxExample
 
 #endif  // VPXTEST_VPXTEST_WEBM_FRAME_PARSER_H_
