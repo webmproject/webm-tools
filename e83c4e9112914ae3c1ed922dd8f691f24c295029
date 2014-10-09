@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAdn//UDE\u003d",
+        "filename": "vpx_ios/VPXTest/video_buffer_pool.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-10-09T21:36:21Z",
+      "side": 1,
+      "message": "nope; just missed xcode being helpful",
+      "parentUuid": "AAAAdn//UKA\u003d",
+      "revId": "e83c4e9112914ae3c1ed922dd8f691f24c295029",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAdn//UKE\u003d",
         "filename": "vpx_ios/VPXTest/video_buffer_pool.h",
         "patchSetId": 2
@@ -30,6 +48,24 @@
       "writtenOn": "2014-10-09T10:44:37Z",
       "side": 1,
       "message": "size_t?",
+      "revId": "e83c4e9112914ae3c1ed922dd8f691f24c295029",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//UDA\u003d",
+        "filename": "vpx_ios/VPXTest/video_buffer_pool.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-10-09T21:36:21Z",
+      "side": 1,
+      "message": "bowing to Apple: CVPixel* uses size_t for dimensions throughout, and I don\u0027t see the sense in bothering with using a different type when I ultimately need a cast one way or another.",
+      "parentUuid": "AAAAdn//UKE\u003d",
       "revId": "e83c4e9112914ae3c1ed922dd8f691f24c295029",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAdn//UC8\u003d",
+        "filename": "vpx_ios/VPXTest/video_buffer_pool.mm",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-10-09T21:36:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAdn//UJ8\u003d",
+      "revId": "e83c4e9112914ae3c1ed922dd8f691f24c295029",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAdn//UJ0\u003d",
         "filename": "vpx_ios/VPXTest/vpx_player.mm",
         "patchSetId": 2
@@ -70,6 +124,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAdn//UC4\u003d",
+        "filename": "vpx_ios/VPXTest/vpx_player.mm",
+        "patchSetId": 2
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-10-09T21:36:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAdn//UJ0\u003d",
+      "revId": "e83c4e9112914ae3c1ed922dd8f691f24c295029",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAdn//UJw\u003d",
         "filename": "vpx_ios/VPXTest/vpx_player.mm",
         "patchSetId": 2
@@ -81,6 +153,24 @@
       "writtenOn": "2014-10-09T10:44:37Z",
       "side": 1,
       "message": "\u003d\u003d NULL",
+      "revId": "e83c4e9112914ae3c1ed922dd8f691f24c295029",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//UC0\u003d",
+        "filename": "vpx_ios/VPXTest/vpx_player.mm",
+        "patchSetId": 2
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-10-09T21:36:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "AAAAdn//UJw\u003d",
       "revId": "e83c4e9112914ae3c1ed922dd8f691f24c295029",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
