@@ -13,7 +13,7 @@
 
 #include "vpx_test_common.h"
 
-namespace VpxTest {
+namespace VpxExample {
 
 struct VideoBuffer {
   VideoBuffer() : buffer(NULL), in_use(false), slot(0) {}
@@ -45,6 +45,6 @@ class VideoBufferPool {
   VideoBuffer buffer_pool_[kNumVideoBuffers];
 };
 
-}  // namespace VpxTest
+}  // namespace VpxExample
 
 #endif  // VPXTEST_VPXTEST_VIDEO_BUFFER_POOL_H_

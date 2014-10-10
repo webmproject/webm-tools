@@ -15,7 +15,7 @@
 #include "vpx_frame_parser.h"
 #include "vpx_test_common.h"
 
-namespace VpxTest {
+namespace VpxExample {
 
 // Returns frames from the IVF file when the IVF file contains a four character
 // code known to be a VPx format.
@@ -40,6 +40,6 @@ class IvfFrameParser : public VpxFrameParserInterface {
   uint32_t frame_count_;
 };
 
-}  // namespace VpxTest
+}  // namespace VpxExample
 
 #endif  // VPXTEST_VPXTEST_IVF_FRAME_PARSER_H_

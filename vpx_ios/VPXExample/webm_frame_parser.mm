@@ -13,7 +13,7 @@
 #include "mkvparser.hpp"
 #include "mkvreader.hpp"
 
-namespace VpxTest {
+namespace VpxExample {
 
 bool WebmFrameParser::HasVpxFrames(const std::string &file_path,
                                    VpxFormat *vpx_format) {
@@ -208,4 +208,4 @@ bool WebmFrameParser::ReadFrame(std::vector<uint8_t> *frame,
   return true;
 }
 
-}  // namespace VpxTest
+}  // namespace VpxExample

@@ -93,7 +93,7 @@ bool CopyVpxImageToPixelBuffer(const struct vpx_image *image,
 }
 }  // namespace
 
-namespace VpxTest {
+namespace VpxExample {
 
 //
 // VpxPlayer
@@ -157,7 +157,7 @@ bool VpxPlayer::Play() {
   return true;
 }
 
-void VpxPlayer::ReleaseVideoBuffer(const VpxTest::VideoBuffer *buffer) {
+void VpxPlayer::ReleaseVideoBuffer(const VpxExample::VideoBuffer *buffer) {
   if (buffer != NULL)
     buffer_pool_.ReleaseBuffer(buffer);
 }
@@ -278,4 +278,4 @@ bool VpxPlayer::DecodeAllVideoFrames() {
   return true;
 }
 
-}  // namespace VpxTest
+}  // namespace VpxExample

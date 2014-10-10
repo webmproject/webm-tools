@@ -7,7 +7,7 @@
 // be found in the AUTHORS file in the root of the source tree.
 #include "video_buffer_pool.h"
 
-namespace VpxTest {
+namespace VpxExample {
 
 class AutoLock {
  public:
@@ -67,9 +67,9 @@ const VideoBuffer *VideoBufferPool::GetBuffer() {
   return buffer;
 }
 
-void VideoBufferPool::ReleaseBuffer(const VpxTest::VideoBuffer *buffer) {
+void VideoBufferPool::ReleaseBuffer(const VpxExample::VideoBuffer *buffer) {
   AutoLock lock(lock_);
   buffer_pool_[buffer->slot].in_use = false;
 }
 
-}  // namespace VpxTest
+}  // namespace VpxExample

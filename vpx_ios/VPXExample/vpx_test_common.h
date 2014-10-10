@@ -30,7 +30,7 @@
 #define TEST_FILE_LIST @"http://localhost:8000/allvpx"
 #endif
 
-namespace VpxTest {
+namespace VpxExample {
 
 const int kNumVideoBuffers = 8;
 
@@ -47,6 +47,6 @@ struct VpxFormat {
   int height;
 };
 
-}  // namespace VpxTest
+}  // namespace VpxExample
 
 #endif  // VPXTEST_VPXTEST_VPX_TEST_COMMON_H_
