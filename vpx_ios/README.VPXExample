@@ -1,0 +1,140 @@
+README.VPXExample
+
+
+Introduction
+------------
+VPXExample.app is an example application that supports playback of IVF and WebM
+container files containing VP8 or VP9 bitstreams. In terms of a player
+application it's about as simple as it gets:
+
+- There is no audio playback. This is a video only player.
+- There is no playback timing; the renderer plays as fast as the decoder can
+  provide frames.
+- There are no playback controls; you cannot pause, stop, fast forward, rewind
+  or seek.
+
+
+Prerequisites
+-------------
+To build VPXExample.app you must have the following installed:
+- A recent version of xcode (this project was built using xcode v5.1).
+- Apple iOS developer program membership.
+- git
+- yasm (required for libvpx)
+
+
+Getting Started
+---------------
+To begin with, you must clone the libvpx, libwebm, and webm-tools git
+repositories.
+
+To do so, open a terminal window, and enter the following commands:
+
+$ git clone https://chromium.googlesource.com/webm/libvpx
+$ git clone https://chromium.googlesource.com/webm/libwebm
+$ git clone https://chromium.googlesource.com/webm/webm-tools
+
+The next step is to build VPX.framework. This contains the include files and
+the multi-target fat library required to build VPXExample.app for all targets.
+
+Note: You can change the location of VPX.framework, but doing so will require
+you to make changes to VPXExample.xcodeproj.
+
+$ cd libvpx
+$ mkdir framework
+$ cd framework
+$ ../build/make/iosbuild.sh
+
+Notes:
+- Run iosbuild.sh with the --help argument for additional command line options.
+- On slower machines iosbuild.sh will take a very long time (it configures and
+  builds libvpx for 6 target platforms).
+
+
+Building VPXExample.app
+-----------------------
+Open VPXExample.xcodeproj in xcode and build it. That's it. There is no step
+two.
+
+Notes:
+- VPXExample includes two target schemes. Using the Debug scheme will result
+  in severely degraded playback performance (the higher the input video
+  resolution, the worse this will be).
+- See vpx_test_common.h for instructions on toggling between local playback
+  mode and using a remote server to download files for playback.
+
+
+Playing files with VPXExample.app
+---------------------------------
+Whether built with only local playback mode support, or built with download
+support, the application functions the same. When the application opens a
+list view is displayed that contains files available for playback. The first
+step is touching a file.
+
+When downloading support is built in, touching a file will enable the download
+button-- at this point the user must touch the download button, and then touch
+the play button.
+
+When built with local playback support, the user needs only to touch the play
+button after touching a file to play.
+
+Once play has been pressed, the player will play the file at up to 60 frames
+per second (the maximum openGL framerate available to GlkViewController based
+objects) until all frames have been decoded and displayed. Once input frames
+have been exhausted, the application returns to the file selection screen.
+
+
+A guide to the source files in VPXExample.xcodeproj
+---------------------------------------------------
+The contents of the project groups (folders) Frameworks, Products, Supporting
+Files, and VPXExampleTests and its Supporting Files subgroup are not documented
+here. The same is true for iOS basics like AppDelegate.m, AppDelegate.h, and
+main.m. VPXExample.xcodeproj uses the generated versions of these files as
+produced by xcode (excluding minor style related edits).
+
+Everything in the libwebm group can be safely ignored. It's simply support code
+for parsing WebM input. Libwebm source files have been included only because no
+framework exists for libwebm.
+
+Scripts/download_file.sh
+A shell script that downloads the VP8 and VP9 versions of the Sintel trailer.
+
+testdata/
+  sintel_trailer_vp8.webm
+  sintel_trailer_vp9.webm
+The testdata group contains the input files built into VPXExample.app when
+it's built in local playback only mode.
+
+ivf_frame_parser.*
+Implements IVF container parsing support via the class IvfFrameParser.
+
+GlkVideoViewController.*
+This is the renderer used to display video.
+
+*.storyboard
+These files contain the UI used in the application.
+
+*.glsl
+These are shaders that are responsible for converting video pixels from YUV to
+RGB for display on the device and simulator screen.
+
+video_buffer_pool.*
+A thread safe buffer pool used to manage handling the movement of video frame
+buffers from VpxPlayer to GlkVideoViewController.
+
+ViewController.*
+The main view controller for the application. This file supports the main UI.
+
+vpx_frame_parser.h
+Defines the base interface class used by IvfFrameParser and WebmFrameParser.
+
+vpx_player.*
+The player class: VpxPlayer. Handles decoding of video via libvpx and
+conversion of libvpx video buffer output from the YV12 format to the NV12
+format.
+
+vpx_test_common.h
+Contains project wide settings and objects.
+
+webm_frame_parser.*
+Implements WebM container parsing support via the class WebmFrameParser.
