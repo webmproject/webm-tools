@@ -46,12 +46,11 @@
                                                         VPX_FRAMEWORK_TARGET]];
 #ifdef VPXTEST_LOCAL_PLAYBACK_ONLY
   [self appendToOutputTextView:@"1. Touch a file."];
-  [self appendToOutputTextView:@"2. Touch Download"];
-  [self appendToOutputTextView:@"3. Touch Play"];
-
+  [self appendToOutputTextView:@"2. Touch Play"];
 #else
   [self appendToOutputTextView:@"1. Touch a file."];
-  [self appendToOutputTextView:@"2. Touch Play"];
+  [self appendToOutputTextView:@"2. Touch Download"];
+  [self appendToOutputTextView:@"3. Touch Play"];
 #endif  // VPXTEST_LOCAL_PLAYBACK_ONLY
 }
 
