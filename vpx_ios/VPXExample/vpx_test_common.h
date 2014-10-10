@@ -6,8 +6,8 @@
 // in the file PATENTS.  All contributing project authors may
 // be found in the AUTHORS file in the root of the source tree.
 
-#ifndef VPXTEST_VPXTEST_VPX_TEST_COMMON_H_
-#define VPXTEST_VPXTEST_VPX_TEST_COMMON_H_
+#ifndef VPXEXAMPLE_VPX_TEST_COMMON_H_
+#define VPXEXAMPLE_VPX_TEST_COMMON_H_
 
 // Comment the following line to enable usage of the basic webserver available
 // in vpx_ios/testserver/server.py via python, i.e.:
@@ -49,4 +49,4 @@ struct VpxFormat {
 
 }  // namespace VpxExample
 
-#endif  // VPXTEST_VPXTEST_VPX_TEST_COMMON_H_
+#endif  // VPXEXAMPLE_VPX_TEST_COMMON_H_

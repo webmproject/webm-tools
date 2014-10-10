@@ -6,8 +6,8 @@
 // in the file PATENTS.  All contributing project authors may
 // be found in the AUTHORS file in the root of the source tree.
 
-#ifndef VPXTEST_VPXTEST_VIDEO_BUFFER_POOL_H_
-#define VPXTEST_VPXTEST_VIDEO_BUFFER_POOL_H_
+#ifndef VPXEXAMPLE_VIDEO_BUFFER_POOL_H_
+#define VPXEXAMPLE_VIDEO_BUFFER_POOL_H_
 
 #include <CoreVideo/CoreVideo.h>
 
@@ -47,4 +47,4 @@ class VideoBufferPool {
 
 }  // namespace VpxExample
 
-#endif  // VPXTEST_VPXTEST_VIDEO_BUFFER_POOL_H_
+#endif  // VPXEXAMPLE_VIDEO_BUFFER_POOL_H_
