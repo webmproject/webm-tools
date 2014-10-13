@@ -5,19 +5,18 @@
 // tree. An additional intellectual property rights grant can be found
 // in the file PATENTS.  All contributing project authors may
 // be found in the AUTHORS file in the root of the source tree.
-
 #ifndef VPX_IOS_VPXEXAMPLE_VPX_PLAYER_H_
 #define VPX_IOS_VPXEXAMPLE_VPX_PLAYER_H_
+
+#include <CoreVideo/CoreVideo.h>
 
 #include <memory>
 #include <string>
 
-#include <CoreVideo/CoreVideo.h>
-
-#import "GlkVideoViewController.h"
-#include "video_buffer_pool.h"
-#include "vpx_frame_parser.h"
-#include "vpx_test_common.h"
+#import "./GlkVideoViewController.h"
+#include "./video_buffer_pool.h"
+#include "./vpx_frame_parser.h"
+#include "./vpx_test_common.h"
 
 struct vpx_codec_ctx;
 struct vpx_image;
@@ -34,7 +33,7 @@ class VpxPlayer {
   bool Play();
   void ReleaseVideoBuffer(const VideoBuffer *buffer);
 
-  NSString *playback_result() const { return playback_result_; };
+  NSString *playback_result() const { return playback_result_; }
 
   VpxFormat vpx_format() const { return format_; }
 
@@ -60,3 +59,4 @@ class VpxPlayer {
 }  // namespace VpxExample
 
 #endif  // VPX_IOS_VPXEXAMPLE_VPX_PLAYER_H_
+

@@ -5,13 +5,13 @@
 // tree. An additional intellectual property rights grant can be found
 // in the file PATENTS.  All contributing project authors may
 // be found in the AUTHORS file in the root of the source tree.
-
 #ifndef VPX_IOS_VPXEXAMPLE_VPX_FRAME_PARSER_H_
 #define VPX_IOS_VPXEXAMPLE_VPX_FRAME_PARSER_H_
 
+#include <string>
 #include <vector>
 
-#include "vpx_test_common.h"
+#include "./vpx_test_common.h"
 
 namespace VpxExample {
 
@@ -27,3 +27,4 @@ class VpxFrameParserInterface {
 }  // namespace VpxExample
 
 #endif  // VPX_IOS_VPXEXAMPLE_VPX_FRAME_PARSER_H_
+

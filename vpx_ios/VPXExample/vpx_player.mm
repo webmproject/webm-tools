@@ -5,24 +5,25 @@
 // tree. An additional intellectual property rights grant can be found
 // in the file PATENTS.  All contributing project authors may
 // be found in the AUTHORS file in the root of the source tree.
-#include "vpx_player.h"
-
-#include <memory>
-#include <string>
+#include "./vpx_player.h"
 
 #include <CoreVideo/CoreVideo.h>
 #include <sys/sysctl.h>
 #include <sys/types.h>
+
+#include <memory>
+#include <vector>
+#include <string>
 
 #include "VPX/vpx/vpx_decoder.h"
 #include "VPX/vpx/vp8dx.h"
 #include "VPX/vpx/vpx_encoder.h"
 #include "VPX/vpx/vpx_image.h"
 
-#import "ivf_frame_parser.h"
+#import "./ivf_frame_parser.h"
 #include "mkvparser.hpp"
 #include "mkvreader.hpp"
-#import "webm_frame_parser.h"
+#import "./webm_frame_parser.h"
 
 namespace {
 // Expects YV12/I420 input. Creates NV12 |buffer|, and:
@@ -244,8 +245,6 @@ bool VpxPlayer::DecodeAllVideoFrames() {
   const float kSleepInterval = 1.0 / [target_view_ rendererFrameRate];
 
   while (parser_->ReadFrame(&vpx_frame, &frame_length)) {
-    //NSLog(@"Decoding frame with length: %u", frame_length);
-
     // Get a buffer for the output frame.
     const VideoBuffer *buffer = buffer_pool_.GetBuffer();
 

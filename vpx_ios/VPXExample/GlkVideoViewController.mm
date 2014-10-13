@@ -12,7 +12,7 @@
 
 #import <dispatch/dispatch.h>
 
-#import "vpx_player.h"
+#import "./vpx_player.h"
 
 namespace {
 const NSInteger kRendererFramesPerSecond = 60;
@@ -573,3 +573,4 @@ struct ViewRectangle {
 }
 
 @end  // @implementation GlkVideoViewController
+
