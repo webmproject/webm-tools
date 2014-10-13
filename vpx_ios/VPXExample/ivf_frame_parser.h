@@ -10,10 +10,12 @@
 #define VPX_IOS_VPXEXAMPLE_IVF_FRAME_PARSER_H_
 
 #include <cstdio>
+#include <memory>
+#include <string>
 #include <vector>
 
-#include "vpx_frame_parser.h"
-#include "vpx_test_common.h"
+#include "./vpx_frame_parser.h"
+#include "./vpx_test_common.h"
 
 namespace VpxExample {
 
@@ -23,10 +25,9 @@ class IvfFrameParser : public VpxFrameParserInterface {
  public:
   IvfFrameParser() : rate_(0), scale_(0), frame_count_(0) {}
   virtual ~IvfFrameParser() {}
-  virtual bool HasVpxFrames(const std::string &file_path,
-                            VpxFormat *vpx_format) override;
-  virtual bool ReadFrame(std::vector<uint8_t> *frame,
-                         uint32_t *frame_length) override;
+  bool HasVpxFrames(const std::string &file_path,
+                    VpxFormat *vpx_format) override;
+  bool ReadFrame(std::vector<uint8_t> *frame, uint32_t *frame_length) override;
 
  private:
   struct FileCloser {
@@ -43,3 +44,4 @@ class IvfFrameParser : public VpxFrameParserInterface {
 }  // namespace VpxExample
 
 #endif  // VPX_IOS_VPXEXAMPLE_IVF_FRAME_PARSER_H_
+

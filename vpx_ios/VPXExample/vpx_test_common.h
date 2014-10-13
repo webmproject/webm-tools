@@ -50,3 +50,4 @@ struct VpxFormat {
 }  // namespace VpxExample
 
 #endif  // VPX_IOS_VPXEXAMPLE_VPX_TEST_COMMON_H_
+
