@@ -5,6 +5,8 @@
 // tree. An additional intellectual property rights grant can be found
 // in the file PATENTS.  All contributing project authors may
 // be found in the AUTHORS file in the root of the source tree.
+#ifndef VPX_IOS_VPXEXAMPLE_VIEWCONTROLLER_H_
+#define VPX_IOS_VPXEXAMPLE_VIEWCONTROLLER_H_
 
 #import <GLKit/GLKit.h>
 #import <UIKit/UIKit.h>
@@ -30,3 +32,6 @@
 @property(nonatomic, weak) IBOutlet UITableView *fileList;
 @property(nonatomic, weak) IBOutlet UITextView *outputTextView;
 @end
+
+#endif  // VPX_IOS_VPXEXAMPLE_VIEWCONTROLLER_H_
+

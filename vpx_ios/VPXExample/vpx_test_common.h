@@ -5,7 +5,6 @@
 // tree. An additional intellectual property rights grant can be found
 // in the file PATENTS.  All contributing project authors may
 // be found in the AUTHORS file in the root of the source tree.
-
 #ifndef VPX_IOS_VPXEXAMPLE_VPX_TEST_COMMON_H_
 #define VPX_IOS_VPXEXAMPLE_VPX_TEST_COMMON_H_
 
@@ -50,3 +49,4 @@ struct VpxFormat {
 }  // namespace VpxExample
 
 #endif  // VPX_IOS_VPXEXAMPLE_VPX_TEST_COMMON_H_
+

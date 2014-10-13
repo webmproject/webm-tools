@@ -5,6 +5,9 @@
 // tree. An additional intellectual property rights grant can be found
 // in the file PATENTS.  All contributing project authors may
 // be found in the AUTHORS file in the root of the source tree.
+#ifndef VPX_IOS_VPXEXAMPLE_GLKVIDEOVIEWCONTROLLER_H_
+#define VPX_IOS_VPXEXAMPLE_GLKVIDEOVIEWCONTROLLER_H_
+
 #include <CoreVideo/CoreVideo.h>
 #import <GLKit/GLKit.h>
 
@@ -22,3 +25,6 @@
 
 - (void)receiveVideoBuffer:(const void*)videoBuffer;
 @end
+
+#endif  // VPX_IOS_VPXEXAMPLE_GLKVIDEOVIEWCONTROLLER_H_
+

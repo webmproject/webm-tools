@@ -5,10 +5,10 @@
 // tree. An additional intellectual property rights grant can be found
 // in the file PATENTS.  All contributing project authors may
 // be found in the AUTHORS file in the root of the source tree.
-
-#include "webm_frame_parser.h"
+#include "./webm_frame_parser.h"
 
 #include <string>
+#include <vector>
 
 #include "mkvparser.hpp"
 #include "mkvreader.hpp"
@@ -126,7 +126,6 @@ bool WebmFrameParser::ReadFrame(std::vector<uint8_t> *frame,
   while (!got_frame) {
     if (!frame_head_.block_entry) {
       // Move to the next cluster.
-      //NSLog(@"Getting next cluster.");
       const mkvparser::Cluster *cluster = frame_head_.cluster;
       frame_head_.Reset();
       frame_head_.cluster = segment_->GetNext(cluster);
@@ -135,7 +134,6 @@ bool WebmFrameParser::ReadFrame(std::vector<uint8_t> *frame,
         NSLog(@"No more clusters.");
         return false;
       }
-      //NSLog(@"Got cluster.");
 
       if (frame_head_.cluster->GetFirst(frame_head_.block_entry)) {
         NSLog(@"No block in cluster.");
@@ -143,18 +141,15 @@ bool WebmFrameParser::ReadFrame(std::vector<uint8_t> *frame,
       }
 
       frame_head_.block = frame_head_.block_entry->GetBlock();
-      //NSLog(@"Got first block entry in next cluster.");
     }
 
     // Skip blocks for non-video tracks.
     while (frame_head_.block->GetTrackNumber() != video_track_num_) {
-      //NSLog(@"Skipping non-video block.");
       if (frame_head_.cluster->GetNext(frame_head_.block_entry,
                                        frame_head_.block_entry) < 0) {
         NSLog(@"Unable to parse next block.");
         return false;
       }
-      //NSLog(@"Skipped block.");
 
       if (!frame_head_.block_entry || frame_head_.block_entry->EOS()) {
         frame_head_.block_entry = NULL;
@@ -180,7 +175,6 @@ bool WebmFrameParser::ReadFrame(std::vector<uint8_t> *frame,
       }
       got_frame = true;
       *frame_length = static_cast<uint32_t>(mkvparser_frame.len);
-      //NSLog(@"got frame with length: %ld", mkvparser_frame.len);
 
       ++frame_head_.block_head.frame_index;
       frame_head_.block_head.frames_in_block =
@@ -209,3 +203,4 @@ bool WebmFrameParser::ReadFrame(std::vector<uint8_t> *frame,
 }
 
 }  // namespace VpxExample
+
