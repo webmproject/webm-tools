@@ -6,8 +6,8 @@
 // in the file PATENTS.  All contributing project authors may
 // be found in the AUTHORS file in the root of the source tree.
 
-#ifndef VPXTEST_VPXTEST_IVF_FRAME_PARSER_H_
-#define VPXTEST_VPXTEST_IVF_FRAME_PARSER_H_
+#ifndef VPX_IOS_VPXEXAMPLE_IVF_FRAME_PARSER_H_
+#define VPX_IOS_VPXEXAMPLE_IVF_FRAME_PARSER_H_
 
 #include <cstdio>
 #include <vector>
@@ -42,4 +42,4 @@ class IvfFrameParser : public VpxFrameParserInterface {
 
 }  // namespace VpxExample
 
-#endif  // VPXTEST_VPXTEST_IVF_FRAME_PARSER_H_
+#endif  // VPX_IOS_VPXEXAMPLE_IVF_FRAME_PARSER_H_
