@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "AAAAdn//TKY\u003d",
+        "filename": "vpx_ios/VPXExample/AppDelegate.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-10-14T18:45:26Z",
+      "side": 1,
+      "message": "Lint is asking for it:\n\nAppDelegate.h:13:  Could not find a newline character at the end of the file.  [whitespace/ending_newline] [5]",
+      "parentUuid": "AAAAdn//TQ8\u003d",
+      "revId": "41d1c2a70e537e2f31912774602354cc2d75fe93",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "AAAAdn//TQ4\u003d",
         "filename": "vpx_ios/VPXExample/AppDelegate.m",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2014-10-14T14:51:41Z",
       "side": 1,
       "message": "here too. was it complaining about lack of newline? resaving should have been enough",
+      "revId": "41d1c2a70e537e2f31912774602354cc2d75fe93",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//TKU\u003d",
+        "filename": "vpx_ios/VPXExample/AppDelegate.m",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-10-14T18:45:26Z",
+      "side": 1,
+      "message": "I was over aggressive in dealing with this: Lint complains only about headers not ending in newlines. It\u0027s fine with sources.",
+      "parentUuid": "AAAAdn//TQ4\u003d",
       "revId": "41d1c2a70e537e2f31912774602354cc2d75fe93",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
