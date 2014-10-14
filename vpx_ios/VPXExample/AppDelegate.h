@@ -5,9 +5,14 @@
 // tree. An additional intellectual property rights grant can be found
 // in the file PATENTS.  All contributing project authors may
 // be found in the AUTHORS file in the root of the source tree.
+#ifndef VPX_IOS_VPXEXAMPLE_APPDELEGATE_H_
+#define VPX_IOS_VPXEXAMPLE_APPDELEGATE_H_
 
 #import <UIKit/UIKit.h>
 
 @interface AppDelegate : UIResponder<UIApplicationDelegate>
 @property(strong, nonatomic) UIWindow *window;
 @end
+
+#endif  // VPX_IOS_VPXEXAMPLE_APPDELEGATE_H_
+

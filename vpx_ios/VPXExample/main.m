@@ -5,10 +5,9 @@
 // tree. An additional intellectual property rights grant can be found
 // in the file PATENTS.  All contributing project authors may
 // be found in the AUTHORS file in the root of the source tree.
-
 #import <UIKit/UIKit.h>
 
-#import "AppDelegate.h"
+#import "./AppDelegate.h"
 
 int main(int argc, char *argv[]) {
   @autoreleasepool {
