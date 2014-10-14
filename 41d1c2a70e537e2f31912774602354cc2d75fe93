@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAdn//TQ8\u003d",
+        "filename": "vpx_ios/VPXExample/AppDelegate.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2014-10-14T14:51:41Z",
+      "side": 1,
+      "message": "could drop this line",
+      "revId": "41d1c2a70e537e2f31912774602354cc2d75fe93",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//TQ4\u003d",
+        "filename": "vpx_ios/VPXExample/AppDelegate.m",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2014-10-14T14:51:41Z",
+      "side": 1,
+      "message": "here too. was it complaining about lack of newline? resaving should have been enough",
+      "revId": "41d1c2a70e537e2f31912774602354cc2d75fe93",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
