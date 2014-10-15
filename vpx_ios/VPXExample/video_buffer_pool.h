@@ -15,16 +15,16 @@
 
 namespace VpxExample {
 
-struct VideoBuffer {
-  VideoBuffer() : buffer(NULL), in_use(false), slot(0) {}
-  CVPixelBufferRef buffer;
-  bool in_use;
-  size_t slot;
-};
-
 // Creates and manages a buffer pool containing kNumVideoBuffers VideoBuffers.
 class VideoBufferPool {
  public:
+  struct VideoBuffer {
+    VideoBuffer() : buffer(NULL), in_use(false), slot(0) {}
+    CVPixelBufferRef buffer;
+    bool in_use;
+    size_t slot;
+  };
+
   VideoBufferPool() : lock_(NULL) {}
   ~VideoBufferPool();
 

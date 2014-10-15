@@ -157,7 +157,7 @@ bool VpxPlayer::Play() {
   return true;
 }
 
-void VpxPlayer::ReleaseVideoBuffer(const VpxExample::VideoBuffer *buffer) {
+void VpxPlayer::ReleaseVideoBuffer(const VideoBufferPool::VideoBuffer *buffer) {
   if (buffer != NULL)
     buffer_pool_.ReleaseBuffer(buffer);
 }
@@ -222,7 +222,7 @@ bool VpxPlayer::InitVpxDecoder() {
 }
 
 bool VpxPlayer::DeliverVideoBuffer(const vpx_image *image,
-                                   const VideoBuffer *buffer) {
+                                   const VideoBufferPool::VideoBuffer *buffer) {
   if (target_view_ == NULL) {
     NSLog(@"No GlkVideoViewController.");
     return false;
@@ -247,7 +247,7 @@ bool VpxPlayer::DecodeAllVideoFrames() {
     //NSLog(@"Decoding frame with length: %u", frame_length);
 
     // Get a buffer for the output frame.
-    const VideoBuffer *buffer = buffer_pool_.GetBuffer();
+    const VideoBufferPool::VideoBuffer *buffer = buffer_pool_.GetBuffer();
 
     // Wait until we actually have a buffer (if necessary).
     while (buffer == NULL) {

@@ -32,7 +32,7 @@ class VpxPlayer {
   void Init(GlkVideoViewController *target_view);
   bool LoadFile(const char *file_path);
   bool Play();
-  void ReleaseVideoBuffer(const VideoBuffer *buffer);
+  void ReleaseVideoBuffer(const VideoBufferPool::VideoBuffer *buffer);
 
   NSString *playback_result() const { return playback_result_; };
 
@@ -43,7 +43,7 @@ class VpxPlayer {
   bool InitBufferPool();
   bool InitVpxDecoder();
   bool DeliverVideoBuffer(const vpx_image *image,
-                          const VideoBuffer *buffer);
+                          const VideoBufferPool::VideoBuffer *buffer);
   bool DecodeAllVideoFrames();
 
   GlkVideoViewController *target_view_;

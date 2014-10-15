@@ -54,7 +54,7 @@ bool VideoBufferPool::Init(size_t width, size_t height) {
   return true;
 }
 
-const VideoBuffer *VideoBufferPool::GetBuffer() {
+const VideoBufferPool::VideoBuffer *VideoBufferPool::GetBuffer() {
   AutoLock lock(lock_);
   const VideoBuffer *buffer = NULL;
   for (int i = 0; i < kNumVideoBuffers; ++i) {
@@ -67,7 +67,8 @@ const VideoBuffer *VideoBufferPool::GetBuffer() {
   return buffer;
 }
 
-void VideoBufferPool::ReleaseBuffer(const VpxExample::VideoBuffer *buffer) {
+void VideoBufferPool::ReleaseBuffer(
+    const VideoBufferPool::VideoBuffer *buffer) {
   AutoLock lock(lock_);
   buffer_pool_[buffer->slot].in_use = false;
 }

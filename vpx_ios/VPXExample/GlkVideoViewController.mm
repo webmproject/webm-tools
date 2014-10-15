@@ -49,7 +49,7 @@ struct ViewRectangle {
   CVPixelBufferRef *_pixelBuffer;
   NSLock *_lock;
   NSInteger _count;
-  std::queue<const VpxExample::VideoBuffer *> _videoBuffers;
+  std::queue<const VpxExample::VideoBufferPool::VideoBuffer *> _videoBuffers;
   VpxExample::VpxPlayer _vpxPlayer;
 
   CVOpenGLESTextureCacheRef _videoTextureCache;
@@ -321,7 +321,7 @@ struct ViewRectangle {
 // Show a video frame when one is available.
 - (void)update {
   // Check for a frame in the queue.
-  const VpxExample::VideoBuffer *buffer = NULL;
+  const VpxExample::VideoBufferPool::VideoBuffer *buffer = NULL;
 
   if ([_lock tryLock] == YES) {
     if (_videoBuffers.empty()) {
@@ -427,8 +427,9 @@ struct ViewRectangle {
 // Receives buffers from player and stores them in |_videoBuffers|.
 - (void)receiveVideoBuffer:(const void*)videoBuffer {
   [_lock lock];
-  const VpxExample::VideoBuffer *video_buffer =
-      reinterpret_cast<const VpxExample::VideoBuffer *>(videoBuffer);
+  typedef VpxExample::VideoBufferPool::VideoBuffer VideoBuffer;
+  const VideoBuffer *video_buffer =
+      reinterpret_cast<const VideoBuffer *>(videoBuffer);
   _videoBuffers.push(video_buffer);
   NSLog(@"pushed buffer.");
   [_lock unlock];
