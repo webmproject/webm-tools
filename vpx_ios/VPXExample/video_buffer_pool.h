@@ -5,13 +5,12 @@
 // tree. An additional intellectual property rights grant can be found
 // in the file PATENTS.  All contributing project authors may
 // be found in the AUTHORS file in the root of the source tree.
-
 #ifndef VPX_IOS_VPXEXAMPLE_VIDEO_BUFFER_POOL_H_
 #define VPX_IOS_VPXEXAMPLE_VIDEO_BUFFER_POOL_H_
 
 #include <CoreVideo/CoreVideo.h>
 
-#include "vpx_test_common.h"
+#include "./vpx_test_common.h"
 
 namespace VpxExample {
 
@@ -48,3 +47,4 @@ class VideoBufferPool {
 }  // namespace VpxExample
 
 #endif  // VPX_IOS_VPXEXAMPLE_VIDEO_BUFFER_POOL_H_
+
