@@ -43,4 +43,3 @@ class IvfFrameParser : public VpxFrameParserInterface {
 }  // namespace VpxExample
 
 #endif  // VPX_IOS_VPXEXAMPLE_IVF_FRAME_PARSER_H_
-

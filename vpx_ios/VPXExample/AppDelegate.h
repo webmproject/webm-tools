@@ -15,4 +15,3 @@
 @end
 
 #endif  // VPX_IOS_VPXEXAMPLE_APPDELEGATE_H_
-

@@ -73,4 +73,3 @@ class WebmFrameParser : public VpxFrameParserInterface {
 }  // namespace VpxExample
 
 #endif  // VPX_IOS_VPXEXAMPLE_WEBM_FRAME_PARSER_H_
-

@@ -47,4 +47,3 @@ class VideoBufferPool {
 }  // namespace VpxExample
 
 #endif  // VPX_IOS_VPXEXAMPLE_VIDEO_BUFFER_POOL_H_
-

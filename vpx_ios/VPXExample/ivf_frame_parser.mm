@@ -8,7 +8,6 @@
 #import "./ivf_frame_parser.h"
 
 #import <CoreFoundation/CoreFoundation.h>
-#include <string.h>
 
 #include <string>
 #include <vector>

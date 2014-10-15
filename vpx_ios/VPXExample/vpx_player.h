@@ -59,4 +59,3 @@ class VpxPlayer {
 }  // namespace VpxExample
 
 #endif  // VPX_IOS_VPXEXAMPLE_VPX_PLAYER_H_
-

@@ -15,8 +15,8 @@
 #include <vector>
 #include <string>
 
-#include "VPX/vpx/vpx_decoder.h"
 #include "VPX/vpx/vp8dx.h"
+#include "VPX/vpx/vpx_decoder.h"
 #include "VPX/vpx/vpx_encoder.h"
 #include "VPX/vpx/vpx_image.h"
 

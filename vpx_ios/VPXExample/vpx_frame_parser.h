@@ -27,4 +27,3 @@ class VpxFrameParserInterface {
 }  // namespace VpxExample
 
 #endif  // VPX_IOS_VPXEXAMPLE_VPX_FRAME_PARSER_H_
-
