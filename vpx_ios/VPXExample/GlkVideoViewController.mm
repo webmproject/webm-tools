@@ -11,6 +11,7 @@
 #include <queue>
 
 #import <dispatch/dispatch.h>
+#import <OpenGLES/ES2/glext.h>
 
 #import "./vpx_player.h"
 
@@ -131,7 +132,6 @@ struct ViewRectangle {
   GLKView *view = (GLKView *)self.view;
   view.context = self.context;
   view.drawableMultisample = GLKViewDrawableMultisampleNone;
-  view.contentScaleFactor = 1.0;
   self.preferredFramesPerSecond = kRendererFramesPerSecond;
 
   _lock = [[NSLock alloc] init];
@@ -204,10 +204,24 @@ struct ViewRectangle {
   // set via glViewport() on every call to :update.
   //
   const CGSize screen_dimensions = [UIScreen mainScreen].bounds.size;
+  const CGFloat screen_scale = [[UIScreen mainScreen] scale];
 
-  // Flip height and width; mainScreen bounds are always portrait mode values.
-  const float screen_width = screen_dimensions.height;
-  const float screen_height = screen_dimensions.width;
+  const float ios_version = [[UIDevice currentDevice].systemVersion floatValue];
+
+  float screen_width = 0;
+  float screen_height = 0;
+
+  if (ios_version >= 8.0) {
+    // As of iOS 8 the screen dimensions change with orientation.
+    screen_width = screen_dimensions.width * screen_scale;
+    screen_height = screen_dimensions.height * screen_scale;
+  } else {
+    // Versions of iOS prior to 8 have the same dimensions regardless of
+    // device orientation, so we flip height and width.
+    screen_width = screen_dimensions.height * screen_scale;
+    screen_height = screen_dimensions.width * screen_scale;
+  }
+
   const float screen_aspect = screen_width / screen_height;
 
   NSLog(@"Device dimensions (landscape): %.0fx%.0f ar:%f",
