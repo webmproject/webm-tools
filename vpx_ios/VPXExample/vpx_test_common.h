@@ -32,6 +32,7 @@
 namespace VpxExample {
 
 const int kNumVideoBuffers = 8;
+const int64_t kNanosecondsPerSecond = 1000000000;
 
 enum VpxCodec {
   UNKNOWN,

@@ -239,12 +239,14 @@ bool VpxPlayer::DeliverVideoBuffer(const vpx_image *image,
 }
 
 bool VpxPlayer::DecodeAllVideoFrames() {
-  std::vector<uint8_t> vpx_frame;
-  uint32_t frame_length = 0;
+  std::vector<uint8_t> vpx_frame_data;
+  VpxFrameParserInterface::VpxFrame frame;
+  frame.data = &vpx_frame_data;
+
   // Time spent sleeping when no buffers are available in |buffer_pool_|.
   const float kSleepInterval = 1.0 / [target_view_ rendererFrameRate];
 
-  while (parser_->ReadFrame(&vpx_frame, &frame_length)) {
+  while (parser_->ReadFrame(&frame)) {
     // Get a buffer for the output frame.
     const VideoBufferPool::VideoBuffer *buffer = buffer_pool_.GetBuffer();
 
@@ -256,8 +258,8 @@ bool VpxPlayer::DecodeAllVideoFrames() {
 
     const int codec_status =
         vpx_codec_decode(vpx_codec_ctx_,
-                         &vpx_frame[0],
-                         frame_length,
+                         &vpx_frame_data[0],
+                         frame.length,
                          NULL, 0);
     if (codec_status == VPX_CODEC_OK)
       ++frames_decoded_;

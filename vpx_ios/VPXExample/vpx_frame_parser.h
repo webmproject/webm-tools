@@ -15,13 +15,38 @@
 
 namespace VpxExample {
 
+// A generic interface for reading frames of VP8 or VP9 video from a data source
+// that supports synchronous reads.
 class VpxFrameParserInterface {
  public:
+
+  // VPX frame data ready for decoding by Libvpx.
+  struct VpxFrame {
+    VpxFrame() : data(NULL), length(0), timestamp_ns(0) {}
+
+    // Existing, user owned, vector<uint8_t>* used by the
+    // VpxFrameParserInterface implementation to store compressed VPx bitstream
+    // data.
+    std::vector<uint8_t> *data;
+
+    // Length of VPx bitstream data contained in |data|.
+    uint32_t length;
+
+    // Timestamp of |data| in nanoseconds.
+    int64_t timestamp_ns;
+  };
+
   virtual ~VpxFrameParserInterface() {}
+
+  // Implementations return true when the container file contains a VP8 or VP9
+  // bitstream.
   virtual bool HasVpxFrames(const std::string &file_path,
                             VpxFormat *vpx_format) = 0;
-  virtual bool ReadFrame(std::vector<uint8_t> *frame,
-                         uint32_t *frame_length) = 0;
+
+  // Implementations read frames into the std::vector<uint8_t>* stored within
+  // the VpxFrame*. The user owns the vector<uint8_t>. The implementation MUST
+  // return false when the vector<uint8_t>* is NULL.
+  virtual bool ReadFrame(VpxFrame *frame) = 0;
 };
 
 }  // namespace VpxExample
