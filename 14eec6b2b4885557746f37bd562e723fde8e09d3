@@ -16,6 +16,24 @@
       "revId": "14eec6b2b4885557746f37bd562e723fde8e09d3",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//SnQ\u003d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-10-17T22:17:54Z",
+      "side": 1,
+      "message": "Done; tidied up a couple of other things as well.",
+      "parentUuid": "AAAAdn//SuQ\u003d",
+      "revId": "14eec6b2b4885557746f37bd562e723fde8e09d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
