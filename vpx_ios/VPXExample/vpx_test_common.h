@@ -14,7 +14,7 @@
 //
 // Note: The above command must be run from a directory that contains IVF and/or
 // WebM files, and those files must contain VP8 or VP9 video streams.
-#define VPXTEST_LOCAL_PLAYBACK_ONLY
+//#define VPXTEST_LOCAL_PLAYBACK_ONLY
 
 #ifdef VPXTEST_LOCAL_PLAYBACK_ONLY
 #define kVp8File @"sintel_trailer_vp8.webm"
@@ -32,6 +32,8 @@
 namespace VpxExample {
 
 const int kNumVideoBuffers = 8;
+const int64_t kNanosecondsPerSecond = 1000000000;
+const int64_t kMillisecondsPerSecond = 1000;
 
 enum VpxCodec {
   UNKNOWN,
@@ -44,6 +46,12 @@ struct VpxFormat {
   VpxCodec codec;
   int width;
   int height;
+};
+
+struct VpxTimeBase {
+  VpxTimeBase() : numerator(1), denominator(1) {}
+  int64_t numerator;
+  int64_t denominator;
 };
 
 }  // namespace VpxExample
