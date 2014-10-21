@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAdn//SY0\u003d",
+        "filename": "vpx_ios/VPXExample/vpx_frame_parser.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-10-21T05:18:27Z",
+      "side": 1,
+      "message": "I can strip these comments out and add them in a new commit if that\u0027s preferred...",
+      "revId": "988987686b7559f6062f467a5bfb49b3b878008a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//SYw\u003d",
+        "filename": "vpx_ios/VPXExample/webm_frame_parser.mm",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-10-21T05:18:27Z",
+      "side": 1,
+      "message": "hmm... maybe I should assert that this is 1,000,000...?",
+      "revId": "988987686b7559f6062f467a5bfb49b3b878008a",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
