@@ -59,12 +59,13 @@ class WebmFrameParser : public VpxFrameParserInterface {
   virtual ~WebmFrameParser() {}
   bool HasVpxFrames(const std::string &file_path,
                     VpxFormat *vpx_format) override;
-  bool ReadFrame(std::vector<uint8_t> *frame, uint32_t *frame_length) override;
+  bool ReadFrame(VpxFrame *frame) override;
 
  private:
   uint64_t video_track_num_;
   VpxFormat vpx_format_;
   WebmFrameHead frame_head_;
+  VpxTimeBase timebase_;
 
   std::unique_ptr<mkvparser::MkvReader> reader_;
   std::unique_ptr<mkvparser::Segment> segment_;
