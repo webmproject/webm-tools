@@ -15,8 +15,8 @@
 
 #import "./GlkVideoViewController.h"
 #include "./video_buffer_pool.h"
+#include "./vpx_example_common.h"
 #include "./vpx_frame_parser.h"
-#include "./vpx_test_common.h"
 
 struct vpx_codec_ctx;
 struct vpx_image;

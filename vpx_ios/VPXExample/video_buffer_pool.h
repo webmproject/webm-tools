@@ -10,7 +10,7 @@
 
 #include <CoreVideo/CoreVideo.h>
 
-#include "./vpx_test_common.h"
+#include "./vpx_example_common.h"
 
 namespace VpxExample {
 

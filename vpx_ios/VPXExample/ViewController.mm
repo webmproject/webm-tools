@@ -43,14 +43,14 @@
       appendToOutputTextView:[NSString stringWithFormat:@"libvpx: %s %s",
                                                         VERSION_STRING_NOSP,
                                                         VPX_FRAMEWORK_TARGET]];
-#ifdef VPXTEST_LOCAL_PLAYBACK_ONLY
+#ifdef VPXEXAMPLE_LOCAL_PLAYBACK_ONLY
   [self appendToOutputTextView:@"1. Tap a file."];
   [self appendToOutputTextView:@"2. Tap Play"];
 #else
   [self appendToOutputTextView:@"1. Tap a file."];
   [self appendToOutputTextView:@"2. Tap Download"];
   [self appendToOutputTextView:@"3. Tap Play"];
-#endif  // VPXTEST_LOCAL_PLAYBACK_ONLY
+#endif  // VPXEXAMPLE_LOCAL_PLAYBACK_ONLY
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,7 +59,7 @@
 
 // Downloads the list of test files used to populate the table view.
 - (void)downloadFileList {
-#ifdef VPXTEST_LOCAL_PLAYBACK_ONLY
+#ifdef VPXEXAMPLE_LOCAL_PLAYBACK_ONLY
   testFiles_ = [[NSArray alloc] initWithObjects:kVp8File, kVp9File, nil];
 
   dispatch_async(dispatch_get_main_queue(), ^{
@@ -99,12 +99,12 @@
       }];
   [dataTask resume];
   NSLog(@"dataTask running");
-#endif  // VPXTEST_LOCAL_PLAYBACK_ONLY
+#endif  // VPXEXAMPLE_LOCAL_PLAYBACK_ONLY
 }
 
 // Downloads test file.
 - (void)downloadTestFile {
-#ifndef VPXTEST_LOCAL_PLAYBACK_ONLY
+#ifndef VPXEXAMPLE_LOCAL_PLAYBACK_ONLY
   [self disableControls];
   NSURLSessionConfiguration *session_config =
       [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -124,7 +124,7 @@
       [session downloadTaskWithURL:testFileDownloadURL_];
   [downloadTask resume];
   NSLog(@"downloadTask running");
-#endif  // VPXTEST_LOCAL_PLAYBACK_ONLY
+#endif  // VPXEXAMPLE_LOCAL_PLAYBACK_ONLY
 }
 
 - (void)appendToOutputTextView:(NSString *)stringToAppend {
@@ -253,7 +253,7 @@
   NSLog(@"tapped %lld:%@", static_cast<int64_t>(selectedFileIndex_),
         [testFiles_ objectAtIndex:indexPath.row]);
 
-#ifdef VPXTEST_LOCAL_PLAYBACK_ONLY
+#ifdef VPXEXAMPLE_LOCAL_PLAYBACK_ONLY
   if ([[testFiles_ objectAtIndex:indexPath.row] isEqualToString:kVp8File]) {
     downloadedFilePath_ =
         [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@",

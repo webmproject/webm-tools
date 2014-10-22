@@ -22,6 +22,7 @@
 		6A92C7FE19DE0DC80098D339 /* sintel_trailer_vp8.webm in Resources */ = {isa = PBXBuildFile; fileRef = 6A92C7FC19DE0DC80098D339 /* sintel_trailer_vp8.webm */; };
 		6A92C7FF19DE0DC80098D339 /* sintel_trailer_vp9.webm in Resources */ = {isa = PBXBuildFile; fileRef = 6A92C7FD19DE0DC80098D339 /* sintel_trailer_vp9.webm */; };
 		6ABFD263196E503400B05D49 /* webm_frame_parser.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6ABFD261196E503400B05D49 /* webm_frame_parser.mm */; };
+		6AD208F119F8261A00B4FA3F /* README.VPXExample in Resources */ = {isa = PBXBuildFile; fileRef = 6AD208F019F8261A00B4FA3F /* README.VPXExample */; };
 		6AEBB7E21982F13D001FE832 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AEBB7E11982F13D001FE832 /* GLKit.framework */; };
 		6AEBB7E41982F145001FE832 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AEBB7E31982F145001FE832 /* OpenGLES.framework */; };
 		6AEBB7E61982F157001FE832 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AEBB7E51982F157001FE832 /* QuartzCore.framework */; };
@@ -79,10 +80,11 @@
 		6A86B4D3197D9AC40093C195 /* ivf_frame_parser.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ivf_frame_parser.mm; path = VPXExample/ivf_frame_parser.mm; sourceTree = "<group>"; };
 		6A92C7FC19DE0DC80098D339 /* sintel_trailer_vp8.webm */ = {isa = PBXFileReference; lastKnownFileType = file; name = sintel_trailer_vp8.webm; path = testdata/sintel_trailer_vp8.webm; sourceTree = "<group>"; };
 		6A92C7FD19DE0DC80098D339 /* sintel_trailer_vp9.webm */ = {isa = PBXFileReference; lastKnownFileType = file; name = sintel_trailer_vp9.webm; path = testdata/sintel_trailer_vp9.webm; sourceTree = "<group>"; };
-		6ABFD260196E503400B05D49 /* vpx_test_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vpx_test_common.h; path = VPXExample/vpx_test_common.h; sourceTree = "<group>"; };
+		6ABFD260196E503400B05D49 /* vpx_example_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vpx_example_common.h; path = VPXExample/vpx_example_common.h; sourceTree = "<group>"; };
 		6ABFD261196E503400B05D49 /* webm_frame_parser.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = webm_frame_parser.mm; path = VPXExample/webm_frame_parser.mm; sourceTree = "<group>"; };
 		6ABFD262196E503400B05D49 /* webm_frame_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = webm_frame_parser.h; path = VPXExample/webm_frame_parser.h; sourceTree = "<group>"; };
 		6ABFD264196E509D00B05D49 /* vpx_frame_parser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = vpx_frame_parser.h; path = VPXExample/vpx_frame_parser.h; sourceTree = "<group>"; };
+		6AD208F019F8261A00B4FA3F /* README.VPXExample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.VPXExample; sourceTree = "<group>"; };
 		6AEBB7E11982F13D001FE832 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		6AEBB7E31982F145001FE832 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		6AEBB7E51982F157001FE832 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -197,14 +199,15 @@
 				6AFD5A7419639660004CCF76 /* Main_iPhone.storyboard */,
 				6A3FC81A19905C3000E99B8B /* nv12_vertex_shader.glsl */,
 				6A3FC81C19905C5A00E99B8B /* nv12_fragment_shader.glsl */,
+				6AD208F019F8261A00B4FA3F /* README.VPXExample */,
 				6AF8732819E1EB3800052FFD /* video_buffer_pool.h */,
 				6AF8732919E1EB3800052FFD /* video_buffer_pool.mm */,
 				6AFD5A7B19639660004CCF76 /* ViewController.mm */,
 				6AFD5A7A19639660004CCF76 /* ViewController.h */,
+				6ABFD260196E503400B05D49 /* vpx_example_common.h */,
 				6ABFD264196E509D00B05D49 /* vpx_frame_parser.h */,
 				6A4DF5DF1963A49900B420A9 /* vpx_player.h */,
 				6A4DF5DE1963A49900B420A9 /* vpx_player.mm */,
-				6ABFD260196E503400B05D49 /* vpx_test_common.h */,
 				6ABFD262196E503400B05D49 /* webm_frame_parser.h */,
 				6ABFD261196E503400B05D49 /* webm_frame_parser.mm */,
 			);
@@ -344,6 +347,7 @@
 				6A3FC81B19905C3000E99B8B /* nv12_vertex_shader.glsl in Resources */,
 				6AFD5A7919639660004CCF76 /* Main_iPad.storyboard in Resources */,
 				6AFD5A7E19639660004CCF76 /* Images.xcassets in Resources */,
+				6AD208F119F8261A00B4FA3F /* README.VPXExample in Resources */,
 				6A3FC81D19905C5A00E99B8B /* nv12_fragment_shader.glsl in Resources */,
 				6AFD5A7619639660004CCF76 /* Main_iPhone.storyboard in Resources */,
 				6A92C7FE19DE0DC80098D339 /* sintel_trailer_vp8.webm in Resources */,

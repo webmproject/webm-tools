@@ -12,8 +12,8 @@
 #include <string>
 #include <vector>
 
+#include "./vpx_example_common.h"
 #include "./vpx_frame_parser.h"
-#include "./vpx_test_common.h"
 
 namespace mkvparser {
 class Block;

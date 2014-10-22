@@ -60,7 +60,7 @@ Notes:
 - VPXExample includes two target schemes. Using the Debug scheme will result
   in severely degraded playback performance (the higher the input video
   resolution, the worse this will be).
-- See vpx_test_common.h for instructions on toggling between local playback
+- See vpx_example_common.h for instructions on toggling between local playback
   mode and using a remote server to download files for playback.
 
 
@@ -125,6 +125,9 @@ buffers from VpxPlayer to GlkVideoViewController.
 ViewController.*
 The main view controller for the application. This file supports the main UI.
 
+vpx_example_common.h
+Contains project wide settings and objects.
+
 vpx_frame_parser.h
 Defines the base interface class used by IvfFrameParser and WebmFrameParser.
 
@@ -132,9 +135,6 @@ vpx_player.*
 The player class: VpxPlayer. Handles decoding of video via libvpx and
 conversion of libvpx video buffer output from the YV12 format to the NV12
 format.
-
-vpx_test_common.h
-Contains project wide settings and objects.
 
 webm_frame_parser.*
 Implements WebM container parsing support via the class WebmFrameParser.

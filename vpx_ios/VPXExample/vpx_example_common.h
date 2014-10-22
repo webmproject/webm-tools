@@ -5,8 +5,8 @@
 // tree. An additional intellectual property rights grant can be found
 // in the file PATENTS.  All contributing project authors may
 // be found in the AUTHORS file in the root of the source tree.
-#ifndef VPX_IOS_VPXEXAMPLE_VPX_TEST_COMMON_H_
-#define VPX_IOS_VPXEXAMPLE_VPX_TEST_COMMON_H_
+#ifndef VPX_IOS_VPXEXAMPLE_VPX_EXAMPLE_COMMON_H_
+#define VPX_IOS_VPXEXAMPLE_VPX_EXAMPLE_COMMON_H_
 
 // Comment the following line to enable usage of the basic webserver available
 // in vpx_ios/testserver/server.py via python, i.e.:
@@ -14,9 +14,9 @@
 //
 // Note: The above command must be run from a directory that contains IVF and/or
 // WebM files, and those files must contain VP8 or VP9 video streams.
-#define VPXTEST_LOCAL_PLAYBACK_ONLY
+#define VPXEXAMPLE_LOCAL_PLAYBACK_ONLY
 
-#ifdef VPXTEST_LOCAL_PLAYBACK_ONLY
+#ifdef VPXEXAMPLE_LOCAL_PLAYBACK_ONLY
 #define kVp8File @"sintel_trailer_vp8.webm"
 #define kVp9File @"sintel_trailer_vp9.webm"
 #else
@@ -56,5 +56,5 @@ struct VpxTimeBase {
 
 }  // namespace VpxExample
 
-#endif  // VPX_IOS_VPXEXAMPLE_VPX_TEST_COMMON_H_
+#endif  // VPX_IOS_VPXEXAMPLE_VPX_EXAMPLE_COMMON_H_
 
