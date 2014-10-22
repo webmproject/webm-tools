@@ -45,12 +45,32 @@ struct ViewRectangle {
   float view_height;
 };
 
+struct VideoFrame {
+  VideoFrame() : buffer(NULL), timestamp_ms(0) {}
+  VideoFrame(const VpxExample::VideoBufferPool::VideoBuffer *buffer_ptr,
+             int64_t timestamp) : buffer(buffer_ptr), timestamp_ms(timestamp) {}
+  const VpxExample::VideoBufferPool::VideoBuffer *buffer;
+
+  // Timestamp of |buffer| data in milliseconds.
+  int64_t timestamp_ms;
+};
+
+// Returns the time since system start up, in milliseconds.
+NSTimeInterval SystemUptimeMilliseconds() {
+  return [[NSProcessInfo processInfo] systemUptime] *
+      VpxExample::kMillisecondsPerSecond;
+}
+
+bool IsTimeToShowFrame(int64_t timestamp, NSTimeInterval start_time) {
+  return (SystemUptimeMilliseconds() - start_time) >= timestamp;
+}
+
 @interface GlkVideoViewController() {
   dispatch_queue_t _playerQueue;
   CVPixelBufferRef *_pixelBuffer;
   NSLock *_lock;
   NSInteger _count;
-  std::queue<const VpxExample::VideoBufferPool::VideoBuffer *> _videoBuffers;
+  std::queue<VideoFrame> _videoFrames;
   VpxExample::VpxPlayer _vpxPlayer;
 
   CVOpenGLESTextureCacheRef _videoTextureCache;
@@ -65,10 +85,13 @@ struct ViewRectangle {
   ViewRectangle _viewRectangle;
 
   GLuint _program;
+
+  NSTimeInterval _videoStartTime;
 }
 
 @property (strong, nonatomic) EAGLContext *context;
 @property (strong, nonatomic) GLKBaseEffect *effect;
+@property NSTimeInterval videoStartTime;
 @property VpxExample::VpxFormat vpxFormat;
 
 - (const GLfloat *)squareVerticesForCurrentOrientation;
@@ -86,30 +109,48 @@ struct ViewRectangle {
 @synthesize fileToPlay = _fileToPlay;
 @synthesize vpxtestViewController = _vpxtestViewController;
 @synthesize vpxFormat = _vpxFormat;
+@synthesize videoStartTime = _videoStartTime;
 
 - (NSInteger)rendererFrameRate {
   return kRendererFramesPerSecond;
 }
 
-- (void)playFile {
-  bool status = _vpxPlayer.Play();
+// Asynchronously fall back to the main UI and display |status| in the output
+// text box. Must be dispatched to the main thread because this is ultimately a
+// UI update.
+- (void)playbackFailed:(NSString *)status {
+  dispatch_async(dispatch_get_main_queue(), ^{
+    [_vpxtestViewController playbackComplete:false statusString:status];
+    self.paused = YES;
+    [self dismissViewControllerAnimated:NO completion:nil];
+  });
+}
 
-  // Wait for all buffers to be consumed.
+- (void)playFile {
+  self.videoStartTime = SystemUptimeMilliseconds();
+
+  if (!_vpxPlayer.Play()) {
+    NSLog(@"VpxPlayer::Play failed.");
+    [self playbackFailed:@"Unexpected failure during play start in VpxPlayer."];
+    return;
+  }
+
+  // Wait for all frames to be consumed.
   [_lock lock];
-  bool empty = _videoBuffers.empty();
+  bool empty = _videoFrames.empty();
   [_lock unlock];
 
   while (!empty) {
     [NSThread sleepForTimeInterval:.1];  // 100 milliseconds.
     [_lock lock];
-    empty = _videoBuffers.empty();
+    empty = _videoFrames.empty();
     [_lock unlock];
   }
 
   // We're running within our own background queue: Since we're telling the UI
   // to do something, dispatch on the main queue.
   dispatch_async(dispatch_get_main_queue(), ^{
-      [_vpxtestViewController playbackComplete:status
+      [_vpxtestViewController playbackComplete:true
                                   statusString:_vpxPlayer.playback_result()];
     self.paused = YES;
     [self dismissViewControllerAnimated:NO completion:nil];
@@ -335,23 +376,28 @@ struct ViewRectangle {
 // Show a video frame when one is available.
 - (void)update {
   // Check for a frame in the queue.
-  const VpxExample::VideoBufferPool::VideoBuffer *buffer = NULL;
+  VideoFrame frame;
 
   if ([_lock tryLock] == YES) {
-    if (_videoBuffers.empty()) {
+    if (_videoFrames.empty()) {
       NSLog(@"buffer queue empty.");
     } else {
-      buffer = _videoBuffers.front();
-      _videoBuffers.pop();
-      NSLog(@"popped buffer.");
+      if (IsTimeToShowFrame(_videoFrames.front().timestamp_ms,
+                            self.videoStartTime)) {
+        frame = _videoFrames.front();
+        _videoFrames.pop();
+        NSLog(@"popped buffer with timestamp (in seconds) %.3f.",
+              frame.timestamp_ms / 1000.0);
+      }
     }
     [_lock unlock];
   }
 
   // NULL buffer means no frame; do nothing.
-  if (buffer == NULL)
+  if (frame.buffer == NULL)
     return;
 
+  const VpxExample::VideoBufferPool::VideoBuffer *buffer = frame.buffer;
   const size_t width = CVPixelBufferGetWidthOfPlane(buffer->buffer, 0);
   const size_t height = CVPixelBufferGetHeightOfPlane(buffer->buffer, 0);
 
@@ -439,12 +485,14 @@ struct ViewRectangle {
 }
 
 // Receives buffers from player and stores them in |_videoBuffers|.
-- (void)receiveVideoBuffer:(const void*)videoBuffer {
+- (void)receiveVideoBuffer:(const void*)videoBuffer
+withTimestampInMilliseconds:(int64_t)timestamp {
   [_lock lock];
   typedef VpxExample::VideoBufferPool::VideoBuffer VideoBuffer;
   const VideoBuffer *video_buffer =
       reinterpret_cast<const VideoBuffer *>(videoBuffer);
-  _videoBuffers.push(video_buffer);
+  VideoFrame frame(video_buffer, timestamp);
+  _videoFrames.push(frame);
   NSLog(@"pushed buffer.");
   [_lock unlock];
 }

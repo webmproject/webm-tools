@@ -22,11 +22,11 @@ namespace VpxExample {
 // code known to be a VPx format.
 class IvfFrameParser : public VpxFrameParserInterface {
  public:
-  IvfFrameParser() : rate_(0), scale_(0), frame_count_(0) {}
+  IvfFrameParser() : frame_count_(0) {}
   virtual ~IvfFrameParser() {}
   bool HasVpxFrames(const std::string &file_path,
                     VpxFormat *vpx_format) override;
-  bool ReadFrame(std::vector<uint8_t> *frame, uint32_t *frame_length) override;
+  bool ReadFrame(VpxFrame *frame) override;
 
  private:
   struct FileCloser {
@@ -35,8 +35,7 @@ class IvfFrameParser : public VpxFrameParserInterface {
 
   std::unique_ptr<FILE, FileCloser> file_;
   VpxFormat vpx_format_;
-  uint32_t rate_;
-  uint32_t scale_;
+  VpxTimeBase timebase_;
   uint32_t frame_count_;
 };
 

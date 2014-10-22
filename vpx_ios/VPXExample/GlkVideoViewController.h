@@ -23,7 +23,8 @@
 @property(nonatomic, strong) NSString *fileToPlay;
 @property(readonly) NSInteger rendererFrameRate;
 
-- (void)receiveVideoBuffer:(const void*)videoBuffer;
+- (void)receiveVideoBuffer:(const void*)videoBuffer
+withTimestampInMilliseconds:(int64_t)timestamp;
 @end
 
 #endif  // VPX_IOS_VPXEXAMPLE_GLKVIDEOVIEWCONTROLLER_H_

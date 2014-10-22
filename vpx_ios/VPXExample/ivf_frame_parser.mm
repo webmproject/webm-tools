@@ -41,6 +41,7 @@ const int kIvfFrameCountOffset = 24;
 
 // IVF frame header offset constants.
 const int kIvfFrameSizeOffset = 0;
+const int kIvfFrameTimestampOffset = 4;
 
 // VPx four CC constants.
 const uint32_t kVp8FourCc = 0x30385056;
@@ -54,6 +55,11 @@ uint16_t ReadIvfHeaderUint16(const std::string &ivf_header, int offset) {
 uint32_t ReadIvfHeaderUint32(const std::string &ivf_header, int offset) {
   const void *read_head = reinterpret_cast<const void *>(&ivf_header[offset]);
   return CFSwapInt32LittleToHost(*reinterpret_cast<const uint32_t*>(read_head));
+}
+
+int64_t ReadIvfHeaderInt64(const std::string &ivf_header, int offset) {
+  const void *read_head = reinterpret_cast<const void *>(&ivf_header[offset]);
+  return CFSwapInt64LittleToHost(*reinterpret_cast<const int64_t*>(read_head));
 }
 }  // namespace
 
@@ -120,17 +126,28 @@ bool IvfFrameParser::HasVpxFrames(const std::string &file_path,
   vpx_format_.height = ReadIvfHeaderUint16(ivf_header, kIvfHeightOffset);
   *vpx_format = vpx_format_;
 
-  // TODO(tomfinegan): Do something with this data?
-  rate_ = ReadIvfHeaderUint32(ivf_header, kIvfRateOffset);
-  scale_ = ReadIvfHeaderUint32(ivf_header, kIvfScaleOffset);
+  timebase_.numerator = ReadIvfHeaderUint32(ivf_header, kIvfScaleOffset);
+  timebase_.denominator = ReadIvfHeaderUint32(ivf_header, kIvfRateOffset);
+
+  // TODO(tomfinegan): Move timebase refactoring to a common location.
+  if (timebase_.numerator > 1 &&
+      timebase_.denominator > timebase_.numerator &&
+      timebase_.denominator % timebase_.numerator == 0) {
+    timebase_.denominator /= timebase_.numerator;
+    timebase_.numerator = 1;
+  }
+
+  // TODO(tomfinegan): Decide if it's ever worth it to read this value.
   frame_count_ = ReadIvfHeaderUint32(ivf_header, kIvfFrameCountOffset);
+
+  NSLog(@"IVF timebase %lld / %lld",
+        timebase_.numerator, timebase_.denominator);
 
   return true;
 }
 
-bool IvfFrameParser::ReadFrame(std::vector<uint8_t> *frame,
-                               uint32_t *frame_length) {
-  if (!frame || !frame_length) {
+bool IvfFrameParser::ReadFrame(VpxFrame *frame) {
+  if (frame == NULL || frame->data == NULL) {
     return false;
   }
 
@@ -153,11 +170,15 @@ bool IvfFrameParser::ReadFrame(std::vector<uint8_t> *frame,
   const uint32_t frame_payload_size =
       ReadIvfHeaderUint32(ivf_frame_header, kIvfFrameSizeOffset);
 
-  if (frame->capacity() < frame_payload_size) {
-    frame->reserve(frame_payload_size * 2);
+  if (frame->data->capacity() < frame_payload_size) {
+    frame->data->reserve(frame_payload_size * 2);
   }
 
-  read_count = fread(reinterpret_cast<void*>(&(*frame)[0]),
+  frame->timebase = timebase_;
+  frame->timestamp = ReadIvfHeaderInt64(ivf_frame_header,
+                                        kIvfFrameTimestampOffset);
+
+  read_count = fread(reinterpret_cast<void*>(&(*frame->data)[0]),
                      1,
                      frame_payload_size,
                      file_.get());
@@ -166,7 +187,7 @@ bool IvfFrameParser::ReadFrame(std::vector<uint8_t> *frame,
           frame_payload_size, read_count);
   }
 
-  *frame_length = frame_payload_size;
+  frame->length = frame_payload_size;
   return true;
 }
 
