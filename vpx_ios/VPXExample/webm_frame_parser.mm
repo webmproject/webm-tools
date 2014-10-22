@@ -113,12 +113,35 @@ bool WebmFrameParser::HasVpxFrames(const std::string &file_path,
   }
 
   frame_head_.block = frame_head_.block_entry->GetBlock();
+
+  const int64_t timecode_scale = segment_->GetInfo()->GetTimeCodeScale();
+  const int64_t kExpectedWebmTimecodeScale = 1000000;
+  if (timecode_scale != kExpectedWebmTimecodeScale) {
+    // TODO(tomfinegan): Handle arbitrary timecode scales.
+    NSLog(@"Unsupported timecode scale in WebM file (%lld).", timecode_scale);
+    return false;
+  }
+
+  timebase_.numerator = timecode_scale;
+  timebase_.denominator = kNanosecondsPerSecond;
+
+  // Timecodes in WebM are milliseconds per the guidelines. Remove the common
+  // factor from the timebase.
+  // TODO(tomfinegan): Move timebase refactoring to a common location.
+  if (timebase_.denominator > timebase_.numerator &&
+      timebase_.denominator % timebase_.numerator == 0) {
+    timebase_.denominator /= timebase_.numerator;
+    timebase_.numerator = 1;
+  }
+
+  NSLog(@"WebM timebase %lld / %lld",
+        timebase_.numerator, timebase_.denominator);
+
   return true;
 }
 
-bool WebmFrameParser::ReadFrame(std::vector<uint8_t> *frame,
-                                uint32_t *frame_length) {
-  if (!frame || !frame_length)
+bool WebmFrameParser::ReadFrame(VpxFrame *frame) {
+  if (frame == NULL || frame->data == NULL)
     return false;
 
   bool got_frame = false;
@@ -164,17 +187,19 @@ bool WebmFrameParser::ReadFrame(std::vector<uint8_t> *frame,
       const mkvparser::Block::Frame mkvparser_frame =
       frame_head_.block->GetFrame(frame_head_.block_head.frame_index);
 
-      if (frame->capacity() < mkvparser_frame.len) {
-        frame->resize(mkvparser_frame.len * 2);
+      if (frame->data->capacity() < mkvparser_frame.len) {
+        frame->data->resize(mkvparser_frame.len * 2);
       }
 
-      uint8_t *frame_data = &(*frame)[0];
+      uint8_t *frame_data = &(*frame->data)[0];
       if (mkvparser_frame.Read(reader_.get(), frame_data)) {
         NSLog(@"Unable to read video frame");
         return false;
       }
       got_frame = true;
-      *frame_length = static_cast<uint32_t>(mkvparser_frame.len);
+      frame->length = static_cast<uint32_t>(mkvparser_frame.len);
+      frame->timebase = timebase_;
+      frame->timestamp = frame_head_.block->GetTimeCode(frame_head_.cluster);
 
       ++frame_head_.block_head.frame_index;
       frame_head_.block_head.frames_in_block =

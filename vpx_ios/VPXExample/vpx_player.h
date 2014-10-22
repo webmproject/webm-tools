@@ -42,7 +42,8 @@ class VpxPlayer {
   bool InitBufferPool();
   bool InitVpxDecoder();
   bool DeliverVideoBuffer(const vpx_image *image,
-                          const VideoBufferPool::VideoBuffer *buffer);
+                          const VideoBufferPool::VideoBuffer *buffer,
+                          int64_t timestamp);
   bool DecodeAllVideoFrames();
 
   GlkVideoViewController *target_view_;
