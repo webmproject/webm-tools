@@ -281,6 +281,11 @@ bool OutputTracks(const mkvparser::Segment& segment,
       fprintf(o, "%sPrivateData(size): %d\n",
               indent->indent_str().c_str(), static_cast<int>(private_size));
 
+    const uint64 default_duration = track->GetDefaultDuration();
+    if (default_duration > 0)
+      fprintf(o, "%sDefaultDuration: %llu\n",
+              indent->indent_str().c_str(), default_duration);
+
     if (track->GetContentEncodingCount() > 0) {
       // Only check the first content encoding.
       const ContentEncoding* const encoding =
