@@ -8,8 +8,6 @@ container files containing VP8 or VP9 bitstreams. In terms of a player
 application it's about as simple as it gets:
 
 - There is no audio playback. This is a video only player.
-- There is no playback timing; the renderer plays as fast as the decoder can
-  provide frames.
 - There are no playback controls; you cannot pause, stop, fast forward, rewind
   or seek.
 
