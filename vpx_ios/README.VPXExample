@@ -78,9 +78,7 @@ play button.
 When built with local playback support, the user needs only to tap the play
 button after tapping a file to play.
 
-Once play has been pressed, the player will play the file at up to 60 frames
-per second (the maximum OpenGL framerate available to GlkViewController based
-objects) until all frames have been decoded and displayed. Once input frames
+Once play has been tapped, the player will play the file. Once input frames
 have been exhausted, the application returns to the file selection screen.
 
 
