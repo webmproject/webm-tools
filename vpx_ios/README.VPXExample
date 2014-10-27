@@ -8,8 +8,6 @@ container files containing VP8 or VP9 bitstreams. In terms of a player
 application it's about as simple as it gets:
 
 - There is no audio playback. This is a video only player.
-- There is no playback timing; the renderer plays as fast as the decoder can
-  provide frames.
 - There are no playback controls; you cannot pause, stop, fast forward, rewind
   or seek.
 
@@ -48,7 +46,7 @@ $ ../build/make/iosbuild.sh
 Notes:
 - Run iosbuild.sh with the --help argument for additional command line options.
 - On slower machines iosbuild.sh will take a very long time (it configures and
-  builds libvpx for 6 target platforms).
+  builds libvpx for 5 target platforms).
 
 
 Building VPXExample.app
