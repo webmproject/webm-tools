@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "AAAAdn//L50\u003d",
+        "filename": "vpx_ios/VPXExample/GlkVideoViewController.mm",
+        "patchSetId": 1
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2014-12-15T22:12:16Z",
+      "side": 1,
+      "message": "a bit fragile, do both v6\u0027s behave the same way? any way to discover both the screen dimensions + surface info?",
+      "revId": "001e89a438c9dbca4b1f24f7a869197f31261b35",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
