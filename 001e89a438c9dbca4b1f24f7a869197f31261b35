@@ -16,6 +16,24 @@
       "revId": "001e89a438c9dbca4b1f24f7a869197f31261b35",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//L3c\u003d",
+        "filename": "vpx_ios/VPXExample/GlkVideoViewController.mm",
+        "patchSetId": 1
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2014-12-15T23:26:18Z",
+      "side": 1,
+      "message": "opengl es doesn\u0027t provide hooks that return screen size in pixels... I can\u0027t find any info relating to this problem on the normal 6. Testing is required, basically. I only stumbled upon this fix via random experimentation and googling-- and afaict, there\u0027s no way to actually access the native surface dimensions. UIScreen bounds is all you get.\n\nBasically, the TODO() is my way of noting the fragility and lack of knowledge here. It should probably be HACK(), because that\u0027s what it really is.",
+      "parentUuid": "AAAAdn//L50\u003d",
+      "revId": "001e89a438c9dbca4b1f24f7a869197f31261b35",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
