@@ -8,6 +8,7 @@
 #import "GlkVideoViewController.h"
 
 #include <cassert>
+#include <cmath>
 #include <queue>
 
 #import <dispatch/dispatch.h>
@@ -262,6 +263,25 @@ bool IsTimeToShowFrame(int64_t timestamp, NSTimeInterval start_time) {
     screen_width = screen_dimensions.height * screen_scale;
     screen_height = screen_dimensions.width * screen_scale;
   }
+
+  // The viewport size workaround that follows actually breaks video output in
+  // the simulator: Disable it when targetting the simulator.
+#if !TARGET_IPHONE_SIMULATOR
+  const int kIphone6PlusWidth = 2208;
+  const int kIphone6PlusHeight = 1242;
+  if (std::floor(screen_width) == kIphone6PlusWidth &&
+      std::floor(screen_height) == kIphone6PlusHeight) {
+    // The Iphone 6 plus reports screen dimensions of 2208x1242, but openGL is
+    // actually rendering to a 1920x1080 surface. Ignore the lies reported above
+    // and use the correct dimensions.
+    // TODO(tomfinegan): Determine if there's a proper way to access the actual
+    // dimension values needed to properly render full frame video. Omitting
+    // this hack results in losing part of the image. (since 2208x1242 most
+    // certainly does not fit within a 1920x1080 viewport)
+    screen_width = 1920;
+    screen_height = 1080;
+  }
+#endif  // !TARGET_IPHONE_SIMULATOR
 
   const float screen_aspect = screen_width / screen_height;
 
