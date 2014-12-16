@@ -52,6 +52,24 @@
       "revId": "001e89a438c9dbca4b1f24f7a869197f31261b35",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "AAAAdn//L2Q\u003d",
+        "filename": "vpx_ios/VPXExample/GlkVideoViewController.mm",
+        "patchSetId": 1
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2014-12-16T00:17:48Z",
+      "side": 1,
+      "message": "OK I didn\u0027t read through the commit before to see the todo. without much more detail this is probably better than nothing for now...",
+      "parentUuid": "AAAAdn//L3U\u003d",
+      "revId": "001e89a438c9dbca4b1f24f7a869197f31261b35",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
