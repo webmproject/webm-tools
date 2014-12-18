@@ -47,6 +47,7 @@ struct Options {
   bool output_seconds;
   bool output_ebml_header;
   bool output_segment;
+  bool output_seekhead;
   bool output_segment_info;
   bool output_tracks;
   bool output_clusters;
@@ -65,6 +66,7 @@ Options::Options()
       output_seconds(true),
       output_ebml_header(true),
       output_segment(true),
+      output_seekhead(false),
       output_segment_info(true),
       output_tracks(true),
       output_clusters(false),
@@ -113,6 +115,7 @@ void Usage() {
   printf("  -times_seconds        Output times as seconds (true)\n");
   printf("  -ebml_header          Output EBML header (true)\n");
   printf("  -segment              Output Segment (true)\n");
+  printf("  -seekhead             Output SeekHead (false)\n");
   printf("  -segment_info         Output SegmentInfo (true)\n");
   printf("  -tracks               Output Tracks (true)\n");
   printf("  -clusters             Output Clusters (false)\n");
@@ -169,6 +172,66 @@ void OutputSegment(const mkvparser::Segment& segment,
     fprintf(o, "  size: %lld",
             segment.m_size + segment.m_start - segment.m_element_start);
   fprintf(o, "\n");
+}
+
+bool OutputSeekHead(const mkvparser::Segment& segment,
+                    const Options& options, FILE* o, Indent* indent) {
+  const mkvparser::SeekHead* const seekhead = segment.GetSeekHead();
+  if (!seekhead) {
+    // SeekHeads are optional.
+    return true;
+  }
+
+  fprintf(o, "%sSeekHead:", indent->indent_str().c_str());
+  if (options.output_offset)
+    fprintf(o, "  @: %lld", seekhead->m_element_start);
+  if (options.output_size)
+    fprintf(o, "  size: %lld", seekhead->m_element_size);
+  fprintf(o, "\n");
+
+  indent->Adjust(webm_tools::kIncreaseIndent);
+
+  for (int i = 0; i < seekhead->GetCount(); ++i) {
+    const mkvparser::SeekHead::Entry* const entry = seekhead->GetEntry(i);
+    if (!entry) {
+      fprintf(stderr, "Error retrieving SeekHead entry #%d\n", i);
+      return false;
+    }
+
+    fprintf(o, "%sEntry[%d]", indent->indent_str().c_str(), i);
+    if (options.output_offset)
+      fprintf(o, "  @: %lld", entry->element_start);
+    if (options.output_size)
+      fprintf(o, "  size: %lld", entry->element_size);
+    fprintf(o, "\n");
+
+    indent->Adjust(webm_tools::kIncreaseIndent);
+    const char* const entry_indent = indent->indent_str().c_str();
+    // TODO(jzern): 1) known ids could be stringified. 2) ids could be
+    // reencoded to EBML for ease of lookup.
+    fprintf(o, "%sSeek ID       : %llx\n", entry_indent, entry->id);
+    fprintf(o, "%sSeek position : %lld\n", entry_indent, entry->pos);
+    indent->Adjust(webm_tools::kDecreaseIndent);
+  }
+
+  for (int i = 0; i < seekhead->GetVoidElementCount(); ++i) {
+    const mkvparser::SeekHead::VoidElement* const entry =
+        seekhead->GetVoidElement(i);
+    if (!entry) {
+      fprintf(stderr, "Error retrieving SeekHead void element #%d\n", i);
+      return false;
+    }
+
+    fprintf(o, "%sVoid element[%d]", indent->indent_str().c_str(), i);
+    if (options.output_offset)
+      fprintf(o, "  @: %lld", entry->element_start);
+    if (options.output_size)
+      fprintf(o, "  size: %lld", entry->element_size);
+    fprintf(o, "\n");
+  }
+
+  indent->Adjust(webm_tools::kDecreaseIndent);
+  return true;
 }
 
 bool OutputSegmentInfo(const mkvparser::Segment& segment,
@@ -816,6 +879,8 @@ int main(int argc, char* argv[]) {
       options.output_ebml_header = !strcmp("-ebml_header", argv[i]);
     } else if (Options::MatchesBooleanOption("segment", argv[i])) {
       options.output_segment = !strcmp("-segment", argv[i]);
+    } else if (Options::MatchesBooleanOption("seekhead", argv[i])) {
+      options.output_seekhead = !strcmp("-seekhead", argv[i]);
     } else if (Options::MatchesBooleanOption("segment_info", argv[i])) {
       options.output_segment_info = !strcmp("-segment_info", argv[i]);
     } else if (Options::MatchesBooleanOption("tracks", argv[i])) {
@@ -878,6 +943,10 @@ int main(int argc, char* argv[]) {
     OutputSegment(*(segment.get()), options, out);
     indent.Adjust(webm_tools::kIncreaseIndent);
   }
+
+  if (options.output_seekhead)
+    if (!OutputSeekHead(*(segment.get()), options, out, &indent))
+      return EXIT_FAILURE;
 
   if (options.output_segment_info)
     if (!OutputSegmentInfo(*(segment.get()), options, out, &indent))
