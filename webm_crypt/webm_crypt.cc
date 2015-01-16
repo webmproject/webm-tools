@@ -341,7 +341,9 @@ bool DecryptModule::DecryptData(const uint8* data, size_t length,
         return false;
       }
 
-      const size_t offset = EncryptModule::kSignalByteSize + sizeof(iv);
+      const size_t offset =
+          EncryptModule::kSignalByteSize + EncryptModule::kIVSize;
+
       // Skip past the IV.
       const string encryptedtext(
           reinterpret_cast<const char*>(data + offset),
