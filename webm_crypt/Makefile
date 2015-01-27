@@ -5,7 +5,7 @@ OBJECTS = ../shared/webm_endian.o webm_crypt.o
 EXE = webm_crypt
 INCLUDES = -I$(LIBWEBM) -I../shared -I$(CHROMIUMINC) -I/usr/include/nss \
            -I/usr/include/nspr
-CXXFLAGS = -W -Wall -g -DUSE_NSS
+CXXFLAGS = -W -Wall -g -DUSE_NSS -std=c++11
 
 $(EXE): $(OBJECTS)
 	$(CXX) $(OBJECTS) -L$(LIBWEBM) -L$(CHROMIUMOBJ) -Wl,-rpath \
