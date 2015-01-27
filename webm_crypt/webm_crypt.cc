@@ -11,6 +11,7 @@
 #include <string>
 
 #include "base/base_switches.h"
+#include "base/at_exit.h"
 #include "crypto/encryptor.h"
 #include "crypto/symmetric_key.h"
 #include "mkvmuxer.hpp"
@@ -1488,7 +1489,11 @@ const char kVModule[]                       = "vmodule";
 }  // namespace switches
 
 int main(int argc, char* argv[]) {
+
+  base::AtExitManager *at_exit_manager = new base::AtExitManager();
+
   WebMCryptSettings webm_crypt_settings;
+
   bool encrypt = true;
   bool test = false;
 
