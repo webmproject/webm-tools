@@ -1,5 +1,5 @@
-LIBWEBM = ../../libwebm
-CHROMIUMINC = /usr/local/google/Chromium/src
+LIBWEBM = ../../libwebm/
+CHROMIUMINC = /home/zoltan.kuscsik/chrome/src/
 CHROMIUMOBJ = $(CHROMIUMINC)/out/Debug/lib
 OBJECTS = ../shared/webm_endian.o webm_crypt.o
 EXE = webm_crypt
