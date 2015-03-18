@@ -1468,26 +1468,6 @@ bool CheckEncryptionOptions(const string& name,
 
 }  // namespace
 
-// These values are not getting compiled into base.lib.
-namespace switches {
-
-// Gives the default maximal active V-logging level; 0 is the default.
-// Normally positive values are used for V-logging levels.
-const char kV[]                             = "v";
-
-// Gives the per-module maximal V-logging levels to override the value
-// given by --v.  E.g. "my_module=2,foo*=3" would change the logging
-// level for all code in source files "my_module.*" and "foo*.*"
-// ("-inl" suffixes are also disregarded for this matching).
-//
-// Any pattern containing a forward or backward slash will be tested
-// against the whole pathname and not just the module.  E.g.,
-// "*/foo/bar/*=2" would change the logging level for all code in
-// source files under a "foo/bar" directory.
-const char kVModule[]                       = "vmodule";
-
-}  // namespace switches
-
 int main(int argc, char* argv[]) {
   base::AtExitManager *at_exit_manager = new base::AtExitManager();
   WebMCryptSettings webm_crypt_settings;
