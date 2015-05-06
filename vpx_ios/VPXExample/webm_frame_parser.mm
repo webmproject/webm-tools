@@ -10,8 +10,8 @@
 #include <string>
 #include <vector>
 
-#include "mkvparser.hpp"
-#include "mkvreader.hpp"
+#include "WebM/mkvparser.hpp"
+#include "WebM/mkvreader.hpp"
 
 namespace VpxExample {
 
