@@ -38,15 +38,19 @@ the multi-target fat library required to build VPXExample.app for all targets.
 Note: You can change the location of VPX.framework, but doing so will require
 you to make changes to VPXExample.xcodeproj.
 
-$ cd libvpx
-$ mkdir framework
-$ cd framework
-$ ../build/make/iosbuild.sh
+$ mkdir frameworks
+$ cd frameworks
+$ ../libvpx/build/make/iosbuild.sh
 
 Notes:
 - Run iosbuild.sh with the --help argument for additional command line options.
 - On slower machines iosbuild.sh will take a very long time (it configures and
   builds libvpx for 5 target platforms).
+
+Now WebM.framework must be built:
+
+$ cd ../libwebm
+$ ./iosbuild.sh --out-dir ../frameworks
 
 
 Building VPXExample.app

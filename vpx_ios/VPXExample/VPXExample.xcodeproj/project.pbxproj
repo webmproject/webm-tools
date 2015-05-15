@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A2DE2271B067DF000EB1CA7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6A2DE2251B067DF000EB1CA7 /* InfoPlist.strings */; };
 		6A3FC81B19905C3000E99B8B /* nv12_vertex_shader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 6A3FC81A19905C3000E99B8B /* nv12_vertex_shader.glsl */; };
 		6A3FC81D19905C5A00E99B8B /* nv12_fragment_shader.glsl in Resources */ = {isa = PBXBuildFile; fileRef = 6A3FC81C19905C5A00E99B8B /* nv12_fragment_shader.glsl */; };
 		6A4DF5E01963A49900B420A9 /* vpx_player.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6A4DF5DE1963A49900B420A9 /* vpx_player.mm */; };
@@ -18,7 +19,7 @@
 		6ABFD263196E503400B05D49 /* webm_frame_parser.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6ABFD261196E503400B05D49 /* webm_frame_parser.mm */; };
 		6AC7A67A1AFA8D6A0023D6FC /* VPX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AC7A6781AFA8D690023D6FC /* VPX.framework */; };
 		6AC7A67B1AFA8D6A0023D6FC /* WebM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AC7A6791AFA8D690023D6FC /* WebM.framework */; };
-		6AD208F119F8261A00B4FA3F /* README.VPXExample in Resources */ = {isa = PBXBuildFile; fileRef = 6AD208F019F8261A00B4FA3F /* README.VPXExample */; };
+		6AD208F119F8261A00B4FA3F /* ../README.VPXExample in Resources */ = {isa = PBXBuildFile; fileRef = 6AD208F019F8261A00B4FA3F /* ../README.VPXExample */; };
 		6AEBB7E21982F13D001FE832 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AEBB7E11982F13D001FE832 /* GLKit.framework */; };
 		6AEBB7E41982F145001FE832 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AEBB7E31982F145001FE832 /* OpenGLES.framework */; };
 		6AEBB7E61982F157001FE832 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AEBB7E51982F157001FE832 /* QuartzCore.framework */; };
@@ -26,7 +27,6 @@
 		6AFD5A6319639660004CCF76 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFD5A6219639660004CCF76 /* Foundation.framework */; };
 		6AFD5A6519639660004CCF76 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFD5A6419639660004CCF76 /* CoreGraphics.framework */; };
 		6AFD5A6719639660004CCF76 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFD5A6619639660004CCF76 /* UIKit.framework */; };
-		6AFD5A6D19639660004CCF76 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6AFD5A6B19639660004CCF76 /* InfoPlist.strings */; };
 		6AFD5A6F19639660004CCF76 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFD5A6E19639660004CCF76 /* main.m */; };
 		6AFD5A7319639660004CCF76 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFD5A7219639660004CCF76 /* AppDelegate.m */; };
 		6AFD5A7619639660004CCF76 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AFD5A7419639660004CCF76 /* Main_iPhone.storyboard */; };
@@ -36,7 +36,6 @@
 		6AFD5A8519639660004CCF76 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFD5A8419639660004CCF76 /* XCTest.framework */; };
 		6AFD5A8619639660004CCF76 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFD5A6219639660004CCF76 /* Foundation.framework */; };
 		6AFD5A8719639660004CCF76 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AFD5A6619639660004CCF76 /* UIKit.framework */; };
-		6AFD5A8F19639660004CCF76 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6AFD5A8D19639660004CCF76 /* InfoPlist.strings */; };
 		6AFD5A9119639660004CCF76 /* VPXExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AFD5A9019639660004CCF76 /* VPXExampleTests.m */; };
 /* End PBXBuildFile section */
 
@@ -51,49 +50,48 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6A3FC81A19905C3000E99B8B /* nv12_vertex_shader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = nv12_vertex_shader.glsl; path = VPXExample/nv12_vertex_shader.glsl; sourceTree = "<group>"; };
-		6A3FC81C19905C5A00E99B8B /* nv12_fragment_shader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = nv12_fragment_shader.glsl; path = VPXExample/nv12_fragment_shader.glsl; sourceTree = "<group>"; };
-		6A4DF5DE1963A49900B420A9 /* vpx_player.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = vpx_player.mm; path = VPXExample/vpx_player.mm; sourceTree = "<group>"; };
-		6A4DF5DF1963A49900B420A9 /* vpx_player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vpx_player.h; path = VPXExample/vpx_player.h; sourceTree = "<group>"; };
-		6A5A8487198829970014387A /* GlkVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GlkVideoViewController.h; path = VPXExample/GlkVideoViewController.h; sourceTree = "<group>"; };
-		6A5A8488198829970014387A /* GlkVideoViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = GlkVideoViewController.mm; path = VPXExample/GlkVideoViewController.mm; sourceTree = "<group>"; };
+		6A2DE2261B067DF000EB1CA7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
+		6A3FC81A19905C3000E99B8B /* nv12_vertex_shader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = nv12_vertex_shader.glsl; sourceTree = "<group>"; };
+		6A3FC81C19905C5A00E99B8B /* nv12_fragment_shader.glsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = nv12_fragment_shader.glsl; sourceTree = "<group>"; };
+		6A4DF5DE1963A49900B420A9 /* vpx_player.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = vpx_player.mm; sourceTree = "<group>"; };
+		6A4DF5DF1963A49900B420A9 /* vpx_player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vpx_player.h; sourceTree = "<group>"; };
+		6A5A8487198829970014387A /* GlkVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlkVideoViewController.h; sourceTree = "<group>"; };
+		6A5A8488198829970014387A /* GlkVideoViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GlkVideoViewController.mm; sourceTree = "<group>"; };
 		6A5A848C1988361D0014387A /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
-		6A657C8819E1C3AD005EDCC9 /* download_file.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = download_file.sh; path = build/download_file.sh; sourceTree = "<group>"; };
-		6A86B4D2197D9AC40093C195 /* ivf_frame_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ivf_frame_parser.h; path = VPXExample/ivf_frame_parser.h; sourceTree = "<group>"; };
-		6A86B4D3197D9AC40093C195 /* ivf_frame_parser.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ivf_frame_parser.mm; path = VPXExample/ivf_frame_parser.mm; sourceTree = "<group>"; };
-		6A92C7FC19DE0DC80098D339 /* sintel_trailer_vp8.webm */ = {isa = PBXFileReference; lastKnownFileType = file; name = sintel_trailer_vp8.webm; path = testdata/sintel_trailer_vp8.webm; sourceTree = "<group>"; };
-		6A92C7FD19DE0DC80098D339 /* sintel_trailer_vp9.webm */ = {isa = PBXFileReference; lastKnownFileType = file; name = sintel_trailer_vp9.webm; path = testdata/sintel_trailer_vp9.webm; sourceTree = "<group>"; };
-		6ABFD260196E503400B05D49 /* vpx_example_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vpx_example_common.h; path = VPXExample/vpx_example_common.h; sourceTree = "<group>"; };
-		6ABFD261196E503400B05D49 /* webm_frame_parser.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = webm_frame_parser.mm; path = VPXExample/webm_frame_parser.mm; sourceTree = "<group>"; };
-		6ABFD262196E503400B05D49 /* webm_frame_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = webm_frame_parser.h; path = VPXExample/webm_frame_parser.h; sourceTree = "<group>"; };
-		6ABFD264196E509D00B05D49 /* vpx_frame_parser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = vpx_frame_parser.h; path = VPXExample/vpx_frame_parser.h; sourceTree = "<group>"; };
-		6AC7A6781AFA8D690023D6FC /* VPX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VPX.framework; path = ../../frameworks/VPX.framework; sourceTree = "<group>"; };
-		6AC7A6791AFA8D690023D6FC /* WebM.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebM.framework; path = ../../frameworks/WebM.framework; sourceTree = "<group>"; };
-		6AD208F019F8261A00B4FA3F /* README.VPXExample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.VPXExample; sourceTree = "<group>"; };
+		6A657C8819E1C3AD005EDCC9 /* download_file.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = download_file.sh; path = ../build/download_file.sh; sourceTree = "<group>"; };
+		6A86B4D2197D9AC40093C195 /* ivf_frame_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ivf_frame_parser.h; sourceTree = "<group>"; };
+		6A86B4D3197D9AC40093C195 /* ivf_frame_parser.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ivf_frame_parser.mm; sourceTree = "<group>"; };
+		6A92C7FC19DE0DC80098D339 /* sintel_trailer_vp8.webm */ = {isa = PBXFileReference; lastKnownFileType = file; name = sintel_trailer_vp8.webm; path = ../testdata/sintel_trailer_vp8.webm; sourceTree = "<group>"; };
+		6A92C7FD19DE0DC80098D339 /* sintel_trailer_vp9.webm */ = {isa = PBXFileReference; lastKnownFileType = file; name = sintel_trailer_vp9.webm; path = ../testdata/sintel_trailer_vp9.webm; sourceTree = "<group>"; };
+		6ABFD260196E503400B05D49 /* vpx_example_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vpx_example_common.h; sourceTree = "<group>"; };
+		6ABFD261196E503400B05D49 /* webm_frame_parser.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = webm_frame_parser.mm; sourceTree = "<group>"; };
+		6ABFD262196E503400B05D49 /* webm_frame_parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webm_frame_parser.h; sourceTree = "<group>"; };
+		6ABFD264196E509D00B05D49 /* vpx_frame_parser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vpx_frame_parser.h; sourceTree = "<group>"; };
+		6AC7A6781AFA8D690023D6FC /* VPX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VPX.framework; path = ../../../frameworks/VPX.framework; sourceTree = "<group>"; };
+		6AC7A6791AFA8D690023D6FC /* WebM.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebM.framework; path = ../../../frameworks/WebM.framework; sourceTree = "<group>"; };
+		6AD208F019F8261A00B4FA3F /* ../README.VPXExample */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ../README.VPXExample; sourceTree = "<group>"; };
 		6AEBB7E11982F13D001FE832 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		6AEBB7E31982F145001FE832 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		6AEBB7E51982F157001FE832 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		6AF8732819E1EB3800052FFD /* video_buffer_pool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = video_buffer_pool.h; path = VPXExample/video_buffer_pool.h; sourceTree = "<group>"; };
-		6AF8732919E1EB3800052FFD /* video_buffer_pool.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = video_buffer_pool.mm; path = VPXExample/video_buffer_pool.mm; sourceTree = "<group>"; };
+		6AF8732819E1EB3800052FFD /* video_buffer_pool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = video_buffer_pool.h; sourceTree = "<group>"; };
+		6AF8732919E1EB3800052FFD /* video_buffer_pool.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = video_buffer_pool.mm; sourceTree = "<group>"; };
 		6AFD5A5F19639660004CCF76 /* VPXExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VPXExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AFD5A6219639660004CCF76 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6AFD5A6419639660004CCF76 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6AFD5A6619639660004CCF76 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6AFD5A6A19639660004CCF76 /* VPXExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VPXExample-Info.plist"; sourceTree = "<group>"; };
-		6AFD5A6C19639660004CCF76 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6AFD5A6E19639660004CCF76 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = VPXExample/main.m; sourceTree = "<group>"; };
+		6AFD5A6E19639660004CCF76 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6AFD5A7019639660004CCF76 /* VPXExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VPXExample-Prefix.pch"; sourceTree = "<group>"; };
-		6AFD5A7119639660004CCF76 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = VPXExample/AppDelegate.h; sourceTree = "<group>"; };
-		6AFD5A7219639660004CCF76 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = VPXExample/AppDelegate.m; sourceTree = "<group>"; };
+		6AFD5A7119639660004CCF76 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		6AFD5A7219639660004CCF76 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		6AFD5A7519639660004CCF76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		6AFD5A7819639660004CCF76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		6AFD5A7A19639660004CCF76 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = VPXExample/ViewController.h; sourceTree = "<group>"; };
-		6AFD5A7B19639660004CCF76 /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = ViewController.mm; path = VPXExample/ViewController.mm; sourceTree = "<group>"; };
-		6AFD5A7D19639660004CCF76 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = VPXExample/Images.xcassets; sourceTree = "<group>"; };
+		6AFD5A7A19639660004CCF76 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		6AFD5A7B19639660004CCF76 /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
+		6AFD5A7D19639660004CCF76 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6AFD5A8319639660004CCF76 /* VPXExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VPXExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AFD5A8419639660004CCF76 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6AFD5A8C19639660004CCF76 /* VPXExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VPXExampleTests-Info.plist"; sourceTree = "<group>"; };
-		6AFD5A8E19639660004CCF76 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6AFD5A9019639660004CCF76 /* VPXExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VPXExampleTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -165,7 +163,7 @@
 				6AFD5A7419639660004CCF76 /* Main_iPhone.storyboard */,
 				6A3FC81A19905C3000E99B8B /* nv12_vertex_shader.glsl */,
 				6A3FC81C19905C5A00E99B8B /* nv12_fragment_shader.glsl */,
-				6AD208F019F8261A00B4FA3F /* README.VPXExample */,
+				6AD208F019F8261A00B4FA3F /* ../README.VPXExample */,
 				6AF8732819E1EB3800052FFD /* video_buffer_pool.h */,
 				6AF8732919E1EB3800052FFD /* video_buffer_pool.mm */,
 				6AFD5A7B19639660004CCF76 /* ViewController.mm */,
@@ -208,8 +206,8 @@
 		6AFD5A6919639660004CCF76 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6A2DE2251B067DF000EB1CA7 /* InfoPlist.strings */,
 				6AFD5A6A19639660004CCF76 /* VPXExample-Info.plist */,
-				6AFD5A6B19639660004CCF76 /* InfoPlist.strings */,
 				6AFD5A7019639660004CCF76 /* VPXExample-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -229,7 +227,6 @@
 			isa = PBXGroup;
 			children = (
 				6AFD5A8C19639660004CCF76 /* VPXExampleTests-Info.plist */,
-				6AFD5A8D19639660004CCF76 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -261,7 +258,6 @@
 			buildPhases = (
 				6AFD5A7F19639660004CCF76 /* Sources */,
 				6AFD5A8019639660004CCF76 /* Frameworks */,
-				6AFD5A8119639660004CCF76 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -314,20 +310,12 @@
 				6A3FC81B19905C3000E99B8B /* nv12_vertex_shader.glsl in Resources */,
 				6AFD5A7919639660004CCF76 /* Main_iPad.storyboard in Resources */,
 				6AFD5A7E19639660004CCF76 /* Images.xcassets in Resources */,
-				6AD208F119F8261A00B4FA3F /* README.VPXExample in Resources */,
+				6AD208F119F8261A00B4FA3F /* ../README.VPXExample in Resources */,
 				6A3FC81D19905C5A00E99B8B /* nv12_fragment_shader.glsl in Resources */,
 				6AFD5A7619639660004CCF76 /* Main_iPhone.storyboard in Resources */,
 				6A92C7FE19DE0DC80098D339 /* sintel_trailer_vp8.webm in Resources */,
-				6AFD5A6D19639660004CCF76 /* InfoPlist.strings in Resources */,
+				6A2DE2271B067DF000EB1CA7 /* InfoPlist.strings in Resources */,
 				6A92C7FF19DE0DC80098D339 /* sintel_trailer_vp9.webm in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6AFD5A8119639660004CCF76 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6AFD5A8F19639660004CCF76 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,7 +335,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/Users/tomfinegan/webm-tools/vpx_ios/build/download_file.sh";
+			shellScript = ../build/download_file.sh;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -386,10 +374,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		6AFD5A6B19639660004CCF76 /* InfoPlist.strings */ = {
+		6A2DE2251B067DF000EB1CA7 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6AFD5A6C19639660004CCF76 /* en */,
+				6A2DE2261B067DF000EB1CA7 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -400,7 +388,7 @@
 				6AFD5A7519639660004CCF76 /* Base */,
 			);
 			name = Main_iPhone.storyboard;
-			path = VPXExample;
+			path = .;
 			sourceTree = "<group>";
 		};
 		6AFD5A7719639660004CCF76 /* Main_iPad.storyboard */ = {
@@ -409,15 +397,7 @@
 				6AFD5A7819639660004CCF76 /* Base */,
 			);
 			name = Main_iPad.storyboard;
-			path = VPXExample;
-			sourceTree = "<group>";
-		};
-		6AFD5A8D19639660004CCF76 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6AFD5A8E19639660004CCF76 /* en */,
-			);
-			name = InfoPlist.strings;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -504,12 +484,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					../../libvpx/framework,
-					/Users/tomfinegan/webm/frameworks,
+					"$(PROJECT_DIR)/../../../frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "VPXExample/VPXExample-Prefix.pch";
-				INFOPLIST_FILE = "VPXExample/VPXExample-Info.plist";
+				GCC_PREFIX_HEADER = "VPXExample-Prefix.pch";
+				INFOPLIST_FILE = "VPXExample-Info.plist";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = armv7;
@@ -524,12 +503,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					../../libvpx/framework,
-					/Users/tomfinegan/webm/frameworks,
+					"$(PROJECT_DIR)/../../../frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "VPXExample/VPXExample-Prefix.pch";
-				INFOPLIST_FILE = "VPXExample/VPXExample-Info.plist";
+				GCC_PREFIX_HEADER = "VPXExample-Prefix.pch";
+				INFOPLIST_FILE = "VPXExample-Info.plist";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = armv7;
@@ -547,7 +525,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "VPXExample/VPXExample-Prefix.pch";
+				GCC_PREFIX_HEADER = "VPXExample-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -569,7 +547,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "VPXExample/VPXExample-Prefix.pch";
+				GCC_PREFIX_HEADER = "VPXExample-Prefix.pch";
 				INFOPLIST_FILE = "VPXExampleTests/VPXExampleTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
