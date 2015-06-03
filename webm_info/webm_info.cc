@@ -421,6 +421,9 @@ bool OutputTracks(const mkvparser::Segment& segment,
           static_cast<const mkvparser::VideoTrack* const>(track);
       const int64 width = video_track->GetWidth();
       const int64 height = video_track->GetHeight();
+      const int64 display_width = video_track->GetDisplayWidth();
+      const int64 display_height = video_track->GetDisplayHeight();
+      const int64 display_unit = video_track->GetDisplayUnit();
       const double frame_rate = video_track->GetFrameRate();
       fprintf(o, "%sPixelWidth  : %lld\n",
               indent->indent_str().c_str(), width);
@@ -429,6 +432,15 @@ bool OutputTracks(const mkvparser::Segment& segment,
       if (frame_rate > 0.0)
         fprintf(o, "%sFrameRate   : %g\n",
                 indent->indent_str().c_str(), video_track->GetFrameRate());
+      if (display_unit > 0 || display_width != width ||
+          display_height != height) {
+        fprintf(o, "%sDisplayWidth  : %lld\n", indent->indent_str().c_str(),
+                display_width);
+        fprintf(o, "%sDisplayHeight : %lld\n", indent->indent_str().c_str(),
+                display_height);
+        fprintf(o, "%sDisplayUnit   : %lld\n", indent->indent_str().c_str(),
+                display_unit);
+      }
     } else if (track_type == mkvparser::Track::kAudio) {
       const mkvparser::AudioTrack* const audio_track =
           static_cast<const mkvparser::AudioTrack* const>(track);
