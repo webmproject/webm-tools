@@ -194,6 +194,21 @@ class WebMFile {
   // output to be valid.
   bool CuesFirstInCluster(TrackTypes type) const;
 
+  // Returns the display width of the first video track. Returns 0 if there
+  // is no video track. Parser state must be >= kParsingClusters for output to
+  // be valid.
+  int DisplayHeight() const;
+
+  // Returns the display unit of the first video track. Returns -1 if there
+  // is no video track. Parser state must be >= kParsingClusters for output to
+  // be valid.
+  int DisplayUnit() const;
+
+  // Returns the display width of the first video track. Returns 0 if there
+  // is no video track. Parser state must be >= kParsingClusters for output to
+  // be valid.
+  int DisplayWidth() const;
+
   // Calculate and returns average bits per second for the WebM file. Parser
   // state must be >= kParsingClusters and the end position must be set for
   // output to be valid.
@@ -283,6 +298,11 @@ class WebMFile {
 
   // Sets the reader end of file offset.
   bool SetEndOfFilePosition(int64 offset);
+
+  // Returns the stereo mode (3d) of the first video track. Returns -1 if there
+  // is no video track. Parser state must be >= kParsingClusters for output to
+  // be valid.
+  int StereoMode() const;
 
   // Returns average bits per second for the first track of track |type|.
   // Parser state must equal kParsingDone for output to be valid.
