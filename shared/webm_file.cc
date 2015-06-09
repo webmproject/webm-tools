@@ -756,6 +756,30 @@ bool WebMFile::CuesFirstInCluster(TrackTypes type) const {
   return true;
 }
 
+int WebMFile::DisplayWidth() const {
+  int display_width = 0;
+  const mkvparser::VideoTrack* const vid_track = GetVideoTrack();
+  if (vid_track)
+    display_width = static_cast<int>(vid_track->GetDisplayWidth());
+  return display_width;
+}
+
+int WebMFile::DisplayHeight() const {
+  int display_height = 0;
+  const mkvparser::VideoTrack* const vid_track = GetVideoTrack();
+  if (vid_track)
+    display_height = static_cast<int>(vid_track->GetDisplayHeight());
+  return display_height;
+}
+
+int WebMFile::DisplayUnit() const {
+  int display_unit = -1;
+  const mkvparser::VideoTrack* const vid_track = GetVideoTrack();
+  if (vid_track)
+    display_unit = static_cast<int>(vid_track->GetDisplayUnit());
+  return display_unit;
+}
+
 int64 WebMFile::FileAverageBitsPerSecond() const {
   if (state_ <= kParsingHeader)
     return 0;
@@ -1036,6 +1060,14 @@ bool WebMFile::SetEndOfFilePosition(int64 offset) {
     return true;
   }
   return incremental_reader_->SetEndOfSegmentPosition(offset);
+}
+
+int WebMFile::StereoMode() const {
+  int stereo_mode = -1;
+  const mkvparser::VideoTrack* const vid_track = GetVideoTrack();
+  if (vid_track)
+    stereo_mode = static_cast<int>(vid_track->GetStereoMode());
+  return stereo_mode;
 }
 
 int64 WebMFile::TrackAverageBitsPerSecond(TrackTypes type) const {
