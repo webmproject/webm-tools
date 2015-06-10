@@ -13,7 +13,7 @@ trap cleanup EXIT
 
 readonly FILES="sintel_trailer_vp8.webm sintel_trailer_vp9.webm"
 readonly HTTP_PATH="http://downloads.webmproject.org/tomfinegan"
-readonly DOWNLOAD_PATH="${PROJECT_DIR}/testdata"
+readonly DOWNLOAD_PATH="${PROJECT_DIR}/../testdata"
 
 cleanup() {
   if [ $? -ne 0 ]; then
