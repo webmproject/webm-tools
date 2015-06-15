@@ -526,10 +526,16 @@ void PrintVP9Info(const uint8* data, int size, FILE* o) {
 
   do {
     // const int frame_marker = (data[0] >> 6) & 0x3;
+    // TODO(jzern): profile > 2 uses 3 bits in the header.
     const int version = (data[0] >> 4) & 0x3;
     const int key = !((data[0] >> 2) & 0x1);
     const int altref_frame = !((data[0] >> 1) & 0x1);
     const int error_resilient_mode = data[0] & 0x1;
+    if (version > 2) {
+      fprintf(o, " profile > 2 is unsupported");
+      return;
+    }
+
     if (key &&
         !(size >= 4 && data[1] == 0x49 && data[2] == 0x83 && data[3] == 0x42)) {
       fprintf(o, " invalid VP9 signature");
@@ -542,6 +548,10 @@ void PrintVP9Info(const uint8* data, int size, FILE* o) {
 
     fprintf(o, " key:%d v:%d altref:%d errm:%d",
             key, version, altref_frame, error_resilient_mode);
+
+    if (key && size > 4) {
+      fprintf(o, " cs:%d", (data[4] >> 5) & 0x7);
+    }
 
     if (count > 0) {
       fprintf(o, " size: %u }", sizes[i]);
