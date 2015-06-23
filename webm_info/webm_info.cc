@@ -7,6 +7,7 @@
 // be found in the AUTHORS file in the root of the source tree.
 
 #include <cstring>
+#include <limits>
 #include <memory>
 #include <string>
 #include <vector>
@@ -56,6 +57,7 @@ struct Options {
   bool output_clusters_size;
   bool output_encrypted_info;
   bool output_cues;
+  bool output_min_altref;
 };
 
 Options::Options()
@@ -74,7 +76,8 @@ Options::Options()
       output_codec_info(false),
       output_clusters_size(false),
       output_encrypted_info(false),
-      output_cues(false) {
+      output_cues(false),
+      output_min_altref(false) {
 }
 
 void Options::SetAll(bool value) {
@@ -93,12 +96,27 @@ void Options::SetAll(bool value) {
   output_clusters_size = value;
   output_encrypted_info = value;
   output_cues = value;
+  output_min_altref = value;
 }
 
 bool Options::MatchesBooleanOption(const string& option, const string& value) {
   const string opt = "-" + option;
   const string noopt = "-no" + option;
   return value == opt || value == noopt;
+}
+
+struct Tracker {
+  Tracker();
+
+  bool first_altref;
+  int frames_since_last_altref;
+  int minimum_altref_frames;
+};
+
+Tracker::Tracker()
+    : first_altref(true),
+      frames_since_last_altref(0),
+      minimum_altref_frames(std::numeric_limits<int>::max()) {
 }
 
 void Usage() {
@@ -124,6 +142,7 @@ void Usage() {
   printf("  -clusters_size        Output Total Clusters size (false)\n");
   printf("  -encrypted_info       Output encrypted frame info (false)\n");
   printf("  -cues                 Output Cues entries (false)\n");
+  printf("  -min_altref           Output minimum altref distance (false)\n");
   printf("\nOutput options may be negated by prefixing 'no'.\n");
 }
 
@@ -517,12 +536,16 @@ void ParseSuperframeIndex(const uint8* data, size_t data_sz,
   }
 }
 
-void PrintVP9Info(const uint8* data, int size, FILE* o) {
+void PrintVP9Info(const uint8* data, int size, FILE* o, Tracker* tracker) {
   if (size < 1) return;
 
   uint32 sizes[8];
   int i = 0, count = 0;
   ParseSuperframeIndex(data, size, sizes, &count);
+
+  // More than one altref frame in a superframe.
+  if (count > 2)
+    tracker->minimum_altref_frames = -1;
 
   do {
     // const int frame_marker = (data[0] >> 6) & 0x3;
@@ -540,6 +563,18 @@ void PrintVP9Info(const uint8* data, int size, FILE* o) {
         !(size >= 4 && data[1] == 0x49 && data[2] == 0x83 && data[3] == 0x42)) {
       fprintf(o, " invalid VP9 signature");
       return;
+    }
+
+    if (altref_frame == 1) {
+      const int delta_altref = tracker->frames_since_last_altref;
+      if (tracker->first_altref) {
+        tracker->first_altref = false;
+      } else if (delta_altref < tracker->minimum_altref_frames) {
+        tracker->minimum_altref_frames = delta_altref;
+      }
+      tracker->frames_since_last_altref = 0;
+    } else {
+      tracker->frames_since_last_altref++;
     }
 
     if (count > 0) {
@@ -585,7 +620,8 @@ bool OutputCluster(const mkvparser::Cluster& cluster,
                    FILE* o,
                    mkvparser::MkvReader* reader,
                    Indent* indent,
-                   int64* clusters_size) {
+                   int64* clusters_size,
+                   Tracker* tracker) {
   if (clusters_size) {
     // Load the Cluster.
     const mkvparser::BlockEntry* block_entry;
@@ -763,7 +799,7 @@ bool OutputCluster(const mkvparser::Cluster& cluster,
                 if (codec_id == "V_VP8") {
                   PrintVP8Info(data, frame.len, o);
                 } else if (codec_id == "V_VP9") {
-                  PrintVP9Info(data, frame.len, o);
+                  PrintVP9Info(data, frame.len, o, tracker);
                 }
               }
             }
@@ -919,6 +955,8 @@ int main(int argc, char* argv[]) {
       options.output_encrypted_info = !strcmp("-encrypted_info", argv[i]);
     } else if (Options::MatchesBooleanOption("cues", argv[i])) {
       options.output_cues = !strcmp("-cues", argv[i]);
+    } else if (Options::MatchesBooleanOption("min_altref", argv[i])) {
+      options.output_min_altref = !strcmp("-min_altref", argv[i]);
     }
   }
 
@@ -1003,6 +1041,7 @@ int main(int argc, char* argv[]) {
             indent.indent_str().c_str(), segment->GetCount());
 
   int64 clusters_size = 0;
+  Tracker tracker;
   const mkvparser::Cluster* cluster = segment->GetFirst();
   while (cluster != NULL && !cluster->EOS()) {
     if (!OutputCluster(*cluster,
@@ -1011,7 +1050,8 @@ int main(int argc, char* argv[]) {
                        out,
                        reader.get(),
                        &indent,
-                       &clusters_size))
+                       &clusters_size,
+                       &tracker))
       return EXIT_FAILURE;
     cluster = segment->GetNext(cluster);
   }
@@ -1024,5 +1064,8 @@ int main(int argc, char* argv[]) {
     if (!OutputCues(*segment, *tracks, options, out, &indent))
       return EXIT_FAILURE;
 
+  if (options.output_min_altref &&
+      tracker.minimum_altref_frames != std::numeric_limits<int>::max())
+    fprintf(out, "\nMinimum_ALTREF:%d\n", tracker.minimum_altref_frames);
   return EXIT_SUCCESS;
 }
