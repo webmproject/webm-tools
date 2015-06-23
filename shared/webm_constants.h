@@ -12,6 +12,7 @@
 namespace webm_tools {
 
 const double kNanosecondsPerSecond = 1000000000.0;
+const int kNanosecondsPerSecondi = 1000000000;
 const int kNanosecondsPerMillisecond = 1000000;
 
 }  // namespace webm_tools
