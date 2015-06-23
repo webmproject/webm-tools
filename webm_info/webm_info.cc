@@ -5,9 +5,12 @@
 // tree. An additional intellectual property rights grant can be found
 // in the file PATENTS.  All contributing project authors may
 // be found in the AUTHORS file in the root of the source tree.
+#include <inttypes.h>
 
 #include <cstring>
+#include <limits>
 #include <memory>
+#include <queue>
 #include <string>
 #include <vector>
 
@@ -29,7 +32,7 @@ using webm_tools::uint32;
 using webm_tools::uint64;
 using webm_tools::kNanosecondsPerSecond;
 
-const char VERSION_STRING[] = "1.0.2.1";
+const char VERSION_STRING[] = "1.0.3.0";
 
 struct Options {
   Options();
@@ -56,6 +59,7 @@ struct Options {
   bool output_clusters_size;
   bool output_encrypted_info;
   bool output_cues;
+  bool output_frame_stats;
 };
 
 Options::Options()
@@ -74,7 +78,8 @@ Options::Options()
       output_codec_info(false),
       output_clusters_size(false),
       output_encrypted_info(false),
-      output_cues(false) {
+      output_cues(false),
+      output_frame_stats(false) {
 }
 
 void Options::SetAll(bool value) {
@@ -93,12 +98,40 @@ void Options::SetAll(bool value) {
   output_clusters_size = value;
   output_encrypted_info = value;
   output_cues = value;
+  output_frame_stats = value;
 }
 
 bool Options::MatchesBooleanOption(const string& option, const string& value) {
   const string opt = "-" + option;
   const string noopt = "-no" + option;
   return value == opt || value == noopt;
+}
+
+struct FrameStats {
+  FrameStats();
+
+  int frames;
+  int displayed_frames;
+
+  bool first_altref;
+  int frames_since_last_altref;
+  int minimum_altref_frames;
+  int64_t min_altref_end_ns;
+
+  std::queue<int64_t> window;
+  int64_t max_window_size;
+  int64_t max_window_end_ns;
+};
+
+FrameStats::FrameStats()
+    : frames(0),
+      displayed_frames(0),
+      first_altref(true),
+      frames_since_last_altref(0),
+      minimum_altref_frames(std::numeric_limits<int>::max()),
+      min_altref_end_ns(0),
+      max_window_size(0),
+      max_window_end_ns(0) {
 }
 
 void Usage() {
@@ -124,6 +157,7 @@ void Usage() {
   printf("  -clusters_size        Output Total Clusters size (false)\n");
   printf("  -encrypted_info       Output encrypted frame info (false)\n");
   printf("  -cues                 Output Cues entries (false)\n");
+  printf("  -frame_stats          Output frame stats (VP9)(false)\n");
   printf("\nOutput options may be negated by prefixing 'no'.\n");
 }
 
@@ -517,12 +551,18 @@ void ParseSuperframeIndex(const uint8* data, size_t data_sz,
   }
 }
 
-void PrintVP9Info(const uint8* data, int size, FILE* o) {
+void PrintVP9Info(const uint8* data, int size, FILE* o, int64_t time_ns,
+                  FrameStats* stats) {
   if (size < 1) return;
 
   uint32 sizes[8];
   int i = 0, count = 0;
   ParseSuperframeIndex(data, size, sizes, &count);
+
+  // Remove all frames that are less than window size.
+  while (!stats->window.empty() &&
+         stats->window.front() < (time_ns - (1000000000 - 1)))
+    stats->window.pop();
 
   do {
     // const int frame_marker = (data[0] >> 6) & 0x3;
@@ -540,6 +580,23 @@ void PrintVP9Info(const uint8* data, int size, FILE* o) {
         !(size >= 4 && data[1] == 0x49 && data[2] == 0x83 && data[3] == 0x42)) {
       fprintf(o, " invalid VP9 signature");
       return;
+    }
+
+    stats->window.push(time_ns);
+    stats->frames++;
+
+    if (altref_frame == 1) {
+      const int delta_altref = stats->frames_since_last_altref;
+      if (stats->first_altref) {
+        stats->first_altref = false;
+      } else if (delta_altref < stats->minimum_altref_frames) {
+        stats->minimum_altref_frames = delta_altref;
+	      stats->min_altref_end_ns = time_ns;
+      }
+      stats->frames_since_last_altref = 0;
+    } else {
+      stats->frames_since_last_altref++;
+      stats->displayed_frames++;
     }
 
     if (count > 0) {
@@ -560,6 +617,11 @@ void PrintVP9Info(const uint8* data, int size, FILE* o) {
     }
     ++i;
   } while (i < count);
+
+  if (stats->max_window_size < static_cast<int64_t>(stats->window.size())) {
+    stats->max_window_size = stats->window.size();
+    stats->max_window_end_ns = time_ns;
+  }
 }
 
 void PrintVP8Info(const uint8* data, int size, FILE* o) {
@@ -585,7 +647,8 @@ bool OutputCluster(const mkvparser::Cluster& cluster,
                    FILE* o,
                    mkvparser::MkvReader* reader,
                    Indent* indent,
-                   int64* clusters_size) {
+                   int64* clusters_size,
+                   FrameStats* stats) {
   if (clusters_size) {
     // Load the Cluster.
     const mkvparser::BlockEntry* block_entry;
@@ -763,7 +826,7 @@ bool OutputCluster(const mkvparser::Cluster& cluster,
                 if (codec_id == "V_VP8") {
                   PrintVP8Info(data, frame.len, o);
                 } else if (codec_id == "V_VP9") {
-                  PrintVP9Info(data, frame.len, o);
+                  PrintVP9Info(data, frame.len, o, time_ns, stats);
                 }
               }
             }
@@ -919,6 +982,8 @@ int main(int argc, char* argv[]) {
       options.output_encrypted_info = !strcmp("-encrypted_info", argv[i]);
     } else if (Options::MatchesBooleanOption("cues", argv[i])) {
       options.output_cues = !strcmp("-cues", argv[i]);
+    } else if (Options::MatchesBooleanOption("frame_stats", argv[i])) {
+      options.output_frame_stats = !strcmp("-frame_stats", argv[i]);
     }
   }
 
@@ -1003,6 +1068,7 @@ int main(int argc, char* argv[]) {
             indent.indent_str().c_str(), segment->GetCount());
 
   int64 clusters_size = 0;
+  FrameStats stats;
   const mkvparser::Cluster* cluster = segment->GetFirst();
   while (cluster != NULL && !cluster->EOS()) {
     if (!OutputCluster(*cluster,
@@ -1011,7 +1077,8 @@ int main(int argc, char* argv[]) {
                        out,
                        reader.get(),
                        &indent,
-                       &clusters_size))
+                       &clusters_size,
+                       &stats))
       return EXIT_FAILURE;
     cluster = segment->GetNext(cluster);
   }
@@ -1024,5 +1091,25 @@ int main(int argc, char* argv[]) {
     if (!OutputCues(*segment, *tracks, options, out, &indent))
       return EXIT_FAILURE;
 
+  //TODO(fgalligan): Add support for VP8.
+  if (options.output_frame_stats &&
+      stats.minimum_altref_frames != std::numeric_limits<int>::max()) {
+    const double actual_fps = stats.frames /
+        (segment->GetInfo()->GetDuration() / 1000000000.0);
+    const double displayed_fps = stats.displayed_frames /
+        (segment->GetInfo()->GetDuration() / 1000000000.0);
+    fprintf(out, "\nActual fps:%g  Displayed fps:%g\n",
+            actual_fps, displayed_fps);
+
+    fprintf(out, "Minimum Altref Distance:%d  at:%g seconds\n",
+            stats.minimum_altref_frames,
+            stats.min_altref_end_ns / 1000000000.0);
+
+    const double sec_end = stats.max_window_end_ns / 1000000000.0;
+    const double sec_start =
+        stats.max_window_end_ns > 1000000000 ? sec_end - 1.0 : 0.0;
+    fprintf(out, "Maximum Window:%g-%g seconds  Window fps:%ld\n",
+            sec_start, sec_end, stats.max_window_size);
+  }
   return EXIT_SUCCESS;
 }
