@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "feecb63d_7fe4cfa4",
+        "filename": "vpx_ios/README.VPXExample",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2015-06-24T22:31:37Z",
+      "side": 1,
+      "message": "s/path/PATH/",
+      "revId": "b009d660327bf30d6a6bb7ddc6960e9568bc3ec7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
