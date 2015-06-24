@@ -19,6 +19,23 @@ To build VPXExample.app you must have the following installed:
 - Apple iOS developer program membership.
 - git
 - yasm (required for libvpx)
+  - Really. Don't attempt to use nasm. It most likely will not work.
+  - The easiest way to obtain yasm is using a package manager like homebrew.
+  - To build yasm:
+    1. Clone it via git using the command:
+         $ git clone git://github.com/yasm/yasm.git
+       Or download a source archive from http://yasm.tortall.net/Download.html.
+    2. Change into the yasm directory and run the following commands
+       a. ./configure
+       b. make
+  - Using yasm:
+    After building yasm, move the yasm binary to a directory in your path, or
+    add the build directory to your path. Alternatively, you can run make with
+    the install target, but you'll need to '$ sudo make install' it, or
+    modify the default install location via updating DESTDIR, i.e.:
+    $ make install DESTDIR=/some/writable/directory/
+    - Note: /some/writable/directory will need to be in your PATH for libvpx
+      to access yasm.
 
 
 Getting Started
@@ -46,6 +63,12 @@ Notes:
 - Run iosbuild.sh with the --help argument for additional command line options.
 - On slower machines iosbuild.sh will take a very long time (it configures and
   builds libvpx for 5 target platforms).
+- If iosbuild.sh fails, clean the directory you ran it from, and then rerun it
+  with --show-build-output to see the actual error, i.e.:
+  $ ../libvpx/build/make/iosbuild.sh --show-build-output
+  Deeper diagnosis of problems can be had via preserving the build artifacts in
+  addition to showing the output from their creation:
+  $ ../libvpx/build/make/iosbuild.sh --show-build-output --preserve-build-output
 
 Now WebM.framework must be built:
 
