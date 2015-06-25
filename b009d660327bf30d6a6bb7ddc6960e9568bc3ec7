@@ -16,6 +16,24 @@
       "revId": "b009d660327bf30d6a6bb7ddc6960e9568bc3ec7",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9efd7aeb_70e078b8",
+        "filename": "vpx_ios/README.VPXExample",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2015-06-25T17:02:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "feecb63d_7fe4cfa4",
+      "revId": "b009d660327bf30d6a6bb7ddc6960e9568bc3ec7",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
