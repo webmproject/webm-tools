@@ -1,0 +1,506 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6A2755B71B543C7400578A95 /* IxoDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2755B61B543C7400578A95 /* IxoDownloadOperation.m */; };
+		6A2755BA1B543DFE00578A95 /* IxoDownloadRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2755B91B543DFE00578A95 /* IxoDownloadRecord.m */; };
+		6A2755BD1B54413000578A95 /* IxoDownloadQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2755BC1B54413000578A95 /* IxoDownloadQueue.m */; };
+		6A4370EA1B5432D00006FD6D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4370E91B5432D00006FD6D /* Default-568h@2x.png */; };
+		6AC43A091B5047BB00801EAF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC43A021B5047BB00801EAF /* AppDelegate.m */; };
+		6AC43A0A1B5047BB00801EAF /* IxoDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC43A041B5047BB00801EAF /* IxoDataSource.m */; };
+		6AC43A0B1B5047BB00801EAF /* IxoManifestParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC43A061B5047BB00801EAF /* IxoManifestParser.m */; };
+		6AC43A0C1B5047BB00801EAF /* TextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC43A081B5047BB00801EAF /* TextViewController.m */; };
+		6AC43A0E1B5047C700801EAF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC43A0D1B5047C700801EAF /* main.m */; };
+		6AE5EC671B4EE3B200AA955F /* IxoDataSourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AE5EC661B4EE3B200AA955F /* IxoDataSourceTests.m */; };
+		A193CE3D57DD55DFFBEC3699 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 099EC47C0CCDB0443B131EAE /* libPods.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6AE5EC611B4EE3B200AA955F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6AE5EC3F1B4EE3B200AA955F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6AE5EC461B4EE3B200AA955F;
+			remoteInfo = IxoPlayer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		099EC47C0CCDB0443B131EAE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A2755B51B543C7400578A95 /* IxoDownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IxoDownloadOperation.h; sourceTree = SOURCE_ROOT; };
+		6A2755B61B543C7400578A95 /* IxoDownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IxoDownloadOperation.m; sourceTree = SOURCE_ROOT; };
+		6A2755B81B543DFE00578A95 /* IxoDownloadRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IxoDownloadRecord.h; sourceTree = SOURCE_ROOT; };
+		6A2755B91B543DFE00578A95 /* IxoDownloadRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IxoDownloadRecord.m; sourceTree = SOURCE_ROOT; };
+		6A2755BB1B54413000578A95 /* IxoDownloadQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IxoDownloadQueue.h; sourceTree = SOURCE_ROOT; };
+		6A2755BC1B54413000578A95 /* IxoDownloadQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IxoDownloadQueue.m; sourceTree = SOURCE_ROOT; };
+		6A4370E91B5432D00006FD6D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		6AC43A011B5047BB00801EAF /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = SOURCE_ROOT; };
+		6AC43A021B5047BB00801EAF /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = SOURCE_ROOT; };
+		6AC43A031B5047BB00801EAF /* IxoDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IxoDataSource.h; sourceTree = SOURCE_ROOT; };
+		6AC43A041B5047BB00801EAF /* IxoDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IxoDataSource.m; sourceTree = SOURCE_ROOT; };
+		6AC43A051B5047BB00801EAF /* IxoManifestParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IxoManifestParser.h; sourceTree = SOURCE_ROOT; };
+		6AC43A061B5047BB00801EAF /* IxoManifestParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IxoManifestParser.m; sourceTree = SOURCE_ROOT; };
+		6AC43A071B5047BB00801EAF /* TextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewController.h; sourceTree = SOURCE_ROOT; };
+		6AC43A081B5047BB00801EAF /* TextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewController.m; sourceTree = SOURCE_ROOT; };
+		6AC43A0D1B5047C700801EAF /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = SOURCE_ROOT; };
+		6AC43A0F1B5047D200801EAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
+		6AE5EC471B4EE3B200AA955F /* IxoPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IxoPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6AE5EC601B4EE3B200AA955F /* IxoPlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IxoPlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6AE5EC651B4EE3B200AA955F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6AE5EC661B4EE3B200AA955F /* IxoDataSourceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IxoDataSourceTests.m; sourceTree = "<group>"; };
+		75B3CFED0B314AC743C09ED0 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		F9B04943876AD5A37366EFE8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6AE5EC441B4EE3B200AA955F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A193CE3D57DD55DFFBEC3699 /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6AE5EC5D1B4EE3B200AA955F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6AE5EC3E1B4EE3B200AA955F = {
+			isa = PBXGroup;
+			children = (
+				6A4370E91B5432D00006FD6D /* Default-568h@2x.png */,
+				6AE5EC491B4EE3B200AA955F /* IxoPlayer */,
+				6AE5EC631B4EE3B200AA955F /* IxoPlayerTests */,
+				6AE5EC481B4EE3B200AA955F /* Products */,
+				EA34B8B7C03F90A26D675019 /* Pods */,
+				9809172C3DC6B925B4CD92D0 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		6AE5EC481B4EE3B200AA955F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6AE5EC471B4EE3B200AA955F /* IxoPlayer.app */,
+				6AE5EC601B4EE3B200AA955F /* IxoPlayerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6AE5EC491B4EE3B200AA955F /* IxoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				6AC43A011B5047BB00801EAF /* AppDelegate.h */,
+				6AC43A021B5047BB00801EAF /* AppDelegate.m */,
+				6AC43A031B5047BB00801EAF /* IxoDataSource.h */,
+				6AC43A041B5047BB00801EAF /* IxoDataSource.m */,
+				6AC43A051B5047BB00801EAF /* IxoManifestParser.h */,
+				6AC43A061B5047BB00801EAF /* IxoManifestParser.m */,
+				6AC43A071B5047BB00801EAF /* TextViewController.h */,
+				6AC43A081B5047BB00801EAF /* TextViewController.m */,
+				6AE5EC4A1B4EE3B200AA955F /* Supporting Files */,
+				6A2755B51B543C7400578A95 /* IxoDownloadOperation.h */,
+				6A2755B61B543C7400578A95 /* IxoDownloadOperation.m */,
+				6A2755B81B543DFE00578A95 /* IxoDownloadRecord.h */,
+				6A2755B91B543DFE00578A95 /* IxoDownloadRecord.m */,
+				6A2755BB1B54413000578A95 /* IxoDownloadQueue.h */,
+				6A2755BC1B54413000578A95 /* IxoDownloadQueue.m */,
+			);
+			path = IxoPlayer;
+			sourceTree = "<group>";
+		};
+		6AE5EC4A1B4EE3B200AA955F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6AC43A0F1B5047D200801EAF /* Info.plist */,
+				6AC43A0D1B5047C700801EAF /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6AE5EC631B4EE3B200AA955F /* IxoPlayerTests */ = {
+			isa = PBXGroup;
+			children = (
+				6AE5EC661B4EE3B200AA955F /* IxoDataSourceTests.m */,
+				6AE5EC641B4EE3B200AA955F /* Supporting Files */,
+			);
+			path = IxoPlayerTests;
+			sourceTree = "<group>";
+		};
+		6AE5EC641B4EE3B200AA955F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6AE5EC651B4EE3B200AA955F /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9809172C3DC6B925B4CD92D0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				099EC47C0CCDB0443B131EAE /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA34B8B7C03F90A26D675019 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F9B04943876AD5A37366EFE8 /* Pods.debug.xcconfig */,
+				75B3CFED0B314AC743C09ED0 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6AE5EC461B4EE3B200AA955F /* IxoPlayer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6AE5EC6A1B4EE3B200AA955F /* Build configuration list for PBXNativeTarget "IxoPlayer" */;
+			buildPhases = (
+				D3EE744D5024DEEC09E05FF7 /* Check Pods Manifest.lock */,
+				6AE5EC431B4EE3B200AA955F /* Sources */,
+				6AE5EC441B4EE3B200AA955F /* Frameworks */,
+				6AE5EC451B4EE3B200AA955F /* Resources */,
+				CBE3D8FF1823945C098563EA /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IxoPlayer;
+			productName = IxoPlayer;
+			productReference = 6AE5EC471B4EE3B200AA955F /* IxoPlayer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6AE5EC5F1B4EE3B200AA955F /* IxoPlayerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6AE5EC6D1B4EE3B200AA955F /* Build configuration list for PBXNativeTarget "IxoPlayerTests" */;
+			buildPhases = (
+				6AE5EC5C1B4EE3B200AA955F /* Sources */,
+				6AE5EC5D1B4EE3B200AA955F /* Frameworks */,
+				6AE5EC5E1B4EE3B200AA955F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6AE5EC621B4EE3B200AA955F /* PBXTargetDependency */,
+			);
+			name = IxoPlayerTests;
+			productName = IxoPlayerTests;
+			productReference = 6AE5EC601B4EE3B200AA955F /* IxoPlayerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6AE5EC3F1B4EE3B200AA955F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Tom Finegan";
+				TargetAttributes = {
+					6AE5EC461B4EE3B200AA955F = {
+						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = EQHXZ8M8AV;
+					};
+					6AE5EC5F1B4EE3B200AA955F = {
+						CreatedOnToolsVersion = 6.3.2;
+						TestTargetID = 6AE5EC461B4EE3B200AA955F;
+					};
+				};
+			};
+			buildConfigurationList = 6AE5EC421B4EE3B200AA955F /* Build configuration list for PBXProject "IxoPlayer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6AE5EC3E1B4EE3B200AA955F;
+			productRefGroup = 6AE5EC481B4EE3B200AA955F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6AE5EC461B4EE3B200AA955F /* IxoPlayer */,
+				6AE5EC5F1B4EE3B200AA955F /* IxoPlayerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6AE5EC451B4EE3B200AA955F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6A4370EA1B5432D00006FD6D /* Default-568h@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6AE5EC5E1B4EE3B200AA955F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		CBE3D8FF1823945C098563EA /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D3EE744D5024DEEC09E05FF7 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6AE5EC431B4EE3B200AA955F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6AC43A0E1B5047C700801EAF /* main.m in Sources */,
+				6AC43A0B1B5047BB00801EAF /* IxoManifestParser.m in Sources */,
+				6A2755BD1B54413000578A95 /* IxoDownloadQueue.m in Sources */,
+				6AC43A091B5047BB00801EAF /* AppDelegate.m in Sources */,
+				6AC43A0A1B5047BB00801EAF /* IxoDataSource.m in Sources */,
+				6A2755B71B543C7400578A95 /* IxoDownloadOperation.m in Sources */,
+				6AC43A0C1B5047BB00801EAF /* TextViewController.m in Sources */,
+				6A2755BA1B543DFE00578A95 /* IxoDownloadRecord.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6AE5EC5C1B4EE3B200AA955F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6AE5EC671B4EE3B200AA955F /* IxoDataSourceTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6AE5EC621B4EE3B200AA955F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6AE5EC461B4EE3B200AA955F /* IxoPlayer */;
+			targetProxy = 6AE5EC611B4EE3B200AA955F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		6AE5EC681B4EE3B200AA955F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6AE5EC691B4EE3B200AA955F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6AE5EC6B1B4EE3B200AA955F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9B04943876AD5A37366EFE8 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Debug;
+		};
+		6AE5EC6C1B4EE3B200AA955F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 75B3CFED0B314AC743C09ED0 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Release;
+		};
+		6AE5EC6E1B4EE3B200AA955F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = IxoPlayerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IxoPlayer.app/IxoPlayer";
+			};
+			name = Debug;
+		};
+		6AE5EC6F1B4EE3B200AA955F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = IxoPlayerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IxoPlayer.app/IxoPlayer";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6AE5EC421B4EE3B200AA955F /* Build configuration list for PBXProject "IxoPlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6AE5EC681B4EE3B200AA955F /* Debug */,
+				6AE5EC691B4EE3B200AA955F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6AE5EC6A1B4EE3B200AA955F /* Build configuration list for PBXNativeTarget "IxoPlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6AE5EC6B1B4EE3B200AA955F /* Debug */,
+				6AE5EC6C1B4EE3B200AA955F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6AE5EC6D1B4EE3B200AA955F /* Build configuration list for PBXNativeTarget "IxoPlayerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6AE5EC6E1B4EE3B200AA955F /* Debug */,
+				6AE5EC6F1B4EE3B200AA955F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6AE5EC3F1B4EE3B200AA955F /* Project object */;
+}
