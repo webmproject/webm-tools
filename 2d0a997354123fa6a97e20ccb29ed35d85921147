@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "cd7bcaab_be8958ae",
+        "filename": "vpx_ios/IxoPlayer/README",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2015-07-22T23:33:14Z",
+      "side": 1,
+      "message": "link to a howto might be nice",
+      "revId": "2d0a997354123fa6a97e20ccb29ed35d85921147",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ddc66fc_fff02b08",
+        "filename": "vpx_ios/IxoPlayer/README",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2015-07-22T23:33:14Z",
+      "side": 1,
+      "message": "you can build Xcode from source?",
+      "revId": "2d0a997354123fa6a97e20ccb29ed35d85921147",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6dd2dee8_66a596b9",
+        "filename": "vpx_ios/IxoPlayer/README",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2015-07-22T23:33:14Z",
+      "side": 1,
+      "message": "project or workspace?",
+      "revId": "2d0a997354123fa6a97e20ccb29ed35d85921147",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
