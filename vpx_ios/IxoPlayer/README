@@ -1,0 +1,32 @@
+IxoPlayer README
+
+
+Prerequisites
+  Cocoapods
+  Xcode 6 (built using Xcode 6)
+
+
+Setup
+
+From the directory where this file resides, before opening the project:
+1. (First time ever cloning the repo and opening the project) run 'pod install'
+   to fetch pod dependencies.
+2. (Upon pulling new source code) run 'pod update'
+
+Note: Do only one of the above steps. Doing both is not required.
+
+
+Testing
+
+Tests can be run within Xcode via the IxoPlayerTests target.
+
+A web server is required, and is expected to be reachable on localhost:8000.
+RangeHTTPServer (the Python module) is recommended (localhost and port 8000 are
+its defaults), but any HTTP server that supports ranged HTTP requests should be
+adequate.
+
+To use RangeHTTPServer, run it in the testdata directory that resides in the
+same directory as this README file. 
+  $ cd path/to/IxoPlayer/testdata
+  $ python -m RangeHTTPServer
+
