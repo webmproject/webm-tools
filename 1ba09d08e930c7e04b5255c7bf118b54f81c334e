@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ad7a16a8_f75e1ac0",
+        "filename": "vpx_ios/IxoPlayer/IxoDataSource.m",
+        "patchSetId": 6
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2015-07-22T03:52:32Z",
+      "side": 1,
+      "message": "should this be locked or are you not expecting this to be shared across threads?",
+      "revId": "1ba09d08e930c7e04b5255c7bf118b54f81c334e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ddc66fc_b03c184b",
+        "filename": "vpx_ios/IxoPlayer/IxoDownloadOperation.m",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2015-07-22T03:52:32Z",
+      "side": 1,
+      "message": "and you have no indication that the response was obtained from the cache right? otherwise you might be able to workaround this with an offset, until the behavior changes that is",
+      "revId": "1ba09d08e930c7e04b5255c7bf118b54f81c334e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4dd51ace_4676504f",
+        "filename": "vpx_ios/IxoPlayer/IxoDownloadOperation.m",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2015-07-22T03:52:32Z",
+      "side": 1,
+      "message": "can all these be const?",
+      "revId": "1ba09d08e930c7e04b5255c7bf118b54f81c334e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
