@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MPD
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="urn:mpeg:DASH:schema:MPD:2011"
+  xsi:schemaLocation="urn:mpeg:DASH:schema:MPD:2011"
+  type="static"
+  mediaPresentationDuration="PT135.629S"
+  minBufferTime="PT1S"
+  profiles="urn:webm:dash:profile:webm-on-demand:2012">
+<Period id="0" start="PT0S" duration="PT135.629S" >
+<AdaptationSet id="0" mimeType="video/webm" codecs="vp9" lang="eng" bitstreamSwitching="true" subsegmentAlignment="true" subsegmentStartsWithSAP="1">
+<Representation id="0" bandwidth="204463" width="426" height="240">
+<BaseURL>glass_242.webm</BaseURL>
+<SegmentBase
+  indexRange="2983244-2983799">
+<Initialization
+  range="0-439" />
+</SegmentBase>
+</Representation>
+<Representation id="1" bandwidth="229655" width="640" height="360">
+<BaseURL>glass_243.webm</BaseURL>
+<SegmentBase
+  indexRange="3328041-3328596">
+<Initialization
+  range="0-441" />
+</SegmentBase>
+</Representation>
+<Representation id="2" bandwidth="279133" width="854" height="480">
+<BaseURL>glass_244.webm</BaseURL>
+<SegmentBase
+  indexRange="3723746-3724301">
+<Initialization
+  range="0-441" />
+</SegmentBase>
+</Representation>
+<Representation id="3" bandwidth="433418" width="1280" height="720">
+<BaseURL>glass_247.webm</BaseURL>
+<SegmentBase
+  indexRange="4937831-4938386">
+<Initialization
+  range="0-441" />
+</SegmentBase>
+</Representation>
+</AdaptationSet>
+<AdaptationSet id="1" mimeType="audio/webm" codecs="vorbis" lang="eng" audioSamplingRate="44100" bitstreamSwitching="false" subsegmentAlignment="true" subsegmentStartsWithSAP="1">
+<Representation id="4" bandwidth="109755">
+<BaseURL>glass_171.webm</BaseURL>
+<SegmentBase
+  indexRange="1839501-1840056">
+<Initialization
+  range="0-4700" />
+</SegmentBase>
+</Representation>
+<Representation id="5" bandwidth="161358">
+<BaseURL>glass_172.webm</BaseURL>
+<SegmentBase
+  indexRange="2698316-2698871">
+<Initialization
+  range="0-4243" />
+</SegmentBase>
+</Representation>
+</AdaptationSet>
+</Period>
+</MPD>
