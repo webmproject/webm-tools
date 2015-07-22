@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "2ddc66fc_04c4c683",
+        "filename": "vpx_ios/IxoPlayer/IxoDataSource.m",
+        "patchSetId": 6
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2015-07-22T22:40:44Z",
+      "side": 1,
+      "message": "i\u0027m not actually certain at this point. added locking around the download_id increment and assignment for safety.",
+      "parentUuid": "ad7a16a8_f75e1ac0",
+      "revId": "1ba09d08e930c7e04b5255c7bf118b54f81c334e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "2ddc66fc_b03c184b",
         "filename": "vpx_ios/IxoPlayer/IxoDownloadOperation.m",
         "patchSetId": 6
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "8d7552bb_47e87e27",
+        "filename": "vpx_ios/IxoPlayer/IxoDownloadOperation.m",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2015-07-22T22:40:44Z",
+      "side": 1,
+      "message": "i was thinking about checking for a 200 when a 206 is expected and carving out the data actually desired. not this patch, though",
+      "parentUuid": "2ddc66fc_b03c184b",
+      "revId": "1ba09d08e930c7e04b5255c7bf118b54f81c334e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4dd51ace_4676504f",
         "filename": "vpx_ios/IxoPlayer/IxoDownloadOperation.m",
         "patchSetId": 6
@@ -47,6 +83,24 @@
       "writtenOn": "2015-07-22T03:52:32Z",
       "side": 1,
       "message": "can all these be const?",
+      "revId": "1ba09d08e930c7e04b5255c7bf118b54f81c334e",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2ddc66fc_e4ed0200",
+        "filename": "vpx_ios/IxoPlayer/IxoDownloadOperation.m",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2015-07-22T22:40:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4dd51ace_4676504f",
       "revId": "1ba09d08e930c7e04b5255c7bf118b54f81c334e",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
