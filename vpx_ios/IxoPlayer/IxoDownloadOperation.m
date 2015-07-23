@@ -31,15 +31,6 @@
   NSMutableURLRequest* request =
       [NSMutableURLRequest requestWithURL:record.URL];
 
-  // NO LOCAL CACHING! Why:
-  // This is a feature of iOS. When the same resource is requested repeatedly,
-  // it's cached locally (this is good). When a ranged request is sent for that
-  // same resource, but we only want bytes 100-150 in the resource we previously
-  // asked for, the built in cache mechanism returns the full resource and
-  // ignores the range request (this is VERY VERY BAD). The way to avoid this
-  // behavior is to disable it entirely:
-  [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
-
   if (record.requestedRange != nil) {
     const NSNumber* const range_begin = record.requestedRange[0];
     const NSNumber* const range_end = record.requestedRange[1];
@@ -80,13 +71,26 @@
 
   _record.data = download_operation.responseData;
   _record.error = download_operation.error;
-  _record.failed = download_operation.error != nil;
+  _record.failed = (download_operation.error != nil ||
+                    download_operation.responseData == nil);
 
   if (_record.requestedRange != nil && !_record.failed) {
     const NSNumber* const range_begin = _record.requestedRange[0];
     const NSNumber* const range_end = _record.requestedRange[1];
     const int expected_length =
         1 + [range_end intValue] - [range_begin intValue];
+
+    if (_record.data.length > expected_length) {
+      // More data returned than requested. This is likely due to local caching,
+      // but the main point is that the data that's actually been requested must
+      // be extracted from the blob returned.
+      const uint8_t* const data = (uint8_t*)[_record.data bytes];
+      const uint8_t* const requested_data = data + [range_begin intValue];
+
+      NSData* const response =
+          [NSData dataWithBytes:requested_data length:expected_length];
+      _record.data = response;
+    }
     _record.failed = _record.data.length != expected_length;
   }
 
