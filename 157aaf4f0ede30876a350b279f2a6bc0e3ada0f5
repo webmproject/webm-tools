@@ -16,6 +16,24 @@
       "revId": "157aaf4f0ede30876a350b279f2a6bc0e3ada0f5",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ad14d688_845d86fe",
+        "filename": "vpx_ios/IxoPlayer/IxoDownloadOperation.m",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2015-07-23T22:21:39Z",
+      "side": 1,
+      "message": "I haven\u0027t actually observed caching of a ranged request; only caching of a whole resource, which is then returned in full for the ranged request when the URL matches. Tests still pass, and the tests do what you\u0027ve described, so yes, the offset will be correct.",
+      "parentUuid": "adfbf684_0ceff77b",
+      "revId": "157aaf4f0ede30876a350b279f2a6bc0e3ada0f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
