@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "adfbf684_0ceff77b",
+        "filename": "vpx_ios/IxoPlayer/IxoDownloadOperation.m",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2015-07-23T22:17:08Z",
+      "side": 1,
+      "message": "so if I do a range(50, 200) then a range(100, 200) what\u0027s cached? will this offset be correct?",
+      "revId": "157aaf4f0ede30876a350b279f2a6bc0e3ada0f5",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
