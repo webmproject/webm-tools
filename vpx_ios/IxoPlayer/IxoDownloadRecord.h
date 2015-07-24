@@ -11,8 +11,8 @@
 
 @interface IxoDownloadRecord : NSObject
 
-@property(nonatomic, strong) NSURL* URL;
-@property(nonatomic, strong) NSArray* requestedRange;
+@property(nonatomic, copy) NSURL* URL;
+@property(nonatomic, copy) NSArray* requestedRange;
 @property(nonatomic, strong) NSData* data;
 @property(nonatomic) id<IxoDataSourceListener> listener;
 @property(nonatomic) int downloadID;
