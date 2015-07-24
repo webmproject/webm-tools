@@ -5,14 +5,26 @@
 // tree. An additional intellectual property rights grant can be found
 // in the file PATENTS.  All contributing project authors may
 // be found in the AUTHORS file in the root of the source tree.
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <XCTest/XCTest.h>
 
-#import "IxoDataSource.h"
-
-@interface IxoManifestParser : NSObject<NSXMLParserDelegate>
-
-- (id)init;
-- (instancetype)initWithManifestURL:(NSURL*)manifestURL;
-- (bool)parse;
-
+@interface IxoManifestParserTests : XCTestCase
 @end
+
+@implementation IxoManifestParserTests {
+}
+
+// Note: -setUp and -tearDown are called for each test.
+
+- (void)setUp {
+  [super setUp];
+}
+
+- (void)tearDown {
+  [super tearDown];
+}
+
+- (void)sandbox {
+}
+
+@end  // implementation IxoManifestParserTests
