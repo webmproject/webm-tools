@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eda16e0d_d7c17678",
+        "filename": "vpx_ios/IxoPlayer/IxoDASHManifestParser.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2015-07-28T22:56:03Z",
+      "side": 1,
+      "message": "I think technically you could have codecs as part of the Rep too.",
+      "range": {
+        "startLine": 19,
+        "startChar": 45,
+        "endLine": 19,
+        "endChar": 46
+      },
+      "revId": "be4b5c1ba098a539d6db8fa244a6509442f8ae1b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
