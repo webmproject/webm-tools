@@ -5,10 +5,7 @@
 // tree. An additional intellectual property rights grant can be found
 // in the file PATENTS.  All contributing project authors may
 // be found in the AUTHORS file in the root of the source tree.
-#import <Foundation/Foundation.h>
+#import "IxoPlayerTestCommon.h"
 
-@interface IxoManifestParser : NSObject
-
-@property(nonatomic, strong, readwrite) NSString* URL;
-
-@end
+NSString* const kStaticManifestURLString =
+    @"http://localhost:8000/vp9_glass/manifest_vp9_vorbis.mpd";
