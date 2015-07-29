@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "0a0ea828_d7553c4d",
+        "filename": "vpx_ios/IxoPlayer/IxoDASHManifestParser.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2015-07-29T18:45:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eda16e0d_d7c17678",
+      "range": {
+        "startLine": 19,
+        "startChar": 45,
+        "endLine": 19,
+        "endChar": 46
+      },
+      "revId": "be4b5c1ba098a539d6db8fa244a6509442f8ae1b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8d11d20b_9705281e",
         "filename": "vpx_ios/IxoPlayer/IxoPlayerTests/IxoDASHManifestParserTests.m",
         "patchSetId": 3
@@ -36,6 +60,24 @@
       "writtenOn": "2015-07-29T01:00:34Z",
       "side": 1,
       "message": "do you need to define them if you\u0027re not extending them?",
+      "revId": "be4b5c1ba098a539d6db8fa244a6509442f8ae1b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "caf6504b_dd556b4d",
+        "filename": "vpx_ios/IxoPlayer/IxoPlayerTests/IxoDASHManifestParserTests.m",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2015-07-29T18:45:39Z",
+      "side": 1,
+      "message": "Herr Apple says they\u0027re required:\n\nhttps://developer.apple.com/library/ios/documentation/DeveloperTools/Conceptual/testing_with_xcode/testing_3_writing_test_classes/testing_3_writing_test_classes.html\n\nIn practice? I don\u0027t know. Stuff builds and tests pass without them, but for all I know doing that is subtlely breaking shit in XCTestCase land. Leaving them.",
+      "parentUuid": "8d11d20b_9705281e",
       "revId": "be4b5c1ba098a539d6db8fa244a6509442f8ae1b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
