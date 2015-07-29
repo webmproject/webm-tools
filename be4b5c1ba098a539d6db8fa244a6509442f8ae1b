@@ -22,6 +22,23 @@
       "revId": "be4b5c1ba098a539d6db8fa244a6509442f8ae1b",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8d11d20b_9705281e",
+        "filename": "vpx_ios/IxoPlayer/IxoPlayerTests/IxoDASHManifestParserTests.m",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2015-07-29T01:00:34Z",
+      "side": 1,
+      "message": "do you need to define them if you\u0027re not extending them?",
+      "revId": "be4b5c1ba098a539d6db8fa244a6509442f8ae1b",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
