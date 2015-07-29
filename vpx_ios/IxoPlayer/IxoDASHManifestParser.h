@@ -54,5 +54,4 @@
 @interface IxoDASHManifestParser : NSObject<NSXMLParserDelegate>
 - (instancetype)initWithManifestURL:(NSURL*)manifestURL;
 - (bool)parse;
-
 @end
