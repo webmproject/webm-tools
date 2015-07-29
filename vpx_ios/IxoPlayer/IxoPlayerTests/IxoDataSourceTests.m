@@ -11,10 +11,7 @@
 
 #import "IxoDownloadRecord.h"
 #import "IxoDataSource.h"
-
-// Test file source URL.
-NSString* const kStaticManifestURLString =
-    @"http://localhost:8000/vp9_glass/manifest_vp9_vorbis.mpd";
+#import "IxoPlayerTestCommon.h"
 
 // Expected values for data length and MD5 checksum (of the entire MPD file).
 const int kExpectedManifestLength = 2005;

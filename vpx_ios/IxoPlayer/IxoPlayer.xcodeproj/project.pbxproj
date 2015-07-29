@@ -11,11 +11,13 @@
 		6A2755BA1B543DFE00578A95 /* IxoDownloadRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2755B91B543DFE00578A95 /* IxoDownloadRecord.m */; };
 		6A2755BD1B54413000578A95 /* IxoDownloadQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2755BC1B54413000578A95 /* IxoDownloadQueue.m */; };
 		6A4370EA1B5432D00006FD6D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4370E91B5432D00006FD6D /* Default-568h@2x.png */; };
+		6A8FD2B61B62E76100BDD946 /* IxoDASHManifestParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8FD2B51B62E76100BDD946 /* IxoDASHManifestParserTests.m */; };
+		6A8FD2BC1B62FD6C00BDD946 /* IxoPlayerTestCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8FD2BB1B62FD6C00BDD946 /* IxoPlayerTestCommon.m */; };
 		6AC43A091B5047BB00801EAF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC43A021B5047BB00801EAF /* AppDelegate.m */; };
 		6AC43A0A1B5047BB00801EAF /* IxoDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC43A041B5047BB00801EAF /* IxoDataSource.m */; };
-		6AC43A0B1B5047BB00801EAF /* IxoManifestParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC43A061B5047BB00801EAF /* IxoManifestParser.m */; };
 		6AC43A0C1B5047BB00801EAF /* TextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC43A081B5047BB00801EAF /* TextViewController.m */; };
 		6AC43A0E1B5047C700801EAF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC43A0D1B5047C700801EAF /* main.m */; };
+		6ADFC2231B66F9C50034819F /* IxoDASHManifestParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ADFC2221B66F9C50034819F /* IxoDASHManifestParser.m */; };
 		6AE5EC671B4EE3B200AA955F /* IxoDataSourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AE5EC661B4EE3B200AA955F /* IxoDataSourceTests.m */; };
 		A193CE3D57DD55DFFBEC3699 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 099EC47C0CCDB0443B131EAE /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -39,16 +41,19 @@
 		6A2755BB1B54413000578A95 /* IxoDownloadQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IxoDownloadQueue.h; sourceTree = SOURCE_ROOT; };
 		6A2755BC1B54413000578A95 /* IxoDownloadQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IxoDownloadQueue.m; sourceTree = SOURCE_ROOT; };
 		6A4370E91B5432D00006FD6D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		6A8FD2B51B62E76100BDD946 /* IxoDASHManifestParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IxoDASHManifestParserTests.m; sourceTree = "<group>"; };
+		6A8FD2BA1B62FD6C00BDD946 /* IxoPlayerTestCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IxoPlayerTestCommon.h; sourceTree = "<group>"; };
+		6A8FD2BB1B62FD6C00BDD946 /* IxoPlayerTestCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IxoPlayerTestCommon.m; sourceTree = "<group>"; };
 		6AC43A011B5047BB00801EAF /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = SOURCE_ROOT; };
 		6AC43A021B5047BB00801EAF /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = SOURCE_ROOT; };
 		6AC43A031B5047BB00801EAF /* IxoDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IxoDataSource.h; sourceTree = SOURCE_ROOT; };
 		6AC43A041B5047BB00801EAF /* IxoDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IxoDataSource.m; sourceTree = SOURCE_ROOT; };
-		6AC43A051B5047BB00801EAF /* IxoManifestParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IxoManifestParser.h; sourceTree = SOURCE_ROOT; };
-		6AC43A061B5047BB00801EAF /* IxoManifestParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IxoManifestParser.m; sourceTree = SOURCE_ROOT; };
 		6AC43A071B5047BB00801EAF /* TextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewController.h; sourceTree = SOURCE_ROOT; };
 		6AC43A081B5047BB00801EAF /* TextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewController.m; sourceTree = SOURCE_ROOT; };
 		6AC43A0D1B5047C700801EAF /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = SOURCE_ROOT; };
 		6AC43A0F1B5047D200801EAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
+		6ADFC2211B66F9C50034819F /* IxoDASHManifestParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IxoDASHManifestParser.h; sourceTree = SOURCE_ROOT; };
+		6ADFC2221B66F9C50034819F /* IxoDASHManifestParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IxoDASHManifestParser.m; sourceTree = SOURCE_ROOT; };
 		6AE5EC471B4EE3B200AA955F /* IxoPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IxoPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AE5EC601B4EE3B200AA955F /* IxoPlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IxoPlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AE5EC651B4EE3B200AA955F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -104,8 +109,8 @@
 				6AC43A021B5047BB00801EAF /* AppDelegate.m */,
 				6AC43A031B5047BB00801EAF /* IxoDataSource.h */,
 				6AC43A041B5047BB00801EAF /* IxoDataSource.m */,
-				6AC43A051B5047BB00801EAF /* IxoManifestParser.h */,
-				6AC43A061B5047BB00801EAF /* IxoManifestParser.m */,
+				6ADFC2211B66F9C50034819F /* IxoDASHManifestParser.h */,
+				6ADFC2221B66F9C50034819F /* IxoDASHManifestParser.m */,
 				6AC43A071B5047BB00801EAF /* TextViewController.h */,
 				6AC43A081B5047BB00801EAF /* TextViewController.m */,
 				6AE5EC4A1B4EE3B200AA955F /* Supporting Files */,
@@ -131,7 +136,10 @@
 		6AE5EC631B4EE3B200AA955F /* IxoPlayerTests */ = {
 			isa = PBXGroup;
 			children = (
+				6A8FD2BA1B62FD6C00BDD946 /* IxoPlayerTestCommon.h */,
+				6A8FD2BB1B62FD6C00BDD946 /* IxoPlayerTestCommon.m */,
 				6AE5EC661B4EE3B200AA955F /* IxoDataSourceTests.m */,
+				6A8FD2B51B62E76100BDD946 /* IxoDASHManifestParserTests.m */,
 				6AE5EC641B4EE3B200AA955F /* Supporting Files */,
 			);
 			path = IxoPlayerTests;
@@ -297,12 +305,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				6AC43A0E1B5047C700801EAF /* main.m in Sources */,
-				6AC43A0B1B5047BB00801EAF /* IxoManifestParser.m in Sources */,
 				6A2755BD1B54413000578A95 /* IxoDownloadQueue.m in Sources */,
 				6AC43A091B5047BB00801EAF /* AppDelegate.m in Sources */,
 				6AC43A0A1B5047BB00801EAF /* IxoDataSource.m in Sources */,
 				6A2755B71B543C7400578A95 /* IxoDownloadOperation.m in Sources */,
 				6AC43A0C1B5047BB00801EAF /* TextViewController.m in Sources */,
+				6ADFC2231B66F9C50034819F /* IxoDASHManifestParser.m in Sources */,
 				6A2755BA1B543DFE00578A95 /* IxoDownloadRecord.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -311,7 +319,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A8FD2B61B62E76100BDD946 /* IxoDASHManifestParserTests.m in Sources */,
 				6AE5EC671B4EE3B200AA955F /* IxoDataSourceTests.m in Sources */,
+				6A8FD2BC1B62FD6C00BDD946 /* IxoPlayerTestCommon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
