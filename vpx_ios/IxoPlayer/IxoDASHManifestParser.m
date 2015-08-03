@@ -11,36 +11,64 @@
 #import "IxoDownloadRecord.h"
 
 //
-// IxoDASHRepresentationRecord
+// IxoDASHRepresentation
 //
-@implementation IxoDASHRepresentationRecord
+@implementation IxoDASHRepresentation
 @synthesize repID = _repID;
 @synthesize bandwidth = _bandwidth;
 @synthesize width = _width;
 @synthesize height = _height;
+@synthesize audioSamplingRate = _audioSamplingRate;
+@synthesize audioChannelConfig = _audioChannelConfig;
+@synthesize startWithSAP = _startWithSAP;
 @synthesize codecs = _codecs;
 @synthesize baseURL = _baseURL;
 @synthesize segmentBase = _segmentBase;
 @synthesize initialization = _initialization;
-@end
 
-//
-// IxoDASHRepresentationStore
-//
-@implementation IxoDASHRepresentationStore
-@synthesize  representationRecords = _representationRecords;
+- (id)init {
+  self = [super init];
+  if (self) {
+    self.bandwidth = 0;
+    self.width = 0;
+    self.height = 0;
+    self.audioSamplingRate = 0;
+    self.segmentBase = [[NSArray alloc] init];
+    self.initialization = [[NSArray alloc] init];
+  }
+  return self;
+}
+
 @end
 
 //
 // IxoDASHAdaptationSet
 //
 @implementation IxoDASHAdaptationSet
+@synthesize setID = _setID;
 @synthesize mimeType = _mimeType;
 @synthesize codecs = _codecs;
 @synthesize subsegmentAlignment = _subsegmentAlignment;
 @synthesize bitstreamSwitching = _bitstreamSwitching;
+@synthesize subsegmentStartsWithSAP = _subsegmentStartsWithSAP;
 @synthesize width = _width;
 @synthesize height = _height;
+@synthesize audioSamplingRate = _audioSamplingRate;
+@synthesize representations = _representations;
+
+- (id)init {
+  self = [super init];
+  if (self) {
+    self.subsegmentAlignment = false;
+    self.bitstreamSwitching = false;
+    self.subsegmentStartsWithSAP = 0;
+    self.width = 0;
+    self.height = 0;
+    self.audioSamplingRate = 0;
+    self.representations = [[NSMutableArray alloc] init];
+  }
+  return self;
+}
 @end
 
 //
@@ -50,8 +78,18 @@
 @synthesize periodID = _periodID;
 @synthesize start = _start;
 @synthesize duration = _duration;
-@end
+@synthesize audioAdaptationSets = _audioAdaptationSets;
+@synthesize videoAdaptationSets = _videoAdaptationSets;
 
+- (id)init {
+  self = [super init];
+  if (self) {
+    self.audioAdaptationSets = [[NSMutableArray alloc] init];
+    self.videoAdaptationSets = [[NSMutableArray alloc] init];
+  }
+  return self;
+}
+@end
 
 //
 // IxoDASHManifest
@@ -60,8 +98,7 @@
 @synthesize mediaPresentationDuration = _mediaPresentationDuration;
 @synthesize minBufferTime = _minBufferTime;
 @synthesize staticPresentation = _staticPresentation;
-@synthesize audioAdaptationSets = _audioAdaptationSets;
-@synthesize videoAdaptationSets = _videoAdaptationSets;
+@synthesize period = _period;
 @end
 
 //
