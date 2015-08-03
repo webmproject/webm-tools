@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MPD
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="urn:mpeg:DASH:schema:MPD:2011"
+  xsi:schemaLocation="urn:mpeg:DASH:schema:MPD:2011"
+  type="static"
+  mediaPresentationDuration="PT280.199S"
+  minBufferTime="PT1S"
+  profiles="urn:webm:dash:profile:webm-on-demand:2012">
+  <Period id="0" start="PT0S" duration="PT280.199S" >
+    <AdaptationSet id="0" mimeType="video/webm" codecs="vp8" lang="eng" width="640" height="360" subsegmentAlignment="true" subsegmentStartsWithSAP="1" bitstreamSwitching="true">
+      <Representation id="1" bandwidth="377022">
+        <BaseURL>ChromeSpeedTestsBTS_YouTubeSpecs_enc_640x360_subseg-150_0250K.webm</BaseURL>
+        <SegmentBase indexRange="8971431-8972188">
+          <Initialization range="0-306" />
+        </SegmentBase>
+      </Representation>
+      <Representation id="2" bandwidth="809268">
+        <BaseURL>ChromeSpeedTestsBTS_YouTubeSpecs_enc_640x360_subseg-150_0500K.webm</BaseURL>
+        <SegmentBase indexRange="17588049-17588808">
+          <Initialization range="0-306" />
+        </SegmentBase>
+      </Representation>
+      <Representation id="3" bandwidth="1219605">
+        <BaseURL>ChromeSpeedTestsBTS_YouTubeSpecs_enc_640x360_subseg-150_0750K.webm</BaseURL>
+        <SegmentBase indexRange="26211587-26212360">
+          <Initialization range="0-306" />
+        </SegmentBase>
+      </Representation>
+      <Representation id="4" bandwidth="1631797">
+        <BaseURL>ChromeSpeedTestsBTS_YouTubeSpecs_enc_640x360_subseg-150_1000K.webm</BaseURL>
+        <SegmentBase indexRange="34820537-34821317">
+          <Initialization range="0-306" />
+        </SegmentBase>
+      </Representation>
+      <Representation id="5" bandwidth="2343228">
+        <BaseURL>ChromeSpeedTestsBTS_YouTubeSpecs_enc_640x360_subseg-150_1500K.webm</BaseURL>
+        <SegmentBase indexRange="52099932-52100719">
+          <Initialization range="0-306" />
+        </SegmentBase>
+      </Representation>
+      <Representation id="6" bandwidth="2827033">
+        <BaseURL>ChromeSpeedTestsBTS_YouTubeSpecs_enc_640x360_subseg-150_2000K.webm</BaseURL>
+        <SegmentBase indexRange="69343358-69344149">
+          <Initialization range="0-306" />
+        </SegmentBase>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="1" mimeType="audio/webm" codecs="vorbis" lang="eng" audioSamplingRate="48000" subsegmentStartsWithSAP="1">
+      <Representation id="7" bandwidth="109822">
+        <BaseURL>ChromeSpeedTestsBTS_YouTubeSpecs_vorbis_128kbps_cues-5sec_tracks-2.webm</BaseURL>
+        <SegmentBase indexRange="3682171-3683110">
+          <Initialization range="0-4506" />
+        </SegmentBase>
+      </Representation>
+    </AdaptationSet>
+  </Period>
+</MPD>
