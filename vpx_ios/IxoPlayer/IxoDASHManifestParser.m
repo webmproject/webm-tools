@@ -7,6 +7,7 @@
 // be found in the AUTHORS file in the root of the source tree.
 #import "IxoDASHManifestParser.h"
 
+#import "IxoDASHManifestParserConstants.h"
 #import "IxoDataSource.h"
 #import "IxoDownloadRecord.h"
 
@@ -124,6 +125,7 @@
   }
   return self;
 }
+
 @end
 
 //
@@ -146,12 +148,23 @@
 //
 // IxoDASHManifestParser
 //
+@interface IxoDASHManifestParser ()
+@property(nonatomic, strong) IxoDASHManifest* manifest;
+@end
+
 @implementation IxoDASHManifestParser {
   NSData* _manifestData;
   NSURL* _manifestURL;
   NSLock* _lock;
   NSXMLParser* _parser;
+
+  // Parsing status.
+  bool _parseFailed;
+  NSMutableArray* _openElements;
+  IxoDASHAdaptationSet* _lastAdaptationSet;
 }
+
+@synthesize manifest = _manifest;
 
 - (id)init {
   self = [super init];
@@ -166,6 +179,9 @@
   if (self) {
     _lock = [[NSLock alloc] init];
     _manifestURL = manifestURL;
+    _openElements = [[NSMutableArray alloc] init];
+    _parseFailed = false;
+    _manifest = [[IxoDASHManifest alloc] init];
   }
   return self;
 }
@@ -192,10 +208,210 @@
 
   [_parser setDelegate:self];
 
-  // TODO(tomfiengan): Callers will have to deal with validation of the manifest
+  // TODO(tomfinegan): Callers will have to deal with validation of the manifest
   // contents, but a minimal check should be made that at least one
-  // IxoDASHRepresenationRecord exists in one of {audio|video}AdaptationSet.
+  // IxoDASHRepresenationRecord exists in one of {audio|video}AdaptationSet
+  // within the Period.
   return [_parser parse] == YES;
+}
+
+//
+// Element parsing helpers.
+//
+// Parse utilities and parsing state sanity check helpers. All return true for
+// success, and false for failure.
+//
+- (bool)openElementIsNamed:(NSString*)elementName {
+  if ([_openElements count] < 1) {
+    NSLog(@"openElementIsNamed: (%@) parse error: no open elements",
+          elementName);
+    return false;
+  }
+  if ([[_openElements lastObject] isEqualToString:elementName] == false) {
+    NSLog(@"openElementIsNamed: (%@) parse error: mismatch (%@)", elementName,
+          [_openElements lastObject]);
+    return false;
+  }
+  return true;
+}
+
+- (bool)elementParentIsNamed:(NSString*)parentName {
+  if ([self openElementIsNamed:parentName] == false) {
+    NSLog(@"elementParentNamed: unexpected parent (%@)", parentName);
+    return false;
+  }
+  return true;
+}
+
+- (bool)closeElementNamed:(NSString*)elementName {
+  if ([self openElementIsNamed:elementName] == false) {
+    NSLog(@"closeElementWithName: unexpected element (%@)", elementName);
+    return false;
+  }
+  [_openElements removeLastObject];
+  return true;
+}
+
+//
+// Attribute parsing helpers.
+//
+// All parse the attributes for the named element. All require a non-nil
+// dictionary argument, and all attempt to ensure the parsed element has
+// required attributes when applicable. All return true for success, and false
+// for failure.
+//
+- (bool)parseMPDAttributes:(NSDictionary*)attributes {
+  if (attributes == nil || [_openElements count] > 0) {
+    NSLog(@"parseMPDAttributes: failure, no MPD attribs/bad state.");
+    return false;
+  }
+  _manifest.mediaPresentationDuration =
+      [attributes objectForKey:kAttributeMediaPresentationDuration];
+  _manifest.minBufferTime = [attributes objectForKey:kAttributeMinBufferTime];
+  _manifest.staticPresentation =
+      [[attributes objectForKey:kAttributeType]
+          caseInsensitiveCompare:kPresentationTypeStatic] == NSOrderedSame;
+  // TODO(tomfinegan): duration restriction must be relaxed for live
+  // presentations.
+  if (_manifest.mediaPresentationDuration == nil ||
+      _manifest.minBufferTime == nil) {
+    NSLog(@"parseMPDAttributes: failure, missing required attributes.");
+    return false;
+  }
+  return true;
+}
+
+- (bool)parsePeriodAttributes:(NSDictionary*)attributes {
+  if (attributes == nil || ![self elementParentIsNamed:kElementMPD]) {
+    NSLog(@"parsePeriodAttributes: failure, no attribs/bad state.");
+    return false;
+  }
+
+  // TODO(tomfinegan): Support multiple periods.
+  if (_manifest.period != nil) {
+    NSLog(@"parsePeriodAttributes: unsupported manifest, multiple periods.");
+    return false;
+  }
+  IxoDASHPeriod* period = [[IxoDASHPeriod alloc] init];
+  period.periodID = [attributes objectForKey:kAttributeID];
+  period.start = [attributes objectForKey:kAttributeStart];
+  period.duration = [attributes objectForKey:kAttributeDuration];
+
+  if (period.periodID == nil ||
+      (period.start == nil && period.duration == nil)) {
+    NSLog(@"parsePeriodAttributes: failure, missing required attributes.");
+    return false;
+  }
+  _manifest.period = period;
+  return true;
+}
+
+- (bool)parseAdaptationSetAttributes:(NSDictionary*)attributes {
+  if (attributes == nil || ![self elementParentIsNamed:kElementPeriod]) {
+    NSLog(@"parseAdaptationSetAttributes: failure, no attribs/bad state.");
+    return false;
+  }
+  IxoDASHAdaptationSet* as = [[IxoDASHAdaptationSet alloc] init];
+  as.setID = [attributes objectForKey:kAttributeID];
+  as.mimeType = [attributes objectForKey:kAttributeMimeType];
+  as.codecs = [attributes objectForKey:kAttributeCodecs];
+  as.subsegmentAlignment =
+      [[attributes objectForKey:kAttributeSubsegmentAlignment] boolValue] ==
+      YES;
+  as.bitstreamSwitching =
+      [[attributes objectForKey:kAttributeBitstreamSwitching] boolValue] == YES;
+  as.subsegmentStartsWithSAP =
+      [[attributes objectForKey:kAttributeSubsegmentStartsWithSAP] intValue];
+  as.width = [[attributes objectForKey:kAttributeWidth] intValue];
+  as.height = [[attributes objectForKey:kAttributeHeight] intValue];
+  as.audioSamplingRate =
+      [[attributes objectForKey:kAttributeAudioSamplingRate] intValue];
+
+  NSMutableArray* adaptation_sets = nil;
+  if ([as.mimeType isEqualToString:kMimeTypeWebmAudio]) {
+    adaptation_sets = _manifest.period.audioAdaptationSets;
+  } else if ([as.mimeType isEqualToString:kMimeTypeWebmVideo]) {
+    adaptation_sets = _manifest.period.videoAdaptationSets;
+  } else {
+    NSLog(@"parseAdaptationSetAttributes: unknown mimeType.");
+    return false;
+  }
+
+  if (as.setID == nil) {
+    NSLog(@"parseAdaptationSetAttributes: adaptation set invalid, no id.");
+    return false;
+  }
+
+  [adaptation_sets addObject:as];
+  _lastAdaptationSet = as;
+  return true;
+}
+
+- (bool)parseRepresentationAttributes:(NSDictionary*)attributes {
+  if (attributes == nil || ![self elementParentIsNamed:kElementAdaptationSet]) {
+    NSLog(@"parseRepresentationAttributes: failure, no attribs/bad state.");
+    return false;
+  }
+  IxoDASHRepresentation* rep = [[IxoDASHRepresentation alloc] init];
+  rep.repID = [attributes objectForKey:kAttributeID];
+  rep.codecs = [attributes objectForKey:kAttributeCodecs];
+  rep.bandwidth = [[attributes objectForKey:kAttributeBandwidth] intValue];
+  rep.width = [[attributes objectForKey:kAttributeWidth] intValue];
+  rep.height = [[attributes objectForKey:kAttributeHeight] intValue];
+  rep.startWithSAP =
+      [[attributes objectForKey:kAttributeStartWithSAP] intValue];
+
+  if (rep.repID == nil) {
+    NSLog(@"parseRepresentationAttributes: rep invalid, no id.");
+    return false;
+  }
+  [_lastAdaptationSet.representations addObject:rep];
+  return true;
+}
+
+- (bool)parseSegmentBaseAttributes:(NSDictionary*)attributes {
+  if (attributes == nil ||
+      ![self elementParentIsNamed:kElementRepresentation]) {
+    NSLog(@"parseSegmentBaseAttributes: failure, no attribs/bad state.");
+    return false;
+  }
+  // A SegmentBase must have an indexRange.
+  // TODO(tomfinegan): This must be relaxed for live presentations.
+  NSString* const index_range_str =
+      [attributes objectForKey:kAttributeIndexRange];
+  if (index_range_str == nil) {
+    NSLog(@"parseSegmentBaseAttributes: missing indexRange.");
+    return false;
+  }
+  IxoDASHRepresentation* rep = [_lastAdaptationSet.representations lastObject];
+  rep.segmentBaseIndexRange =
+      [index_range_str componentsSeparatedByString:@"-"];
+  if (rep.segmentBaseIndexRange.count != 2) {
+    NSLog(@"parseSegmentBaseAttributes: Invalid indexRange.");
+    return false;
+  }
+  return true;
+}
+
+- (bool)parseInitializationAttributes:(NSDictionary*)attributes {
+  if (attributes == nil || ![self elementParentIsNamed:kElementSegmentBase]) {
+    NSLog(@"parseInitializationAttributes: failure, no attribs/bad state.");
+    return false;
+  }
+  // A Initialization must have a range.
+  // TODO(tomfinegan): This must be relaxed for live presentations.
+  NSString* const range_str = [attributes objectForKey:kAttributeRange];
+  if (range_str == nil) {
+    NSLog(@"parseInitializationAttributes: missing indexRange.");
+    return false;
+  }
+  IxoDASHRepresentation* rep = [_lastAdaptationSet.representations lastObject];
+  rep.initializationRange = [range_str componentsSeparatedByString:@"-"];
+  if (rep.initializationRange.count != 2) {
+    NSLog(@"parseInitializationAttributes: Invalid range.");
+    return false;
+  }
+  return true;
 }
 
 //
@@ -210,22 +426,85 @@
        namespaceURI:(NSString*)namespaceURI
       qualifiedName:(NSString*)qName
          attributes:(NSDictionary*)attributeDict {
-  NSLog(@"didStartElement --> %@ \nwith attributeDict ---> \n%@", elementName,
+  NSLog(@"didStartElement (%@) \nwith attributeDict:\n%@", elementName,
         attributeDict);
+
+  if (_parseFailed) {
+    NSLog(@"didStartElement: Parsing not starting because _parseFailed.");
+    [_parser abortParsing];
+    return;
+  }
+
+  // Attempt to parse attributes for elements that normally include them.
+  if ([elementName isEqualToString:kElementMPD]) {
+    _parseFailed = [self parseMPDAttributes:attributeDict] != true;
+  } else if ([elementName isEqualToString:kElementPeriod]) {
+    _parseFailed = [self parsePeriodAttributes:attributeDict] != true;
+  } else if ([elementName isEqualToString:kElementAdaptationSet]) {
+    _parseFailed = [self parseAdaptationSetAttributes:attributeDict] != true;
+  } else if ([elementName isEqualToString:kElementRepresentation]) {
+    _parseFailed = [self parseRepresentationAttributes:attributeDict] != true;
+  } else if ([elementName isEqualToString:kElementAudioChannelConfiguration]) {
+    if ([_lastAdaptationSet.mimeType isEqualToString:kMimeTypeWebmAudio]) {
+      IxoDASHRepresentation* rep =
+          [_lastAdaptationSet.representations lastObject];
+      rep.audioChannelConfig =
+          [[attributeDict objectForKey:kAttributeValue] intValue];
+    } else {
+      NSLog(
+          @"didStartElement: _parseFailed, non-audio rep with channel config");
+      _parseFailed = true;
+    }
+  } else if ([elementName isEqualToString:kElementSegmentBase]) {
+    _parseFailed = [self parseSegmentBaseAttributes:attributeDict] != true;
+  } else if ([elementName isEqualToString:kElementInitialization]) {
+    _parseFailed = [self parseInitializationAttributes:attributeDict] != true;
+  }
+
+  if (_parseFailed) {
+    NSLog(@"didStartElement: Parsing stopped because _parseFailed.");
+    [_parser abortParsing];
+  }
+
+  [_openElements addObject:elementName];
 }
 
 - (void)parser:(NSXMLParser*)parser foundCharacters:(NSString*)string {
-  NSLog(@"foundCharacters --> %@", string);
+  NSLog(@"foundCharacters (%@)", string);
+  if (_parseFailed) {
+    NSLog(@"Parsing stopped because _parseFailed in foundCharacters.");
+    [_parser abortParsing];
+    return;
+  }
+
+  if ([[_openElements lastObject] isEqualToString:kElementBaseURL]) {
+    IxoDASHRepresentation* rep =
+        [_lastAdaptationSet.representations lastObject];
+    rep.baseURL = string;
+  }
 }
 
 - (void)parser:(NSXMLParser*)parser
  didEndElement:(NSString*)elementName
   namespaceURI:(NSString*)namespaceURI
  qualifiedName:(NSString*)qName {
-  NSLog(@"didEndElement   --> %@", elementName);
+  NSLog(@"didEndElement (%@)", elementName);
+
+  if (_parseFailed) {
+    NSLog(@"Parsing stopped because _parseFailed in didEndElement.");
+    [_parser abortParsing];
+    return;
+  }
+
+  _parseFailed = [self closeElementNamed:elementName] != true;
+
+  if (_parseFailed) {
+    NSLog(@"didEndElement set _parseFailed on element (%@)", elementName);
+  }
 }
 
 - (void)parserDidEndDocument:(NSXMLParser*)parser {
+  _lastAdaptationSet = nil;
   NSLog(@"parserDidEndDocument");
 }
 
