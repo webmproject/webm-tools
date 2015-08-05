@@ -13,23 +13,6 @@
 #import "IxoDataSource.h"
 #import "IxoPlayerTestCommon.h"
 
-// Expected values for data length and MD5 checksum (of the entire MPD file).
-const int kExpectedManifestLength = 2005;
-NSString* const kExpectedMD5 = @"8ab746aecdc021ef92d9162f4ba5dd89";
-
-// Line lengths and their offsets (when non-zero) for ranged request tests.
-const int kManifestFirstLineLength = 38;
-NSString* const kManifestFirstLine =
-    @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
-
-const int kManifestMiddleLineLength = 15;
-const int kManifestMiddleLineOffset = 1108;
-NSString* const kManifestMiddleLine = @"<Initialization";
-
-const int kManifestLastLineLength = 6;
-const int kManifestLastLineOffset = 1998;
-NSString* const kManifestLastLine = @"</MPD>";
-
 @interface IxoDataSourceTests : XCTestCase<IxoDataSourceListener>
 @end
 
@@ -58,7 +41,7 @@ NSString* const kManifestLastLine = @"</MPD>";
   // Confirm data matches expectation.
   const char* string_data = [data_string UTF8String];
   unsigned char digest[CC_MD5_DIGEST_LENGTH];
-  CC_MD5(string_data, kExpectedManifestLength, digest);
+  CC_MD5(string_data, kVP9VorbisDASHMPD1Length, digest);
   NSMutableString* md5_string = [[NSMutableString alloc] init];
 
   for (int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
@@ -75,14 +58,15 @@ NSString* const kManifestLastLine = @"</MPD>";
 - (void)testSynchronousDownload {
   IxoDataSource* data_source = [[IxoDataSource alloc] init];
   NSData* manifest_data = [data_source
-      downloadFromURL:[NSURL URLWithString:kStaticManifestURLString]];
+      downloadFromURL:[NSURL URLWithString:kVP9VorbisDASHMPD1URLString]];
 
   // Make sure data was received.
   XCTAssertNotNil(manifest_data, @"Nil manifest.");
-  XCTAssertEqual(manifest_data.length, kExpectedManifestLength,
+  XCTAssertEqual(manifest_data.length, kVP9VorbisDASHMPD1Length,
                  @"Manifest length incorrect.");
 
-  XCTAssert([self MD5SumForData:manifest_data matchesMD5SumString:kExpectedMD5],
+  XCTAssert([self MD5SumForData:manifest_data
+                matchesMD5SumString:kVP9VorbisDASHMPD1MD5],
             @"MD5 mismatch");
 }
 
@@ -92,7 +76,7 @@ NSString* const kManifestLastLine = @"</MPD>";
   [_dataReceivedCondition lock];
 
   const int download_id = [data_source
-      downloadDataFromURL:[NSURL URLWithString:kStaticManifestURLString]
+      downloadDataFromURL:[NSURL URLWithString:kVP9VorbisDASHMPD1URLString]
                 withRange:nil
                toListener:self];
 
@@ -104,7 +88,7 @@ NSString* const kManifestLastLine = @"</MPD>";
   XCTAssert(_downloadRecord.failed == false, @"Download failed");
   XCTAssertNotNil(_downloadRecord.data, @"No response data");
   XCTAssert([self MD5SumForData:_downloadRecord.data
-                matchesMD5SumString:kExpectedMD5],
+                matchesMD5SumString:kVP9VorbisDASHMPD1MD5],
             @"MD5 mismatch");
   XCTAssertNil(_downloadRecord.error, @"Record has non nil error");
   [_dataReceivedCondition unlock];
@@ -114,11 +98,12 @@ NSString* const kManifestLastLine = @"</MPD>";
   IxoDataSource* data_source = [[IxoDataSource alloc] init];
 
   [_dataReceivedCondition lock];
-  NSArray* const range_array =
-      [self getRangeArrayFromIntsWithBeginOffset:0
-                                       endOffset:kManifestFirstLineLength - 1];
+  NSArray* const range_array = [self
+      getRangeArrayFromIntsWithBeginOffset:0
+                                 endOffset:kVP9VorbisDASHMPD1FirstLineLength -
+                                           1];
   const int download_id = [data_source
-      downloadDataFromURL:[NSURL URLWithString:kStaticManifestURLString]
+      downloadDataFromURL:[NSURL URLWithString:kVP9VorbisDASHMPD1URLString]
                 withRange:range_array
                toListener:self];
 
@@ -129,8 +114,9 @@ NSString* const kManifestLastLine = @"</MPD>";
   NSString* response_string =
       [[NSString alloc] initWithData:_downloadRecord.data
                             encoding:NSUTF8StringEncoding];
-  XCTAssert([response_string isEqualToString:kManifestFirstLine]);
-  XCTAssertEqual(_downloadRecord.data.length, kManifestFirstLineLength);
+  XCTAssert([response_string isEqualToString:kVP9VorbisDASHMPD1FirstLine]);
+  XCTAssertEqual(_downloadRecord.data.length,
+                 kVP9VorbisDASHMPD1FirstLineLength);
   XCTAssertEqual(download_id, _downloadRecord.downloadID);
   XCTAssert(_downloadRecord.failed == false, @"Download failed");
   XCTAssertNotNil(_downloadRecord.data, @"No response data");
@@ -142,13 +128,13 @@ NSString* const kManifestLastLine = @"</MPD>";
   IxoDataSource* data_source = [[IxoDataSource alloc] init];
 
   [_dataReceivedCondition lock];
-  const int range_end =
-      kManifestMiddleLineOffset + kManifestMiddleLineLength - 1;
-  NSArray* const range_array =
-      [self getRangeArrayFromIntsWithBeginOffset:kManifestMiddleLineOffset
-                                       endOffset:range_end];
+  const int range_end = kVP9VorbisDASHMPD1MiddleLineOffset +
+                        kVP9VorbisDASHMPD1MiddleLineLength - 1;
+  NSArray* const range_array = [self
+      getRangeArrayFromIntsWithBeginOffset:kVP9VorbisDASHMPD1MiddleLineOffset
+                                 endOffset:range_end];
   const int download_id = [data_source
-      downloadDataFromURL:[NSURL URLWithString:kStaticManifestURLString]
+      downloadDataFromURL:[NSURL URLWithString:kVP9VorbisDASHMPD1URLString]
                 withRange:range_array
                toListener:self];
 
@@ -159,8 +145,9 @@ NSString* const kManifestLastLine = @"</MPD>";
   NSString* response_string =
       [[NSString alloc] initWithData:_downloadRecord.data
                             encoding:NSUTF8StringEncoding];
-  XCTAssert([response_string isEqualToString:kManifestMiddleLine]);
-  XCTAssertEqual(_downloadRecord.data.length, kManifestMiddleLineLength);
+  XCTAssert([response_string isEqualToString:kVP9VorbisDASHMPD1MiddleLine]);
+  XCTAssertEqual(_downloadRecord.data.length,
+                 kVP9VorbisDASHMPD1MiddleLineLength);
   XCTAssertEqual(download_id, _downloadRecord.downloadID);
   XCTAssert(_downloadRecord.failed == false, @"Download failed");
   XCTAssertNotNil(_downloadRecord.data, @"No response data");
@@ -172,12 +159,13 @@ NSString* const kManifestLastLine = @"</MPD>";
   IxoDataSource* data_source = [[IxoDataSource alloc] init];
 
   [_dataReceivedCondition lock];
-  const int range_end = kManifestLastLineOffset + kManifestLastLineLength - 1;
-  NSArray* const range_array =
-      [self getRangeArrayFromIntsWithBeginOffset:kManifestLastLineOffset
-                                       endOffset:range_end];
+  const int range_end =
+      kVP9VorbisDASHMPD1LastLineOffset + kVP9VorbisDASHMPD1LastLineLength - 1;
+  NSArray* const range_array = [self
+      getRangeArrayFromIntsWithBeginOffset:kVP9VorbisDASHMPD1LastLineOffset
+                                 endOffset:range_end];
   const int download_id = [data_source
-      downloadDataFromURL:[NSURL URLWithString:kStaticManifestURLString]
+      downloadDataFromURL:[NSURL URLWithString:kVP9VorbisDASHMPD1URLString]
                 withRange:range_array
                toListener:self];
 
@@ -188,8 +176,8 @@ NSString* const kManifestLastLine = @"</MPD>";
   NSString* response_string =
       [[NSString alloc] initWithData:_downloadRecord.data
                             encoding:NSUTF8StringEncoding];
-  XCTAssert([response_string isEqualToString:kManifestLastLine]);
-  XCTAssertEqual(_downloadRecord.data.length, kManifestLastLineLength);
+  XCTAssert([response_string isEqualToString:kVP9VorbisDASHMPD1LastLine]);
+  XCTAssertEqual(_downloadRecord.data.length, kVP9VorbisDASHMPD1LastLineLength);
   XCTAssertEqual(download_id, _downloadRecord.downloadID);
   XCTAssert(_downloadRecord.failed == false, @"Download failed");
   XCTAssertNotNil(_downloadRecord.data, @"No response data");

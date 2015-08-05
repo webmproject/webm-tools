@@ -7,5 +7,25 @@
 // be found in the AUTHORS file in the root of the source tree.
 #import "IxoPlayerTestCommon.h"
 
-NSString* const kStaticManifestURLString =
-    @"http://localhost:8000/vp9_glass/manifest_vp9_vorbis.mpd";
+
+// URLs for test manifest files.
+NSString* const kVP9VorbisDASHMPD1URLString =
+    @"http://localhost:8000/manifest_vp9_vorbis.mpd";
+
+// Expected values for data length and MD5 checksum (of the entire MPD file).
+const int kVP9VorbisDASHMPD1Length = 2005;
+NSString* const kVP9VorbisDASHMPD1MD5 = @"8ab746aecdc021ef92d9162f4ba5dd89";
+
+// Line lengths, their contents, and their offsets (when non-zero) for ranged
+// request tests.
+const int kVP9VorbisDASHMPD1FirstLineLength = 38;
+NSString* const kVP9VorbisDASHMPD1FirstLine =
+    @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+
+const int kVP9VorbisDASHMPD1MiddleLineLength = 15;
+const int kVP9VorbisDASHMPD1MiddleLineOffset = 1108;
+NSString* const kVP9VorbisDASHMPD1MiddleLine = @"<Initialization";
+
+const int kVP9VorbisDASHMPD1LastLineLength = 6;
+const int kVP9VorbisDASHMPD1LastLineOffset = 1998;
+NSString* const kVP9VorbisDASHMPD1LastLine = @"</MPD>";
