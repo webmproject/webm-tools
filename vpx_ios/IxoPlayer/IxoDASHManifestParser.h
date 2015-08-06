@@ -10,45 +10,45 @@
 #import "IxoDataSource.h"
 
 @interface IxoDASHRepresentation : NSObject
-@property(nonatomic, strong) NSString* repID;
-@property(nonatomic) int bandwidth;
-@property(nonatomic) int width;
-@property(nonatomic) int height;
-@property(nonatomic) int audioSamplingRate;
-@property(nonatomic) int audioChannelConfig;
-@property(nonatomic) int startWithSAP;
-@property(nonatomic, strong) NSString* baseURL;
-@property(nonatomic, strong) NSString* codecs;
-@property(nonatomic, strong) NSArray* segmentBase;
-@property(nonatomic, strong) NSArray* initialization;
+@property(nonatomic, strong, readonly) NSString* repID;
+@property(nonatomic, readonly) int bandwidth;
+@property(nonatomic, readonly) int width;
+@property(nonatomic, readonly) int height;
+@property(nonatomic, readonly) int audioSamplingRate;
+@property(nonatomic, readonly) int audioChannelConfig;
+@property(nonatomic, readonly) int startWithSAP;
+@property(nonatomic, strong, readonly) NSString* baseURL;
+@property(nonatomic, strong, readonly) NSString* codecs;
+@property(nonatomic, strong, readonly) NSArray* segmentBaseIndexRange;
+@property(nonatomic, strong, readonly) NSArray* initializationRange;
 @end
 
 @interface IxoDASHAdaptationSet : NSObject
-@property(nonatomic, strong) NSString* setID;
-@property(nonatomic, strong) NSString* mimeType;
-@property(nonatomic, strong) NSString* codecs;
-@property(nonatomic) bool subsegmentAlignment;
-@property(nonatomic) bool bitstreamSwitching;
-@property(nonatomic) int subsegmentStartsWithSAP;
-@property(nonatomic) int width;
-@property(nonatomic) int height;
-@property(nonatomic) int audioSamplingRate;
-@property(nonatomic, strong) NSMutableArray* representations;
+@property(nonatomic, strong, readonly) NSString* setID;
+@property(nonatomic, strong, readonly) NSString* mimeType;
+@property(nonatomic, strong, readonly) NSString* codecs;
+@property(nonatomic, readonly) bool subsegmentAlignment;
+@property(nonatomic, readonly) bool bitstreamSwitching;
+@property(nonatomic, readonly) int subsegmentStartsWithSAP;
+@property(nonatomic, readonly) int width;
+@property(nonatomic, readonly) int height;
+@property(nonatomic, readonly) int audioSamplingRate;
+@property(nonatomic, strong, readonly) NSMutableArray* representations;
 @end
 
 @interface IxoDASHPeriod : NSObject
-@property(nonatomic, strong) NSString* periodID;
-@property(nonatomic, strong) NSString* start;
-@property(nonatomic, strong) NSString* duration;
-@property(nonatomic, strong) NSMutableArray* audioAdaptationSets;
-@property(nonatomic, strong) NSMutableArray* videoAdaptationSets;
+@property(nonatomic, strong, readonly) NSString* periodID;
+@property(nonatomic, strong, readonly) NSString* start;
+@property(nonatomic, strong, readonly) NSString* duration;
+@property(nonatomic, strong, readonly) NSMutableArray* audioAdaptationSets;
+@property(nonatomic, strong, readonly) NSMutableArray* videoAdaptationSets;
 @end
 
 @interface IxoDASHManifest : NSObject
-@property(nonatomic, strong) NSString* mediaPresentationDuration;
-@property(nonatomic, strong) NSString* minBufferTime;
-@property(nonatomic) bool staticPresentation;
-@property(nonatomic, strong) IxoDASHPeriod* period;
+@property(nonatomic, strong, readonly) NSString* mediaPresentationDuration;
+@property(nonatomic, strong, readonly) NSString* minBufferTime;
+@property(nonatomic, readonly) bool staticPresentation;
+@property(nonatomic, strong, readonly) IxoDASHPeriod* period;
 @end
 
 @interface IxoDASHManifestParser : NSObject<NSXMLParserDelegate>

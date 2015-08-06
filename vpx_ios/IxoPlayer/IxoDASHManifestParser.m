@@ -13,6 +13,20 @@
 //
 // IxoDASHRepresentation
 //
+@interface IxoDASHRepresentation()
+@property(nonatomic, strong) NSString* repID;
+@property(nonatomic) int bandwidth;
+@property(nonatomic) int width;
+@property(nonatomic) int height;
+@property(nonatomic) int audioSamplingRate;
+@property(nonatomic) int audioChannelConfig;
+@property(nonatomic) int startWithSAP;
+@property(nonatomic, strong) NSString* baseURL;
+@property(nonatomic, strong) NSString* codecs;
+@property(nonatomic, strong) NSArray* segmentBaseIndexRange;
+@property(nonatomic, strong) NSArray* initializationRange;
+@end
+
 @implementation IxoDASHRepresentation
 @synthesize repID = _repID;
 @synthesize bandwidth = _bandwidth;
@@ -23,8 +37,8 @@
 @synthesize startWithSAP = _startWithSAP;
 @synthesize codecs = _codecs;
 @synthesize baseURL = _baseURL;
-@synthesize segmentBase = _segmentBase;
-@synthesize initialization = _initialization;
+@synthesize segmentBaseIndexRange = _segmentBaseIndexRange;
+@synthesize initializationRange = _initializationRange;
 
 - (id)init {
   self = [super init];
@@ -33,8 +47,8 @@
     self.width = 0;
     self.height = 0;
     self.audioSamplingRate = 0;
-    self.segmentBase = [[NSArray alloc] init];
-    self.initialization = [[NSArray alloc] init];
+    self.segmentBaseIndexRange = [[NSArray alloc] init];
+    self.initializationRange = [[NSArray alloc] init];
   }
   return self;
 }
@@ -44,6 +58,19 @@
 //
 // IxoDASHAdaptationSet
 //
+@interface IxoDASHAdaptationSet()
+@property(nonatomic, strong) NSString* setID;
+@property(nonatomic, strong) NSString* mimeType;
+@property(nonatomic, strong) NSString* codecs;
+@property(nonatomic) bool subsegmentAlignment;
+@property(nonatomic) bool bitstreamSwitching;
+@property(nonatomic) int subsegmentStartsWithSAP;
+@property(nonatomic) int width;
+@property(nonatomic) int height;
+@property(nonatomic) int audioSamplingRate;
+@property(nonatomic, strong) NSMutableArray* representations;
+@end
+
 @implementation IxoDASHAdaptationSet
 @synthesize setID = _setID;
 @synthesize mimeType = _mimeType;
@@ -74,6 +101,14 @@
 //
 // IxoDASHPeriod
 //
+@interface IxoDASHPeriod()
+@property(nonatomic, strong) NSString* periodID;
+@property(nonatomic, strong) NSString* start;
+@property(nonatomic, strong) NSString* duration;
+@property(nonatomic, strong) NSMutableArray* audioAdaptationSets;
+@property(nonatomic, strong) NSMutableArray* videoAdaptationSets;
+@end
+
 @implementation IxoDASHPeriod
 @synthesize periodID = _periodID;
 @synthesize start = _start;
@@ -94,6 +129,13 @@
 //
 // IxoDASHManifest
 //
+@interface IxoDASHManifest()
+@property(nonatomic, strong) NSString* mediaPresentationDuration;
+@property(nonatomic, strong) NSString* minBufferTime;
+@property(nonatomic) bool staticPresentation;
+@property(nonatomic, strong) IxoDASHPeriod* period;
+@end
+
 @implementation IxoDASHManifest
 @synthesize mediaPresentationDuration = _mediaPresentationDuration;
 @synthesize minBufferTime = _minBufferTime;
