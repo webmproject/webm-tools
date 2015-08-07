@@ -16,6 +16,24 @@
       "revId": "8f97f2cb8c37b15f0eeaa5dc3ae5f508f7802339",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e7fb4f32_f2e850f1",
+        "filename": "vpx_ios/IxoPlayer/IxoDASHManifestParser.m",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2015-08-07T18:47:05Z",
+      "side": 1,
+      "message": "I was leaving that for later, or just outright ignoring it; I don\u0027t know what the proper profile is, or if there really is one. Seems like WebM DASH manifests aren\u0027t guaranteed to have sensible values: all three of my test manifests are (apparently) valid. That\u0027s based solely on them working in chrome, though. \n\nAnyway, three valid manifests and two profiles so far:\n\nurn:mpeg:dash:profile:isoff-on-demand:2011\nurn:webm:dash:profile:webm-on-demand:2012\n\nSince I\u0027ve already seen a lack of consistency I\u0027m planning to have the player go by mimetypes and chunk parse results. As long as it can fetch chunks resulting from a manifest parsing run I think the manifest is valid enough for playback.",
+      "parentUuid": "47141b33_82e8a075",
+      "revId": "8f97f2cb8c37b15f0eeaa5dc3ae5f508f7802339",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
