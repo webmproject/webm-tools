@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "47141b33_82e8a075",
+        "filename": "vpx_ios/IxoPlayer/IxoDASHManifestParser.m",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2015-08-07T18:31:52Z",
+      "side": 1,
+      "message": "do you need to expose profiles? or will you just fail if it\u0027s not what webm wants?",
+      "revId": "8f97f2cb8c37b15f0eeaa5dc3ae5f508f7802339",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
