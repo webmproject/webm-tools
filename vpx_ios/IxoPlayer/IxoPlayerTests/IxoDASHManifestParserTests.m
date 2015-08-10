@@ -8,6 +8,7 @@
 #import "IxoDASHManifestParser.h"
 
 #import <Foundation/Foundation.h>
+#import <objc/runtime.h>
 #import <XCTest/XCTest.h>
 
 #import "IxoPlayerTestCommon.h"
@@ -16,11 +17,24 @@
 @end
 
 @implementation IxoDASHManifestParserTests {
+  NSArray* allManifests;
+  NSDictionary* expectedManifest;
 }
 
 // Note: -setUp and -tearDown are called for each test.
 
+
+
+
 - (void)setUp {
+
+  //
+  expectedManifest = [[NSDictionary alloc]
+      initWithObjectsAndKeys:@"PT135.629S", @"mediaPresentationDuration",
+                             @"PT1S", @"minBufferTime",
+                             [NSNumber numberWithBool:true],
+                             @"staticPresentation",
+                             nil];
   [super setUp];
 }
 
@@ -28,7 +42,35 @@
   [super tearDown];
 }
 
-- (void)testParseDASHMPD1 {
+- (void)testParseDASH1 {
+  NSURL* const manifest_url = [NSURL URLWithString:kVP9VorbisDASHMPD1URLString];
+  IxoDASHManifestParser* parser =
+      [[IxoDASHManifestParser alloc] initWithManifestURL:manifest_url];
+  const bool parse_ok = [parser parse];
+  XCTAssertTrue(parse_ok);
+  IxoDASHManifest* const manifest = parser.manifest;
+  NSArray* const keys = expectedManifest.allKeys;
+
+  for (NSString* key in keys) {
+    id expected_value = [expectedParseResults objectForKey:key];
+    id actual_value = [manifest valueForKey:key];
+    NSLog(@"key=%@ expected_value=%@ actual_value=%@", key, expected_value,
+          actual_value);
+
+    if ([expected_value isKindOfClass:[NSNumber class]]) {
+      // bool and int values are stored in the expected results dict as
+      // NSNumber; just value check via -intValue.
+      XCTAssertEqual([expected_value intValue], [actual_value intValue]);
+    } else if ([expected_value isKindOfClass:[NSString class]]) {
+      XCTAssertTrue([actual_value isEqualToString:expected_value]);
+    } else {
+      XCTFail(@"Unexpected object type in values from expectedParseResults!");
+    }
+  }
+}
+
+// Test parsing of testdata/manifest_vp9_vorbis.mpd.
+- (void)_testParseDASHMPD1 {
   NSURL* const manifest_url = [NSURL URLWithString:kVP9VorbisDASHMPD1URLString];
   IxoDASHManifestParser* parser =
       [[IxoDASHManifestParser alloc] initWithManifestURL:manifest_url];
@@ -94,6 +136,8 @@
       [video_as.codecs isEqualToString:kVP9VorbisDASHMPD1VideoASCodecs]);
   XCTAssertTrue(
       [video_as.mimeType isEqualToString:kVP9VorbisDASHMPD1VideoASMimeType]);
+  XCTAssertEqual(video_as.width, kVP9VorbisDASHMPD1VideoASWidth);
+  XCTAssertEqual(video_as.height, kVP9VorbisDASHMPD1VideoASHeight);
 
   // Verify first audio representation attributes.
   XCTAssertEqual([video_as.representations count],
