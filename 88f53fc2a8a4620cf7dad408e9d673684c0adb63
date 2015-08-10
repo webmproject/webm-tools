@@ -37,6 +37,29 @@
     },
     {
       "key": {
+        "uuid": "a7ceb7a1_ba5fc96c",
+        "filename": "vpx_ios/IxoPlayer/IxoDASHManifestParser.m",
+        "patchSetId": 1
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2015-08-10T19:17:48Z",
+      "side": 1,
+      "message": "mediaPresentationDuration is mandatory if type \u003d\u003d \u0027static\u0027. so you can probably add that check and get rid of this TODO. For live, the manifest type will be dynamic.",
+      "range": {
+        "startLine": 274,
+        "startChar": 2,
+        "endLine": 275,
+        "endChar": 19
+      },
+      "revId": "88f53fc2a8a4620cf7dad408e9d673684c0adb63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e7242fa6_ff493339",
         "filename": "vpx_ios/IxoPlayer/IxoDASHManifestParser.m",
         "patchSetId": 1
@@ -66,6 +89,69 @@
       "side": 1,
       "message": "No, but the placement is. They can be specified at the AdaptationSet level OR at the Representation level. It\u0027s (I think) supposed to be in the AS if all reps are the same width/height.",
       "parentUuid": "e7242fa6_ff493339",
+      "revId": "88f53fc2a8a4620cf7dad408e9d673684c0adb63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "07bea3e2_fd12df15",
+        "filename": "vpx_ios/IxoPlayer/IxoDASHManifestParser.m",
+        "patchSetId": 1
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2015-08-10T19:17:48Z",
+      "side": 1,
+      "message": "check if both representation and last AS don\u0027t have width/height. it\u0027s an invalid manifest in that case.",
+      "revId": "88f53fc2a8a4620cf7dad408e9d673684c0adb63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "47c41b7d_1fa22bae",
+        "filename": "vpx_ios/IxoPlayer/IxoDASHManifestParser.m",
+        "patchSetId": 1
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2015-08-10T19:17:48Z",
+      "side": 1,
+      "message": "optional: you can just reject manifests with type \u003d\u003d \u0027dynamic\u0027 and add a TODO there stating \"add support for live presentations\" and remove all the other TODOs about live manifests.",
+      "range": {
+        "startLine": 379,
+        "startChar": 5,
+        "endLine": 379,
+        "endChar": 67
+      },
+      "revId": "88f53fc2a8a4620cf7dad408e9d673684c0adb63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "67e67f2a_d8a16580",
+        "filename": "vpx_ios/IxoPlayer/IxoDASHManifestParser.m",
+        "patchSetId": 1
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2015-08-10T19:17:48Z",
+      "side": 1,
+      "message": "also an invalid range if second value \u003c first value. ditto below.",
+      "range": {
+        "startLine": 389,
+        "startChar": 42,
+        "endLine": 389,
+        "endChar": 43
+      },
       "revId": "88f53fc2a8a4620cf7dad408e9d673684c0adb63",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
