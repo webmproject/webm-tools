@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "a7ceb7a1_da3e0576",
+        "filename": "vpx_ios/IxoPlayer/IxoDASHManifestParser.m",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2015-08-10T18:37:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "270ba719_070700d6",
+      "revId": "88f53fc2a8a4620cf7dad408e9d673684c0adb63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "e7242fa6_ff493339",
         "filename": "vpx_ios/IxoPlayer/IxoDASHManifestParser.m",
         "patchSetId": 1
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "47bedb91_09ece9b5",
+        "filename": "vpx_ios/IxoPlayer/IxoDASHManifestParser.m",
+        "patchSetId": 1
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2015-08-10T18:37:33Z",
+      "side": 1,
+      "message": "No, but the placement is. They can be specified at the AdaptationSet level OR at the Representation level. It\u0027s (I think) supposed to be in the AS if all reps are the same width/height.",
+      "parentUuid": "e7242fa6_ff493339",
+      "revId": "88f53fc2a8a4620cf7dad408e9d673684c0adb63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "47141b33_428e088d",
         "filename": "vpx_ios/IxoPlayer/IxoDASHManifestParser.m",
         "patchSetId": 1
@@ -47,6 +83,24 @@
       "writtenOn": "2015-08-07T19:22:09Z",
       "side": 1,
       "message": "An",
+      "revId": "88f53fc2a8a4620cf7dad408e9d673684c0adb63",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a7ceb7a1_9a73ed5b",
+        "filename": "vpx_ios/IxoPlayer/IxoDASHManifestParser.m",
+        "patchSetId": 1
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2015-08-10T18:37:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47141b33_428e088d",
       "revId": "88f53fc2a8a4620cf7dad408e9d673684c0adb63",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
