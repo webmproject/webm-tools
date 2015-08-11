@@ -43,7 +43,7 @@ FOUNDATION_EXPORT NSString* const kMimeTypeWebmAudio;
 FOUNDATION_EXPORT NSString* const kMimeTypeWebmVideo;
 
 FOUNDATION_EXPORT NSString* const kCodecOpus;
-FOUNDATION_EXPORT NSString* const kCodecVorbus;
+FOUNDATION_EXPORT NSString* const kCodecVorbis;
 
 FOUNDATION_EXPORT NSString* const kCodecVP8;
 FOUNDATION_EXPORT NSString* const kCodecVP9;
