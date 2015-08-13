@@ -44,12 +44,17 @@
 - (id)init {
   self = [super init];
   if (self) {
+    self.repID = nil;
     self.bandwidth = 0;
     self.width = 0;
     self.height = 0;
     self.audioSamplingRate = 0;
-    self.segmentBaseIndexRange = [[NSArray alloc] init];
-    self.initializationRange = [[NSArray alloc] init];
+    self.audioChannelConfig = 0;
+    self.startWithSAP = 0;
+    self.codecs = nil;
+    self.baseURL = nil;
+    self.segmentBaseIndexRange = nil;
+    self.initializationRange = nil;
   }
   return self;
 }
@@ -86,6 +91,9 @@
 - (id)init {
   self = [super init];
   if (self) {
+    self.setID = nil;
+    self.mimeType = nil;
+    self.codecs = nil;
     self.subsegmentAlignment = false;
     self.bitstreamSwitching = false;
     self.subsegmentStartsWithSAP = 0;
@@ -119,6 +127,9 @@
 - (id)init {
   self = [super init];
   if (self) {
+    self.periodID = nil;
+    self.start = nil;
+    self.duration = nil;
     self.audioAdaptationSets = [[NSMutableArray alloc] init];
     self.videoAdaptationSets = [[NSMutableArray alloc] init];
   }
@@ -141,6 +152,17 @@
 @synthesize minBufferTime = _minBufferTime;
 @synthesize staticPresentation = _staticPresentation;
 @synthesize period = _period;
+
+- (id)init {
+  self = [super init];
+  if (self) {
+    self.mediaPresentationDuration = nil;
+    self.minBufferTime = nil;
+    self.staticPresentation = false;
+    self.period = nil;
+  }
+  return self;
+}
 @end
 
 //
