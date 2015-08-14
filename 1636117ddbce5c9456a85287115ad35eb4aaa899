@@ -16,6 +16,24 @@
       "revId": "1636117ddbce5c9456a85287115ad35eb4aaa899",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c43e49ec_b10288c2",
+        "filename": "vpx_ios/IxoPlayer/IxoPlayerTests/IxoMutableDASHManifest.m",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2015-08-14T20:20:43Z",
+      "side": 1,
+      "message": "sigh. rebasing is hard. i was playing around with readonly props and seeing when things got angry, and apparently I picked the wrong side when I ended up with a merge conflict during a squash attempt.\n\nFixed locally.",
+      "parentUuid": "645f5d28_27568dd9",
+      "revId": "1636117ddbce5c9456a85287115ad35eb4aaa899",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
