@@ -29,47 +29,8 @@ FOUNDATION_EXPORT const int kVP9VorbisDASHMPD1LastLineLength;
 FOUNDATION_EXPORT const int kVP9VorbisDASHMPD1LastLineOffset;
 FOUNDATION_EXPORT NSString* const kVP9VorbisDASHMPD1LastLine;
 
-// DASH manifest parsing result constants.
-FOUNDATION_EXPORT const bool kVP9VorbisDASHMPD1IsStatic;
-FOUNDATION_EXPORT NSString* const kVP9VorbisDASHMPD1MediaPresentationDuration;
-FOUNDATION_EXPORT NSString* const kVP9VorbisDASHMPD1MinBufferTime;
-
-// Period constants.
-FOUNDATION_EXPORT NSString* const kVP9VorbisDASHMPD1PeriodID;
-FOUNDATION_EXPORT NSString* const kVP9VorbisDASHMPD1PeriodStart;
-FOUNDATION_EXPORT NSString* const kVP9VorbisDASHMPD1PeriodDuration;
-
-// Audio AdaptationSet constants.
-FOUNDATION_EXPORT const int kVP9VorbisDASHMPD1AudioASCount;
-FOUNDATION_EXPORT NSString* const kVP9VorbisDASHMPD1AudioASID;
-FOUNDATION_EXPORT NSString* const kVP9VorbisDASHMPD1AudioASCodecs;
-FOUNDATION_EXPORT NSString* const kVP9VorbisDASHMPD1AudioASMimeType;
-FOUNDATION_EXPORT const int kVP9VorbisDASHMPD1AudioASAudioSamplingRate;
-
-// Video AdaptationSet constants.
-FOUNDATION_EXPORT const int kVP9VorbisDASHMPD1VideoASCount;
-FOUNDATION_EXPORT NSString* const kVP9VorbisDASHMPD1VideoASID;
-FOUNDATION_EXPORT NSString* const kVP9VorbisDASHMPD1VideoASCodecs;
-FOUNDATION_EXPORT NSString* const kVP9VorbisDASHMPD1VideoASMimeType;
-
-// Audio Representation count and Representation 0 constants.
-FOUNDATION_EXPORT const int kVP9VorbisDASHMPD1AudioRepCount;
-FOUNDATION_EXPORT NSString* const kVP9VorbisDASHMPD1AudioRep0ID;
-FOUNDATION_EXPORT NSString* const kVP9VorbisDASHMPD1AudioRep0BaseURLString;
-FOUNDATION_EXPORT const int kVP9VorbisDASHMPD1AudioRep0IndexRangeStart;
-FOUNDATION_EXPORT const int kVP9VorbisDASHMPD1AudioRep0IndexRangeEnd;
-FOUNDATION_EXPORT const int kVP9VorbisDASHMPD1AudioRep0InitRangeStart;
-FOUNDATION_EXPORT const int kVP9VorbisDASHMPD1AudioRep0InitRangeEnd;
-FOUNDATION_EXPORT const int kVP9VorbisDASHMPD1AudioRep0Bandwidth;
-
-// Video Representation count and Representation 0 constants.
-FOUNDATION_EXPORT const int kVP9VorbisDASHMPD1VideoRepCount;
-FOUNDATION_EXPORT NSString* const kVP9VorbisDASHMPD1VideoRep0ID;
-FOUNDATION_EXPORT NSString* const kVP9VorbisDASHMPD1VideoRep0BaseURLString;
-FOUNDATION_EXPORT const int kVP9VorbisDASHMPD1VideoRep0IndexRangeStart;
-FOUNDATION_EXPORT const int kVP9VorbisDASHMPD1VideoRep0IndexRangeEnd;
-FOUNDATION_EXPORT const int kVP9VorbisDASHMPD1VideoRep0InitRangeStart;
-FOUNDATION_EXPORT const int kVP9VorbisDASHMPD1VideoRep0InitRangeEnd;
-FOUNDATION_EXPORT const int kVP9VorbisDASHMPD1VideoRep0Width;
-FOUNDATION_EXPORT const int kVP9VorbisDASHMPD1VideoRep0Height;
-FOUNDATION_EXPORT const int kVP9VorbisDASHMPD1VideoRep0Bandwidth;
+//
+// URLs for additional test manifest files.
+//
+FOUNDATION_EXPORT NSString* const kVP9VorbisDASHMPD2URLString;
+FOUNDATION_EXPORT NSString* const kVP9VorbisDASHMPD3URLString;

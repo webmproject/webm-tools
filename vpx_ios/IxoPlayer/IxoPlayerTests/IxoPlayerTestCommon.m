@@ -7,6 +7,9 @@
 // be found in the AUTHORS file in the root of the source tree.
 #import "IxoPlayerTestCommon.h"
 
+#import "IxoDASHManifestParserConstants.h"
+#import "IxoDASHManifestTestData.h"
+
 const int kNumElementsInRangeArray = 2;
 
 //
@@ -32,48 +35,3 @@ NSString* const kVP9VorbisDASHMPD1MiddleLine = @"<Initialization";
 const int kVP9VorbisDASHMPD1LastLineLength = 6;
 const int kVP9VorbisDASHMPD1LastLineOffset = 1998;
 NSString* const kVP9VorbisDASHMPD1LastLine = @"</MPD>";
-
-// DASH manifest parsing result constants.
-const bool kVP9VorbisDASHMPD1IsStatic = true;
-NSString* const kVP9VorbisDASHMPD1MediaPresentationDuration = @"PT135.629S";
-NSString* const kVP9VorbisDASHMPD1MinBufferTime = @"PT1S";
-
-// Period constants.
-NSString* const kVP9VorbisDASHMPD1PeriodID = @"0";
-NSString* const kVP9VorbisDASHMPD1PeriodStart = @"PT0S";
-NSString* const kVP9VorbisDASHMPD1PeriodDuration = @"PT135.629S";
-
-// Audio AdaptationSet constants.
-const int kVP9VorbisDASHMPD1AudioASCount = 1;
-NSString* const kVP9VorbisDASHMPD1AudioASID = @"1";
-NSString* const kVP9VorbisDASHMPD1AudioASCodecs = @"vorbis";
-NSString* const kVP9VorbisDASHMPD1AudioASMimeType = @"audio/webm";
-const int kVP9VorbisDASHMPD1AudioASAudioSamplingRate = 44100;
-
-// Video AdaptationSet constants.
-const int kVP9VorbisDASHMPD1VideoASCount = 1;
-NSString* const kVP9VorbisDASHMPD1VideoASID = @"0";
-NSString* const kVP9VorbisDASHMPD1VideoASCodecs = @"vp9";
-NSString* const kVP9VorbisDASHMPD1VideoASMimeType = @"video/webm";
-
-// Audio Representation count and Representation 0 constants.
-const int kVP9VorbisDASHMPD1AudioRepCount = 2;
-NSString* const kVP9VorbisDASHMPD1AudioRep0ID = @"4";
-NSString* const kVP9VorbisDASHMPD1AudioRep0BaseURLString = @"glass_171.webm";
-const int kVP9VorbisDASHMPD1AudioRep0IndexRangeStart = 1839501;
-const int kVP9VorbisDASHMPD1AudioRep0IndexRangeEnd = 1840056;
-const int kVP9VorbisDASHMPD1AudioRep0InitRangeStart = 0;
-const int kVP9VorbisDASHMPD1AudioRep0InitRangeEnd = 4700;
-const int kVP9VorbisDASHMPD1AudioRep0Bandwidth = 109755;
-
-// Video Representation count and Representation 0 constants.
-const int kVP9VorbisDASHMPD1VideoRepCount = 4;
-NSString* const kVP9VorbisDASHMPD1VideoRep0ID = @"0";
-NSString* const kVP9VorbisDASHMPD1VideoRep0BaseURLString = @"glass_242.webm";
-const int kVP9VorbisDASHMPD1VideoRep0IndexRangeStart = 2983244;
-const int kVP9VorbisDASHMPD1VideoRep0IndexRangeEnd = 2983799;
-const int kVP9VorbisDASHMPD1VideoRep0InitRangeStart = 0;
-const int kVP9VorbisDASHMPD1VideoRep0InitRangeEnd = 439;
-const int kVP9VorbisDASHMPD1VideoRep0Width = 426;
-const int kVP9VorbisDASHMPD1VideoRep0Height = 240;
-const int kVP9VorbisDASHMPD1VideoRep0Bandwidth = 204463;

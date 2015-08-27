@@ -79,8 +79,7 @@
 - (id)init {
   self = [super init];
   if (self) {
-    _setID = nil;
-    //    self.setID = nil;
+    self.setID = nil;
     self.mimeType = nil;
     self.codecs = nil;
     self.subsegmentAlignment = false;
