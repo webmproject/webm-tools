@@ -8,18 +8,20 @@
 #import "IxoDASHManifestParser.h"
 
 #import <Foundation/Foundation.h>
+#import <objc/runtime.h>
 #import <XCTest/XCTest.h>
 
+#import "IxoDASHManifestTestData.h"
 #import "IxoPlayerTestCommon.h"
 
 @interface IxoDASHManifestParserTests : XCTestCase
 @end
 
-@implementation IxoDASHManifestParserTests {
-}
+@implementation IxoDASHManifestParserTests
 
-// Note: -setUp and -tearDown are called for each test.
-
+//
+// XCTest methods.
+//
 - (void)setUp {
   [super setUp];
 }
@@ -28,93 +30,176 @@
   [super tearDown];
 }
 
-- (void)testParseDASHMPD1 {
+//
+// IxoDASHManifestParser parser test helpers.
+//
+
+- (bool)idIsArrayType:(id)unknownType {
+  return [unknownType isKindOfClass:[NSArray class]];
+}
+
+- (bool)idIsStringType:(id)unknownType {
+  return [unknownType isKindOfClass:[NSString class]];
+}
+
+- (bool)arrayMatches:(NSArray*)arr array:(NSArray*)otherArray {
+  return [arr isEqualToArray:otherArray] == YES;
+}
+
+- (bool)stringMatches:(NSString*)str string:(NSString*)otherStr {
+  return [str isEqualToString:otherStr] == YES;
+}
+
+// Returns array of property names for given type id.
+- (NSArray*)allPropertyNamesForType:(id)type {
+  uint num_props;
+  objc_property_t* const properties =
+      class_copyPropertyList([type class], &num_props);
+  NSMutableArray* prop_names = [NSMutableArray array];
+
+  for (uint i = 0; i < num_props; ++i) {
+    objc_property_t property = properties[i];
+    NSString* const name =
+        [NSString stringWithUTF8String:property_getName(property)];
+    [prop_names addObject:name];
+  }
+  free(properties);
+  NSLog(@"allPropertyNamesForType: returning %@", prop_names);
+  return prop_names;
+}
+
+// Returns true when representations match, or dies.
+- (bool)representationMatches:(IxoDASHRepresentation*)rep
+       ExpectedRepresentation:(IxoMutableDASHRepresentation*)expectedRep {
+  NSArray* const props =
+      [self allPropertyNamesForType:[IxoDASHRepresentation class]];
+  for (NSString* const prop in props) {
+    // Compare the prop values.
+    if ([self idIsArrayType:[rep valueForKey:prop]]) {
+      XCTAssertTrue([self arrayMatches:[rep valueForKey:prop]
+                                 array:[expectedRep valueForKey:prop]]);
+    } else if ([self idIsStringType:[rep valueForKey:prop]]) {
+      XCTAssertTrue([self stringMatches:val string:exp]);
+    } else {
+      XCTAssertEqual([rep valueForKey:prop], [expectedRep valueForKey:prop]);
+    }
+  }
+  return true;
+}
+
+// Returns true when AdaptationSets match, or dies.
+- (bool)adaptationSetMatches:(IxoDASHAdaptationSet*)set
+       ExpectedAdaptationSet:(IxoMutableDASHAdaptationSet*)expectedSet {
+  NSArray* const props =
+      [self allPropertyNamesForType:[IxoDASHAdaptationSet class]];
+
+  // Compare AdaptationSet attributes.
+  for (NSString* const prop in props) {
+    // Representation(s) check is done below; skip it here.
+    if ([prop isEqualToString:@"representations"]) {
+      continue;
+    }
+
+    // Compare the prop values.
+    if ([self idIsStringType:[set valueForKey:prop]]) {
+      XCTAssertTrue([self stringMatches:[set valueForKey:prop]
+                                 string:[expectedSet valueForKey:prop]]);
+    } else {
+      XCTAssertEqual([set valueForKey:prop], [expectedSet valueForKey:prop]);
+    }
+  }
+
+  // Compare the Representation elements from the AdaptationSet.
+  XCTAssertEqual(set.representations.count, expectedSet.representations.count);
+  for (uint i = 0; i < set.representations.count; ++i) {
+    XCTAssertTrue([self
+         representationMatches:[set.representations objectAtIndex:i]
+        ExpectedRepresentation:[expectedSet.representations objectAtIndex:i]]);
+  }
+  return true;
+}
+
+// Returns true when Periods match, or dies.
+- (bool)periodMatches:(IxoDASHPeriod*)period
+       ExpectedPeriod:(IxoMutableDASHPeriod*)expectedPeriod {
+  NSArray* const props = [self allPropertyNamesForType:[IxoDASHPeriod class]];
+
+  // Compare Period attributes.
+  for (NSString* const prop in props) {
+    // {audio|video}AdaptationSets are checked below; skip the checks here.
+    if ([prop isEqualToString:@"audioAdaptationSets"] ||
+        [prop isEqualToString:@"videoAdaptationSets"]) {
+      continue;
+    }
+
+    XCTAssertTrue([[period valueForKey:prop]
+        isEqualToString:[expectedPeriod valueForKey:prop]]);
+  }
+
+  // Compare the audio AdaptationSet elements from the Period.
+  XCTAssertEqual(period.audioAdaptationSets.count,
+                 expectedPeriod.audioAdaptationSets.count);
+  for (uint i = 0; i < period.audioAdaptationSets.count; ++i) {
+    XCTAssertTrue(
+        [self adaptationSetMatches:[period.audioAdaptationSets objectAtIndex:i]
+             ExpectedAdaptationSet:[expectedPeriod.audioAdaptationSets
+                                       objectAtIndex:i]]);
+  }
+
+  // Compare the audio AdaptationSet elements from the Period.
+  XCTAssertEqual(period.videoAdaptationSets.count,
+                 expectedPeriod.videoAdaptationSets.count);
+  for (uint i = 0; i < period.videoAdaptationSets.count; ++i) {
+    XCTAssertTrue(
+        [self adaptationSetMatches:[period.videoAdaptationSets objectAtIndex:i]
+             ExpectedAdaptationSet:[expectedPeriod.videoAdaptationSets
+                                       objectAtIndex:i]]);
+  }
+
+  return true;
+}
+
+// Returns true when manifests match, or dies.
+- (bool)manifestMatches:(IxoDASHManifest*)manifest
+       ExpectedManifest:(IxoMutableDASHManifest*)expectedManifest {
+  NSArray* const props = [self allPropertyNamesForType:[IxoDASHManifest class]];
+
+  // Compare manifest attributes.
+  for (NSString* const prop in props) {
+    // Period check is done below; skip it here.
+    if ([prop isEqualToString:@"period"]) {
+      continue;
+    }
+
+    if ([self idIsStringType:[manifest valueForKey:prop]]) {
+      XCTAssertTrue([self stringMatches:[manifest valueForKey:prop]
+                                 string:[expectedManifest valueForKey:prop]]);
+    } else {
+      XCTAssertEqual([manifest valueForKey:prop],
+                     [expectedManifest valueForKey:prop]);
+    }
+  }
+
+  // Compare the Representation elements from the AdaptationSet.
+  XCTAssertTrue([self periodMatches:manifest.period
+                     ExpectedPeriod:expectedManifest.period]);
+  return true;
+}
+
+//
+// IxoDASHManifestParser tests.
+//
+- (void)testParseDASH1 {
   NSURL* const manifest_url = [NSURL URLWithString:kVP9VorbisDASHMPD1URLString];
   IxoDASHManifestParser* parser =
       [[IxoDASHManifestParser alloc] initWithManifestURL:manifest_url];
   const bool parse_ok = [parser parse];
   XCTAssertTrue(parse_ok);
 
-  // Verify MPD attributes.
   IxoDASHManifest* const manifest = parser.manifest;
-  XCTAssertEqual(manifest.staticPresentation, kVP9VorbisDASHMPD1IsStatic);
-  XCTAssertTrue([manifest.mediaPresentationDuration
-      isEqualToString:kVP9VorbisDASHMPD1MediaPresentationDuration]);
+  IxoMutableDASHManifest* const expected_manifest = [IxoDASHManifestTestData
+      getExpectedManifestForURLString:kVP9VorbisDASHMPD1URLString];
   XCTAssertTrue(
-      [manifest.minBufferTime isEqualToString:kVP9VorbisDASHMPD1MinBufferTime]);
-
-  // Verify Period attributes.
-  IxoDASHPeriod* const period = manifest.period;
-  XCTAssertTrue([period.periodID isEqualToString:kVP9VorbisDASHMPD1PeriodID]);
-  XCTAssertTrue([period.start isEqualToString:kVP9VorbisDASHMPD1PeriodStart]);
-  XCTAssertTrue(
-      [period.duration isEqualToString:kVP9VorbisDASHMPD1PeriodDuration]);
-
-  // Verify audio AdaptationSet attributes.
-  XCTAssertEqual([period.audioAdaptationSets count],
-                 kVP9VorbisDASHMPD1AudioASCount);
-  IxoDASHAdaptationSet* const audio_as =
-      [period.audioAdaptationSets lastObject];
-  XCTAssertTrue([audio_as.setID isEqualToString:kVP9VorbisDASHMPD1AudioASID]);
-  XCTAssertTrue(
-      [audio_as.codecs isEqualToString:kVP9VorbisDASHMPD1AudioASCodecs]);
-  XCTAssertTrue(
-      [audio_as.mimeType isEqualToString:kVP9VorbisDASHMPD1AudioASMimeType]);
-  XCTAssertEqual(audio_as.audioSamplingRate,
-                 kVP9VorbisDASHMPD1AudioASAudioSamplingRate);
-
-  // Verify first audio representation attributes.
-  XCTAssertEqual([audio_as.representations count],
-                 kVP9VorbisDASHMPD1AudioRepCount);
-  IxoDASHRepresentation* const audio_rep =
-      [audio_as.representations firstObject];
-  XCTAssertTrue(
-      [audio_rep.repID isEqualToString:kVP9VorbisDASHMPD1AudioRep0ID]);
-  XCTAssertTrue([audio_rep.baseURL
-      isEqualToString:kVP9VorbisDASHMPD1AudioRep0BaseURLString]);
-  XCTAssertEqual([audio_rep.segmentBaseIndexRange count],
-                 kNumElementsInRangeArray);
-  XCTAssertEqual([[audio_rep.segmentBaseIndexRange firstObject] intValue],
-                 kVP9VorbisDASHMPD1AudioRep0IndexRangeStart);
-  XCTAssertEqual([[audio_rep.segmentBaseIndexRange lastObject] intValue],
-                 kVP9VorbisDASHMPD1AudioRep0IndexRangeEnd);
-  XCTAssertEqual([[audio_rep.initializationRange firstObject] intValue],
-                 kVP9VorbisDASHMPD1AudioRep0InitRangeStart);
-  XCTAssertEqual([[audio_rep.initializationRange lastObject] intValue],
-                 kVP9VorbisDASHMPD1AudioRep0InitRangeEnd);
-  XCTAssertEqual(audio_rep.bandwidth, kVP9VorbisDASHMPD1AudioRep0Bandwidth);
-
-  // Verify video AdaptationSet attributes.
-  XCTAssertEqual([period.videoAdaptationSets count],
-                 kVP9VorbisDASHMPD1VideoASCount);
-  IxoDASHAdaptationSet* const video_as =
-      [period.videoAdaptationSets lastObject];
-  XCTAssertTrue([video_as.setID isEqualToString:kVP9VorbisDASHMPD1VideoASID]);
-  XCTAssertTrue(
-      [video_as.codecs isEqualToString:kVP9VorbisDASHMPD1VideoASCodecs]);
-  XCTAssertTrue(
-      [video_as.mimeType isEqualToString:kVP9VorbisDASHMPD1VideoASMimeType]);
-
-  // Verify first audio representation attributes.
-  XCTAssertEqual([video_as.representations count],
-                 kVP9VorbisDASHMPD1VideoRepCount);
-  IxoDASHRepresentation* const video_rep =
-      [video_as.representations firstObject];
-  XCTAssertTrue(
-      [video_rep.repID isEqualToString:kVP9VorbisDASHMPD1VideoRep0ID]);
-  XCTAssertTrue([video_rep.baseURL
-      isEqualToString:kVP9VorbisDASHMPD1VideoRep0BaseURLString]);
-  XCTAssertEqual([video_rep.segmentBaseIndexRange count],
-                 kNumElementsInRangeArray);
-  XCTAssertEqual([[video_rep.segmentBaseIndexRange firstObject] intValue],
-                 kVP9VorbisDASHMPD1VideoRep0IndexRangeStart);
-  XCTAssertEqual([[video_rep.segmentBaseIndexRange lastObject] intValue],
-                 kVP9VorbisDASHMPD1VideoRep0IndexRangeEnd);
-  XCTAssertEqual([[video_rep.initializationRange firstObject] intValue],
-                 kVP9VorbisDASHMPD1VideoRep0InitRangeStart);
-  XCTAssertEqual([[video_rep.initializationRange lastObject] intValue],
-                 kVP9VorbisDASHMPD1VideoRep0InitRangeEnd);
-  XCTAssertEqual(video_rep.bandwidth, kVP9VorbisDASHMPD1VideoRep0Bandwidth);
+      [self manifestMatches:manifest ExpectedManifest:expected_manifest]);
 }
-
 @end
