@@ -14,7 +14,7 @@
 //
 // IxoDASHRepresentation
 //
-@interface IxoDASHRepresentation()
+@interface IxoDASHRepresentation ()
 @property(nonatomic, strong) NSString* repID;
 @property(nonatomic) int bandwidth;
 @property(nonatomic) int width;
@@ -63,7 +63,7 @@
 //
 // IxoDASHAdaptationSet
 //
-@interface IxoDASHAdaptationSet()
+@interface IxoDASHAdaptationSet ()
 @property(nonatomic, strong) NSString* setID;
 @property(nonatomic, strong) NSString* mimeType;
 @property(nonatomic, strong) NSString* codecs;
@@ -109,7 +109,7 @@
 //
 // IxoDASHPeriod
 //
-@interface IxoDASHPeriod()
+@interface IxoDASHPeriod ()
 @property(nonatomic, strong) NSString* periodID;
 @property(nonatomic, strong) NSString* start;
 @property(nonatomic, strong) NSString* duration;
@@ -140,7 +140,7 @@
 //
 // IxoDASHManifest
 //
-@interface IxoDASHManifest()
+@interface IxoDASHManifest ()
 @property(nonatomic, strong) NSString* mediaPresentationDuration;
 @property(nonatomic, strong) NSString* minBufferTime;
 @property(nonatomic) bool staticPresentation;
@@ -270,6 +270,15 @@
   }
   [_openElements removeLastObject];
   return true;
+}
+
+- (NSMutableArray*)convertStringArrayToNumberArray:(NSArray*)array {
+  NSMutableArray* numbers_array = [[NSMutableArray alloc] init];
+  NSNumberFormatter* formatter = [[NSNumberFormatter alloc] init];
+  for (NSString* str in array) {
+    [numbers_array addObject:[formatter numberFromString:str]];
+  }
+  return numbers_array;
 }
 
 //
@@ -404,8 +413,10 @@
     return false;
   }
   IxoDASHRepresentation* rep = [_lastAdaptationSet.representations lastObject];
+  NSArray* range_strings = [index_range_str componentsSeparatedByString:@"-"];
   rep.segmentBaseIndexRange =
-      [index_range_str componentsSeparatedByString:@"-"];
+      [self convertStringArrayToNumberArray:range_strings];
+
   if (rep.segmentBaseIndexRange.count != 2) {
     NSLog(@"parseSegmentBaseAttributes: Invalid indexRange.");
     return false;
@@ -426,7 +437,9 @@
     return false;
   }
   IxoDASHRepresentation* rep = [_lastAdaptationSet.representations lastObject];
-  rep.initializationRange = [range_str componentsSeparatedByString:@"-"];
+  NSArray* range_strings = [range_str componentsSeparatedByString:@"-"];
+  rep.initializationRange =
+      [self convertStringArrayToNumberArray:range_strings];
   if (rep.initializationRange.count != 2) {
     NSLog(@"parseInitializationAttributes: Invalid range.");
     return false;

@@ -11,7 +11,7 @@
 // Mutable versions of the IxoDASHManifestParser data classes for testing.
 //
 
-@interface IxoMutableDASHRepresentation : IxoDASHRepresentation<NSCopying>
+@interface IxoMutableDASHRepresentation : NSObject<NSCopying>
 @property(nonatomic, strong) NSString* repID;
 @property(nonatomic) int bandwidth;
 @property(nonatomic) int width;
@@ -27,7 +27,7 @@
 - (id)init;
 @end
 
-@interface IxoMutableDASHAdaptationSet : IxoDASHAdaptationSet
+@interface IxoMutableDASHAdaptationSet : NSObject
 @property(nonatomic, strong) NSString* setID;
 @property(nonatomic, strong) NSString* mimeType;
 @property(nonatomic, strong) NSString* codecs;
@@ -42,7 +42,7 @@
 - (id)init;
 @end
 
-@interface IxoMutableDASHPeriod : IxoDASHPeriod
+@interface IxoMutableDASHPeriod : NSObject
 @property(nonatomic, strong) NSString* periodID;
 @property(nonatomic, strong) NSString* start;
 @property(nonatomic, strong) NSString* duration;
@@ -52,7 +52,7 @@
 - (id)init;
 @end
 
-@interface IxoMutableDASHManifest : IxoDASHManifest
+@interface IxoMutableDASHManifest : NSObject
 @property(nonatomic, strong) NSString* mediaPresentationDuration;
 @property(nonatomic, strong) NSString* minBufferTime;
 @property(nonatomic) bool staticPresentation;

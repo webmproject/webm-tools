@@ -41,7 +41,7 @@
   return self;
 }
 
-- (id)copyWithZone:(NSZone *)zone {
+- (id)copyWithZone:(NSZone*)zone {
   IxoMutableDASHRepresentation* copy =
       [[IxoMutableDASHRepresentation alloc] init];
   if (copy) {
@@ -79,8 +79,7 @@
 - (id)init {
   self = [super init];
   if (self) {
-    _setID = nil;
-    //    self.setID = nil;
+    self.setID = nil;
     self.mimeType = nil;
     self.codecs = nil;
     self.subsegmentAlignment = false;
@@ -89,7 +88,7 @@
     self.width = 0;
     self.height = 0;
     self.audioSamplingRate = 0;
-    self.representations = nil;
+    self.representations = [[NSMutableArray alloc] init];
   }
   return self;
 }
@@ -111,8 +110,8 @@
     self.periodID = nil;
     self.start = nil;
     self.duration = nil;
-    self.audioAdaptationSets = nil;
-    self.videoAdaptationSets = nil;
+    self.audioAdaptationSets = [[NSMutableArray alloc] init];
+    self.videoAdaptationSets = [[NSMutableArray alloc] init];
   }
   return self;
 }
