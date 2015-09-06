@@ -77,13 +77,16 @@
     // Compare the prop values.
     if ([self idIsArrayType:[rep valueForKey:prop]]) {
       XCTAssertTrue([self arrayMatches:[rep valueForKey:prop]
-                                 array:[expectedRep valueForKey:prop]]);
+                                 array:[expectedRep valueForKey:prop]],
+                    @"value not equal for prop: %@", prop);
     } else if ([self idIsStringType:[rep valueForKey:prop]]) {
       XCTAssertTrue([self stringMatches:[rep valueForKey:prop]
-                                 string:[expectedRep valueForKey:prop]]);
+                                 string:[expectedRep valueForKey:prop]],
+                    @"value not equal for prop: %@", prop);
 
     } else {
-      XCTAssertEqual([rep valueForKey:prop], [expectedRep valueForKey:prop]);
+      XCTAssertEqual([rep valueForKey:prop], [expectedRep valueForKey:prop],
+                     @"value not equal for prop: %@", prop);
     }
   }
   return true;
@@ -105,9 +108,11 @@
     // Compare the prop values.
     if ([self idIsStringType:[set valueForKey:prop]]) {
       XCTAssertTrue([self stringMatches:[set valueForKey:prop]
-                                 string:[expectedSet valueForKey:prop]]);
+                                 string:[expectedSet valueForKey:prop]],
+                    @"value not equal for prop: %@", prop);
     } else {
-      XCTAssertEqual([set valueForKey:prop], [expectedSet valueForKey:prop]);
+      XCTAssertEqual([set valueForKey:prop], [expectedSet valueForKey:prop],
+                     @"value not equal for prop: %@", prop);
     }
   }
 
@@ -135,7 +140,8 @@
     }
 
     XCTAssertTrue([[period valueForKey:prop]
-        isEqualToString:[expectedPeriod valueForKey:prop]]);
+                      isEqualToString:[expectedPeriod valueForKey:prop]],
+                  @"value not equal for prop: %@", prop);
   }
 
   // Compare the audio AdaptationSet elements from the Period.
@@ -148,7 +154,7 @@
                                        objectAtIndex:i]]);
   }
 
-  // Compare the audio AdaptationSet elements from the Period.
+  // Compare the video AdaptationSet elements from the Period.
   XCTAssertEqual(period.videoAdaptationSets.count,
                  expectedPeriod.videoAdaptationSets.count);
   for (uint i = 0; i < period.videoAdaptationSets.count; ++i) {
@@ -175,10 +181,12 @@
 
     if ([self idIsStringType:[manifest valueForKey:prop]]) {
       XCTAssertTrue([self stringMatches:[manifest valueForKey:prop]
-                                 string:[expectedManifest valueForKey:prop]]);
+                                 string:[expectedManifest valueForKey:prop]],
+                    @"value not equal for prop: %@", prop);
     } else {
       XCTAssertEqual([manifest valueForKey:prop],
-                     [expectedManifest valueForKey:prop]);
+                     [expectedManifest valueForKey:prop],
+                     @"value not equal for prop: %@", prop);
     }
   }
 
