@@ -152,13 +152,127 @@
   return manifest;
 }
 
+// Returns expected manifest resulting from parse of manifest at
+// |kVP8VorbisDASHMPD1URLString| (testdata/manifest_vp8_vorbis.mpd).
++ (IxoMutableDASHManifest*)getVP8VorbisDASHMPD1Manifest {
+  // adaptation set id 1 from period id 0.
+  IxoMutableDASHAdaptationSet* audio_as =
+      [[IxoMutableDASHAdaptationSet alloc] init];
+  audio_as.setID = @"1";
+  audio_as.codecs = kCodecVorbis;
+  audio_as.mimeType = kMimeTypeWebmAudio;
+  audio_as.audioSamplingRate = 48000;
+  audio_as.subsegmentAlignment = false;
+  audio_as.subsegmentStartsWithSAP = 1;
+
+  // rep id 7 from adaptation set id 1 in period id 0.
+  [audio_as.representations
+      addObject:[IxoDASHManifestTestData
+                                repWithID:@"7"
+                                Bandwidth:109822
+                                  BaseURL:@"ChromeSpeedTestsBTS_YouTubeSpecs_"
+                                  @"vorbis_128kbps_cues-5sec_tracks-2." @"webm"
+                    SegmentBaseIndexRange:@[ @3682171, @3683110 ]
+                      InitializationRange:@[ @0, @4506 ]]];
+
+  // adaptation set id 0 from period id 0 in period id 0.
+  IxoMutableDASHAdaptationSet* video_as =
+      [[IxoMutableDASHAdaptationSet alloc] init];
+  video_as.setID = @"0";
+  video_as.codecs = kCodecVP8;
+  video_as.mimeType = kMimeTypeWebmVideo;
+  video_as.subsegmentAlignment = true;
+  video_as.bitstreamSwitching = true;
+  video_as.subsegmentStartsWithSAP = 1;
+  video_as.width = 640;
+  video_as.height = 360;
+
+  // rep id 1 from adaptation set id 0 in period id 0.
+  [video_as.representations
+      addObject:[IxoDASHManifestTestData
+                                repWithID:@"1"
+                                Bandwidth:377022
+                                  BaseURL:@"ChromeSpeedTestsBTS_YouTubeSpecs_"
+                                  @"enc_640x360_subseg-150_0250K.webm"
+                    SegmentBaseIndexRange:@[ @8971431, @8972188 ]
+                      InitializationRange:@[ @0, @306 ]]];
+
+  // rep id 2 from adaptation set id 0 in period id 0.
+  [video_as.representations
+      addObject:[IxoDASHManifestTestData
+                                repWithID:@"2"
+                                Bandwidth:809268
+                                  BaseURL:@"ChromeSpeedTestsBTS_YouTubeSpecs_"
+                                  @"enc_640x360_subseg-150_0500K.webm"
+                    SegmentBaseIndexRange:@[ @17588049, @17588808 ]
+                      InitializationRange:@[ @0, @306 ]]];
+
+  // rep id 3 from adaptation set id 0 in period id 0.
+  [video_as.representations
+      addObject:[IxoDASHManifestTestData
+                                repWithID:@"3"
+                                Bandwidth:1219605
+                                  BaseURL:@"ChromeSpeedTestsBTS_YouTubeSpecs_"
+                                  @"enc_640x360_subseg-150_0750K.webm"
+                    SegmentBaseIndexRange:@[ @26211587, @26212360 ]
+                      InitializationRange:@[ @0, @306 ]]];
+
+  // rep id 4 from adaptation set id 0 in period id 0.
+  [video_as.representations
+      addObject:[IxoDASHManifestTestData
+                                repWithID:@"4"
+                                Bandwidth:1631797
+                                  BaseURL:@"ChromeSpeedTestsBTS_YouTubeSpecs_"
+                                  @"enc_640x360_subseg-150_1000K.webm"
+                    SegmentBaseIndexRange:@[ @34820537, @34821317 ]
+                      InitializationRange:@[ @0, @306 ]]];
+
+  // rep id 5 from adaptation set id 0 in period id 0.
+  [video_as.representations
+      addObject:[IxoDASHManifestTestData
+                                repWithID:@"5"
+                                Bandwidth:2343228
+                                  BaseURL:@"ChromeSpeedTestsBTS_YouTubeSpecs_"
+                                  @"enc_640x360_subseg-150_1500K.webm"
+                    SegmentBaseIndexRange:@[ @52099932, @52100719 ]
+                      InitializationRange:@[ @0, @306 ]]];
+
+  // rep id 6 from adaptation set id 0 in period id 0.
+  [video_as.representations
+      addObject:[IxoDASHManifestTestData
+                                repWithID:@"6"
+                                Bandwidth:2827033
+                                  BaseURL:@"ChromeSpeedTestsBTS_YouTubeSpecs_"
+                                  @"enc_640x360_subseg-150_2000K.webm"
+                    SegmentBaseIndexRange:@[ @69343358, @69344149 ]
+                      InitializationRange:@[ @0, @306 ]]];
+
+  // period id 0.
+  IxoMutableDASHPeriod* period = [[IxoMutableDASHPeriod alloc] init];
+  period.periodID = @"0";
+  period.start = @"PT0S";
+  period.duration = @"PT280.199S";
+  period.audioAdaptationSets =
+      [[NSMutableArray alloc] initWithObjects:audio_as, nil];
+  period.videoAdaptationSets =
+      [[NSMutableArray alloc] initWithObjects:video_as, nil];
+
+  IxoMutableDASHManifest* manifest = [[IxoMutableDASHManifest alloc] init];
+  manifest.mediaPresentationDuration = @"PT280.199S";
+  manifest.minBufferTime = @"PT1S";
+  manifest.staticPresentation = true;
+  manifest.period = period;
+
+  return manifest;
+}
+
 + (IxoMutableDASHManifest*)getExpectedManifestForURLString:(NSString*)string {
   IxoMutableDASHManifest* manifest = nil;
   if ([string isEqualToString:kVP9VorbisDASHMPD1URLString]) {
     manifest = [IxoDASHManifestTestData getVP9VorbisDASHMPD1Manifest];
-  } /*else if ([string isEqualToString:kVP9VorbisDASHMPD2URLString]) {
-  } else if ([string isEqualToString:kVP9VorbisDASHMPD3URLString]) {
-  }*/
+  } else if ([string isEqualToString:kVP8VorbisDASHMPD1URLString]) {
+    manifest = [IxoDASHManifestTestData getVP8VorbisDASHMPD1Manifest];
+  }
   return manifest;
 }
 @end

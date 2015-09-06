@@ -35,3 +35,9 @@ NSString* const kVP9VorbisDASHMPD1MiddleLine = @"<Initialization";
 const int kVP9VorbisDASHMPD1LastLineLength = 6;
 const int kVP9VorbisDASHMPD1LastLineOffset = 1998;
 NSString* const kVP9VorbisDASHMPD1LastLine = @"</MPD>";
+
+//
+// Constants for tests using testdata/manifest_vp8_vorbis.mpd
+//
+NSString* const kVP8VorbisDASHMPD1URLString =
+    @"http://localhost:8000/manifest_vp8_vorbis.mpd";
