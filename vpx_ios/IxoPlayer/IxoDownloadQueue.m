@@ -18,6 +18,9 @@ const int kMaxConcurrentDownloads = 3;
 - (NSOperationQueue*)downloadQueue {
   if (_downloadQueue == nil) {
     _downloadQueue = [[NSOperationQueue alloc] init];
+    if (_downloadQueue == nil)
+      return nil;
+
     _downloadQueue.name = kDownloadQueueName;
     _downloadQueue.maxConcurrentOperationCount = kMaxConcurrentDownloads;
   }

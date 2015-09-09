@@ -18,9 +18,16 @@
 
 - (id)init {
   self = [super init];
-  _downloadID = 0;
-  _downloadQueue = [[IxoDownloadQueue alloc] init];
-  _lock = [[NSLock alloc] init];
+
+  if (self) {
+    _downloadID = 0;
+    _downloadQueue = [[IxoDownloadQueue alloc] init];
+    _lock = [[NSLock alloc] init];
+
+    if (_downloadQueue == nil || _lock == nil)
+      return nil;
+  }
+
   return self;
 }
 
@@ -40,6 +47,11 @@
   [_lock unlock];
 
   IxoDownloadRecord* record = [[IxoDownloadRecord alloc] init];
+  if (record == nil) {
+    NSLog(@"downloadDataFromURL: out of memory.");
+    return -1;
+  }
+
   record.URL = URL;
   record.requestedRange = range;
   record.listener = listener;
@@ -48,6 +60,10 @@
 
   IxoDownloadOperation* download_op =
       [[IxoDownloadOperation alloc] initWithDownloadRecord:record];
+  if (download_op == nil) {
+    NSLog(@"downloadDataFromURL: out of memory.");
+    return -1;
+  }
 
   [_lock lock];
   [_downloadQueue.activeDownloads

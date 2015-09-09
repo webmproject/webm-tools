@@ -101,6 +101,9 @@
     self.height = 0;
     self.audioSamplingRate = 0;
     self.representations = [[NSMutableArray alloc] init];
+
+    if (self.representations == nil)
+      return nil;
   }
   return self;
 }
@@ -132,6 +135,9 @@
     self.duration = nil;
     self.audioAdaptationSets = [[NSMutableArray alloc] init];
     self.videoAdaptationSets = [[NSMutableArray alloc] init];
+
+    if (self.audioAdaptationSets == nil || self.videoAdaptationSets == nil)
+      return nil;
   }
   return self;
 }
@@ -202,6 +208,9 @@
     _openElements = [[NSMutableArray alloc] init];
     _parseFailed = false;
     _manifest = [[IxoDASHManifest alloc] init];
+
+    if (_lock == nil || _openElements == nil || _manifest == nil)
+      return nil;
   }
   return self;
 }
@@ -213,8 +222,12 @@
   }
 
   IxoDataSource* manifest_source = [[IxoDataSource alloc] init];
-  _manifestData = [manifest_source downloadFromURL:_manifestURL];
+  if (manifest_source == nil) {
+    NSLog(@"Out of memory");
+    return nil;
+  }
 
+  _manifestData = [manifest_source downloadFromURL:_manifestURL];
   if (_manifestData == nil) {
     NSLog(@"Unable to load manifest");
     return false;
@@ -275,6 +288,10 @@
 - (NSMutableArray*)convertStringArrayToNumberArray:(NSArray*)array {
   NSMutableArray* numbers_array = [[NSMutableArray alloc] init];
   NSNumberFormatter* formatter = [[NSNumberFormatter alloc] init];
+
+  if (numbers_array == nil || formatter == nil)
+    return nil;
+
   for (NSString* str in array) {
     [numbers_array addObject:[formatter numberFromString:str]];
   }
@@ -321,7 +338,12 @@
     NSLog(@"parsePeriodAttributes: unsupported manifest, multiple periods.");
     return false;
   }
+
   IxoDASHPeriod* period = [[IxoDASHPeriod alloc] init];
+  if (period == nil) {
+    NSLog(@"parsePeriodAttributes: out of memory.");
+    return false;
+  }
   period.periodID = [attributes objectForKey:kAttributeID];
   period.start = [attributes objectForKey:kAttributeStart];
   period.duration = [attributes objectForKey:kAttributeDuration];
@@ -340,7 +362,13 @@
     NSLog(@"parseAdaptationSetAttributes: failure, no attribs/bad state.");
     return false;
   }
+
   IxoDASHAdaptationSet* as = [[IxoDASHAdaptationSet alloc] init];
+  if (as == nil) {
+    NSLog(@"parseAdaptationSetAttributes: out of memory.");
+    return false;
+  }
+
   as.setID = [attributes objectForKey:kAttributeID];
   as.mimeType = [attributes objectForKey:kAttributeMimeType];
   as.codecs = [attributes objectForKey:kAttributeCodecs];
@@ -381,7 +409,13 @@
     NSLog(@"parseRepresentationAttributes: failure, no attribs/bad state.");
     return false;
   }
+
   IxoDASHRepresentation* rep = [[IxoDASHRepresentation alloc] init];
+  if (rep == nil) {
+    NSLog(@"parseRepresentationAttributes: out of memory.");
+    return false;
+  }
+
   rep.repID = [attributes objectForKey:kAttributeID];
   rep.codecs = [attributes objectForKey:kAttributeCodecs];
   rep.bandwidth = [[attributes objectForKey:kAttributeBandwidth] intValue];

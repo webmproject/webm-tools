@@ -20,11 +20,16 @@
 
   // Create the window.
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+  if (self.window == nil)
+    return NO;
+
   self.window.backgroundColor = [UIColor blackColor];
   [self.window makeKeyAndVisible];
 
   // Create the text view.
   TextViewController* debug_console = [[TextViewController alloc] init];
+  if (debug_console == nil)
+    return NO;
 
   // Make our text view the root controller.
   self.window.rootViewController = debug_console;
