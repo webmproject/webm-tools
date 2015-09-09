@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "84753240_aea757aa",
+        "filename": "vpx_ios/IxoPlayer/IxoPlayerTests/IxoDASHManifestTestData.m",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2015-09-09T15:23:41Z",
+      "side": 1,
+      "message": "Example code I\u0027ve found seems to always do \"if (obj)\" in init\u0027ish methods",
+      "parentUuid": "244c8613_dbde33d1",
+      "revId": "0ad78c393f5eb6ffebc3842beab194601c3b559f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "c4ef2afe_61fbd9b0",
         "filename": "vpx_ios/IxoPlayer/IxoPlayerTests/IxoDASHManifestTestData.m",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2015-09-09T05:34:52Z",
       "side": 1,
       "message": "no check here?",
+      "revId": "0ad78c393f5eb6ffebc3842beab194601c3b559f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "244c8613_1b9edbcb",
+        "filename": "vpx_ios/IxoPlayer/IxoPlayerTests/IxoDASHManifestTestData.m",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2015-09-09T15:23:41Z",
+      "side": 1,
+      "message": "I\u0027ve been bad about this in several places-- I\u0027ll take care of it in a follow up.",
+      "parentUuid": "c4ef2afe_61fbd9b0",
       "revId": "0ad78c393f5eb6ffebc3842beab194601c3b559f",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
