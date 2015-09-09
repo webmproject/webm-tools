@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "244c8613_dbde33d1",
+        "filename": "vpx_ios/IxoPlayer/IxoPlayerTests/IxoDASHManifestTestData.m",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2015-09-09T05:34:52Z",
+      "side": 1,
+      "message": "is using \u0027!\u003d nil\u0027 in the check encouraged?",
+      "revId": "0ad78c393f5eb6ffebc3842beab194601c3b559f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c4ef2afe_61fbd9b0",
+        "filename": "vpx_ios/IxoPlayer/IxoPlayerTests/IxoDASHManifestTestData.m",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1002219
+      },
+      "writtenOn": "2015-09-09T05:34:52Z",
+      "side": 1,
+      "message": "no check here?",
+      "revId": "0ad78c393f5eb6ffebc3842beab194601c3b559f",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
