@@ -35,6 +35,9 @@
   if (textView == nil) {
     UIWindow* main_window = [[UIApplication sharedApplication] delegate].window;
     textView = [[UITextView alloc] initWithFrame:[main_window bounds]];
+    if (textView == nil)
+      return;
+
     textView.editable = NO;
     textView.backgroundColor = [UIColor blackColor];
     textView.textColor = [UIColor whiteColor];

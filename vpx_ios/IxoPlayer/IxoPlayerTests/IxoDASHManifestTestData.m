@@ -60,6 +60,11 @@
   // adaptation set id 1 from period id 0.
   IxoMutableDASHAdaptationSet* audio_as =
       [[IxoMutableDASHAdaptationSet alloc] init];
+  if (audio_as == nil) {
+    NSLog(@"getVP9VorbisDASHMPD1Manifest: out of memory.");
+    return nil;
+  }
+
   audio_as.setID = @"1";
   audio_as.codecs = kCodecVorbis;
   audio_as.mimeType = kMimeTypeWebmAudio;
@@ -86,6 +91,11 @@
   // adaptation set id 0 from period id 0 in period id 0.
   IxoMutableDASHAdaptationSet* video_as =
       [[IxoMutableDASHAdaptationSet alloc] init];
+  if (video_as == nil) {
+    NSLog(@"getVP9VorbisDASHMPD1Manifest: out of memory.");
+    return nil;
+  }
+
   video_as.setID = @"0";
   video_as.codecs = kCodecVP9;
   video_as.mimeType = kMimeTypeWebmVideo;
@@ -135,6 +145,11 @@
 
   // period id 0.
   IxoMutableDASHPeriod* period = [[IxoMutableDASHPeriod alloc] init];
+  if (period == nil) {
+    NSLog(@"getVP9VorbisDASHMPD1Manifest: out of memory.");
+    return nil;
+  }
+
   period.periodID = @"0";
   period.start = @"PT0S";
   period.duration = @"PT135.629S";
@@ -144,6 +159,11 @@
       [[NSMutableArray alloc] initWithObjects:video_as, nil];
 
   IxoMutableDASHManifest* manifest = [[IxoMutableDASHManifest alloc] init];
+  if (manifest == nil) {
+    NSLog(@"getVP9VorbisDASHMPD1Manifest: out of memory.");
+    return nil;
+  }
+
   manifest.mediaPresentationDuration = @"PT135.629S";
   manifest.minBufferTime = @"PT1S";
   manifest.staticPresentation = true;
@@ -158,6 +178,11 @@
   // adaptation set id 1 from period id 0.
   IxoMutableDASHAdaptationSet* audio_as =
       [[IxoMutableDASHAdaptationSet alloc] init];
+  if (audio_as == nil) {
+    NSLog(@"getVP8VorbisDASHMPD1Manifest: out of memory.");
+    return nil;
+  }
+
   audio_as.setID = @"1";
   audio_as.codecs = kCodecVorbis;
   audio_as.mimeType = kMimeTypeWebmAudio;
@@ -178,6 +203,11 @@
   // adaptation set id 0 from period id 0 in period id 0.
   IxoMutableDASHAdaptationSet* video_as =
       [[IxoMutableDASHAdaptationSet alloc] init];
+  if (video_as == nil) {
+    NSLog(@"getVP8VorbisDASHMPD1Manifest: out of memory.");
+    return nil;
+  }
+
   video_as.setID = @"0";
   video_as.codecs = kCodecVP8;
   video_as.mimeType = kMimeTypeWebmVideo;
@@ -249,6 +279,11 @@
 
   // period id 0.
   IxoMutableDASHPeriod* period = [[IxoMutableDASHPeriod alloc] init];
+  if (period == nil) {
+    NSLog(@"getVP8VorbisDASHMPD1Manifest: out of memory.");
+    return nil;
+  }
+
   period.periodID = @"0";
   period.start = @"PT0S";
   period.duration = @"PT280.199S";
@@ -258,6 +293,11 @@
       [[NSMutableArray alloc] initWithObjects:video_as, nil];
 
   IxoMutableDASHManifest* manifest = [[IxoMutableDASHManifest alloc] init];
+  if (manifest == nil) {
+    NSLog(@"getVP8VorbisDASHMPD1Manifest: out of memory.");
+    return nil;
+  }
+
   manifest.mediaPresentationDuration = @"PT280.199S";
   manifest.minBufferTime = @"PT1S";
   manifest.staticPresentation = true;

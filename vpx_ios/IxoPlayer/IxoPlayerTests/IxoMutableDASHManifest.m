@@ -89,6 +89,9 @@
     self.height = 0;
     self.audioSamplingRate = 0;
     self.representations = [[NSMutableArray alloc] init];
+
+    if (self.representations == nil)
+      return nil;
   }
   return self;
 }
@@ -112,6 +115,8 @@
     self.duration = nil;
     self.audioAdaptationSets = [[NSMutableArray alloc] init];
     self.videoAdaptationSets = [[NSMutableArray alloc] init];
+    if (self.audioAdaptationSets == nil || self.videoAdaptationSets == nil)
+      return nil;
   }
   return self;
 }
