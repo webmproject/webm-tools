@@ -204,12 +204,16 @@
   self = [super init];
   if (self) {
     _lock = [[NSLock alloc] init];
+    if (_lock == nil)
+      return nil;
+    _lock.name = NSStringFromClass([self class]);
+
     _manifestURL = manifestURL;
     _openElements = [[NSMutableArray alloc] init];
     _parseFailed = false;
     _manifest = [[IxoDASHManifest alloc] init];
 
-    if (_lock == nil || _openElements == nil || _manifest == nil)
+    if (_openElements == nil || _manifest == nil)
       return nil;
   }
   return self;

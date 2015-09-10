@@ -23,9 +23,9 @@
     _downloadID = 0;
     _downloadQueue = [[IxoDownloadQueue alloc] init];
     _lock = [[NSLock alloc] init];
-
     if (_downloadQueue == nil || _lock == nil)
       return nil;
+    _lock.name = NSStringFromClass([self class]);
   }
 
   return self;
