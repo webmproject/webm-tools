@@ -43,7 +43,7 @@
 
 - (id)copyWithZone:(NSZone*)zone {
   IxoMutableDASHRepresentation* copy =
-      [[IxoMutableDASHRepresentation alloc] init];
+      [[IxoMutableDASHRepresentation allocWithZone:zone] init];
   if (copy) {
     copy.repID = self.repID;
     copy.bandwidth = self.bandwidth;
