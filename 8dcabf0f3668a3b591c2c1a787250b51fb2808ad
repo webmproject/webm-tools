@@ -16,6 +16,24 @@
       "revId": "8dcabf0f3668a3b591c2c1a787250b51fb2808ad",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "44cedaa4_29e13503",
+        "filename": "vpx_ios/IxoPlayer/IxoPlayerTests/IxoDASHManifestParserTests.m",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2015-09-10T19:38:59Z",
+      "side": 1,
+      "message": "I want the nil comparison behavior I added in the previous patch.",
+      "parentUuid": "04c1426c_44c7af23",
+      "revId": "8dcabf0f3668a3b591c2c1a787250b51fb2808ad",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
