@@ -43,10 +43,14 @@
 }
 
 - (bool)arrayMatches:(NSArray*)arr array:(NSArray*)otherArray {
+  if (arr == nil && otherArray == nil)
+    return true;
   return [arr isEqualToArray:otherArray] == YES;
 }
 
 - (bool)stringMatches:(NSString*)str string:(NSString*)otherStr {
+  if (str == nil && otherStr == nil)
+    return true;
   return [str isEqualToString:otherStr] == YES;
 }
 
