@@ -351,12 +351,6 @@
   period.periodID = [attributes objectForKey:kAttributeID];
   period.start = [attributes objectForKey:kAttributeStart];
   period.duration = [attributes objectForKey:kAttributeDuration];
-
-  if (period.periodID == nil ||
-      (period.start == nil && period.duration == nil)) {
-    NSLog(@"parsePeriodAttributes: failure, missing required attributes.");
-    return false;
-  }
   _manifest.period = period;
   return true;
 }
