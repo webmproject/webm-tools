@@ -398,11 +398,6 @@
     return false;
   }
 
-  if (as.setID == nil) {
-    NSLog(@"parseAdaptationSetAttributes: adaptation set invalid, no id.");
-    return false;
-  }
-
   [adaptation_sets addObject:as];
   _lastAdaptationSet = as;
   return true;
