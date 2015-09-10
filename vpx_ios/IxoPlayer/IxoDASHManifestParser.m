@@ -414,6 +414,8 @@
   rep.bandwidth = [[attributes objectForKey:kAttributeBandwidth] intValue];
   rep.width = [[attributes objectForKey:kAttributeWidth] intValue];
   rep.height = [[attributes objectForKey:kAttributeHeight] intValue];
+  rep.audioSamplingRate =
+      [[attributes objectForKey:kAttributeAudioSamplingRate] intValue];
   rep.startWithSAP =
       [[attributes objectForKey:kAttributeStartWithSAP] intValue];
 
