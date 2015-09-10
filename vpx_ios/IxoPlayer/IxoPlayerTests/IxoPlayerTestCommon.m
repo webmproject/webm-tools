@@ -41,3 +41,6 @@ NSString* const kVP9VorbisDASHMPD1LastLine = @"</MPD>";
 //
 NSString* const kVP8VorbisDASHMPD1URLString =
     @"http://localhost:8000/manifest_vp8_vorbis.mpd";
+
+NSString* const kVP9VorbisRepCodecsDASHMPD1URLString =
+    @"http://localhost:8000/manifest_vp9_vorbis_rep_codecs.mpd";

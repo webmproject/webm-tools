@@ -229,4 +229,19 @@
   XCTAssertTrue(
       [self manifestMatches:manifest ExpectedManifest:expected_manifest]);
 }
+
+- (void)testParseDASH3 {
+  NSURL* const manifest_url =
+      [NSURL URLWithString:kVP9VorbisRepCodecsDASHMPD1URLString];
+  IxoDASHManifestParser* parser =
+      [[IxoDASHManifestParser alloc] initWithManifestURL:manifest_url];
+  const bool parse_ok = [parser parse];
+  XCTAssertTrue(parse_ok);
+
+  IxoDASHManifest* const manifest = parser.manifest;
+  IxoMutableDASHManifest* const expected_manifest = [IxoDASHManifestTestData
+      getExpectedManifestForURLString:kVP9VorbisRepCodecsDASHMPD1URLString];
+  XCTAssertTrue(
+      [self manifestMatches:manifest ExpectedManifest:expected_manifest]);
+}
 @end

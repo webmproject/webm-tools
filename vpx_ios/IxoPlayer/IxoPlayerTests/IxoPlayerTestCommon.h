@@ -33,4 +33,4 @@ FOUNDATION_EXPORT NSString* const kVP9VorbisDASHMPD1LastLine;
 // URLs for additional test manifest files.
 //
 FOUNDATION_EXPORT NSString* const kVP8VorbisDASHMPD1URLString;
-FOUNDATION_EXPORT NSString* const kVP9VorbisDASHMPD3URLString;
+FOUNDATION_EXPORT NSString* const kVP9VorbisRepCodecsDASHMPD1URLString;

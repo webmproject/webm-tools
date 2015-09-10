@@ -306,13 +306,166 @@
   return manifest;
 }
 
+// Returns expected manifest resulting from parse of manifest at
+// |kVP9VorbisRepCodecsDASHMPD1URLString|
+// (testdata/manifest_vp9_vorbis_rep_codecs.mpd).
++ (IxoMutableDASHManifest*)getVP9VorbisRepCodecsDASHMPD1Manifest {
+  // audio adaptation set <no ID> from period <no ID>.
+  IxoMutableDASHAdaptationSet* audio_as =
+      [[IxoMutableDASHAdaptationSet alloc] init];
+  if (audio_as == nil) {
+    NSLog(@"getVP9VorbisRepCodecsDASHMPD1Manifest: out of memory.");
+    return nil;
+  }
+
+  audio_as.mimeType = kMimeTypeWebmAudio;
+  audio_as.subsegmentAlignment = true;
+
+  // rep id 171 from audio adaptation set <no ID> from period <no ID>.
+  [audio_as.representations
+      addObject:[IxoDASHManifestTestData
+                                repWithID:@"171"
+                                Bandwidth:129553
+                                  BaseURL:@"feelings_vp9-20130806-171.webm"
+                    SegmentBaseIndexRange:@[ @4452, @4686 ]
+                      InitializationRange:@[ @0, @4451 ]]];
+
+  // rep id 172 from audio adaptation set <no ID> from period <no ID>.
+  [audio_as.representations
+      addObject:[IxoDASHManifestTestData
+                                repWithID:@"172"
+                                Bandwidth:188041
+                                  BaseURL:@"feelings_vp9-20130806-172.webm"
+                    SegmentBaseIndexRange:@[ @3995, @4229 ]
+                      InitializationRange:@[ @0, @3994 ]]];
+
+  // Fill in remaining settings: They're the same for all reps.
+  for (IxoMutableDASHRepresentation* rep in audio_as.representations) {
+    rep.codecs = kCodecVorbis;
+    rep.audioSamplingRate = 44100;
+    rep.audioChannelConfig = 2;
+    rep.startWithSAP = 1;
+  }
+
+  // video adaptation set <no ID> from period <no ID>.
+  IxoMutableDASHAdaptationSet* video_as =
+      [[IxoMutableDASHAdaptationSet alloc] init];
+  if (video_as == nil) {
+    NSLog(@"getVP9VorbisRepCodecsDASHMPD1Manifest: out of memory.");
+    return nil;
+  }
+
+  video_as.mimeType = kMimeTypeWebmVideo;
+  video_as.subsegmentAlignment = true;
+
+  // rep id 242 from video adaptation set <no ID> from period <no ID>.
+  [video_as.representations
+      addObject:[IxoDASHManifestTestData
+                           videoRepWithID:@"242"
+                                Bandwidth:490208
+                                    Width:426
+                                   Height:240
+                                  BaseURL:@"feelings_vp9-20130806-242.webm"
+                    SegmentBaseIndexRange:@[ @234, @682 ]
+                      InitializationRange:@[ @0, @233 ]]];
+
+  // rep id 243 from video adaptation set <no ID> from period <no ID>.
+  [video_as.representations
+      addObject:[IxoDASHManifestTestData
+                           videoRepWithID:@"243"
+                                Bandwidth:927221
+                                    Width:640
+                                   Height:360
+                                  BaseURL:@"feelings_vp9-20130806-243.webm"
+                    SegmentBaseIndexRange:@[ @235, @683 ]
+                      InitializationRange:@[ @0, @234 ]]];
+
+  // rep id 244 from video adaptation set <no ID> from period <no ID>.
+  [video_as.representations
+      addObject:[IxoDASHManifestTestData
+                           videoRepWithID:@"244"
+                                Bandwidth:1413699
+                                    Width:854
+                                   Height:480
+                                  BaseURL:@"feelings_vp9-20130806-244.webm"
+                    SegmentBaseIndexRange:@[ @235, @683 ]
+                      InitializationRange:@[ @0, @234 ]]];
+
+  // rep id 245 from video adaptation set <no ID> from period <no ID>.
+  [video_as.representations
+      addObject:[IxoDASHManifestTestData
+                           videoRepWithID:@"245"
+                                Bandwidth:1431499
+                                    Width:854
+                                   Height:480
+                                  BaseURL:@"feelings_vp9-20130806-245.webm"
+                    SegmentBaseIndexRange:@[ @235, @684 ]
+                      InitializationRange:@[ @0, @234 ]]];
+
+  // rep id 246 from video adaptation set <no ID> from period <no ID>.
+  [video_as.representations
+      addObject:[IxoDASHManifestTestData
+                           videoRepWithID:@"246"
+                                Bandwidth:2101273
+                                    Width:854
+                                   Height:480
+                                  BaseURL:@"feelings_vp9-20130806-246.webm"
+                    SegmentBaseIndexRange:@[ @235, @696 ]
+                      InitializationRange:@[ @0, @234 ]]];
+
+  // rep id 247 from video adaptation set <no ID> from period <no ID>.
+  [video_as.representations
+      addObject:[IxoDASHManifestTestData
+                           videoRepWithID:@"247"
+                                Bandwidth:3915200
+                                    Width:1280
+                                   Height:720
+                                  BaseURL:@"feelings_vp9-20130806-247.webm"
+                    SegmentBaseIndexRange:@[ @235, @695 ]
+                      InitializationRange:@[ @0, @234 ]]];
+
+  // Fill in remaining settings: They're the same for all reps.
+  for (IxoMutableDASHRepresentation* rep in video_as.representations) {
+    rep.codecs = kCodecVP9;
+    rep.startWithSAP = 1;
+  }
+
+  // period <no ID>.
+  IxoMutableDASHPeriod* period = [[IxoMutableDASHPeriod alloc] init];
+  if (period == nil) {
+    NSLog(@"getVP9VorbisRepCodecsDASHMPD1Manifest: out of memory.");
+    return nil;
+  }
+
+  period.audioAdaptationSets =
+      [[NSMutableArray alloc] initWithObjects:audio_as, nil];
+  period.videoAdaptationSets =
+      [[NSMutableArray alloc] initWithObjects:video_as, nil];
+
+  IxoMutableDASHManifest* manifest = [[IxoMutableDASHManifest alloc] init];
+  if (manifest == nil) {
+    NSLog(@"getVP9VorbisRepCodecsDASHMPD1Manifest: out of memory.");
+    return nil;
+  }
+
+  manifest.mediaPresentationDuration = @"PT135.743S";
+  manifest.minBufferTime = @"PT1.500S";
+  manifest.staticPresentation = true;
+  manifest.period = period;
+
+  return manifest;
+}
+
 + (IxoMutableDASHManifest*)getExpectedManifestForURLString:(NSString*)string {
   IxoMutableDASHManifest* manifest = nil;
   if ([string isEqualToString:kVP9VorbisDASHMPD1URLString]) {
     manifest = [IxoDASHManifestTestData getVP9VorbisDASHMPD1Manifest];
   } else if ([string isEqualToString:kVP8VorbisDASHMPD1URLString]) {
     manifest = [IxoDASHManifestTestData getVP8VorbisDASHMPD1Manifest];
+  } else if ([string isEqualToString:kVP9VorbisRepCodecsDASHMPD1URLString]) {
+    manifest = [IxoDASHManifestTestData getVP9VorbisRepCodecsDASHMPD1Manifest];
   }
+
   return manifest;
 }
 @end
