@@ -142,8 +142,8 @@
       continue;
     }
 
-    XCTAssertTrue([[period valueForKey:prop]
-                      isEqualToString:[expectedPeriod valueForKey:prop]],
+    XCTAssertTrue([self stringMatches:[period valueForKey:prop]
+                               string:[expectedPeriod valueForKey:prop]],
                   @"value not equal for prop: %@", prop);
   }
 
