@@ -16,6 +16,24 @@
       "revId": "0116b0aadee0912e0506dda4ab80000b32feeb61",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "84d4522f_33f87fb1",
+        "filename": "vpx_ios/IxoPlayer/IxoPlayerTests/IxoDASHManifestParserTests.m",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2015-09-10T19:37:39Z",
+      "side": 1,
+      "message": "yeah, it\u0027ll eval to false (by some objc/NSObject/nil related magic)",
+      "parentUuid": "64cf5e9f_8de72c19",
+      "revId": "0116b0aadee0912e0506dda4ab80000b32feeb61",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
