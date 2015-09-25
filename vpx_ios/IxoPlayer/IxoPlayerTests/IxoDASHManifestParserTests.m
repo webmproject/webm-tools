@@ -199,6 +199,30 @@
   return true;
 }
 
+// Returns true when all representations in an adaptation set are sorted by
+// bandwidth in ascending order.
+- (bool)representationsSortedByBandwidth:(NSArray*)reps {
+  int last_bandwidth = 0;
+  for (IxoDASHRepresentation* rep in reps) {
+    if (rep.bandwidth <= last_bandwidth)
+      return false;
+
+    last_bandwidth = rep.bandwidth;
+  }
+  return true;
+}
+
+// Returns true when all reps in all adaptation sets are properly sorted.
+- (bool)validateAdaptationSets:(IxoDASHPeriod*) period {
+  for (IxoDASHAdaptationSet* set in period.audioAdaptationSets) {
+    XCTAssertTrue([self representationsSortedByBandwidth:set.representations]);
+  }
+  for (IxoDASHAdaptationSet* set in period.videoAdaptationSets) {
+    XCTAssertTrue([self representationsSortedByBandwidth:set.representations]);
+  }
+  return true;
+}
+
 //
 // IxoDASHManifestParser tests.
 //
@@ -214,6 +238,8 @@
       getExpectedManifestForURLString:kVP9VorbisDASHMPD1URLString];
   XCTAssertTrue(
       [self manifestMatches:manifest ExpectedManifest:expected_manifest]);
+  XCTAssertTrue([self validateAdaptationSets:manifest.period]);
+
 }
 
 - (void)testParseDASH2 {
@@ -228,6 +254,7 @@
       getExpectedManifestForURLString:kVP8VorbisDASHMPD1URLString];
   XCTAssertTrue(
       [self manifestMatches:manifest ExpectedManifest:expected_manifest]);
+  XCTAssertTrue([self validateAdaptationSets:manifest.period]);
 }
 
 - (void)testParseDASH3 {
@@ -243,5 +270,6 @@
       getExpectedManifestForURLString:kVP9VorbisRepCodecsDASHMPD1URLString];
   XCTAssertTrue(
       [self manifestMatches:manifest ExpectedManifest:expected_manifest]);
+  XCTAssertTrue([self validateAdaptationSets:manifest.period]);
 }
 @end
