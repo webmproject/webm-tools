@@ -176,6 +176,9 @@
 //
 @interface IxoDASHManifestParser ()
 @property(nonatomic, strong) IxoDASHManifest* manifest;
+
+// Sort IxoDASHRepresentation's in ascending order based on bandwidth value.
+- (bool)sortRepresentationsByBandwidth;
 @end
 
 @implementation IxoDASHManifestParser {
@@ -249,7 +252,14 @@
   // contents, but a minimal check should be made that at least one
   // IxoDASHRepresenationRecord exists in one of {audio|video}AdaptationSet
   // within the Period.
-  return [_parser parse] == YES;
+  if ([_parser parse] != YES) {
+    NSLog(@"NSXMLParser parse failed");
+    return false;
+  }
+
+  // Make sure reps in all adaptation sets are sorted by bandwidth (ascending).
+  [self sortRepresentationsByBandwidth];
+  return true;
 }
 
 //
@@ -473,6 +483,29 @@
     NSLog(@"parseInitializationAttributes: Invalid range.");
     return false;
   }
+  return true;
+}
+
+//
+// Internal manifest management utilities.
+//
+- (bool)sortRepresentationsByBandwidth {
+  NSSortDescriptor* sort_desc =
+      [[NSSortDescriptor alloc] initWithKey:@"bandwidth" ascending:YES];
+  NSArray* sort_descs = [NSArray arrayWithObjects:sort_desc, nil];
+
+  if (sort_desc == nil || sort_descs == nil) {
+    NSLog(@"Representation sort setup failed. Out of memory?");
+    return false;
+  }
+
+  for (IxoDASHAdaptationSet* set in _manifest.period.audioAdaptationSets) {
+    [set.representations sortUsingDescriptors:sort_descs];
+  }
+  for (IxoDASHAdaptationSet* set in _manifest.period.videoAdaptationSets) {
+    [set.representations sortUsingDescriptors:sort_descs];
+  }
+
   return true;
 }
 
