@@ -186,6 +186,7 @@
   NSURL* _manifestURL;
   NSLock* _lock;
   NSXMLParser* _parser;
+  NSString* _manifestPath;
 
   // Parsing status.
   bool _parseFailed;
@@ -218,6 +219,11 @@
 
     if (_openElements == nil || _manifest == nil)
       return nil;
+
+    // Store the manifest URL path so that baseURL props in IxoDASHRep's are
+    // useful.
+    _manifestPath =
+        [self removeFileNameFromURLString:[manifestURL absoluteString]];
   }
   return self;
 }
@@ -260,6 +266,10 @@
   // Make sure reps in all adaptation sets are sorted by bandwidth (ascending).
   [self sortRepresentationsByBandwidth];
   return true;
+}
+
+- (NSString*)absoluteURLStringForBaseURLString:(NSString *)baseURLString {
+  return [NSString stringWithFormat:@"%@%@", _manifestPath, baseURLString, nil];
 }
 
 //
@@ -310,6 +320,14 @@
     [numbers_array addObject:[formatter numberFromString:str]];
   }
   return numbers_array;
+}
+
+// Cuts all characters from string after last occurence of '/'.
+- (NSString*)removeFileNameFromURLString:(NSString*)string {
+  NSRange fname_range = [string rangeOfString:@"/" options:NSBackwardsSearch];
+  fname_range.length = string.length - fname_range.location;
+  return [string stringByReplacingCharactersInRange:fname_range
+                                         withString:@"/"];
 }
 
 //

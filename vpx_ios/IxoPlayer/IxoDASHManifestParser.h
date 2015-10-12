@@ -54,5 +54,10 @@
 @interface IxoDASHManifestParser : NSObject<NSXMLParserDelegate>
 @property(nonatomic, strong, readonly) IxoDASHManifest* manifest;
 - (instancetype)initWithManifestURL:(NSURL*)manifestURL;
+
+// Parses the manifest at the URL passed to -initWithManifestURL:manifestURL.
 - (bool)parse;
+
+// Returns the complete URL given the baseURL from an IxoDASHRepresentation.
+- (NSString*)absoluteURLStringForBaseURLString:(NSString*)baseURLString;
 @end
