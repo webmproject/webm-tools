@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A1AC74C1BCD3E7300233FAF /* webm_file.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A1AC7481BCD3E7300233FAF /* webm_file.cc */; settings = {ASSET_TAGS = (); }; };
+		6A1AC74D1BCD3E7300233FAF /* webm_incremental_reader.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A1AC74A1BCD3E7300233FAF /* webm_incremental_reader.cc */; settings = {ASSET_TAGS = (); }; };
 		6A1AC7521BCD439500233FAF /* VPX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A1AC7501BCD439500233FAF /* VPX.framework */; };
 		6A1AC7531BCD439500233FAF /* WebM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A1AC7511BCD439500233FAF /* WebM.framework */; };
 		6A2755B71B543C7400578A95 /* IxoDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2755B61B543C7400578A95 /* IxoDownloadOperation.m */; };
@@ -39,6 +41,12 @@
 
 /* Begin PBXFileReference section */
 		099EC47C0CCDB0443B131EAE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A1AC7481BCD3E7300233FAF /* webm_file.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = webm_file.cc; path = ../../shared/webm_file.cc; sourceTree = "<group>"; };
+		6A1AC7491BCD3E7300233FAF /* webm_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = webm_file.h; path = ../../shared/webm_file.h; sourceTree = "<group>"; };
+		6A1AC74A1BCD3E7300233FAF /* webm_incremental_reader.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = webm_incremental_reader.cc; path = ../../shared/webm_incremental_reader.cc; sourceTree = "<group>"; };
+		6A1AC74B1BCD3E7300233FAF /* webm_incremental_reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = webm_incremental_reader.h; path = ../../shared/webm_incremental_reader.h; sourceTree = "<group>"; };
+		6A1AC74E1BCD3E9A00233FAF /* webm_constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = webm_constants.h; path = ../../shared/webm_constants.h; sourceTree = "<group>"; };
+		6A1AC74F1BCD3E9A00233FAF /* webm_tools_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = webm_tools_types.h; path = ../../shared/webm_tools_types.h; sourceTree = "<group>"; };
 		6A1AC7501BCD439500233FAF /* VPX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VPX.framework; path = ../../../frameworks/VPX.framework; sourceTree = "<group>"; };
 		6A1AC7511BCD439500233FAF /* WebM.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebM.framework; path = ../../../frameworks/WebM.framework; sourceTree = "<group>"; };
 		6A2755B51B543C7400578A95 /* IxoDownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IxoDownloadOperation.h; sourceTree = SOURCE_ROOT; };
@@ -97,9 +105,22 @@
 
 /* Begin PBXGroup section */
 		6A1AC7471BCD3E3700233FAF /* webm-tools/shared */ = {
+			isa = PBXGroup;
+			children = (
+				6A1AC74E1BCD3E9A00233FAF /* webm_constants.h */,
+				6A1AC74F1BCD3E9A00233FAF /* webm_tools_types.h */,
+				6A1AC7481BCD3E7300233FAF /* webm_file.cc */,
+				6A1AC7491BCD3E7300233FAF /* webm_file.h */,
+				6A1AC74A1BCD3E7300233FAF /* webm_incremental_reader.cc */,
+				6A1AC74B1BCD3E7300233FAF /* webm_incremental_reader.h */,
+			);
+			name = "webm-tools/shared";
+			sourceTree = "<group>";
+		};
 		6AE5EC3E1B4EE3B200AA955F = {
 			isa = PBXGroup;
 			children = (
+				6A1AC7471BCD3E3700233FAF /* webm-tools/shared */,
 				6A4370E91B5432D00006FD6D /* Default-568h@2x.png */,
 				6AE5EC491B4EE3B200AA955F /* IxoPlayer */,
 				6AE5EC631B4EE3B200AA955F /* IxoPlayerTests */,
@@ -328,11 +349,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A1AC74D1BCD3E7300233FAF /* webm_incremental_reader.cc in Sources */,
 				6AC43A0E1B5047C700801EAF /* main.m in Sources */,
 				6A2755BD1B54413000578A95 /* IxoDownloadQueue.m in Sources */,
 				6AC43A091B5047BB00801EAF /* AppDelegate.m in Sources */,
 				6A8206771B682D9500FD6040 /* IxoDASHManifestParserConstants.m in Sources */,
 				6AC43A0A1B5047BB00801EAF /* IxoDataSource.m in Sources */,
+				6A1AC74C1BCD3E7300233FAF /* webm_file.cc in Sources */,
 				6A2755B71B543C7400578A95 /* IxoDownloadOperation.m in Sources */,
 				6AC43A0C1B5047BB00801EAF /* TextViewController.m in Sources */,
 				6ADFC2231B66F9C50034819F /* IxoDASHManifestParser.m in Sources */,
