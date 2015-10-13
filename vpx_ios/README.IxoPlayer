@@ -2,6 +2,7 @@ IxoPlayer README
 
 
 Prerequisites
+-------------
   Cocoapods
     - Cocoapods getting started guide:
       https://guides.cocoapods.org/using/getting-started.html
@@ -9,6 +10,12 @@ Prerequisites
 
 
 Setup
+-----
+Before doing anything else, read the contents of README.VPXExample, and follow
+all of the instructions in the Prerequisites and Getting Started sections. Any
+instructions referring to VPXExample.xcodeproj also apply to
+IxoPlayer.xcodeproj, but those changes should be made after the xcworkspace is
+created by the pod command described below.
 
 From within the IxoPlayer directory, before opening the project:
 1. (First time ever cloning the repo and opening the project) run 'pod install'
@@ -21,7 +28,7 @@ Note: Do only one of the above steps. Doing both is not required.
 
 
 Testing
-
+-------
 Tests can be run within Xcode via the IxoPlayerTests target.
 
 A web server is required, and is expected to be reachable on localhost:8000.
