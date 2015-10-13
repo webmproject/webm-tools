@@ -254,12 +254,13 @@
 
   [_parser setDelegate:self];
 
-  // TODO(tomfinegan): Callers will have to deal with validation of the manifest
-  // contents, but a minimal check should be made that at least one
-  // IxoDASHRepresenationRecord exists in one of {audio|video}AdaptationSet
-  // within the Period.
   if ([_parser parse] != YES) {
     NSLog(@"NSXMLParser parse failed");
+    return false;
+  }
+
+  if ([self canPlayFromParsedManifest] == false) {
+    NSLog(@"Parse completed but manifest data is not valid!");
     return false;
   }
 
@@ -270,6 +271,44 @@
 
 - (NSString*)absoluteURLStringForBaseURLString:(NSString *)baseURLString {
   return [NSString stringWithFormat:@"%@%@", _manifestPath, baseURLString, nil];
+}
+
+- (bool)adaptationSetIsValid:(IxoDASHAdaptationSet*)set {
+  if (set.representations.count < 1)
+    return false;
+  for (IxoDASHRepresentation* rep in set.representations) {
+    // All representations must contain a non-nil baseURL and non-empty
+    // initializationRange.
+    if (rep.baseURL == nil || rep.initializationRange.count != 2)
+      return false;
+  }
+  return true;
+}
+
+- (bool)canPlayFromParsedManifest {
+  // The manifest and period must be non-nil, and at least one adaptation set
+  // must be non-empty.
+  if (_manifest == nil ||
+      _manifest.period == nil ||
+      (_manifest.period.audioAdaptationSets.count == 0 &&
+          _manifest.period.videoAdaptationSets.count == 0)) {
+    return false;
+  }
+
+  if (_manifest.period.audioAdaptationSets.count > 0) {
+    for (IxoDASHAdaptationSet* set in _manifest.period.audioAdaptationSets) {
+      if ([self adaptationSetIsValid:set] == false)
+        return false;
+    }
+  }
+
+  if (_manifest.period.videoAdaptationSets.count > 0) {
+    for (IxoDASHAdaptationSet* set in _manifest.period.videoAdaptationSets) {
+       if ([self adaptationSetIsValid:set] == false)
+        return false;
+    }
+  }
+  return true;
 }
 
 //
