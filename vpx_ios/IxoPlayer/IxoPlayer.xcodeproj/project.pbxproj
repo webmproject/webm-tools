@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A1AC7461BCD3CF900233FAF /* IxoChunkRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6A1AC7451BCD3CF900233FAF /* IxoChunkRenderer.mm */; settings = {ASSET_TAGS = (); }; };
 		6A1AC74C1BCD3E7300233FAF /* webm_file.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A1AC7481BCD3E7300233FAF /* webm_file.cc */; settings = {ASSET_TAGS = (); }; };
 		6A1AC74D1BCD3E7300233FAF /* webm_incremental_reader.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A1AC74A1BCD3E7300233FAF /* webm_incremental_reader.cc */; settings = {ASSET_TAGS = (); }; };
 		6A1AC7521BCD439500233FAF /* VPX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A1AC7501BCD439500233FAF /* VPX.framework */; };
@@ -41,6 +42,8 @@
 
 /* Begin PBXFileReference section */
 		099EC47C0CCDB0443B131EAE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A1AC7441BCD3CF900233FAF /* IxoChunkRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IxoChunkRenderer.h; sourceTree = SOURCE_ROOT; };
+		6A1AC7451BCD3CF900233FAF /* IxoChunkRenderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IxoChunkRenderer.mm; sourceTree = SOURCE_ROOT; };
 		6A1AC7481BCD3E7300233FAF /* webm_file.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = webm_file.cc; path = ../../shared/webm_file.cc; sourceTree = "<group>"; };
 		6A1AC7491BCD3E7300233FAF /* webm_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = webm_file.h; path = ../../shared/webm_file.h; sourceTree = "<group>"; };
 		6A1AC74A1BCD3E7300233FAF /* webm_incremental_reader.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = webm_incremental_reader.cc; path = ../../shared/webm_incremental_reader.cc; sourceTree = "<group>"; };
@@ -142,6 +145,8 @@
 		6AE5EC491B4EE3B200AA955F /* IxoPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				6A1AC7441BCD3CF900233FAF /* IxoChunkRenderer.h */,
+				6A1AC7451BCD3CF900233FAF /* IxoChunkRenderer.mm */,
 				6AC43A011B5047BB00801EAF /* AppDelegate.h */,
 				6AC43A021B5047BB00801EAF /* AppDelegate.m */,
 				6AC43A031B5047BB00801EAF /* IxoDataSource.h */,
@@ -355,6 +360,7 @@
 				6AC43A091B5047BB00801EAF /* AppDelegate.m in Sources */,
 				6A8206771B682D9500FD6040 /* IxoDASHManifestParserConstants.m in Sources */,
 				6AC43A0A1B5047BB00801EAF /* IxoDataSource.m in Sources */,
+				6A1AC7461BCD3CF900233FAF /* IxoChunkRenderer.mm in Sources */,
 				6A1AC74C1BCD3E7300233FAF /* webm_file.cc in Sources */,
 				6A2755B71B543C7400578A95 /* IxoDownloadOperation.m in Sources */,
 				6AC43A0C1B5047BB00801EAF /* TextViewController.m in Sources */,
