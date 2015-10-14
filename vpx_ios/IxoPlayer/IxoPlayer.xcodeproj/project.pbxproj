@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A1AC7521BCD439500233FAF /* VPX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A1AC7501BCD439500233FAF /* VPX.framework */; };
+		6A1AC7531BCD439500233FAF /* WebM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A1AC7511BCD439500233FAF /* WebM.framework */; };
 		6A2755B71B543C7400578A95 /* IxoDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2755B61B543C7400578A95 /* IxoDownloadOperation.m */; };
 		6A2755BA1B543DFE00578A95 /* IxoDownloadRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2755B91B543DFE00578A95 /* IxoDownloadRecord.m */; };
 		6A2755BD1B54413000578A95 /* IxoDownloadQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2755BC1B54413000578A95 /* IxoDownloadQueue.m */; };
@@ -37,6 +39,8 @@
 
 /* Begin PBXFileReference section */
 		099EC47C0CCDB0443B131EAE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A1AC7501BCD439500233FAF /* VPX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VPX.framework; path = ../../../frameworks/VPX.framework; sourceTree = "<group>"; };
+		6A1AC7511BCD439500233FAF /* WebM.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebM.framework; path = ../../../frameworks/WebM.framework; sourceTree = "<group>"; };
 		6A2755B51B543C7400578A95 /* IxoDownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IxoDownloadOperation.h; sourceTree = SOURCE_ROOT; };
 		6A2755B61B543C7400578A95 /* IxoDownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IxoDownloadOperation.m; sourceTree = SOURCE_ROOT; };
 		6A2755B81B543DFE00578A95 /* IxoDownloadRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IxoDownloadRecord.h; sourceTree = SOURCE_ROOT; };
@@ -76,6 +80,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A1AC7521BCD439500233FAF /* VPX.framework in Frameworks */,
+				6A1AC7531BCD439500233FAF /* WebM.framework in Frameworks */,
 				A193CE3D57DD55DFFBEC3699 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -171,6 +177,8 @@
 		9809172C3DC6B925B4CD92D0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6A1AC7501BCD439500233FAF /* VPX.framework */,
+				6A1AC7511BCD439500233FAF /* WebM.framework */,
 				099EC47C0CCDB0443B131EAE /* libPods.a */,
 			);
 			name = Frameworks;
@@ -357,7 +365,7 @@
 		6AE5EC681B4EE3B200AA955F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -375,6 +383,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = ../../../frameworks;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -390,6 +399,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				"HEADER_SEARCH_PATHS[arch=*]" = ../../../frameworks/WebM.framework/Headers;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -401,7 +411,7 @@
 		6AE5EC691B4EE3B200AA955F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -420,6 +430,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = ../../../frameworks;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -428,6 +439,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				"HEADER_SEARCH_PATHS[arch=*]" = ../../../frameworks/WebM.framework/Headers;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
