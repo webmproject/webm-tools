@@ -240,11 +240,12 @@
     return nil;
   }
 
-  _manifestData = [manifest_source downloadFromURL:_manifestURL];
-  if (_manifestData == nil) {
+  IxoDownloadRecord* manifest_record = [manifest_source downloadFromURL:_manifestURL];
+  if (manifest_record == nil || manifest_record.data == nil) {
     NSLog(@"Unable to load manifest");
     return false;
   }
+  _manifestData = manifest_record.data;
 
   _parser = [[NSXMLParser alloc] initWithData:_manifestData];
   if (_parser == nil) {
@@ -271,6 +272,20 @@
 
 - (NSString*)absoluteURLStringForBaseURLString:(NSString *)baseURLString {
   return [NSString stringWithFormat:@"%@%@", _manifestPath, baseURLString, nil];
+}
+
+- (NSMutableArray*)audioRepsForAdaptationSetWithIndex:(int)index {
+  if (index >= _manifest.period.audioAdaptationSets.count)
+    return nil;
+  return [[_manifest.period.audioAdaptationSets objectAtIndex:index]
+      representations];
+}
+
+- (NSMutableArray*)videoRepsForAdaptationSetWithIndex:(int)index {
+  if (index >= _manifest.period.videoAdaptationSets.count)
+    return nil;
+  return [[_manifest.period.videoAdaptationSets objectAtIndex:index]
+      representations];
 }
 
 - (bool)adaptationSetIsValid:(IxoDASHAdaptationSet*)set {

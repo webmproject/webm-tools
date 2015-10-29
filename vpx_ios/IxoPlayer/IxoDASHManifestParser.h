@@ -60,4 +60,8 @@
 
 // Returns the complete URL given the baseURL from an IxoDASHRepresentation.
 - (NSString*)absoluteURLStringForBaseURLString:(NSString*)baseURLString;
+// Convenience utils for direct access of IxoDASHRepresentations via
+// IxoDASHManifestParser.
+- (NSMutableArray*)audioRepsForAdaptationSetWithIndex:(int)index;
+- (NSMutableArray*)videoRepsForAdaptationSetWithIndex:(int)index;
 @end
