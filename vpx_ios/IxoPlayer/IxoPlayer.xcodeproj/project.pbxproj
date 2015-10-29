@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A1062781BD81D8000FB8E8D /* IxoDASHStartData.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6A1062771BD81D8000FB8E8D /* IxoDASHStartData.mm */; settings = {ASSET_TAGS = (); }; };
 		6A1AC74C1BCD3E7300233FAF /* webm_file.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A1AC7481BCD3E7300233FAF /* webm_file.cc */; settings = {ASSET_TAGS = (); }; };
 		6A1AC74D1BCD3E7300233FAF /* webm_incremental_reader.cc in Sources */ = {isa = PBXBuildFile; fileRef = 6A1AC74A1BCD3E7300233FAF /* webm_incremental_reader.cc */; settings = {ASSET_TAGS = (); }; };
 		6A1AC7521BCD439500233FAF /* VPX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A1AC7501BCD439500233FAF /* VPX.framework */; };
@@ -14,6 +15,7 @@
 		6A2755B71B543C7400578A95 /* IxoDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2755B61B543C7400578A95 /* IxoDownloadOperation.m */; };
 		6A2755BA1B543DFE00578A95 /* IxoDownloadRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2755B91B543DFE00578A95 /* IxoDownloadRecord.m */; };
 		6A2755BD1B54413000578A95 /* IxoDownloadQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A2755BC1B54413000578A95 /* IxoDownloadQueue.m */; };
+		6A34F9851BF596CE00652708 /* IxoDASHChunkIndexer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6A34F9841BF596CE00652708 /* IxoDASHChunkIndexer.mm */; settings = {ASSET_TAGS = (); }; };
 		6A4370EA1B5432D00006FD6D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4370E91B5432D00006FD6D /* Default-568h@2x.png */; };
 		6A8206771B682D9500FD6040 /* IxoDASHManifestParserConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8206761B682D9500FD6040 /* IxoDASHManifestParserConstants.m */; };
 		6A8FD2B61B62E76100BDD946 /* IxoDASHManifestParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8FD2B51B62E76100BDD946 /* IxoDASHManifestParserTests.m */; };
@@ -41,6 +43,8 @@
 
 /* Begin PBXFileReference section */
 		099EC47C0CCDB0443B131EAE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6A1062761BD81D8000FB8E8D /* IxoDASHStartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IxoDASHStartData.h; sourceTree = SOURCE_ROOT; };
+		6A1062771BD81D8000FB8E8D /* IxoDASHStartData.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IxoDASHStartData.mm; sourceTree = SOURCE_ROOT; };
 		6A1AC7481BCD3E7300233FAF /* webm_file.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = webm_file.cc; path = ../../shared/webm_file.cc; sourceTree = "<group>"; };
 		6A1AC7491BCD3E7300233FAF /* webm_file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = webm_file.h; path = ../../shared/webm_file.h; sourceTree = "<group>"; };
 		6A1AC74A1BCD3E7300233FAF /* webm_incremental_reader.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = webm_incremental_reader.cc; path = ../../shared/webm_incremental_reader.cc; sourceTree = "<group>"; };
@@ -55,6 +59,8 @@
 		6A2755B91B543DFE00578A95 /* IxoDownloadRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IxoDownloadRecord.m; sourceTree = SOURCE_ROOT; };
 		6A2755BB1B54413000578A95 /* IxoDownloadQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IxoDownloadQueue.h; sourceTree = SOURCE_ROOT; };
 		6A2755BC1B54413000578A95 /* IxoDownloadQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IxoDownloadQueue.m; sourceTree = SOURCE_ROOT; };
+		6A34F9831BF596CE00652708 /* IxoDASHChunkIndexer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IxoDASHChunkIndexer.h; sourceTree = SOURCE_ROOT; };
+		6A34F9841BF596CE00652708 /* IxoDASHChunkIndexer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = IxoDASHChunkIndexer.mm; sourceTree = SOURCE_ROOT; };
 		6A4370E91B5432D00006FD6D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		6A8206751B682CF400FD6040 /* IxoDASHManifestParserConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IxoDASHManifestParserConstants.h; sourceTree = SOURCE_ROOT; };
 		6A8206761B682D9500FD6040 /* IxoDASHManifestParserConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IxoDASHManifestParserConstants.m; sourceTree = SOURCE_ROOT; };
@@ -120,13 +126,13 @@
 		6AE5EC3E1B4EE3B200AA955F = {
 			isa = PBXGroup;
 			children = (
-				6A1AC7471BCD3E3700233FAF /* webm-tools/shared */,
 				6A4370E91B5432D00006FD6D /* Default-568h@2x.png */,
+				9809172C3DC6B925B4CD92D0 /* Frameworks */,
 				6AE5EC491B4EE3B200AA955F /* IxoPlayer */,
 				6AE5EC631B4EE3B200AA955F /* IxoPlayerTests */,
-				6AE5EC481B4EE3B200AA955F /* Products */,
 				EA34B8B7C03F90A26D675019 /* Pods */,
-				9809172C3DC6B925B4CD92D0 /* Frameworks */,
+				6AE5EC481B4EE3B200AA955F /* Products */,
+				6A1AC7471BCD3E3700233FAF /* webm-tools/shared */,
 			);
 			sourceTree = "<group>";
 		};
@@ -144,21 +150,25 @@
 			children = (
 				6AC43A011B5047BB00801EAF /* AppDelegate.h */,
 				6AC43A021B5047BB00801EAF /* AppDelegate.m */,
-				6AC43A031B5047BB00801EAF /* IxoDataSource.h */,
-				6AC43A041B5047BB00801EAF /* IxoDataSource.m */,
+				6A34F9831BF596CE00652708 /* IxoDASHChunkIndexer.h */,
+				6A34F9841BF596CE00652708 /* IxoDASHChunkIndexer.mm */,
 				6ADFC2211B66F9C50034819F /* IxoDASHManifestParser.h */,
 				6ADFC2221B66F9C50034819F /* IxoDASHManifestParser.m */,
 				6A8206751B682CF400FD6040 /* IxoDASHManifestParserConstants.h */,
 				6A8206761B682D9500FD6040 /* IxoDASHManifestParserConstants.m */,
-				6AC43A071B5047BB00801EAF /* TextViewController.h */,
-				6AC43A081B5047BB00801EAF /* TextViewController.m */,
-				6AE5EC4A1B4EE3B200AA955F /* Supporting Files */,
+				6A1062761BD81D8000FB8E8D /* IxoDASHStartData.h */,
+				6A1062771BD81D8000FB8E8D /* IxoDASHStartData.mm */,
+				6AC43A031B5047BB00801EAF /* IxoDataSource.h */,
+				6AC43A041B5047BB00801EAF /* IxoDataSource.m */,
 				6A2755B51B543C7400578A95 /* IxoDownloadOperation.h */,
 				6A2755B61B543C7400578A95 /* IxoDownloadOperation.m */,
-				6A2755B81B543DFE00578A95 /* IxoDownloadRecord.h */,
-				6A2755B91B543DFE00578A95 /* IxoDownloadRecord.m */,
 				6A2755BB1B54413000578A95 /* IxoDownloadQueue.h */,
 				6A2755BC1B54413000578A95 /* IxoDownloadQueue.m */,
+				6A2755B81B543DFE00578A95 /* IxoDownloadRecord.h */,
+				6A2755B91B543DFE00578A95 /* IxoDownloadRecord.m */,
+				6AE5EC4A1B4EE3B200AA955F /* Supporting Files */,
+				6AC43A071B5047BB00801EAF /* TextViewController.h */,
+				6AC43A081B5047BB00801EAF /* TextViewController.m */,
 			);
 			path = IxoPlayer;
 			sourceTree = "<group>";
@@ -175,15 +185,16 @@
 		6AE5EC631B4EE3B200AA955F /* IxoPlayerTests */ = {
 			isa = PBXGroup;
 			children = (
-				6A8FD2BA1B62FD6C00BDD946 /* IxoPlayerTestCommon.h */,
-				6A8FD2BB1B62FD6C00BDD946 /* IxoPlayerTestCommon.m */,
-				6AE5EC661B4EE3B200AA955F /* IxoDataSourceTests.m */,
+				6AF582721BFBB6F500EB3188 /* IxoDASHChunkIndexerTests.m */,
 				6A8FD2B51B62E76100BDD946 /* IxoDASHManifestParserTests.m */,
-				6AE5EC641B4EE3B200AA955F /* Supporting Files */,
-				6ABE980F1B7BC0960048F7AE /* IxoMutableDASHManifest.h */,
-				6ABE98101B7BC0960048F7AE /* IxoMutableDASHManifest.m */,
 				6ABE98121B7BD17D0048F7AE /* IxoDASHManifestTestData.h */,
 				6ABE98131B7BD17D0048F7AE /* IxoDASHManifestTestData.m */,
+				6AE5EC661B4EE3B200AA955F /* IxoDataSourceTests.m */,
+				6ABE980F1B7BC0960048F7AE /* IxoMutableDASHManifest.h */,
+				6ABE98101B7BC0960048F7AE /* IxoMutableDASHManifest.m */,
+				6A8FD2BA1B62FD6C00BDD946 /* IxoPlayerTestCommon.h */,
+				6A8FD2BB1B62FD6C00BDD946 /* IxoPlayerTestCommon.m */,
+				6AE5EC641B4EE3B200AA955F /* Supporting Files */,
 			);
 			path = IxoPlayerTests;
 			sourceTree = "<group>";
@@ -353,9 +364,11 @@
 				6AC43A0E1B5047C700801EAF /* main.m in Sources */,
 				6A2755BD1B54413000578A95 /* IxoDownloadQueue.m in Sources */,
 				6AC43A091B5047BB00801EAF /* AppDelegate.m in Sources */,
+				6A34F9851BF596CE00652708 /* IxoDASHChunkIndexer.mm in Sources */,
 				6A8206771B682D9500FD6040 /* IxoDASHManifestParserConstants.m in Sources */,
 				6AC43A0A1B5047BB00801EAF /* IxoDataSource.m in Sources */,
 				6A1AC74C1BCD3E7300233FAF /* webm_file.cc in Sources */,
+				6A1062781BD81D8000FB8E8D /* IxoDASHStartData.mm in Sources */,
 				6A2755B71B543C7400578A95 /* IxoDownloadOperation.m in Sources */,
 				6AC43A0C1B5047BB00801EAF /* TextViewController.m in Sources */,
 				6ADFC2231B66F9C50034819F /* IxoDASHManifestParser.m in Sources */,
