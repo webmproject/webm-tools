@@ -240,11 +240,13 @@
     return nil;
   }
 
-  _manifestData = [manifest_source downloadFromURL:_manifestURL];
-  if (_manifestData == nil) {
+  IxoDownloadRecord* manifest_record =
+      [manifest_source downloadFromURL:_manifestURL];
+  if (manifest_record == nil || manifest_record.data == nil) {
     NSLog(@"Unable to load manifest");
     return false;
   }
+  _manifestData = manifest_record.data;
 
   _parser = [[NSXMLParser alloc] initWithData:_manifestData];
   if (_parser == nil) {
@@ -269,8 +271,22 @@
   return true;
 }
 
-- (NSString*)absoluteURLStringForBaseURLString:(NSString *)baseURLString {
+- (NSString*)absoluteURLStringForBaseURLString:(NSString*)baseURLString {
   return [NSString stringWithFormat:@"%@%@", _manifestPath, baseURLString, nil];
+}
+
+- (NSMutableArray*)audioRepsForAdaptationSetWithIndex:(int)index {
+  if (index >= _manifest.period.audioAdaptationSets.count)
+    return nil;
+  return [[_manifest.period.audioAdaptationSets
+      objectAtIndex:index] representations];
+}
+
+- (NSMutableArray*)videoRepsForAdaptationSetWithIndex:(int)index {
+  if (index >= _manifest.period.videoAdaptationSets.count)
+    return nil;
+  return [[_manifest.period.videoAdaptationSets
+      objectAtIndex:index] representations];
 }
 
 - (bool)adaptationSetIsValid:(IxoDASHAdaptationSet*)set {
@@ -288,10 +304,9 @@
 - (bool)canPlayFromParsedManifest {
   // The manifest and period must be non-nil, and at least one adaptation set
   // must be non-empty.
-  if (_manifest == nil ||
-      _manifest.period == nil ||
+  if (_manifest == nil || _manifest.period == nil ||
       (_manifest.period.audioAdaptationSets.count == 0 &&
-          _manifest.period.videoAdaptationSets.count == 0)) {
+       _manifest.period.videoAdaptationSets.count == 0)) {
     return false;
   }
 
@@ -304,7 +319,7 @@
 
   if (_manifest.period.videoAdaptationSets.count > 0) {
     for (IxoDASHAdaptationSet* set in _manifest.period.videoAdaptationSets) {
-       if ([self adaptationSetIsValid:set] == false)
+      if ([self adaptationSetIsValid:set] == false)
         return false;
     }
   }
@@ -365,8 +380,8 @@
 - (NSString*)removeFileNameFromURLString:(NSString*)string {
   NSRange fname_range = [string rangeOfString:@"/" options:NSBackwardsSearch];
   fname_range.length = string.length - fname_range.location;
-  return [string stringByReplacingCharactersInRange:fname_range
-                                         withString:@"/"];
+  return
+      [string stringByReplacingCharactersInRange:fname_range withString:@"/"];
 }
 
 //
