@@ -47,7 +47,8 @@
 }
 
 - (void)forwardResponseRecordToDataSource:(IxoDownloadRecord*)record {
-  [record.dataSource downloadCompleteForDownloadRecord:record];
+  if (record.dataSource != nil)
+    [record.dataSource downloadCompleteForDownloadRecord:record];
 }
 
 - (void)main {

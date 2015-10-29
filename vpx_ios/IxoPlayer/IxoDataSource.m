@@ -32,14 +32,38 @@
 }
 
 - (NSData*)downloadFromURL:(NSURL*)URL {
-  // TODO(tomfinegan): Not sure if this will work w/HTTPS.
-  return [[NSData alloc] initWithContentsOfURL:URL];
+  return [self downloadFromURL:URL withRange:nil];
+}
+
+- (NSData*)downloadFromURL:(NSURL*)URL withRange:(NSArray*)range {
+  IxoDownloadRecord* record = [[IxoDownloadRecord alloc] init];
+  if (record == nil) {
+    NSLog(@"downloadFromURL: out of memory.");
+    return nil;
+  }
+
+  record.URL = URL;
+  record.requestedRange = range;
+  IxoDownloadOperation* download_op =
+      [[IxoDownloadOperation alloc] initWithDownloadRecord:record];
+
+  if (download_op == nil) {
+    NSLog(@"downloadFromURL: out of memory.");
+    return nil;
+  }
+
+  [download_op start];
+  if (record.failed) {
+    NSLog(@"downloadFromURL: failed, error=%@", record.error);
+    return nil;
+  }
+
+  return record.data;
 }
 
 - (int)downloadDataFromURL:(NSURL*)URL
                  withRange:(NSArray*)range
                 toListener:(id)listener {
-
   int download_id = -1;
 
   [_lock lock];
@@ -84,7 +108,8 @@
   [_lock unlock];
   NSLog(@"%d:%@ removed from activeDownloads.", record.downloadID,
         [record.URL absoluteString]);
-  [record.listener receiveData:record];
+  if (record.listener != nil)
+    [record.listener receiveData:record];
 }
 
 @end

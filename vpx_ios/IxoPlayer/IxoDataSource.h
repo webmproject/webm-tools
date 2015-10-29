@@ -23,6 +23,10 @@
 // |URL|.
 - (NSData*)downloadFromURL:(NSURL*)URL;
 
+// Returns |range| bytes from |URL|. Synchronous. Returns nil or the data from
+// |URL|.
+- (NSData*)downloadFromURL:(NSURL*)URL withRange:(NSArray*)range;
+
 // Downloads bytes specified by |range| and sends them to |listener|. This
 // method is asynchronous; the download has started when it returns any
 // non-negative number. Non-negative return values are the identifier for the

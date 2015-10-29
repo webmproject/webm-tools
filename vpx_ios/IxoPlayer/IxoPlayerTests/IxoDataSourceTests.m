@@ -70,6 +70,28 @@
             @"MD5 mismatch");
 }
 
+- (void)testSynchronousDownloadWithRange {
+  IxoDataSource* data_source = [[IxoDataSource alloc] init];
+
+  const int range_end = kVP9VorbisDASHMPD1MiddleLineOffset +
+                        kVP9VorbisDASHMPD1MiddleLineLength - 1;
+  NSArray* const range_array = [self
+      getRangeArrayFromIntsWithBeginOffset:kVP9VorbisDASHMPD1MiddleLineOffset
+                                 endOffset:range_end];
+
+  NSData* manifest_data = [data_source
+      downloadFromURL:[NSURL URLWithString:kVP9VorbisDASHMPD1URLString]
+            withRange:range_array];
+
+  // Make sure data was received.
+  NSString* response_string =
+      [[NSString alloc] initWithData:manifest_data
+                            encoding:NSUTF8StringEncoding];
+  XCTAssert([response_string isEqualToString:kVP9VorbisDASHMPD1MiddleLine]);
+  XCTAssertEqual(manifest_data.length,
+                 kVP9VorbisDASHMPD1MiddleLineLength);
+}
+
 - (void)testAsyncDownload {
   IxoDataSource* data_source = [[IxoDataSource alloc] init];
 
