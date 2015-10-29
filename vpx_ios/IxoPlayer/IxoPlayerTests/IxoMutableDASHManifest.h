@@ -37,7 +37,8 @@
 @property(nonatomic) int width;
 @property(nonatomic) int height;
 @property(nonatomic) int audioSamplingRate;
-@property(nonatomic, strong) NSMutableArray* representations;
+@property(nonatomic, strong)
+    NSMutableArray<IxoMutableDASHRepresentation*>* representations;
 
 - (id)init;
 @end
@@ -46,8 +47,10 @@
 @property(nonatomic, strong) NSString* periodID;
 @property(nonatomic, strong) NSString* start;
 @property(nonatomic, strong) NSString* duration;
-@property(nonatomic, strong) NSMutableArray* audioAdaptationSets;
-@property(nonatomic, strong) NSMutableArray* videoAdaptationSets;
+@property(nonatomic, strong)
+    NSMutableArray<IxoMutableDASHAdaptationSet*>* audioAdaptationSets;
+@property(nonatomic, strong)
+    NSMutableArray<IxoMutableDASHAdaptationSet*>* videoAdaptationSets;
 
 - (id)init;
 @end

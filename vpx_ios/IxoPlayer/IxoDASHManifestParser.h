@@ -33,15 +33,18 @@
 @property(nonatomic, readonly) int width;
 @property(nonatomic, readonly) int height;
 @property(nonatomic, readonly) int audioSamplingRate;
-@property(nonatomic, strong, readonly) NSMutableArray* representations;
+@property(nonatomic, strong, readonly)
+    NSMutableArray<IxoDASHRepresentation*>* representations;
 @end
 
 @interface IxoDASHPeriod : NSObject
 @property(nonatomic, strong, readonly) NSString* periodID;
 @property(nonatomic, strong, readonly) NSString* start;
 @property(nonatomic, strong, readonly) NSString* duration;
-@property(nonatomic, strong, readonly) NSMutableArray* audioAdaptationSets;
-@property(nonatomic, strong, readonly) NSMutableArray* videoAdaptationSets;
+@property(nonatomic, strong, readonly)
+    NSMutableArray<IxoDASHAdaptationSet*>* audioAdaptationSets;
+@property(nonatomic, strong, readonly)
+    NSMutableArray<IxoDASHAdaptationSet*>* videoAdaptationSets;
 @end
 
 @interface IxoDASHManifest : NSObject
