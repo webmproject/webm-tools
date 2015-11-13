@@ -50,21 +50,27 @@
   return [expectedMD5 isEqualToString:md5_string] == YES;
 }
 
-- (NSArray*)getRangeArrayFromIntsWithBeginOffset:(int)begin endOffset:(int)end {
-  return [NSArray arrayWithObjects:[NSNumber numberWithInt:begin],
-                                   [NSNumber numberWithInt:end], nil];
+- (NSMutableArray*)getRangeArrayFromIntsWithBeginOffset:(int)begin
+                                              endOffset:(int)end {
+  return [NSMutableArray arrayWithObjects:[NSNumber numberWithInt:begin],
+                                          [NSNumber numberWithInt:end], nil];
 }
 
 - (void)testSynchronousDownload {
   IxoDataSource* data_source = [[IxoDataSource alloc] init];
-  NSData* manifest_data = [data_source
+
+  IxoDownloadRecord* record = [data_source
       downloadFromURL:[NSURL URLWithString:kVP9VorbisDASHMPD1URLString]];
 
-  // Make sure data was received.
+  // Make sure the download record doesn't have a resourceLength-- this should
+  // always be 0 for a non-ranged download.
+  XCTAssert(record.resourceLength == 0);
+
+  // Make sure data was received and is correct.
+  NSData* const manifest_data = record.data;
   XCTAssertNotNil(manifest_data, @"Nil manifest.");
   XCTAssertEqual(manifest_data.length, kVP9VorbisDASHMPD1Length,
                  @"Manifest length incorrect.");
-
   XCTAssert([self MD5SumForData:manifest_data
                 matchesMD5SumString:kVP9VorbisDASHMPD1MD5],
             @"MD5 mismatch");
@@ -78,18 +84,58 @@
   NSArray* const range_array = [self
       getRangeArrayFromIntsWithBeginOffset:kVP9VorbisDASHMPD1MiddleLineOffset
                                  endOffset:range_end];
-
-  NSData* manifest_data = [data_source
+  IxoDownloadRecord* record = [data_source
       downloadFromURL:[NSURL URLWithString:kVP9VorbisDASHMPD1URLString]
             withRange:range_array];
 
+  // Make sure the resourceLength field in |record| contains the correct file
+  // size.
+  XCTAssert(record.resourceLength == kVP9VorbisDASHMPD1Length);
+
   // Make sure data was received.
+  NSData* manifest_data = record.data;
   NSString* response_string =
       [[NSString alloc] initWithData:manifest_data
                             encoding:NSUTF8StringEncoding];
   XCTAssert([response_string isEqualToString:kVP9VorbisDASHMPD1MiddleLine]);
-  XCTAssertEqual(manifest_data.length,
-                 kVP9VorbisDASHMPD1MiddleLineLength);
+  XCTAssertEqual(manifest_data.length, kVP9VorbisDASHMPD1MiddleLineLength);
+}
+
+- (void)testMultiSynchronousDownloadWithRange {
+  IxoDataSource* data_source = [[IxoDataSource alloc] init];
+  int range_end = kVP9VorbisDASHMPD1MiddleLineOffset +
+                  kVP9VorbisDASHMPD1MiddleLineLength - 1;
+  NSMutableArray* const range_array = [self
+      getRangeArrayFromIntsWithBeginOffset:kVP9VorbisDASHMPD1MiddleLineOffset
+                                 endOffset:range_end];
+  NSMutableData* const middle_data =
+      [[data_source
+           downloadFromURL:[NSURL URLWithString:kVP9VorbisDASHMPD1URLString]
+                 withRange:range_array]
+              .data copy];
+
+  range_array[0] = [NSNumber numberWithInt:0];
+  range_array[1] =
+      [NSNumber numberWithInt:kVP9VorbisDASHMPD1FirstLineLength - 1];
+  NSMutableData* const first_data =
+      [[data_source
+           downloadFromURL:[NSURL URLWithString:kVP9VorbisDASHMPD1URLString]
+                 withRange:range_array]
+              .data copy];
+
+  // Make sure data was received.
+  NSString* const middle_line =
+      [[NSString alloc] initWithData:middle_data encoding:NSUTF8StringEncoding];
+  NSString* const first_line =
+      [[NSString alloc] initWithData:first_data encoding:NSUTF8StringEncoding];
+  NSString* const combined_lines =
+      [NSString stringWithFormat:@"%@%@", middle_line, first_line, nil];
+  NSString* const expected_string =
+      [NSString stringWithFormat:@"%@%@", kVP9VorbisDASHMPD1MiddleLine,
+                                 kVP9VorbisDASHMPD1FirstLine, nil];
+  XCTAssert([expected_string isEqualToString:combined_lines]);
+  XCTAssertEqual(combined_lines.length, kVP9VorbisDASHMPD1MiddleLineLength +
+                                            kVP9VorbisDASHMPD1FirstLineLength);
 }
 
 - (void)testAsyncDownload {

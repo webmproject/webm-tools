@@ -9,6 +9,18 @@
 
 #import "IxoDataSource.h"
 
+///
+/// Downloader class that supports synchronous or asynchronous operation.
+/// Stores downloaded data in IxoDownloadRecord.
+///
 @interface IxoDownloadOperation : NSOperation
-- (instancetype)initWithDownloadRecord:(IxoDownloadRecord*)record;
+
+/// Convenience property for diagnosing errors. All HTTP request and response
+/// headers will be NSLog()'d when this flag is true.
+@property(nonatomic) bool logAllHeaders;
+
+/// Prepares the download operation.
+- (instancetype)initWithDownloadRecord:(IxoDownloadRecord*)record
+    NS_DESIGNATED_INITIALIZER;
+- (instancetype)init NS_UNAVAILABLE;
 @end

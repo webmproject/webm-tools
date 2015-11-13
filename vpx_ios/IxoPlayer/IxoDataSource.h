@@ -10,34 +10,42 @@
 
 @class IxoDownloadRecord;
 
-// Listener protocol for asynchronous downloads.
+///
+/// Listener protocol for asynchronous downloads.
+///
 @protocol IxoDataSourceListener
-// Called upon download completion or failure. Status contained within
-// |downloadRecord|.
+/// Called upon download completion or failure. Status contained within
+/// |downloadRecord|.
 - (void)receiveData:(IxoDownloadRecord*)downloadRecord;
-@end
+@end  // @protocol IxoDataSourceListener
 
+///
+/// Downloader class. Provides synchronous and asynchronous download support.
+///
 @interface IxoDataSource : NSObject
+- (instancetype) init NS_DESIGNATED_INITIALIZER;
 
-// Returns all bytes from |URL|. Synchronous. Returns nil or the data from
-// |URL|.
-- (NSData*)downloadFromURL:(NSURL*)URL;
+/// Returns all bytes from |URL|. Synchronous. Returns nil or the data from
+/// |URL|.
+- (IxoDownloadRecord*)downloadFromURL:(NSURL*)URL;
 
-// Returns |range| bytes from |URL|. Synchronous. Returns nil or the data from
-// |URL|.
-- (NSData*)downloadFromURL:(NSURL*)URL withRange:(NSArray*)range;
+/// Returns |range| bytes from |URL|. Synchronous. Returns nil or the data from
+/// |URL|.
+- (IxoDownloadRecord*)downloadFromURL:(NSURL*)URL withRange:(NSArray*)range;
 
-// Downloads bytes specified by |range| and sends them to |listener|. This
-// method is asynchronous; the download has started when it returns any
-// non-negative number. Non-negative return values are the identifier for the
-// download started by the successful
-// -downloadDataFromURL:withRange:toListener call.
-// The |listener| is notified after completion of download; not while it is in
-// progress.
+/// Downloads bytes specified by |range| and sends them to |listener|. This
+/// method is asynchronous; the download has started when it returns any
+/// non-negative number. Non-negative return values are the identifier for the
+/// download started by the successful
+/// -downloadDataFromURL:withRange:toListener call.
+/// The |listener| is notified after completion of download; not while it is in
+/// progress.
 - (int)downloadDataFromURL:(NSURL*)URL
                  withRange:(NSArray*)range
                 toListener:(id)listener;
 
+/// Receives notification of complete asynchronous download via
+/// listener stored within IxoDownloadRecord.
 - (void)downloadCompleteForDownloadRecord:(IxoDownloadRecord*)record;
 
-@end
+@end  // @interface IxoDataSource : NSObject
