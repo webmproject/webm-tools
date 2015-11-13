@@ -31,11 +31,11 @@
   return self;
 }
 
-- (NSData*)downloadFromURL:(NSURL*)URL {
+- (IxoDownloadRecord*)downloadFromURL:(NSURL*)URL {
   return [self downloadFromURL:URL withRange:nil];
 }
 
-- (NSData*)downloadFromURL:(NSURL*)URL withRange:(NSArray*)range {
+- (IxoDownloadRecord*)downloadFromURL:(NSURL*)URL withRange:(NSArray*)range {
   IxoDownloadRecord* record = [[IxoDownloadRecord alloc] init];
   if (record == nil) {
     NSLog(@"downloadFromURL: out of memory.");
@@ -58,7 +58,7 @@
     return nil;
   }
 
-  return record.data;
+  return record;
 }
 
 - (int)downloadDataFromURL:(NSURL*)URL
@@ -112,4 +112,4 @@
     [record.listener receiveData:record];
 }
 
-@end
+@end  // @implementation IxoDataSource

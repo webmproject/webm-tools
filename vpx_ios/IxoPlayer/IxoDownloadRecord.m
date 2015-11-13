@@ -17,5 +17,24 @@
 @synthesize failed = _failed;
 @synthesize error = _error;
 @synthesize dataSource = _dataSource;
+@synthesize responseCode = _responseCode;
+@synthesize resourceLength = _resourceLength;
 
-@end
+- (instancetype)init {
+  self = [super init];
+  if (self != nil) {
+    self.URL = nil;
+    self.requestedRange = nil;
+    self.downloadID = 0;
+    self.listener = nil;
+    self.data = nil;
+    self.failed = false;
+    self.error = nil;
+    self.dataSource = nil;
+    self.responseCode = 0;
+    self.resourceLength = 0;
+  }
+  return self;
+}
+
+@end  // @implementation IxoDownloadRecord

@@ -240,11 +240,13 @@
     return nil;
   }
 
-  _manifestData = [manifest_source downloadFromURL:_manifestURL];
-  if (_manifestData == nil) {
+  IxoDownloadRecord* manifest_record =
+      [manifest_source downloadFromURL:_manifestURL];
+  if (manifest_record == nil || manifest_record.data == nil) {
     NSLog(@"Unable to load manifest");
     return false;
   }
+  _manifestData = manifest_record.data;
 
   _parser = [[NSXMLParser alloc] initWithData:_manifestData];
   if (_parser == nil) {

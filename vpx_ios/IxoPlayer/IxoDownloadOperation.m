@@ -15,6 +15,8 @@
   IxoDownloadRecord* _record;
 }
 
+@synthesize logAllHeaders = _logAllHeaders;
+
 - (instancetype)initWithDownloadRecord:(IxoDownloadRecord*)record {
   if ((self = [super init])) {
     _record = record;
@@ -22,14 +24,25 @@
   return self;
 }
 
-// Builds an AFHTTPRequestOperation from an IxoDownloadRecord. The |record| must
-// outlive the download operation. This method is asynchronous. Success and
-// failure are reported via the |listener| stored in |record| via call to
-// -forwardResponseRecordToDataSource:.
+/// Builds an AFHTTPRequestOperation from an IxoDownloadRecord. The |record|
+/// must outlive the download operation. This method is asynchronous. Success
+/// and failure are reported via the |listener| stored in |record| via call to
+/// -forwardResponseRecordToDataSource:.
 - (AFHTTPRequestOperation*)createHTTPRequestFromDownloadRecord:
     (IxoDownloadRecord*)record {
   NSMutableURLRequest* request =
       [NSMutableURLRequest requestWithURL:record.URL];
+
+  // NO LOCAL CACHING! Why:
+  // the NSURL* family of classes supports caching of data. Normally this would
+  // be an excellent feature, but the NSURL* caching mechanism ignores range
+  // headers. When sending successive requests for the same resource, the data
+  // requested in the first request will be returned for all subsequent
+  // requests. Users of this class need the real data from the source, so
+  // disable caching entirely.
+  // Some additional info here:
+  // https://github.com/lionheart/openradar-mirror/issues/1840
+  [request setCachePolicy:NSURLRequestReloadIgnoringLocalCacheData];
 
   if (record.requestedRange != nil) {
     const NSNumber* const range_begin = record.requestedRange[0];
@@ -46,11 +59,14 @@
   return request_op;
 }
 
+/// Sends |record| to IxoDataSource awaiting the download.
 - (void)forwardResponseRecordToDataSource:(IxoDownloadRecord*)record {
   if (record.dataSource != nil)
     [record.dataSource downloadCompleteForDownloadRecord:record];
 }
 
+
+/// Attempts download of data from URL stored in IxoDownloadRecord.
 - (void)main {
   if (_record == nil || self.isCancelled) {
     return;
@@ -74,6 +90,8 @@
   _record.error = download_operation.error;
   _record.failed = (download_operation.error != nil ||
                     download_operation.responseData == nil);
+  if (download_operation.response != nil)
+    _record.responseCode = download_operation.response.statusCode;
 
   if (_record.requestedRange != nil && !_record.failed) {
     const NSNumber* const range_begin = _record.requestedRange[0];
@@ -95,7 +113,29 @@
     _record.failed = _record.data.length != expected_length;
   }
 
+  if (self.logAllHeaders) {
+    // Debugging/test failure helper code.
+    NSDictionary* request_dictionary =
+        download_operation.request.allHTTPHeaderFields;
+    NSDictionary* response_dictionary =
+        download_operation.response.allHeaderFields;
+    NSLog(@"All Request Headers\n%@\n", [request_dictionary description]);
+    NSLog(@"All Response Headers\n%@\n", [response_dictionary description]);
+  }
+
+  if (_record.requestedRange != nil) {
+    NSString* const content_range = [download_operation.response.allHeaderFields
+        objectForKey:@"content-range"];
+    if (content_range != nil) {
+      NSString* length_string =
+          [[content_range componentsSeparatedByString:@"/"] lastObject];
+      _record.resourceLength =
+          [[NSNumber numberWithLongLong:
+                         [length_string longLongValue]] unsignedIntegerValue];
+    }
+  }
+
   [self forwardResponseRecordToDataSource:_record];
 }
 
-@end
+@end  // @implementation IxoDownloadOperation
