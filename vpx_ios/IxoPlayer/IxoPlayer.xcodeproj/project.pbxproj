@@ -28,6 +28,7 @@
 		6AC43A0E1B5047C700801EAF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC43A0D1B5047C700801EAF /* main.m */; };
 		6ADFC2231B66F9C50034819F /* IxoDASHManifestParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ADFC2221B66F9C50034819F /* IxoDASHManifestParser.m */; };
 		6AE5EC671B4EE3B200AA955F /* IxoDataSourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AE5EC661B4EE3B200AA955F /* IxoDataSourceTests.m */; };
+		6AF582731BFBB6F500EB3188 /* IxoDASHChunkIndexerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AF582721BFBB6F500EB3188 /* IxoDASHChunkIndexerTests.m */; settings = {ASSET_TAGS = (); }; };
 		A193CE3D57DD55DFFBEC3699 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 099EC47C0CCDB0443B131EAE /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +86,7 @@
 		6AE5EC601B4EE3B200AA955F /* IxoPlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IxoPlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AE5EC651B4EE3B200AA955F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6AE5EC661B4EE3B200AA955F /* IxoDataSourceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IxoDataSourceTests.m; sourceTree = "<group>"; };
+		6AF582721BFBB6F500EB3188 /* IxoDASHChunkIndexerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IxoDASHChunkIndexerTests.m; sourceTree = "<group>"; };
 		75B3CFED0B314AC743C09ED0 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F9B04943876AD5A37366EFE8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -195,6 +197,7 @@
 				6A8FD2BA1B62FD6C00BDD946 /* IxoPlayerTestCommon.h */,
 				6A8FD2BB1B62FD6C00BDD946 /* IxoPlayerTestCommon.m */,
 				6AE5EC641B4EE3B200AA955F /* Supporting Files */,
+				6AF582721BFBB6F500EB3188 /* IxoDASHChunkIndexerTests.m */,
 			);
 			path = IxoPlayerTests;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AF582731BFBB6F500EB3188 /* IxoDASHChunkIndexerTests.m in Sources */,
 				6ABE98111B7BC0960048F7AE /* IxoMutableDASHManifest.m in Sources */,
 				6ABE98141B7BD17D0048F7AE /* IxoDASHManifestTestData.m in Sources */,
 				6A8FD2B61B62E76100BDD946 /* IxoDASHManifestParserTests.m in Sources */,
