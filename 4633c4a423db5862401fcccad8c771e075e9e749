@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5b2a4b7b_962b1e29",
+        "filename": "vpx_ios/IxoPlayer/IxoDASHChunkIndexer.mm",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2015-11-18T19:33:09Z",
+      "side": 1,
+      "message": "Yeah, because ARC. Caller can\u0027t take a ref on nil, and once we exit local scope self will have no refs.",
+      "parentUuid": "1b3453db_f2ba6e89",
+      "revId": "4633c4a423db5862401fcccad8c771e075e9e749",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5b25eb9e_4d118fdb",
         "filename": "vpx_ios/IxoPlayer/testdata/print_cluster_pos_array.sh",
         "patchSetId": 3
@@ -30,6 +48,24 @@
       "writtenOn": "2015-11-18T02:30:25Z",
       "side": 1,
       "message": "I think this can go now",
+      "revId": "4633c4a423db5862401fcccad8c771e075e9e749",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5b816bc7_b00ae8a2",
+        "filename": "vpx_ios/IxoPlayer/testdata/print_cluster_pos_array.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2015-11-18T19:33:09Z",
+      "side": 1,
+      "message": "oops/thx",
+      "parentUuid": "5b25eb9e_4d118fdb",
       "revId": "4633c4a423db5862401fcccad8c771e075e9e749",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
