@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "1b3453db_a71caa47",
+        "filename": "vpx_ios/IxoPlayer/IxoDASHChunkIndexer.mm",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2015-11-18T01:11:34Z",
+      "side": 1,
+      "message": "changed to early bail",
+      "parentUuid": "fb75bfb9_e79d0ad9",
+      "revId": "47219f48beae4ebc6463ed25ca44ad3e499aea59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5b25eb9e_0aaffde9",
         "filename": "vpx_ios/IxoPlayer/IxoDASHChunkIndexer.mm",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2015-11-18T00:02:16Z",
       "side": 1,
       "message": "what\u0027s the guidance on explicit checks like this? should you prefer positive ones with explicit checks, e.g., \u003d\u003d false ?",
+      "revId": "47219f48beae4ebc6463ed25ca44ad3e499aea59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fb75bfb9_6271e8eb",
+        "filename": "vpx_ios/IxoPlayer/IxoDASHChunkIndexer.mm",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2015-11-18T01:11:34Z",
+      "side": 1,
+      "message": "I try to stick with\n\n    if !\u003d success_condition\n        fail;\n\nI\u0027m not aware of any guidance for this type of behavior wrt objc.",
+      "parentUuid": "5b25eb9e_0aaffde9",
       "revId": "47219f48beae4ebc6463ed25ca44ad3e499aea59",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "db847bce_fdb840ea",
+        "filename": "vpx_ios/IxoPlayer/IxoDASHChunkIndexer.mm",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2015-11-18T01:11:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb75bfb9_876a1694",
+      "revId": "47219f48beae4ebc6463ed25ca44ad3e499aea59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fb75bfb9_8778d65f",
         "filename": "vpx_ios/IxoPlayer/IxoPlayerTests/IxoDASHChunkIndexerTests.m",
         "patchSetId": 1
@@ -64,6 +118,24 @@
       "writtenOn": "2015-11-18T00:02:16Z",
       "side": 1,
       "message": "probably want a copyright here",
+      "revId": "47219f48beae4ebc6463ed25ca44ad3e499aea59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "96d1fa8e_3798ad59",
+        "filename": "vpx_ios/IxoPlayer/IxoPlayerTests/IxoDASHChunkIndexerTests.m",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2015-11-18T01:11:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb75bfb9_8778d65f",
       "revId": "47219f48beae4ebc6463ed25ca44ad3e499aea59",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "5b816bc7_aa8fd7db",
+        "filename": "vpx_ios/IxoPlayer/IxoPlayerTests/IxoDASHChunkIndexerTests.m",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2015-11-18T01:11:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96d1fa8e_44713178",
+      "revId": "47219f48beae4ebc6463ed25ca44ad3e499aea59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fb75bfb9_a7807265",
         "filename": "vpx_ios/IxoPlayer/IxoPlayerTests/IxoDASHChunkIndexerTests.m",
         "patchSetId": 1
@@ -98,6 +188,24 @@
       "writtenOn": "2015-11-18T00:02:16Z",
       "side": 1,
       "message": "// @implementation ...?",
+      "revId": "47219f48beae4ebc6463ed25ca44ad3e499aea59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5b816bc7_ca8c93e9",
+        "filename": "vpx_ios/IxoPlayer/IxoPlayerTests/IxoDASHChunkIndexerTests.m",
+        "patchSetId": 1
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2015-11-18T01:11:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb75bfb9_a7807265",
       "revId": "47219f48beae4ebc6463ed25ca44ad3e499aea59",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -121,6 +229,24 @@
     },
     {
       "key": {
+        "uuid": "5b2a4b7b_9078c65f",
+        "filename": "vpx_ios/IxoPlayer/testdata/print_cluster_pos_array.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2015-11-18T01:11:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b816bc7_7f950363",
+      "revId": "47219f48beae4ebc6463ed25ca44ad3e499aea59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3b2597a9_c48a1292",
         "filename": "vpx_ios/IxoPlayer/testdata/print_cluster_pos_array.sh",
         "patchSetId": 1
@@ -132,6 +258,24 @@
       "writtenOn": "2015-11-18T00:02:16Z",
       "side": 1,
       "message": "what about $(( $i - 1 ))",
+      "revId": "47219f48beae4ebc6463ed25ca44ad3e499aea59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7b6aafda_519fd481",
+        "filename": "vpx_ios/IxoPlayer/testdata/print_cluster_pos_array.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2015-11-18T01:11:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b2597a9_c48a1292",
       "revId": "47219f48beae4ebc6463ed25ca44ad3e499aea59",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
@@ -155,6 +299,24 @@
     },
     {
       "key": {
+        "uuid": "7b6aafda_31a580dd",
+        "filename": "vpx_ios/IxoPlayer/testdata/print_cluster_pos_array.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2015-11-18T01:11:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "76d4867d_8654c806",
+      "revId": "47219f48beae4ebc6463ed25ca44ad3e499aea59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "96d1fa8e_24d99da9",
         "filename": "vpx_ios/IxoPlayer/testdata/print_cluster_pos_array.sh",
         "patchSetId": 1
@@ -172,6 +334,24 @@
     },
     {
       "key": {
+        "uuid": "5b816bc7_2af8a734",
+        "filename": "vpx_ios/IxoPlayer/testdata/print_cluster_pos_array.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2015-11-18T01:11:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96d1fa8e_24d99da9",
+      "revId": "47219f48beae4ebc6463ed25ca44ad3e499aea59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "96d1fa8e_04de1990",
         "filename": "vpx_ios/IxoPlayer/testdata/print_cluster_pos_array.sh",
         "patchSetId": 1
@@ -183,6 +363,24 @@
       "writtenOn": "2015-11-18T00:02:16Z",
       "side": 1,
       "message": "this line can go",
+      "revId": "47219f48beae4ebc6463ed25ca44ad3e499aea59",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5b816bc7_ea014fe3",
+        "filename": "vpx_ios/IxoPlayer/testdata/print_cluster_pos_array.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2015-11-18T01:11:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96d1fa8e_04de1990",
       "revId": "47219f48beae4ebc6463ed25ca44ad3e499aea59",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
