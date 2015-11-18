@@ -31,7 +31,7 @@ using webm_tools::uint64;
 using webm_tools::kNanosecondsPerSecond;
 using webm_tools::kNanosecondsPerSecondi;
 
-const char VERSION_STRING[] = "1.0.3.0";
+const char VERSION_STRING[] = "1.0.3.1";
 
 struct Options {
   Options();
@@ -386,7 +386,7 @@ bool OutputTracks(const mkvparser::Segment& segment,
           track->GetContentEncodingByIndex(0);
       if (!encoding) {
         printf("Could not get first ContentEncoding.\n");
-        return NULL;
+        return false;
       }
 
       fprintf(o, "%sContentEncodingOrder : %lld\n",
