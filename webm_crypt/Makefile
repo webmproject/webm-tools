@@ -11,10 +11,12 @@ $(EXE): $(OBJECTS)
 	$(CXX) $(OBJECTS) -L$(LIBWEBM) \
 		-L$(CHROMIUMOBJ)/base -L$(CHROMIUMOBJ)/crypto \
 		-L$(CHROMIUMOBJ)/base/third_party/dynamic_annotations \
+		-L$(CHROMIUMOBJ)/third_party/boringssl \
 		-Wl,-rpath,$(CHROMIUMOBJ)/base,-rpath,$(CHROMIUMOBJ)/crypto \
 		-Wl,-rpath,$(CHROMIUMOBJ)/base/third_party/dynamic_annotations \
+		-Wl,-rpath,$(CHROMIUMOBJ)/third_party/boringssl \
 		-lwebm -lcrcrypto \
-		-lbase -lbase_static -lsymbolize -ldynamic_annotations \
+		-lbase -lbase_static -lsymbolize -ldynamic_annotations -lboringssl \
 		-ldl -lrt -lglib-2.0 -lnss3 \
 		-lnssutil3 -lnspr4 -lpthread -o $@
 
