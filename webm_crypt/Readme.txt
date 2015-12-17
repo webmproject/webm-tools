@@ -6,7 +6,7 @@
 // in the file PATENTS.  All contributing project authors may
 // be found in the AUTHORS file in the root of the source tree.
 
-// This application uses the crypto library from the Chromium project.
+// This application uses the webm library from the libwebm project.
 
 // Build instructions for Windows:
 1. Follow http://www.chromium.org/developers/how-tos/build-instructions-windows
@@ -22,9 +22,7 @@
    Chromium src directory.
 
 // Build instructions for Linux:
-1. Follow http://code.google.com/p/chromium/wiki/LinuxBuildInstructions to
-   build chrome application.
-2. Get the libwebm source code.
+1. Get the libwebm source code.
    git clone http://git.chromium.org/webm/libwebm.git
-3. Build libwebm.
-4. Change Makefile to point to your libs and build.
+2. Build libwebm.
+3. Change Makefile to point to your libs and build.
