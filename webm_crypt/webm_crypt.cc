@@ -6,14 +6,13 @@
 // in the file PATENTS.  All contributing project authors may
 // be found in the AUTHORS file in the root of the source tree.
 
+#include <stdint.h>
 #include <cstdlib>
 #include <iostream>
+#include <memory>
 #include <string>
 
-#include "base/at_exit.h"
-#include "base/base_switches.h"
-#include "crypto/encryptor.h"
-#include "crypto/symmetric_key.h"
+#include "aes_ctr.h"
 #include "mkvmuxer.hpp"
 #include "mkvmuxerutil.hpp"
 #include "mkvparser.hpp"
@@ -22,16 +21,14 @@
 #include "webm_constants.h"
 #include "webm_endian.h"
 
-// This application uses the crypto library from the Chromium project. See the
+// This application uses the webm library from the libwebm project. See the
 // readme.txt for build instructions.
-// TODO(fgalligan) Remove Chromium crypto library requirement.
 
 namespace {
 
-using crypto::Encryptor;
-using crypto::SymmetricKey;
 using mkvparser::ContentEncoding;
 using std::string;
+using std::unique_ptr;
 
 const char WEBM_CRYPT_VERSION_STRING[] = "0.3.1.0";
 
@@ -55,11 +52,11 @@ struct EncryptionSettings {
   string content_id;
 
   // Initial Initialization Vector for encryption.
-  uint64 initial_iv;
+  uint64_t initial_iv;
 
   // Do not encrypt frames that have a start time less than
   // |unencrypted_range| in milliseconds.
-  int64 unencrypted_range;
+  int64_t unencrypted_range;
 };
 
 // Struct to hold file wide encryption settings.
@@ -111,7 +108,7 @@ class EncryptModule {
   static const size_t kKeySize = 16;
   static const size_t kSHA1DigestSize = 20;
   static const size_t kSignalByteSize = 1;
-  static const uint8 kEncryptedFrame = 0x1;
+  static const uint8_t kEncryptedFrame = 0x1;
 
   // |enc| Encryption settings for a stream. |secret| Encryption key for a
   // stream.
@@ -121,17 +118,17 @@ class EncryptModule {
   // Initializes encryption key. Returns true on success.
   bool Init();
 
-  // Processes |plaintext| according to the encryption settings,
-  // |encrypt_frame|, and |key_|. |length| is the size of |plaintext| in bytes.
+  // Processes |source| according to the encryption settings,
+  // |encrypt_frame|, and |key_|. |length| is the size of |source| in bytes.
   // |encrypt_frame| tells the encryptor whether to encrypt the frame or just
-  // add a signal byte to the unencrypted frame. |ciphertext| is the returned
-  // encrypted data if |encrypt_frame| is true and signal byte + |plaintext|
-  // if |encrypt_frame| is false. |ciphertext_size| is the size of |ciphertext|
-  // in bytes. Returns true if |plaintext| was processed and passed back
-  // through |ciphertext|.
-  bool ProcessData(const uint8* plaintext, size_t size,
+  // add a signal byte to the unencrypted frame. |destination| is the returned
+  // encrypted data if |encrypt_frame| is true and signal byte + |source|
+  // if |encrypt_frame| is false. |destination_size| is the size of |destination|
+  // in bytes. Returns true if |source| was processed and passed back
+  // through |destination|.
+  bool ProcessData(const uint8_t* source, size_t size,
                    bool encrypt_frame,
-                   uint8** ciphertext, size_t* ciphertext_size);
+                   uint8_t** destination, size_t* destination_size);
 
   void set_do_not_encrypt(bool flag) { do_not_encrypt_ = flag; }
 
@@ -149,10 +146,10 @@ class EncryptModule {
   const EncryptionSettings enc_;
 
   // Encryption key for the stream.
-  scoped_ptr<SymmetricKey> key_;
+  string key_;
 
   // The next IV.
-  uint64 next_iv_;
+  uint64_t next_iv_;
 };
 
 EncryptModule::EncryptModule(const EncryptionSettings& enc,
@@ -160,37 +157,37 @@ EncryptModule::EncryptModule(const EncryptionSettings& enc,
     : do_not_encrypt_(false),
       enc_(enc),
       next_iv_(enc.initial_iv) {
-  key_.reset(SymmetricKey::Import(SymmetricKey::AES, secret));
+  key_.assign(secret);
 }
 
 bool EncryptModule::Init() {
-  if (!key_.get()) {
+  if (key_.size() == 0) {
     fprintf(stderr, "Error creating encryption key.\n");
     return false;
   }
   return true;
 }
 
-bool EncryptModule::ProcessData(const uint8* plaintext, size_t size,
+bool EncryptModule::ProcessData(const uint8_t* source, size_t size,
                                 bool encrypt_frame,
-                                uint8** ciphertext, size_t* ciphertext_size) {
-  if (!ciphertext || !ciphertext_size)
+                                uint8_t** destination,
+                                size_t* destination_size) {
+  if (!source || size <= 0)
     return false;
 
   const bool encrypt_the_frame = do_not_encrypt_ ? false : encrypt_frame;
-  scoped_ptr<uint8[]> cipher_temp;
+  unique_ptr<uint8_t[]> cipher_temp;
   size_t cipher_temp_size = size + kSignalByteSize;
 
   if (encrypt_the_frame) {
-    Encryptor encryptor;
-    if (!encryptor.Init(key_.get(), Encryptor::CTR, "")) {
+    AesCtr128Encryptor encryptor;
+    if (!encryptor.InitKey(key_)) {
       fprintf(stderr, "Could not initialize encryptor.\n");
       return false;
     }
 
     // Set the IV.
-    const uint64 iv = next_iv_++;
-
+    const uint64_t iv = next_iv_++;
     const string iv_str(reinterpret_cast<const char*>(&iv), sizeof(iv));
     string counter_block;
     if (!GenerateCounterBlock(iv_str, &counter_block)) {
@@ -203,36 +200,30 @@ bool EncryptModule::ProcessData(const uint8* plaintext, size_t size,
       return false;
     }
 
-    const string data_to_encrypt(reinterpret_cast<const char*>(plaintext),
-                                 size);
-    string encrypted_text;
-    if (!encryptor.Encrypt(data_to_encrypt, &encrypted_text)) {
-      fprintf(stderr, "Could not encrypt data.\n");
-      return false;
-    }
-
     // Prepend the IV.
     cipher_temp_size += sizeof(iv);
-    cipher_temp.reset(new (std::nothrow) uint8[cipher_temp_size]);  // NOLINT
+    cipher_temp.reset(new (std::nothrow) uint8_t[cipher_temp_size]);  // NOLINT
     if (!cipher_temp.get())
       return false;
 
     memcpy(cipher_temp.get() + kSignalByteSize, &iv, sizeof(iv));
-    memcpy(cipher_temp.get() + sizeof(iv) + kSignalByteSize,
-           encrypted_text.data(), encrypted_text.size());
+    if (!encryptor.Encrypt(source, size,
+                           cipher_temp.get() + sizeof(iv) + kSignalByteSize)) {
+      fprintf(stderr, "Could not encrypt data.\n");
+      return false;
+    }
   } else {
-    cipher_temp.reset(new (std::nothrow) uint8[cipher_temp_size]);  // NOLINT
+    cipher_temp.reset(new (std::nothrow) uint8_t[cipher_temp_size]);  // NOLINT
     if (!cipher_temp.get())
       return false;
 
-    memcpy(cipher_temp.get() + kSignalByteSize,
-           reinterpret_cast<const char*>(plaintext), size);
+    memcpy(cipher_temp.get() + kSignalByteSize, source, size);
   }
 
-  const uint8 signal_byte = encrypt_the_frame ? kEncryptedFrame : 0;
+  const uint8_t signal_byte = encrypt_the_frame ? kEncryptedFrame : 0;
   cipher_temp[0] = signal_byte;
-  *ciphertext = cipher_temp.release();
-  *ciphertext_size = cipher_temp_size;
+  *destination = cipher_temp.release();
+  *destination_size = cipher_temp_size;
   return true;
 }
 
@@ -264,12 +255,13 @@ class DecryptModule {
   // success.
   bool Init();
 
-  // Decrypts |data| according to the encryption settings and encryption key.
-  // |length| is the size of |data| in bytes. |decrypttext| is the returned
-  // decrypted data if |data| was decrypted. If data was unencrypted then
-  // |decrypttext| is the original plaintext. Returns true if |data| was
-  // decrypted and passed back through |decrypttext|.
-  bool DecryptData(const uint8* data, size_t length, string* decrypttext);
+  // Decrypts |source| according to the encryption settings and encryption key.
+  // |length| is the size of |source| in bytes. |destination| is the returned
+  // decrypted data if |source| was decrypted. If data was unencrypted then
+  // |destination| is the original data. Returns true if |data| was decrypted
+  // and passed back through |destination|.
+  bool DecryptData(const uint8_t* data, size_t length, uint8_t* destination,
+                   size_t *destination_size);
 
  private:
   // Flag telling if the class should not decrypt the data. This should
@@ -280,10 +272,10 @@ class DecryptModule {
   const EncryptionSettings enc_;
 
   // Encryption key for the stream.
-  scoped_ptr<SymmetricKey> key_;
+  string key_;
 
   // Decryption class.
-  Encryptor encryptor_;
+  AesCtr128Encryptor encryptor_;
 };
 
 DecryptModule::DecryptModule(const EncryptionSettings& enc,
@@ -291,17 +283,17 @@ DecryptModule::DecryptModule(const EncryptionSettings& enc,
                              bool no_decrypt)
     : do_not_decrypt_(no_decrypt),
       enc_(enc) {
-  key_.reset(SymmetricKey::Import(SymmetricKey::AES, secret));
+  key_.assign(secret);
 }
 
 bool DecryptModule::Init() {
-  if (!key_.get()) {
+  if (key_.size() == 0) {
     fprintf(stderr, "Error creating encryption key.\n");
     return false;
   }
 
   if (!do_not_decrypt_) {
-    if (!encryptor_.Init(key_.get(), Encryptor::CTR, "")) {
+    if (!encryptor_.InitKey(key_)) {
       fprintf(stderr, "Could not initialize decryptor.\n");
       return false;
     }
@@ -309,17 +301,19 @@ bool DecryptModule::Init() {
   return true;
 }
 
-bool DecryptModule::DecryptData(const uint8* data, size_t length,
-                                string* decrypttext) {
-  if (!decrypttext)
+bool DecryptModule::DecryptData(const uint8_t* source, size_t length,
+                                uint8_t* destination, size_t *destination_size) {
+  if (!source || length <= 0)
     return false;
+
+  size_t offset = 0;
 
   if (!do_not_decrypt_) {
     if (length == 0) {
       fprintf(stderr, "Length of encrypted data is 0.\n");
       return false;
     }
-    const uint8 signal_byte = data[0];
+    const uint8_t signal_byte = source[0];
 
     if (signal_byte & EncryptModule::kEncryptedFrame) {
       if (length < EncryptModule::kSignalByteSize + EncryptModule::kIVSize) {
@@ -328,7 +322,7 @@ bool DecryptModule::DecryptData(const uint8* data, size_t length,
       }
 
       const char* iv_data =
-          reinterpret_cast<const char*>(data + EncryptModule::kSignalByteSize);
+          reinterpret_cast<const char*>(source + EncryptModule::kSignalByteSize);
       const string iv(iv_data, EncryptModule::kIVSize);
 
       string counter_block;
@@ -342,28 +336,22 @@ bool DecryptModule::DecryptData(const uint8* data, size_t length,
         return false;
       }
 
-      const size_t offset =
-          EncryptModule::kSignalByteSize + EncryptModule::kIVSize;
+      offset = EncryptModule::kSignalByteSize + EncryptModule::kIVSize;
 
-      // Skip past the IV.
-      const string encryptedtext(
-          reinterpret_cast<const char*>(data + offset),
-          length - offset);
-      if (!encryptor_.Decrypt(encryptedtext, decrypttext)) {
+      if (!encryptor_.Encrypt(source + offset, length - offset, destination)) {
         fprintf(stderr, "Could not decrypt data.\n");
         return false;
       }
     } else {
-      const size_t offset = EncryptModule::kSignalByteSize;
-      decrypttext->assign(reinterpret_cast<const char*>(data + offset),
-                          length - offset);
+      offset = EncryptModule::kSignalByteSize;
+      memcpy(destination, source + offset, length - offset);
     }
   } else {
-    const size_t offset = EncryptModule::kSignalByteSize;
-    decrypttext->assign(reinterpret_cast<const char*>(data + offset),
-                        length - offset);
+    offset = EncryptModule::kSignalByteSize;
+    memcpy(destination, source + offset, length - offset);
   }
 
+  *destination_size = length - offset;
   return true;
 }
 
@@ -384,7 +372,7 @@ void Usage() {
   printf("  \n");
   printf("-audio_options <string> Comma separated name value pair.\n");
   printf("  content_id=<string>   Encryption content ID. (Default empty)\n");
-  printf("  initial_iv=<uint64>   Initial IV value. (Default random)\n");
+  printf("  initial_iv=<uint64_t>   Initial IV value. (Default random)\n");
   printf("  base_file=<string>    Path to base secret file. (Default\n");
   printf("                        empty)\n");
   printf("  unencrypted_range=<int64> Do not encrypt frames from\n");
@@ -392,7 +380,7 @@ void Usage() {
   printf("  \n");
   printf("-video_options <string> Comma separated name value pair.\n");
   printf("  content_id=<string>   Encryption content ID. (Default empty)\n");
-  printf("  initial_iv=<uint64>   Initial IV value. (Default random)\n");
+  printf("  initial_iv=<uint64_t>   Initial IV value. (Default random)\n");
   printf("  base_file=<string>    Path to base secret file. (Default\n");
   printf("                        empty)\n");
   printf("  unencrypted_range=<int64> Do not encrypt frames from\n");
@@ -403,24 +391,23 @@ void TestEncryption() {
   using std::cout;
   using std::endl;
 
-  scoped_ptr<SymmetricKey> sym_key(
-      SymmetricKey::GenerateRandomKey(SymmetricKey::AES, 128));
+  unsigned char enc_key[AES_BLOCK_SIZE] = { 0 };
+  const string kInitialCounter(16, '0');
+  AesCtr128Encryptor encryptor;
 
-  string raw_key;
-  if (!sym_key->GetRawKey(&raw_key)) {
-    fprintf(stderr, "Could not get raw key.\n");
+  // Generate a random key.
+  if (!RAND_bytes(enc_key, AES_BLOCK_SIZE)) {
+    cout << "Fail to generate a random encode key" << endl;
     return;
   }
 
-  const string kInitialCounter(16, '0');
-
-  Encryptor encryptor;
-  // The IV must be exactly as long as the cipher block size.
-  bool b = encryptor.Init(sym_key.get(), Encryptor::CTR, "");
+  string key_string(reinterpret_cast<const char*>(enc_key));
+  bool b = encryptor.InitKey(key_string);
   if (!b) {
     fprintf(stderr, "Could not initialize encrypt object.\n");
     return;
   }
+
   b = encryptor.SetCounter(kInitialCounter);
   if (!b) {
     fprintf(stderr, "Could not SetCounter on encryptor.\n");
@@ -428,12 +415,16 @@ void TestEncryption() {
   }
 
   string plaintext("this is the plaintext");
-  string ciphertext;
-  b = encryptor.Encrypt(plaintext, &ciphertext);
+  size_t size = plaintext.size();
+  unique_ptr<uint8_t[]> out(new uint8_t[size]);
+
+  b = encryptor.Encrypt(reinterpret_cast<const uint8_t*>(plaintext.c_str()),
+                        size, out.get());
   if (!b) {
     fprintf(stderr, "Could not encrypt data.\n");
     return;
   }
+  string ciphertext(out.get(), out.get() + size);
 
   b = encryptor.SetCounter(kInitialCounter);
   if (!b) {
@@ -441,24 +432,26 @@ void TestEncryption() {
     return;
   }
 
-  string decrypted;
-  b = encryptor.Decrypt(ciphertext, &decrypted);
+  b = encryptor.Encrypt(reinterpret_cast<const uint8_t*>(ciphertext.c_str()),
+                        size, out.get());
   if (!b) {
     fprintf(stderr, "Could not decrypt data.\n");
     return;
   }
 
+  string decrypted(out.get(), out.get() + size);
+
   printf("Test 1 finished.\n");
   cout << "iv         :" << kInitialCounter << endl;
-  cout << "raw_key    :" << raw_key << endl;
+  cout << "raw_key    :" << enc_key << endl;
   cout << "plaintext  :" << plaintext << endl;
   cout << "ciphertext :" << ciphertext << endl;
   cout << "decrypted  :" << decrypted << endl;
 
   const int kNonAsciiSize = 256;
-  uint8 raw_data[kNonAsciiSize];
+  uint8_t raw_data[kNonAsciiSize];
   for (int i = 0; i < kNonAsciiSize; ++i) {
-    raw_data[i] = static_cast<uint8>(i);
+    raw_data[i] = static_cast<uint8_t>(i);
   }
   string non_ascii(reinterpret_cast<char*>(raw_data), kNonAsciiSize);
 
@@ -468,11 +461,13 @@ void TestEncryption() {
     return;
   }
 
-  b = encryptor.Encrypt(non_ascii, &ciphertext);
+  out.reset(new (std::nothrow) uint8_t[kNonAsciiSize]);  // NOLINT
+  b = encryptor.Encrypt(raw_data, kNonAsciiSize, out.get());
   if (!b) {
     fprintf(stderr, "Could not encrypt data.\n");
     return;
   }
+  ciphertext = string(out.get(), out.get() + kNonAsciiSize);
 
   b = encryptor.SetCounter(kInitialCounter);
   if (!b) {
@@ -480,11 +475,13 @@ void TestEncryption() {
     return;
   }
 
-  b = encryptor.Decrypt(ciphertext, &decrypted);
+  b = encryptor.Encrypt(reinterpret_cast<const uint8_t*>(ciphertext.c_str()),
+                        kNonAsciiSize, out.get());
   if (!b) {
     fprintf(stderr, "Could not decrypt data.\n");
     return;
   }
+  decrypted = string(out.get(), out.get() + kNonAsciiSize);
 
   printf("Test 2 finished.\n");
   cout << "iv         :" << kInitialCounter << endl;
@@ -500,11 +497,16 @@ void TestEncryption() {
     return;
   }
 
-  b = encryptor.Encrypt(non_ascii, &ciphertext);
+  size = non_ascii.size();
+  out.reset(new (std::nothrow) uint8_t[size]);  // NOLINT
+  b = encryptor.Encrypt(reinterpret_cast<const uint8_t*>(non_ascii.c_str()),
+                        size, out.get());
   if (!b) {
     fprintf(stderr, "Could not encrypt data.\n");
     return;
   }
+  ciphertext = string(out.get(), out.get() + size);
+
 
   b = encryptor.SetCounter(kInitialCounter);
   if (!b) {
@@ -512,11 +514,13 @@ void TestEncryption() {
     return;
   }
 
-  b = encryptor.Decrypt(ciphertext, &decrypted);
+  b = encryptor.Encrypt(reinterpret_cast<const uint8_t*>(ciphertext.c_str()),
+                        size, out.get());
   if (!b) {
     fprintf(stderr, "Could not decrypt data.\n");
     return;
   }
+  decrypted = string(out.get(), out.get() + size);
 
   printf("Test 3 finished.\n");
   cout << "iv         :" << kInitialCounter << endl;
@@ -534,9 +538,9 @@ void TestEncryption() {
 bool OpenWebMFiles(const string& input,
                    const string& output,
                    mkvparser::MkvReader* reader,
-                   scoped_ptr<mkvparser::Segment>* parser,
+                   unique_ptr<mkvparser::Segment>* parser,
                    mkvmuxer::MkvWriter* writer,
-                   scoped_ptr<mkvmuxer::Segment>* muxer) {
+                   unique_ptr<mkvmuxer::Segment>* muxer) {
   if (!reader || !parser || !writer || !muxer)
     return false;
 
@@ -553,7 +557,7 @@ bool OpenWebMFiles(const string& input,
   }
 
   mkvparser::Segment* parser_segment;
-  int64 ret = mkvparser::Segment::CreateInstance(reader, pos, parser_segment);
+  int64_t ret = mkvparser::Segment::CreateInstance(reader, pos, parser_segment);
   if (ret) {
     fprintf(stderr, "Segment::CreateInstance() failed.");
     return false;
@@ -567,7 +571,7 @@ bool OpenWebMFiles(const string& input,
   }
 
   const mkvparser::SegmentInfo* const segment_info = (*parser)->GetInfo();
-  const int64 timeCodeScale = segment_info->GetTimeCodeScale();
+  const int64_t timeCodeScale = segment_info->GetTimeCodeScale();
 
   // Set muxer header info
   if (!writer->Open(output.c_str())) {
@@ -604,7 +608,7 @@ bool ReadDataFromFile(const string& file, string* data) {
   const int key_size = ftell(f);
   fseek(f, 0, SEEK_SET);
 
-  scoped_ptr<char[]> raw_key_buf(new (std::nothrow) char[key_size]);  // NOLINT
+  unique_ptr<char[]> raw_key_buf(new (std::nothrow) char[key_size]);  // NOLINT
   const int bytes_read = fread(raw_key_buf.get(), 1, key_size, f);
   fclose(f);
 
@@ -621,34 +625,29 @@ bool GenerateRandomData(size_t length, string* data) {
   if (!data)
     return false;
 
-  string temp;
-  while (temp.length() < length) {
-    scoped_ptr<SymmetricKey> key(
-        SymmetricKey::GenerateRandomKey(SymmetricKey::AES, 128));
-    string raw_key;
-    if (!key->GetRawKey(&raw_key)) {
-      fprintf(stderr, "Error generating base secret data.\n");
-      return false;
-    }
-    temp.append(raw_key);
+  unique_ptr<unsigned char[]> temp(new unsigned char[length]);
+  if (!RAND_bytes(temp.get(), length)) {
+    fprintf(stderr, "Error generating base secret data.\n");
+    return false;
   }
 
-  data->assign(temp, 0, length);
+  string newString(temp.get(), temp.get() + length);
+  data->assign(newString);
   return true;
 }
 
-// Generate random value for a uint64. |value| output uint64 that contains
+// Generate random value for a uint64_t. |value| output uint64_t that contains
 // the data. Returns true on success.
-bool GenerateRandomUInt64(uint64* value) {
+bool GenerateRandomuint64_t(uint64_t* value) {
   if (!value)
     return false;
 
-  scoped_ptr<SymmetricKey> key(
-      SymmetricKey::GenerateRandomKey(SymmetricKey::AES, 128));
-  string raw_key;
-  if (!key->GetRawKey(&raw_key) || raw_key.length() < sizeof(*value))
+  unsigned char* temp = reinterpret_cast<unsigned char*>(value);
+  if (!RAND_bytes(temp, sizeof(uint64_t))) {
+    fprintf(stderr, "Error generating base secret data.\n");
     return false;
-  memcpy(value, raw_key.data(), sizeof(*value));
+  }
+
   return true;
 }
 
@@ -808,8 +807,8 @@ bool ParseContentEncryption(const ContentEncoding& encoding,
 int WebMEncrypt(const WebMCryptSettings& webm_crypt) {
   mkvparser::MkvReader reader;
   mkvmuxer::MkvWriter writer;
-  scoped_ptr<mkvparser::Segment> parser_segment;
-  scoped_ptr<mkvmuxer::Segment> muxer_segment;
+  unique_ptr<mkvparser::Segment> parser_segment;
+  unique_ptr<mkvmuxer::Segment> muxer_segment;
   const bool b = OpenWebMFiles(webm_crypt.input,
                                webm_crypt.output,
                                &reader,
@@ -823,9 +822,9 @@ int WebMEncrypt(const WebMCryptSettings& webm_crypt) {
 
   // Set Tracks element attributes
   const mkvparser::Tracks* const parser_tracks = parser_segment->GetTracks();
-  uint32 i = 0;
-  uint64 vid_track = 0;  // no track added
-  uint64 aud_track = 0;  // no track added
+  uint32_t i = 0;
+  uint64_t vid_track = 0;  // no track added
+  uint64_t aud_track = 0;  // no track added
   string aud_base_secret;
   string vid_base_secret;
 
@@ -839,14 +838,14 @@ int WebMEncrypt(const WebMCryptSettings& webm_crypt) {
       continue;
 
     const char* const track_name = parser_track->GetNameAsUTF8();
-    const int64 track_type = parser_track->GetType();
+    const int64_t track_type = parser_track->GetType();
 
     if (track_type == mkvparser::Track::kVideo) {
       // Get the video track from the parser
       const mkvparser::VideoTrack* const pVideoTrack =
           reinterpret_cast<const mkvparser::VideoTrack*>(parser_track);
-      const int64 width =  pVideoTrack->GetWidth();
-      const int64 height = pVideoTrack->GetHeight();
+      const int64_t width =  pVideoTrack->GetWidth();
+      const int64_t height = pVideoTrack->GetHeight();
 
       // Add the video track to the muxer. 0 tells muxer to decide on track
       // number.
@@ -914,7 +913,7 @@ int WebMEncrypt(const WebMCryptSettings& webm_crypt) {
           }
         }
         if (!encoding->SetEncryptionID(
-                reinterpret_cast<const uint8*>(id.data()), id.size())) {
+                reinterpret_cast<const uint8_t*>(id.data()), id.size())) {
           fprintf(stderr, "Could not set encryption id for video track.\n");
           return -1;
         }
@@ -923,7 +922,7 @@ int WebMEncrypt(const WebMCryptSettings& webm_crypt) {
       // Get the audio track from the parser
       const mkvparser::AudioTrack* const pAudioTrack =
           reinterpret_cast<const mkvparser::AudioTrack*>(parser_track);
-      const int64 channels =  pAudioTrack->GetChannels();
+      const int64_t channels =  pAudioTrack->GetChannels();
       const double sample_rate = pAudioTrack->GetSamplingRate();
 
       // Add the audio track to the muxer. 0 tells muxer to decide on track
@@ -955,7 +954,7 @@ int WebMEncrypt(const WebMCryptSettings& webm_crypt) {
         audio->set_seek_pre_roll(pAudioTrack->GetSeekPreRoll());
 
       size_t private_size;
-      const uint8* const private_data =
+      const uint8_t* const private_data =
           pAudioTrack->GetCodecPrivate(private_size);
       if (private_size > 0) {
         if (!audio->SetCodecPrivate(private_data, private_size)) {
@@ -964,7 +963,7 @@ int WebMEncrypt(const WebMCryptSettings& webm_crypt) {
         }
       }
 
-      const int64 bit_depth = pAudioTrack->GetBitDepth();
+      const int64_t bit_depth = pAudioTrack->GetBitDepth();
       if (bit_depth > 0)
         audio->set_bit_depth(bit_depth);
 
@@ -1006,7 +1005,7 @@ int WebMEncrypt(const WebMCryptSettings& webm_crypt) {
           }
         }
         if (!encoding->SetEncryptionID(
-                reinterpret_cast<const uint8*>(id.data()), id.size())) {
+                reinterpret_cast<const uint8_t*>(id.data()), id.size())) {
           fprintf(stderr, "Could not set encryption id for video track.\n");
           return -1;
         }
@@ -1018,7 +1017,7 @@ int WebMEncrypt(const WebMCryptSettings& webm_crypt) {
   muxer_segment->CuesTrack(vid_track);
 
   // Write clusters
-  scoped_ptr<uint8[]> data;
+  unique_ptr<uint8_t[]> data;
   int data_len = 0;
   EncryptModule audio_encryptor(webm_crypt.aud_enc, aud_base_secret);
   if (webm_crypt.audio && !audio_encryptor.Init()) {
@@ -1044,16 +1043,16 @@ int WebMEncrypt(const WebMCryptSettings& webm_crypt) {
 
     while ((block_entry != NULL) && !block_entry->EOS()) {
       const mkvparser::Block* const block = block_entry->GetBlock();
-      const int64 trackNum = block->GetTrackNumber();
+      const int64_t trackNum = block->GetTrackNumber();
       const mkvparser::Track* const parser_track =
-          parser_tracks->GetTrackByNumber(static_cast<uint32>(trackNum));
-      const int64 track_type = parser_track->GetType();
+          parser_tracks->GetTrackByNumber(static_cast<uint32_t>(trackNum));
+      const int64_t track_type = parser_track->GetType();
 
       if ((track_type == mkvparser::Track::kAudio) ||
           (track_type == mkvparser::Track::kVideo)) {
         const int frame_count = block->GetFrameCount();
-        const int64 time_ns = block->GetTime(cluster);
-        const int64 time_milli =
+        const int64_t time_ns = block->GetTime(cluster);
+        const int64_t time_milli =
             time_ns / webm_tools::kNanosecondsPerMillisecond;
         const bool is_key = block->IsKey();
 
@@ -1061,7 +1060,7 @@ int WebMEncrypt(const WebMCryptSettings& webm_crypt) {
           const mkvparser::Block::Frame& frame = block->GetFrame(i);
 
           if (frame.len > data_len) {
-            data.reset(new (std::nothrow) uint8[frame.len]);  // NOLINT
+            data.reset(new (std::nothrow) uint8_t[frame.len]);  // NOLINT
             if (!data.get())
               return -1;
             data_len = frame.len;
@@ -1075,12 +1074,12 @@ int WebMEncrypt(const WebMCryptSettings& webm_crypt) {
             prev_cluster = cluster;
           }
 
-          const uint64 track_num =
+          const uint64_t track_num =
               (track_type == mkvparser::Track::kAudio) ? aud_track : vid_track;
 
           if ((track_type == mkvparser::Track::kVideo && webm_crypt.video) ||
               (track_type == mkvparser::Track::kAudio && webm_crypt.audio) ) {
-            uint8* ciphertext;
+            uint8_t* ciphertext;
             size_t ciphertext_size;
             const bool encrypt_frame =
                 time_milli >= webm_crypt.aud_enc.unencrypted_range;
@@ -1115,7 +1114,6 @@ int WebMEncrypt(const WebMCryptSettings& webm_crypt) {
               fprintf(stderr, "Could not add encrypted frame.\n");
               return -1;
             }
-
           } else {
             if (!muxer_segment->AddFrame(data.get(),
                                          frame.len,
@@ -1164,8 +1162,8 @@ int WebMEncrypt(const WebMCryptSettings& webm_crypt) {
 int WebMDecrypt(const WebMCryptSettings& webm_crypt) {
   mkvparser::MkvReader reader;
   mkvmuxer::MkvWriter writer;
-  scoped_ptr<mkvparser::Segment> parser_segment;
-  scoped_ptr<mkvmuxer::Segment> muxer_segment;
+  unique_ptr<mkvparser::Segment> parser_segment;
+  unique_ptr<mkvmuxer::Segment> muxer_segment;
   const bool b = OpenWebMFiles(webm_crypt.input,
                                webm_crypt.output,
                                &reader,
@@ -1179,9 +1177,9 @@ int WebMDecrypt(const WebMCryptSettings& webm_crypt) {
 
   // Set Tracks element attributes
   const mkvparser::Tracks* const parser_tracks = parser_segment->GetTracks();
-  uint32 i = 0;
-  uint64 vid_track = 0;  // no track added
-  uint64 aud_track = 0;  // no track added
+  uint32_t i = 0;
+  uint64_t vid_track = 0;  // no track added
+  uint64_t aud_track = 0;  // no track added
   EncryptionSettings aud_enc;
   EncryptionSettings vid_enc;
   bool decrypt_video = false;
@@ -1199,14 +1197,14 @@ int WebMDecrypt(const WebMCryptSettings& webm_crypt) {
       continue;
 
     const char* const track_name = parser_track->GetNameAsUTF8();
-    const int64 track_type = parser_track->GetType();
+    const int64_t track_type = parser_track->GetType();
 
     if (track_type == mkvparser::Track::kVideo) {
       // Get the video track from the parser
       const mkvparser::VideoTrack* const pVideoTrack =
           reinterpret_cast<const mkvparser::VideoTrack*>(parser_track);
-      const int64 width =  pVideoTrack->GetWidth();
-      const int64 height = pVideoTrack->GetHeight();
+      const int64_t width =  pVideoTrack->GetWidth();
+      const int64_t height = pVideoTrack->GetHeight();
 
       // Add the video track to the muxer. 0 tells muxer to decide on track
       // number.
@@ -1265,7 +1263,7 @@ int WebMDecrypt(const WebMCryptSettings& webm_crypt) {
       // Get the audio track from the parser
       const mkvparser::AudioTrack* const pAudioTrack =
           reinterpret_cast<const mkvparser::AudioTrack*>(parser_track);
-      const int64 channels =  pAudioTrack->GetChannels();
+      const int64_t channels =  pAudioTrack->GetChannels();
       const double sample_rate = pAudioTrack->GetSamplingRate();
 
       // Add the audio track to the muxer. 0 tells muxer to decide on track
@@ -1297,7 +1295,7 @@ int WebMDecrypt(const WebMCryptSettings& webm_crypt) {
         audio->set_seek_pre_roll(pAudioTrack->GetSeekPreRoll());
 
       size_t private_size;
-      const uint8* const private_data =
+      const uint8_t* const private_data =
           pAudioTrack->GetCodecPrivate(private_size);
       if (private_size > 0) {
         if (!audio->SetCodecPrivate(private_data, private_size)) {
@@ -1306,7 +1304,7 @@ int WebMDecrypt(const WebMCryptSettings& webm_crypt) {
         }
       }
 
-      const int64 bit_depth = pAudioTrack->GetBitDepth();
+      const int64_t bit_depth = pAudioTrack->GetBitDepth();
       if (bit_depth > 0)
         audio->set_bit_depth(bit_depth);
 
@@ -1341,7 +1339,7 @@ int WebMDecrypt(const WebMCryptSettings& webm_crypt) {
   muxer_segment->CuesTrack(vid_track);
 
   // Write clusters
-  scoped_ptr<uint8[]> data;
+  unique_ptr<uint8_t[]> data;
   int data_len = 0;
   DecryptModule audio_decryptor(aud_enc,
                                 aud_base_secret,
@@ -1368,22 +1366,22 @@ int WebMDecrypt(const WebMCryptSettings& webm_crypt) {
 
     while ((block_entry != NULL) && !block_entry->EOS()) {
       const mkvparser::Block* const block = block_entry->GetBlock();
-      const int64 trackNum = block->GetTrackNumber();
+      const int64_t trackNum = block->GetTrackNumber();
       const mkvparser::Track* const parser_track =
-          parser_tracks->GetTrackByNumber(static_cast<uint32>(trackNum));
-      const int64 track_type = parser_track->GetType();
+          parser_tracks->GetTrackByNumber(static_cast<uint32_t>(trackNum));
+      const int64_t track_type = parser_track->GetType();
 
       if ((track_type == mkvparser::Track::kAudio) ||
           (track_type == mkvparser::Track::kVideo)) {
         const int frame_count = block->GetFrameCount();
-        const int64 time_ns = block->GetTime(cluster);
+        const int64_t time_ns = block->GetTime(cluster);
         const bool is_key = block->IsKey();
 
         for (int i = 0; i < frame_count; ++i) {
           const mkvparser::Block::Frame& frame = block->GetFrame(i);
 
           if (frame.len > data_len) {
-            data.reset(new (std::nothrow) uint8[frame.len]);  // NOLINT
+            data.reset(new (std::nothrow) uint8_t[frame.len]);  // NOLINT
             if (!data.get())
               return -1;
             data_len = frame.len;
@@ -1392,32 +1390,35 @@ int WebMDecrypt(const WebMCryptSettings& webm_crypt) {
           if (frame.Read(&reader, data.get()))
             return -1;
 
-          const uint64 track_num =
+          const uint64_t track_num =
               (track_type == mkvparser::Track::kAudio) ? aud_track : vid_track;
 
           if ((track_type == mkvparser::Track::kVideo && decrypt_video) ||
               (track_type == mkvparser::Track::kAudio && decrypt_audio) ) {
-            string decrypttext;
+            unique_ptr<uint8_t[]> decrypttext(new uint8_t[frame.len]);
+            size_t decrypttext_size = 0;
             if (track_type == mkvparser::Track::kAudio) {
               if (!audio_decryptor.DecryptData(data.get(),
                                                frame.len,
-                                               &decrypttext)) {
+                                               decrypttext.get(),
+                                               &decrypttext_size)) {
                 fprintf(stderr, "Could not decrypt audio data.\n");
                 return -1;
               }
             } else {
               if (!video_decryptor.DecryptData(data.get(),
                                                frame.len,
-                                               &decrypttext)) {
+                                               decrypttext.get(),
+                                               &decrypttext_size)) {
                 fprintf(stderr, "Could not decrypt video data.\n");
                 return -1;
               }
             }
 
-            if (!decrypttext.empty()) {
+            if (decrypttext_size != 0) {
               if (!muxer_segment->AddFrame(
-                      reinterpret_cast<const uint8*>(decrypttext.data()),
-                      decrypttext.size(),
+                      decrypttext.get(),
+                      decrypttext_size,
                       track_num,
                       time_ns,
                       is_key)) {
@@ -1425,7 +1426,6 @@ int WebMDecrypt(const WebMCryptSettings& webm_crypt) {
                 return -1;
               }
             }
-
           } else {
             if (!muxer_segment->AddFrame(data.get(),
                                          frame.len,
@@ -1469,17 +1469,16 @@ bool CheckEncryptionOptions(const string& name,
 }  // namespace
 
 int main(int argc, char* argv[]) {
-  base::AtExitManager *at_exit_manager = new base::AtExitManager();
   WebMCryptSettings webm_crypt_settings;
   bool encrypt = true;
   bool test = false;
 
   // Create initial random IV values.
-  if (!GenerateRandomUInt64(&webm_crypt_settings.aud_enc.initial_iv)) {
+  if (!GenerateRandomuint64_t(&webm_crypt_settings.aud_enc.initial_iv)) {
     fprintf(stderr, "Could not generate initial IV value.\n");
     return EXIT_FAILURE;
   }
-  if (!GenerateRandomUInt64(&webm_crypt_settings.vid_enc.initial_iv)) {
+  if (!GenerateRandomuint64_t(&webm_crypt_settings.vid_enc.initial_iv)) {
     fprintf(stderr, "Could not generate initial IV value.\n");
     return EXIT_FAILURE;
   }
