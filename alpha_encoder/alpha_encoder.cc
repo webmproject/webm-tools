@@ -85,22 +85,22 @@ bool CreateInputFiles(const char* input, int w, int h) {
 
 bool Encode(const std::string& vpxenc_cmd,
             const std::string& vpxenc_options,
-            int w, int h) {
+            int w, int h, std::string codec) {
   // TODO(vigneshv): For now, we force the keyframe intervals to a static value
   // on both the encodes so that the keyframes are aligned. Ideal way to do
   // this is to encode the first file, parse it to determine key frames and
   // pass that list to vpxenc for the second file.
   std::ostringstream encode_cmd;
   encode_cmd << vpxenc_cmd << " --width=" << w << " --height=" << h
-             << " --kf-min-dist=150 --kf-max-dist=150 " << vpxenc_options
-             << " -o video.out video.in";
+             << " --codec=" << codec << " --kf-min-dist=150 --kf-max-dist=150 "
+             << vpxenc_options << " -o video.out video.in";
   fprintf(stderr, "Running %s\n", encode_cmd.str().c_str());
   if (system(encode_cmd.str().c_str()))
     return false;
   encode_cmd.str(std::string());
   encode_cmd << vpxenc_cmd << " --width=" << w << " --height=" << h
-             << " --kf-min-dist=150 --kf-max-dist=150 " << vpxenc_options
-             << " -o alpha.out alpha.in";
+             << " --codec=" << codec << " --kf-min-dist=150 --kf-max-dist=150 "
+             << vpxenc_options << " -o alpha.out alpha.in";
   fprintf(stderr, "Running %s\n", encode_cmd.str().c_str());
   if (system(encode_cmd.str().c_str()))
     return false;
@@ -118,6 +118,7 @@ void Usage() {
   printf("  -o                output file (webm with alpha)\n");
   printf("  -w                width of the input file\n");
   printf("  -h                height of the input file\n");
+  printf("  -c                codec (vp8 or vp9). default is vp8\n");
   printf("  -b                absolute/relative path of vpxenc binary. "
          "default is ../../libvpx/vpxenc\n");
   printf(" [vpxenc_options]   options to be passed to vpxenc. these options"
@@ -175,7 +176,8 @@ bool WriteTrack(mkvparser::MkvReader* reader,
                 mkvparser::MkvReader* reader_alpha,
                 mkvmuxer::Segment* muxer_segment,
                 mkvparser::Segment** parser_segment,
-                mkvparser::Segment** parser_segment_alpha) {
+                mkvparser::Segment** parser_segment_alpha,
+                std::string codec) {
   long long pos = 0;
   mkvparser::EBMLHeader ebml_header;
   ebml_header.Parse(reader, pos);
@@ -249,6 +251,8 @@ bool WriteTrack(mkvparser::MkvReader* reader,
     return false;
   }
 
+  video->set_codec_id((codec == "vp9") ?
+      mkvmuxer::Tracks::kVp9CodecId : mkvmuxer::Tracks::kVp8CodecId);
   if (track_name)
     video->set_name(track_name);
 
@@ -355,6 +359,7 @@ int main(int argc, const char** argv) {
   const char* output = NULL;
   std::string vpxenc_cmd = "../../libvpx/vpxenc";
   std::string vpxenc_options = "";
+  std::string codec = "vp8";
   long w = -1;
   long h = -1;
   int i;
@@ -376,6 +381,8 @@ int main(int argc, const char** argv) {
       h = strtol(argv[++i], &end, 10);
     } else if (!strcmp("-b", argv[i]) && i < argc_check) {
       vpxenc_cmd = argv[++i];
+    } else if (!strcmp("-c", argv[i]) && i < argc_check) {
+      codec = argv[++i];
     } else {
       break;
     }
@@ -391,6 +398,11 @@ int main(int argc, const char** argv) {
     Usage();
     return EXIT_FAILURE;
   }
+  if (codec != "vp8" && codec != "vp9") {
+    fprintf(stderr, "Invalid codec: '%s'. Has to be one of 'vp8' or 'vp9'.\n",
+            codec.c_str());
+    return EXIT_FAILURE;
+  }
   if (w < 16 || h < 16) {
     fprintf(stderr, "Invalid resolution: %ldx%ld", w, h);
     return EXIT_FAILURE;
@@ -404,10 +416,10 @@ int main(int argc, const char** argv) {
   mkvparser::Segment* parser_segment_alpha = NULL;
 
   if (!CreateInputFiles(input, w, h) ||
-      !Encode(vpxenc_cmd, vpxenc_options, w, h) ||
+      !Encode(vpxenc_cmd, vpxenc_options, w, h, codec) ||
       !Init(output, &writer, &muxer_segment, &reader, &reader_alpha) ||
       !WriteTrack(&reader, &reader_alpha, &muxer_segment,
-                  &parser_segment, &parser_segment_alpha) ||
+                  &parser_segment, &parser_segment_alpha, codec) ||
       !WriteClusters(&reader, &reader_alpha, &muxer_segment,
                      parser_segment, parser_segment_alpha) ||
       !Cleanup(&writer, &reader, &reader_alpha, &muxer_segment,
