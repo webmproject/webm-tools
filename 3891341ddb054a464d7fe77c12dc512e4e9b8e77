@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "aa1773d7_98e67563",
+        "filename": "webm_crypt/Makefile",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2016-01-05T18:39:04Z",
+      "side": 1,
+      "message": "I don\u0027t think you need ssl, dl, or pthread",
+      "range": {
+        "startLine": 9,
+        "startChar": 19,
+        "endLine": 9,
+        "endChar": 23
+      },
+      "revId": "3891341ddb054a464d7fe77c12dc512e4e9b8e77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8a438f4f_af193968",
         "filename": "webm_crypt/Readme.txt",
         "patchSetId": 3
@@ -13,6 +36,179 @@
       "writtenOn": "2015-12-17T22:26:25Z",
       "side": 1,
       "message": "The build on windows may work or not. Do not know how to handle here.",
+      "revId": "3891341ddb054a464d7fe77c12dc512e4e9b8e77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2a52a3ad_dc22ad4a",
+        "filename": "webm_crypt/Readme.txt",
+        "patchSetId": 3
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2016-01-05T18:39:04Z",
+      "side": 1,
+      "message": "Well it definitely will not work on windows with the instructions below. Do you have access to a windows machine? I think you can build this in cygwin. But I think you need different lib includes.",
+      "parentUuid": "8a438f4f_af193968",
+      "revId": "3891341ddb054a464d7fe77c12dc512e4e9b8e77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ca202730_39064ffc",
+        "filename": "webm_crypt/aes_ctr.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2016-01-05T18:39:04Z",
+      "side": 1,
+      "message": "nit: one space",
+      "revId": "3891341ddb054a464d7fe77c12dc512e4e9b8e77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "aa1773d7_98c1950a",
+        "filename": "webm_crypt/aes_ctr.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2016-01-05T18:39:04Z",
+      "side": 1,
+      "message": "why not just check \"!\u003d AES_BLOCK_SIZE\" like above?",
+      "range": {
+        "startLine": 48,
+        "startChar": 24,
+        "endLine": 48,
+        "endChar": 26
+      },
+      "revId": "3891341ddb054a464d7fe77c12dc512e4e9b8e77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6a481bfe_fe6201e9",
+        "filename": "webm_crypt/aes_ctr.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2016-01-05T18:39:04Z",
+      "side": 1,
+      "message": "nit: one space",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 7
+      },
+      "revId": "3891341ddb054a464d7fe77c12dc512e4e9b8e77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "6a481bfe_9ef3bd8e",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 645,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2016-01-05T18:39:04Z",
+      "side": 1,
+      "message": "nit: * alignment",
+      "range": {
+        "startLine": 645,
+        "startChar": 16,
+        "endLine": 645,
+        "endChar": 17
+      },
+      "revId": "3891341ddb054a464d7fe77c12dc512e4e9b8e77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8a1aaf01_b79b485a",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 646,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2016-01-05T18:39:04Z",
+      "side": 1,
+      "message": "sizeof(uint64_t)",
+      "range": {
+        "startLine": 646,
+        "startChar": 24,
+        "endLine": 646,
+        "endChar": 25
+      },
+      "revId": "3891341ddb054a464d7fe77c12dc512e4e9b8e77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ea1debf7_baeb312c",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1082,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2016-01-05T18:39:04Z",
+      "side": 1,
+      "message": "I guess this is fine for now. But I think the idea was to separate intimate knowledge about the encryption.",
+      "range": {
+        "startLine": 1082,
+        "startChar": 49,
+        "endLine": 1082,
+        "endChar": 50
+      },
+      "revId": "3891341ddb054a464d7fe77c12dc512e4e9b8e77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "0a4ddf0f_7b883fda",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1084,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2016-01-05T18:39:04Z",
+      "side": 1,
+      "message": "nit:ws",
+      "range": {
+        "startLine": 1084,
+        "startChar": 98,
+        "endLine": 1084,
+        "endChar": 99
+      },
       "revId": "3891341ddb054a464d7fe77c12dc512e4e9b8e77",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
