@@ -499,27 +499,6 @@ bool OutputTracks(const mkvparser::Segment& segment,
   return true;
 }
 
-// This function reads the length of the first frame from a set of packed
-// frames. It works its way backward from the last frame by reading the lengths
-// of each frame and subtracting it till the first frame is reached.
-void read_frame_length(const unsigned char* data, int size, int* frame_length,
-                       int* size_length) {
-  int value = 0;
-  *size_length = 0;
-  do {
-    int index;
-    size -= value + *size_length;
-    index = size - 1;
-    value = 0;
-    do {
-      value <<= 7;
-      value |= (data[index] & 0x7F);
-    } while (!(data[index--] >> 7));
-    *size_length = size - 1 - index;
-  } while (value + *size_length < size);
-  *frame_length = value;
-}
-
 // libvpx reference: vp9/vp9_dx_iface.c
 void ParseSuperframeIndex(const uint8* data, size_t data_sz,
                           uint32 sizes[8], int* count) {
