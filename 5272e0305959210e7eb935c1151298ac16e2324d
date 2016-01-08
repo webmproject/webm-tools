@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0a95dfbc_1be77bcf",
+        "filename": "CMakeLists.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1002174
+      },
+      "writtenOn": "2016-01-08T17:17:20Z",
+      "side": 1,
+      "message": "ubernit: 2016",
+      "range": {
+        "startLine": 1,
+        "startChar": 18,
+        "endLine": 1,
+        "endChar": 22
+      },
+      "revId": "5272e0305959210e7eb935c1151298ac16e2324d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
