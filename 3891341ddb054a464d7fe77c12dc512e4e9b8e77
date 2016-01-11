@@ -372,6 +372,30 @@
     },
     {
       "key": {
+        "uuid": "6a901bcb_8767ac62",
+        "filename": "webm_crypt/webm_crypt.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1082,
+      "author": {
+        "id": 1002054
+      },
+      "writtenOn": "2016-01-11T17:17:10Z",
+      "side": 1,
+      "message": "Yeah, with the old code the app using the encoder code didn\u0027t need to know anything about the implementation. Now with the new code, the app needs to understand WebM encryption as well as AES. How about change ProcessData to return a vector\u003cuint8_t\u003e?",
+      "parentUuid": "aa1773d7_d20e0480",
+      "range": {
+        "startLine": 1082,
+        "startChar": 49,
+        "endLine": 1082,
+        "endChar": 50
+      },
+      "revId": "3891341ddb054a464d7fe77c12dc512e4e9b8e77",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0a4ddf0f_7b883fda",
         "filename": "webm_crypt/webm_crypt.cc",
         "patchSetId": 3
