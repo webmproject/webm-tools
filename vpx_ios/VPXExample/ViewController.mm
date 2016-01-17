@@ -37,8 +37,8 @@
                       action:@selector(downloadTestFile)
             forControlEvents:UIControlEventTouchUpInside];
   _playButton.enabled = NO;
-  cacheDirectoryPath_ = [NSSearchPathForDirectoriesInDomains(
-      NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+  cacheDirectoryPath_ = [NSURL URLWithString:[NSSearchPathForDirectoriesInDomains(
+      NSCachesDirectory, NSUserDomainMask, YES) lastObject]];
   [self
       appendToOutputTextView:[NSString stringWithFormat:@"libvpx: %s %s",
                                                         VERSION_STRING_NOSP,
