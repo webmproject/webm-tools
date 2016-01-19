@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e759a674_99c95e34",
+        "filename": "vpx_ios/VPXExample/VPXExample.xcodeproj/project.pbxproj",
+        "patchSetId": 1
+      },
+      "lineNbr": 485,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2016-01-19T23:56:24Z",
+      "side": 1,
+      "message": "Is this necessary? Seems that it isn\u0027t from tests on my side. Are your builds failing?",
+      "range": {
+        "startLine": 485,
+        "startChar": 21,
+        "endLine": 485,
+        "endChar": 23
+      },
+      "revId": "56a0daa5ca2b0ea6cbc67ff073fbfa318313c754",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
