@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "74af2662_467652e0",
+        "filename": "webm_crypt/Readme.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2016-01-22T17:40:36Z",
+      "side": 1,
+      "message": "New windows section:\n\n1. Install cygwin.\n   Note: These instructions were written using cygwin \n         x86_64, but should work with the x86 version.\n2. Using the cygwin package manager, make sure make and g++ \n   are installed.\n3. Clone libwebm into the same directory as webm-tools. The libwebm and\n   webm-tools directories must be siblings in the same root directory.\n4. In the libwebm repository, run:\n   $ make -f Makefile.unix\n5. Back in the webm_crypt source directory, run:\n   $ make\n6. To confirm webm_crypt works, run:\n   $ webm_crypt -test",
+      "revId": "03636ed41cc132cc46aab3d2b90dc82eba9cf9d3",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
+    }
+  ]
+}
