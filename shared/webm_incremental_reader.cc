@@ -76,7 +76,7 @@ int WebmIncrementalReader::Read(int64 read_pos,
   const int64 bytes_available = window_length_ - window_pos;
   if (bytes_available < length_requested) {
     // No, not enough data buffered.
-    return mkvparser::E_BUFFER_NOT_FULL;
+    return kNeedMoreData;
   }
 
   // Yes, there's enough data in the buffer.

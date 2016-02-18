@@ -85,6 +85,11 @@ bool WebMFile::ParseFile(mkvparser::IMkvReader* reader) {
     return false;
   }
 
+  if (!reader) {
+    fprintf(stderr, "Error reader is NULL.\n");
+    return false;
+  }
+
   reader_ = reader;
 
   int64 pos = 0;
@@ -1874,12 +1879,12 @@ WebMFile::Status WebMFile::ParseSegmentHeaders(int32* bytes_read) {
     mkvparser::EBMLHeader ebml_header;
     int64 pos = 0;
     int64 status = ebml_header.Parse(reader_, pos);
-    if (status < 0) {
-      fprintf(stderr, "EBML header parse failed status=%lld\n", status);
-      return kParsingError;
-    } else if (status) {
+    if (status == mkvparser::E_BUFFER_NOT_FULL) {
       // The parser needs more data to finish parsing the EBML header.
       return state_;
+    } else if (status < 0) {
+      fprintf(stderr, "EBML header parse failed status=%lld\n", status);
+      return kParsingError;
     }
 
     // Create and start parse of the segment...
