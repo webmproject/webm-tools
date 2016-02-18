@@ -1179,6 +1179,13 @@ bool WebMFile::HasVideo() const {
   return (GetVideoTrack() != NULL);
 }
 
+const mkvparser::Colour* WebMFile::VideoColour() const {
+  const mkvparser::VideoTrack* const vid_track = GetVideoTrack();
+  if (vid_track)
+    return vid_track->GetColour();
+  return NULL;
+}
+
 double WebMFile::VideoFramerate() const {
   double rate = 0.0;
   const mkvparser::VideoTrack* const vid_track = GetVideoTrack();

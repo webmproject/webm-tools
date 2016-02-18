@@ -22,6 +22,7 @@ namespace mkvparser {
 class AudioTrack;
 class Block;
 class Cluster;
+class Colour;
 class CuePoint;
 class Cues;
 class IMkvReader;
@@ -327,6 +328,11 @@ class WebMFile {
   // Returns true if the file contains at least one video track. Parser state
   // must be >= kParsingClusters for output to be valid.
   bool HasVideo() const;
+
+  // Returns the Colour information of the first video track. Returns 0 if there
+  // is no video track or if the video track has no colour element. Parser state
+  // must be >= kParsingClusters for output to be valid.
+  const mkvparser::Colour* VideoColour() const;
 
   // Returns the average framerate of the first video track. Returns 0.0 if
   // there is no video track or there is no FrameRate element.
