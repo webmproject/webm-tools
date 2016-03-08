@@ -386,7 +386,7 @@ bool OutputTracks(const mkvparser::Segment& segment,
           track->GetContentEncodingByIndex(0);
       if (!encoding) {
         printf("Could not get first ContentEncoding.\n");
-        return NULL;
+        return false;
       }
 
       fprintf(o, "%sContentEncodingOrder : %lld\n",
