@@ -5,6 +5,7 @@
 // tree. An additional intellectual property rights grant can be found
 // in the file PATENTS.  All contributing project authors may
 // be found in the AUTHORS file in the root of the source tree.
+#include <cstdlib>
 #include <cstring>
 #include <limits>
 #include <memory>
@@ -13,8 +14,8 @@
 #include <vector>
 
 #include "indent.h"
-#include "mkvreader.hpp"
-#include "mkvparser.hpp"
+#include "mkvparser/mkvparser.h"
+#include "mkvparser/mkvreader.h"
 #include "webm_constants.h"
 #include "webm_endian.h"
 
