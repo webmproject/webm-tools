@@ -13,11 +13,11 @@
 #include <string>
 
 #include "aes_ctr.h"
-#include "mkvmuxer.hpp"
-#include "mkvmuxerutil.hpp"
-#include "mkvparser.hpp"
-#include "mkvreader.hpp"
-#include "mkvwriter.hpp"
+#include "mkvmuxer/mkvmuxer.h"
+#include "mkvmuxer/mkvmuxerutil.h"
+#include "mkvmuxer/mkvwriter.h"
+#include "mkvparser/mkvparser.h"
+#include "mkvparser/mkvreader.h"
 #include "webm_constants.h"
 #include "webm_endian.h"
 
