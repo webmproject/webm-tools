@@ -22,7 +22,6 @@ namespace mkvparser {
 class AudioTrack;
 class Block;
 class Cluster;
-class Colour;
 class CuePoint;
 class Cues;
 class IMkvReader;
@@ -31,6 +30,8 @@ class Segment;
 class SegmentInfo;
 class Track;
 class VideoTrack;
+
+struct Colour;
 }  // namespace mkvparser
 
 namespace webm_tools {
