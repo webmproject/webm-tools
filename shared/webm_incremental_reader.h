@@ -11,7 +11,8 @@
 #ifndef SHARED_WEBM_INCREMENTAL_READER_H_
 #define SHARED_WEBM_INCREMENTAL_READER_H_
 
-#include "mkvreader.hpp"
+#include "mkvparser/mkvreader.h"
+
 #include "webm_tools_types.h"
 
 namespace webm_tools {

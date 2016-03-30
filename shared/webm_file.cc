@@ -21,8 +21,9 @@
 #include <utility>
 #include <vector>
 
-#include "mkvparser.hpp"
-#include "mkvreader.hpp"
+#include "mkvparser/mkvparser.h"
+#include "mkvparser/mkvreader.h"
+
 #include "webm_constants.h"
 #include "webm_incremental_reader.h"
 
