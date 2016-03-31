@@ -16,6 +16,24 @@
       "revId": "d3dda41e0edbf9185674db1b5f216b9b4297d45d",
       "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "318b05a5_329d3635",
+        "filename": "webm_info/webm_info.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1002431
+      },
+      "writtenOn": "2016-03-31T17:57:04Z",
+      "side": 1,
+      "message": "EXIT_FAILURE/EXIT_SUCCESS not def\u0027d on mac w/out.",
+      "parentUuid": "318b05a5_a64cac73",
+      "revId": "d3dda41e0edbf9185674db1b5f216b9b4297d45d",
+      "serverId": "3ce6091f-6c88-37e8-8c75-72f92ae8dfba",
+      "unresolved": false
     }
   ]
 }
