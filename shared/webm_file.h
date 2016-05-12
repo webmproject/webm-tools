@@ -196,6 +196,12 @@ class WebMFile {
   // output to be valid.
   bool CuesFirstInCluster(TrackTypes type) const;
 
+  // Returns true if the file has accurate cluster duration for all the
+  // Clusters. The last Cluster is not checked. By convention it is still
+  // considered to have accurate cluster duration irrespective of the last
+  // Cluster.
+  bool HasAccurateClusterDuration() const;
+
   // Returns the display width of the first video track. Returns 0 if there
   // is no video track. Parser state must be >= kParsingClusters for output to
   // be valid.
