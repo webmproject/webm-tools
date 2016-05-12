@@ -693,6 +693,47 @@ bool WebMFile::CheckCuesAlignmentList(
   return true;
 }
 
+bool WebMFile::HasAccurateClusterDuration() const {
+  if (state_ <= kParsingHeader)
+    return false;
+
+  const mkvparser::Cluster* cluster = segment_->GetFirst();
+  map<int64, bool> track_has_duration;
+  // Iterate through all the Clusters and check if the last frame in each of
+  // them has Duration set.
+  while ((cluster != NULL) && !cluster->EOS()) {
+    // This check is done at the beginning of the loop because we don't care
+    // about the last Cluster.
+    for (map<int64, bool>::iterator it = track_has_duration.begin();
+         it != track_has_duration.end(); ++it) {
+      if (!it->second)
+        return false;
+    }
+    track_has_duration.clear();
+    const mkvparser::BlockEntry* block_entry;
+    long status = cluster->GetFirst(block_entry);
+    if (status)
+      return false;
+
+    while ((block_entry != NULL) && !block_entry->EOS()) {
+      const int64 track_number = block_entry->GetBlock()->GetTrackNumber();
+      if (block_entry->GetKind() == mkvparser::BlockEntry::kBlockGroup) {
+        const mkvparser::BlockGroup* const block_group =
+            reinterpret_cast<const mkvparser::BlockGroup* const>(block_entry);
+        track_has_duration[track_number] =
+            (block_group->GetDurationTimeCode() > 0);
+      } else {
+        track_has_duration[track_number] = false;
+      }
+      status = cluster->GetNext(block_entry, block_entry);
+      if (status)
+        return false;
+    }
+    cluster = segment_->GetNext(cluster);
+  }
+  return true;
+}
+
 bool WebMFile::CheckForCues() const {
   if (state_ <= kParsingHeader)
     return false;
