@@ -698,13 +698,13 @@ bool WebMFile::HasAccurateClusterDuration() const {
     return false;
 
   const mkvparser::Cluster* cluster = segment_->GetFirst();
-  map<int64, bool> track_has_duration;
+  std::map<int64, bool> track_has_duration;
   // Iterate through all the Clusters and check if the last frame in each of
   // them has Duration set.
   while (cluster != NULL && !cluster->EOS()) {
     // This check is done at the beginning of the loop because we don't care
     // about the last Cluster.
-    for (map<int64, bool>::const_iterator it = track_has_duration.begin();
+    for (std::map<int64, bool>::const_iterator it = track_has_duration.begin();
          it != track_has_duration.end(); ++it) {
       if (!it->second)
         return false;
