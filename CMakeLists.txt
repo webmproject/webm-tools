@@ -6,7 +6,7 @@
 ##  in the file PATENTS.  All contributing project authors may
 ##  be found in the AUTHORS file in the root of the source tree.
 cmake_minimum_required(VERSION 2.8)
-project(WEBMTOOLS)
+project(webmtools)
 
 set(WEBMTOOLS_SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
 # TODO(tomfinegan): The libwebm source directory must be configurable.
@@ -21,11 +21,12 @@ add_subdirectory("${LIBWEBM_SRC_DIR}" "${LIBWEBM_BUILD_DIR}")
 include_directories("${LIBWEBM_SRC_DIR}"
                     "${WEBMTOOLS_SRC_DIR}/shared")
 
-add_executable(webm_info
+add_library(${PROJECT_NAME} SHARED
   "${WEBMTOOLS_SRC_DIR}/shared/indent.cc"
-  "${WEBMTOOLS_SRC_DIR}/shared/indent.h"
+  "${WEBMTOOLS_SRC_DIR}/shared/webm_chunk_writer.cc"
   "${WEBMTOOLS_SRC_DIR}/shared/webm_endian.cc"
-  "${WEBMTOOLS_SRC_DIR}/shared/webm_endian.h"
-  "${WEBMTOOLS_SRC_DIR}/webm_info/webm_info.cc")
+  "${WEBMTOOLS_SRC_DIR}/shared/webm_file.cc"
+  "${WEBMTOOLS_SRC_DIR}/shared/webm_incremental_reader.cc"
+  "${WEBMTOOLS_SRC_DIR}/shared/webm_live_muxer.cc")
 
-target_link_libraries(webm_info LINK_PUBLIC webm)
+target_link_libraries(${PROJECT_NAME} LINK_PUBLIC webm)
