@@ -14,6 +14,7 @@
 #include <string>
 #include <vector>
 
+#include "mkvmuxer.hpp"
 #include "webm_tools_types.h"
 
 // Forward declarations of libwebm muxer types used by |WebMLiveMuxer|.
@@ -136,6 +137,14 @@ class WebMLiveMuxer {
   // added. Returns |kVideoTrackError| when adding the track to the segment
   // fails.
   int AddVideoTrack(int width, int height, const std::string& codec_id);
+
+  // Adds a video track with the specified |codec_id| and |color_metadata| to
+  // |ptr_segment_|, and returns the track number [1-127].
+  // Returns |kVideoTrackAlreadyExists| when the video track has already been
+  // added. Returns |kVideoTrackError| when adding the track to the segment
+  // fails.
+  int AddVideoTrack(int width, int height, const std::string& codec_id,
+                    const mkvmuxer::Colour& color_metadata);
 
   // Sets the muxer's muxing app. Must be called before any frames are written.
   bool SetMuxingApp(const std::string& muxing_app);

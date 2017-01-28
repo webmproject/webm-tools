@@ -204,6 +204,31 @@ int WebMLiveMuxer::AddVideoTrack(int width, int height,
   return video_track_num;
 }
 
+int WebMLiveMuxer::AddVideoTrack(int width, int height,
+                                 const std::string& codec_id,
+                                 const mkvmuxer::Colour& color_metadata) {
+  if (codec_id.empty()) {
+    fprintf(stderr, "Cannot AddVideoTrack with empty codec_id.\n");
+    return kVideoTrackError;
+  }
+  const int status = AddVideoTrack(width, height);
+  if (status <= 0) {
+    fprintf(stderr, "Cannot AddVideoTrack.\n");
+    return status;
+  }
+  const int video_track_num = status;
+  mkvmuxer::VideoTrack* const video_track =
+      static_cast<mkvmuxer::VideoTrack*>(
+          ptr_segment_->GetTrackByNumber(video_track_num));
+  if (!video_track) {
+    fprintf(stderr, "Unable to set video codec_id: Track look up failed.\n");
+    return kVideoTrackError;
+  }
+  video_track->set_codec_id(codec_id.c_str());
+  video_track->SetColour(color_metadata);
+  return video_track_num;
+}
+
 bool WebMLiveMuxer::SetMuxingApp(const std::string& muxing_app) {
   using mkvmuxer::SegmentInfo;
   SegmentInfo* const ptr_segment_info = ptr_segment_->GetSegmentInfo();
