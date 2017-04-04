@@ -19,7 +19,7 @@
 		6A4370EA1B5432D00006FD6D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4370E91B5432D00006FD6D /* Default-568h@2x.png */; };
 		6A8206771B682D9500FD6040 /* IxoDASHManifestParserConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8206761B682D9500FD6040 /* IxoDASHManifestParserConstants.m */; };
 		6A8FD2B61B62E76100BDD946 /* IxoDASHManifestParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8FD2B51B62E76100BDD946 /* IxoDASHManifestParserTests.m */; };
-		6A8FD2BC1B62FD6C00BDD946 /* IxoPlayerTestCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8FD2BB1B62FD6C00BDD946 /* IxoPlayerTestCommon.m */; };
+		6A8FD2BC1B62FD6C00BDD946 /* IosPlayerTestCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A8FD2BB1B62FD6C00BDD946 /* IosPlayerTestCommon.m */; };
 		6ABE98111B7BC0960048F7AE /* IxoMutableDASHManifest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABE98101B7BC0960048F7AE /* IxoMutableDASHManifest.m */; };
 		6ABE98141B7BD17D0048F7AE /* IxoDASHManifestTestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ABE98131B7BD17D0048F7AE /* IxoDASHManifestTestData.m */; };
 		6AC43A091B5047BB00801EAF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AC43A021B5047BB00801EAF /* AppDelegate.m */; };
@@ -38,7 +38,7 @@
 			containerPortal = 6AE5EC3F1B4EE3B200AA955F /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 6AE5EC461B4EE3B200AA955F;
-			remoteInfo = IxoPlayer;
+			remoteInfo = IosPlayer;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -66,8 +66,8 @@
 		6A8206751B682CF400FD6040 /* IxoDASHManifestParserConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IxoDASHManifestParserConstants.h; sourceTree = SOURCE_ROOT; };
 		6A8206761B682D9500FD6040 /* IxoDASHManifestParserConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IxoDASHManifestParserConstants.m; sourceTree = SOURCE_ROOT; };
 		6A8FD2B51B62E76100BDD946 /* IxoDASHManifestParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IxoDASHManifestParserTests.m; sourceTree = "<group>"; };
-		6A8FD2BA1B62FD6C00BDD946 /* IxoPlayerTestCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IxoPlayerTestCommon.h; sourceTree = "<group>"; };
-		6A8FD2BB1B62FD6C00BDD946 /* IxoPlayerTestCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IxoPlayerTestCommon.m; sourceTree = "<group>"; };
+		6A8FD2BA1B62FD6C00BDD946 /* IosPlayerTestCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IosPlayerTestCommon.h; sourceTree = "<group>"; };
+		6A8FD2BB1B62FD6C00BDD946 /* IosPlayerTestCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IosPlayerTestCommon.m; sourceTree = "<group>"; };
 		6ABE980F1B7BC0960048F7AE /* IxoMutableDASHManifest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IxoMutableDASHManifest.h; sourceTree = "<group>"; };
 		6ABE98101B7BC0960048F7AE /* IxoMutableDASHManifest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IxoMutableDASHManifest.m; sourceTree = "<group>"; };
 		6ABE98121B7BD17D0048F7AE /* IxoDASHManifestTestData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IxoDASHManifestTestData.h; sourceTree = "<group>"; };
@@ -82,8 +82,8 @@
 		6AC43A0F1B5047D200801EAF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = SOURCE_ROOT; };
 		6ADFC2211B66F9C50034819F /* IxoDASHManifestParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IxoDASHManifestParser.h; sourceTree = SOURCE_ROOT; };
 		6ADFC2221B66F9C50034819F /* IxoDASHManifestParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IxoDASHManifestParser.m; sourceTree = SOURCE_ROOT; };
-		6AE5EC471B4EE3B200AA955F /* IxoPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IxoPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		6AE5EC601B4EE3B200AA955F /* IxoPlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IxoPlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6AE5EC471B4EE3B200AA955F /* IosPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IosPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6AE5EC601B4EE3B200AA955F /* IosPlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IosPlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AE5EC651B4EE3B200AA955F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6AE5EC661B4EE3B200AA955F /* IxoDataSourceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IxoDataSourceTests.m; sourceTree = "<group>"; };
 		6AF582721BFBB6F500EB3188 /* IxoDASHChunkIndexerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IxoDASHChunkIndexerTests.m; sourceTree = "<group>"; };
@@ -130,8 +130,8 @@
 			children = (
 				6A4370E91B5432D00006FD6D /* Default-568h@2x.png */,
 				9809172C3DC6B925B4CD92D0 /* Frameworks */,
-				6AE5EC491B4EE3B200AA955F /* IxoPlayer */,
-				6AE5EC631B4EE3B200AA955F /* IxoPlayerTests */,
+				6AE5EC491B4EE3B200AA955F /* IosPlayer */,
+				6AE5EC631B4EE3B200AA955F /* IosPlayerTests */,
 				EA34B8B7C03F90A26D675019 /* Pods */,
 				6AE5EC481B4EE3B200AA955F /* Products */,
 				6A1AC7471BCD3E3700233FAF /* webm-tools/shared */,
@@ -141,13 +141,13 @@
 		6AE5EC481B4EE3B200AA955F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6AE5EC471B4EE3B200AA955F /* IxoPlayer.app */,
-				6AE5EC601B4EE3B200AA955F /* IxoPlayerTests.xctest */,
+				6AE5EC471B4EE3B200AA955F /* IosPlayer.app */,
+				6AE5EC601B4EE3B200AA955F /* IosPlayerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6AE5EC491B4EE3B200AA955F /* IxoPlayer */ = {
+		6AE5EC491B4EE3B200AA955F /* IosPlayer */ = {
 			isa = PBXGroup;
 			children = (
 				6AC43A011B5047BB00801EAF /* AppDelegate.h */,
@@ -172,7 +172,7 @@
 				6AC43A071B5047BB00801EAF /* TextViewController.h */,
 				6AC43A081B5047BB00801EAF /* TextViewController.m */,
 			);
-			path = IxoPlayer;
+			path = IosPlayer;
 			sourceTree = "<group>";
 		};
 		6AE5EC4A1B4EE3B200AA955F /* Supporting Files */ = {
@@ -184,7 +184,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		6AE5EC631B4EE3B200AA955F /* IxoPlayerTests */ = {
+		6AE5EC631B4EE3B200AA955F /* IosPlayerTests */ = {
 			isa = PBXGroup;
 			children = (
 				6AF582721BFBB6F500EB3188 /* IxoDASHChunkIndexerTests.m */,
@@ -194,11 +194,11 @@
 				6AE5EC661B4EE3B200AA955F /* IxoDataSourceTests.m */,
 				6ABE980F1B7BC0960048F7AE /* IxoMutableDASHManifest.h */,
 				6ABE98101B7BC0960048F7AE /* IxoMutableDASHManifest.m */,
-				6A8FD2BA1B62FD6C00BDD946 /* IxoPlayerTestCommon.h */,
-				6A8FD2BB1B62FD6C00BDD946 /* IxoPlayerTestCommon.m */,
+				6A8FD2BA1B62FD6C00BDD946 /* IosPlayerTestCommon.h */,
+				6A8FD2BB1B62FD6C00BDD946 /* IosPlayerTestCommon.m */,
 				6AE5EC641B4EE3B200AA955F /* Supporting Files */,
 			);
-			path = IxoPlayerTests;
+			path = IosPlayerTests;
 			sourceTree = "<group>";
 		};
 		6AE5EC641B4EE3B200AA955F /* Supporting Files */ = {
@@ -231,9 +231,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6AE5EC461B4EE3B200AA955F /* IxoPlayer */ = {
+		6AE5EC461B4EE3B200AA955F /* IosPlayer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6AE5EC6A1B4EE3B200AA955F /* Build configuration list for PBXNativeTarget "IxoPlayer" */;
+			buildConfigurationList = 6AE5EC6A1B4EE3B200AA955F /* Build configuration list for PBXNativeTarget "IosPlayer" */;
 			buildPhases = (
 				D3EE744D5024DEEC09E05FF7 /* Check Pods Manifest.lock */,
 				6AE5EC431B4EE3B200AA955F /* Sources */,
@@ -245,14 +245,14 @@
 			);
 			dependencies = (
 			);
-			name = IxoPlayer;
-			productName = IxoPlayer;
-			productReference = 6AE5EC471B4EE3B200AA955F /* IxoPlayer.app */;
+			name = IosPlayer;
+			productName = IosPlayer;
+			productReference = 6AE5EC471B4EE3B200AA955F /* IosPlayer.app */;
 			productType = "com.apple.product-type.application";
 		};
-		6AE5EC5F1B4EE3B200AA955F /* IxoPlayerTests */ = {
+		6AE5EC5F1B4EE3B200AA955F /* IosPlayerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6AE5EC6D1B4EE3B200AA955F /* Build configuration list for PBXNativeTarget "IxoPlayerTests" */;
+			buildConfigurationList = 6AE5EC6D1B4EE3B200AA955F /* Build configuration list for PBXNativeTarget "IosPlayerTests" */;
 			buildPhases = (
 				6AE5EC5C1B4EE3B200AA955F /* Sources */,
 				6AE5EC5D1B4EE3B200AA955F /* Frameworks */,
@@ -263,9 +263,9 @@
 			dependencies = (
 				6AE5EC621B4EE3B200AA955F /* PBXTargetDependency */,
 			);
-			name = IxoPlayerTests;
-			productName = IxoPlayerTests;
-			productReference = 6AE5EC601B4EE3B200AA955F /* IxoPlayerTests.xctest */;
+			name = IosPlayerTests;
+			productName = IosPlayerTests;
+			productReference = 6AE5EC601B4EE3B200AA955F /* IosPlayerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -287,7 +287,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6AE5EC421B4EE3B200AA955F /* Build configuration list for PBXProject "IxoPlayer" */;
+			buildConfigurationList = 6AE5EC421B4EE3B200AA955F /* Build configuration list for PBXProject "IosPlayer" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -300,8 +300,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6AE5EC461B4EE3B200AA955F /* IxoPlayer */,
-				6AE5EC5F1B4EE3B200AA955F /* IxoPlayerTests */,
+				6AE5EC461B4EE3B200AA955F /* IosPlayer */,
+				6AE5EC5F1B4EE3B200AA955F /* IosPlayerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -387,7 +387,7 @@
 				6ABE98141B7BD17D0048F7AE /* IxoDASHManifestTestData.m in Sources */,
 				6A8FD2B61B62E76100BDD946 /* IxoDASHManifestParserTests.m in Sources */,
 				6AE5EC671B4EE3B200AA955F /* IxoDataSourceTests.m in Sources */,
-				6A8FD2BC1B62FD6C00BDD946 /* IxoPlayerTestCommon.m in Sources */,
+				6A8FD2BC1B62FD6C00BDD946 /* IosPlayerTestCommon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,7 +396,7 @@
 /* Begin PBXTargetDependency section */
 		6AE5EC621B4EE3B200AA955F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 6AE5EC461B4EE3B200AA955F /* IxoPlayer */;
+			target = 6AE5EC461B4EE3B200AA955F /* IosPlayer */;
 			targetProxy = 6AE5EC611B4EE3B200AA955F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -528,10 +528,10 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = IxoPlayerTests/Info.plist;
+				INFOPLIST_FILE = IosPlayerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IxoPlayer.app/IxoPlayer";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IosPlayer.app/IosPlayer";
 			};
 			name = Debug;
 		};
@@ -543,17 +543,17 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = IxoPlayerTests/Info.plist;
+				INFOPLIST_FILE = IosPlayerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IxoPlayer.app/IxoPlayer";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IosPlayer.app/IosPlayer";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6AE5EC421B4EE3B200AA955F /* Build configuration list for PBXProject "IxoPlayer" */ = {
+		6AE5EC421B4EE3B200AA955F /* Build configuration list for PBXProject "IosPlayer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6AE5EC681B4EE3B200AA955F /* Debug */,
@@ -562,7 +562,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6AE5EC6A1B4EE3B200AA955F /* Build configuration list for PBXNativeTarget "IxoPlayer" */ = {
+		6AE5EC6A1B4EE3B200AA955F /* Build configuration list for PBXNativeTarget "IosPlayer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6AE5EC6B1B4EE3B200AA955F /* Debug */,
@@ -571,7 +571,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6AE5EC6D1B4EE3B200AA955F /* Build configuration list for PBXNativeTarget "IxoPlayerTests" */ = {
+		6AE5EC6D1B4EE3B200AA955F /* Build configuration list for PBXNativeTarget "IosPlayerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6AE5EC6E1B4EE3B200AA955F /* Debug */,

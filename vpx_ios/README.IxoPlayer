@@ -1,4 +1,4 @@
-IxoPlayer README
+IosPlayer README
 
 
 Prerequisites
@@ -6,7 +6,7 @@ Prerequisites
   Cocoapods
     - Cocoapods getting started guide:
       https://guides.cocoapods.org/using/getting-started.html
-  Xcode 6 (IxoPlayer was built using Xcode 6)
+  Xcode 6 (IosPlayer was built using Xcode 6)
 
 
 Setup
@@ -14,10 +14,10 @@ Setup
 Before doing anything else, read the contents of README.VPXExample, and follow
 all of the instructions in the Prerequisites and Getting Started sections. Any
 instructions referring to VPXExample.xcodeproj also apply to
-IxoPlayer.xcodeproj, but those changes should be made after the xcworkspace is
+IosPlayer.xcodeproj, but those changes should be made after the xcworkspace is
 created by the pod command described below.
 
-From within the IxoPlayer directory, before opening the project:
+From within the IosPlayer directory, before opening the project:
 1. (First time ever cloning the repo and opening the project) run 'pod install'
    to fetch pod dependencies.
 2. (Upon pulling new source code) run 'pod update'
@@ -29,7 +29,7 @@ Note: Do only one of the above steps. Doing both is not required.
 
 Testing
 -------
-Tests can be run within Xcode via the IxoPlayerTests target.
+Tests can be run within Xcode via the IosPlayerTests target.
 
 A web server is required, and is expected to be reachable on localhost:8000.
 RangeHTTPServer (the Python module) is recommended (localhost and port 8000 are
@@ -37,7 +37,7 @@ its defaults), but any HTTP server that supports ranged HTTP requests should be
 adequate.
 
 To use RangeHTTPServer, run it in the testdata directory that resides in the
-IxoPlayer directory.
-  $ cd path/to/IxoPlayer/testdata
+IosPlayer directory.
+  $ cd path/to/IosPlayer/testdata
   $ python -m RangeHTTPServer
 

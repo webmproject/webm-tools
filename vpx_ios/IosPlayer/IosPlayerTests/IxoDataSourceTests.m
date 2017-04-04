@@ -11,7 +11,7 @@
 
 #import "IxoDownloadRecord.h"
 #import "IxoDataSource.h"
-#import "IxoPlayerTestCommon.h"
+#import "IosPlayerTestCommon.h"
 
 @interface IxoDataSourceTests : XCTestCase<IxoDataSourceListener>
 @end

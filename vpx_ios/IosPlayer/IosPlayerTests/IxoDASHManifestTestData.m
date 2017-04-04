@@ -8,7 +8,7 @@
 #import "IxoDASHManifestTestData.h"
 
 #import "IxoDASHManifestParserConstants.h"
-#import "IxoPlayerTestCommon.h"
+#import "IosPlayerTestCommon.h"
 
 @interface IxoDASHManifestTestData ()
 + (IxoMutableDASHManifest*)getVP9VorbisDASHMPD1Manifest;

@@ -14,7 +14,7 @@
 #import "IxoDASHManifestParser.h"
 #import "IxoDASHStartData.h"
 #import "IxoDownloadRecord.h"
-#import "IxoPlayerTestCommon.h"
+#import "IosPlayerTestCommon.h"
 
 @interface IxoDASHChunkIndexerTests : XCTestCase {
   IxoDataSource* _data_source;

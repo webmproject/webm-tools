@@ -12,7 +12,7 @@
 #import <XCTest/XCTest.h>
 
 #import "IxoDASHManifestTestData.h"
-#import "IxoPlayerTestCommon.h"
+#import "IosPlayerTestCommon.h"
 
 @interface IxoDASHManifestParserTests : XCTestCase
 @end
