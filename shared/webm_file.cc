@@ -1217,7 +1217,8 @@ int64 WebMFile::TrackStartNanoseconds(TrackTypes type) const {
   if (!track)
     return 0;
 
-  return tracks_start_milli_.find(track->GetNumber())->second;
+  return tracks_start_milli_.find(track->GetNumber())->second *
+         kNanosecondsPerMillisecond;
 }
 
 bool WebMFile::HasVideo() const {
