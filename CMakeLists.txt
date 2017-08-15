@@ -20,12 +20,3 @@ set(LIBWEBM_BUILD_DIR "${CMAKE_BINARY_DIR}/libwebm_build")
 add_subdirectory("${LIBWEBM_SRC_DIR}" "${LIBWEBM_BUILD_DIR}")
 include_directories("${LIBWEBM_SRC_DIR}"
                     "${WEBMTOOLS_SRC_DIR}/shared")
-
-add_executable(webm_info
-  "${WEBMTOOLS_SRC_DIR}/shared/indent.cc"
-  "${WEBMTOOLS_SRC_DIR}/shared/indent.h"
-  "${WEBMTOOLS_SRC_DIR}/shared/webm_endian.cc"
-  "${WEBMTOOLS_SRC_DIR}/shared/webm_endian.h"
-  "${WEBMTOOLS_SRC_DIR}/webm_info/webm_info.cc")
-
-target_link_libraries(webm_info LINK_PUBLIC webm)
