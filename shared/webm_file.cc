@@ -410,6 +410,7 @@ bool WebMFile::CheckCuesAlignmentList(
   string negate_alignment;
   string alignment_times("|Align timecodes ");
   string alignment_stats("|Align stats ");
+  char str[4096];
 
   if (output_string)
     *output_string = "Unknown";
@@ -426,7 +427,6 @@ bool WebMFile::CheckCuesAlignmentList(
     if (golden_info->GetTimeCodeScale() !=
         webm->GetSegmentInfo()->GetTimeCodeScale()) {
       if (output_string) {
-        char str[1024];
         snprintf(str, sizeof(str),
                  "Timecode scales do not match. timecode_scale:%lld"
                  " timecode_scale:%lld",
@@ -492,7 +492,6 @@ bool WebMFile::CheckCuesAlignmentList(
       if (!cues->Find(nano, track, cp, tp)) {
         const WebMFile* const file = webm_list.at(i);
         if (output_string) {
-          char str[1024];
           snprintf(str, sizeof(str),
                    "Could not find CuePoint time:%lld track:%ld file:%s",
                    time, track->GetNumber(), file->filename().c_str());
@@ -505,7 +504,6 @@ bool WebMFile::CheckCuesAlignmentList(
       if (cp->GetTimeCode() > no_alignment_timecode) {
         const WebMFile* const file = webm_list.at(i);
         if (output_string) {
-          char str[4096];
           snprintf(str, sizeof(str),
                    "Could not find alignment in allotted time. seconds:%g"
                    " last_alignment:%lld cp time:%lld track:%ld file:%s",
@@ -558,7 +556,6 @@ bool WebMFile::CheckCuesAlignmentList(
         if (!file->StartsWithKey(*cp, *cluster, *block)) {
           const bool altref = file->IsFrameAltref(*block);
           const int64 nano = block->GetTime(cluster);
-          char str[4096];
           snprintf(str, sizeof(str),
                    " |!Key nano:%lld sec:%g altref:%s track:%ld file:%s",
                    nano, nano / kNanosecondsPerSecond,
@@ -611,7 +608,6 @@ bool WebMFile::CheckCuesAlignmentList(
           return false;
 
         if (gold_time != audio_time) {
-          char str[4096];
           snprintf(str, sizeof(str),
                    " |!Audio time_g:%lld time:%lld file_g:%s file:%s",
                    gold_time, audio_time, gold_file->filename().c_str(),
@@ -667,13 +663,11 @@ bool WebMFile::CheckCuesAlignmentList(
         printf("Found alignment at time:%lld\n", time);
       if (output_string) {
         if (output_alignment_stats) {
-          char str[4096];
           snprintf(str, sizeof(str), "Time:%lld", time);
           if (time)
             alignment_stats += ",";
           alignment_stats += str;
         } else if (output_alignment_times) {
-          char str[4096];
           snprintf(str, sizeof(str), "%lld", time);
           if (time)
             alignment_times += ",";
