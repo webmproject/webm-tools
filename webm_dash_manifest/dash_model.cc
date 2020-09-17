@@ -74,7 +74,7 @@ bool DashModel::Init() {
   for (vector<string>::const_iterator file_iter = webm_filenames_.begin();
        file_iter != webm_filenames_.end();
        ++file_iter) {
-    std::auto_ptr<WebMFile> webm(new (std::nothrow) WebMFile());  // NOLINT
+    std::unique_ptr<WebMFile> webm(new (std::nothrow) WebMFile());  // NOLINT
     if (!webm.get())
       return false;
     if (!webm->ParseFile(*file_iter))

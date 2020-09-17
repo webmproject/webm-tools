@@ -532,15 +532,15 @@ class WebMFile {
 
   // libwebm file reader that implements the IMkvReader interface required by
   // libwebm's mkvparser.
-  std::auto_ptr<mkvparser::MkvReader> file_reader_;
+  std::unique_ptr<mkvparser::MkvReader> file_reader_;
 
   // Buffer object that implements the IMkvReader interface required by
   // libwebm's mkvparser using a window into the |buf| argument passed to
   // |Parse|.
-  std::auto_ptr<WebmIncrementalReader> incremental_reader_;
+  std::unique_ptr<WebmIncrementalReader> incremental_reader_;
 
   // Pointer to libwebm segment.
-  std::auto_ptr<mkvparser::Segment> segment_;
+  std::unique_ptr<mkvparser::Segment> segment_;
 
   // The current state of the parser. The state starts in kParsingHeaders.
   // After the parser has parsed all of the header data the state will

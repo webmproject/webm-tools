@@ -187,8 +187,8 @@ class WebMLiveMuxer {
   bool initialized() const { return initialized_; }
 
  private:
-  std::auto_ptr<WebMChunkWriter> ptr_writer_;
-  std::auto_ptr<mkvmuxer::Segment> ptr_segment_;
+  std::unique_ptr<WebMChunkWriter> ptr_writer_;
+  std::unique_ptr<mkvmuxer::Segment> ptr_segment_;
   uint64 audio_track_num_;
   uint64 video_track_num_;
   std::vector<uint8> buffer_;
